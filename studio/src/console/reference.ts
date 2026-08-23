@@ -1,0 +1,71 @@
+export interface ConsoleCommandReference {
+  label: string;
+  insertText: string;
+  help: string;
+}
+
+export const CONSOLE_COMMAND_REFERENCE: ConsoleCommandReference[] = [
+  { label: "/help", insertText: "/help", help: "Show this command reference." },
+  { label: "/keys", insertText: "/keys", help: "List every node key in the current graph." },
+  { label: "/graph", insertText: "/graph", help: "Print graph-level statistics, roots, leaves, and type counts." },
+  { label: "/find <query>", insertText: "/find ", help: "Search node keys, titles, types, definitions, and custom fields." },
+  { label: "/neighbors <node> [depth]", insertText: "/neighbors ", help: "Print parents and children around a node up to depth 4." },
+  { label: "/path <from> <to>", insertText: "/path ", help: "Find the shortest directed path from one node to another." },
+  { label: "/ls <node>", insertText: "/ls ", help: "Print a compact node summary in the console output." },
+  { label: "/use <node>", insertText: "/use ", help: "Set the current context node. Use . to refer to the current context in later commands." },
+  { label: "/show <node>", insertText: "/show ", help: "Open the node viewer for a node." },
+  { label: "/json <node>", insertText: "/json ", help: "Open the raw JSON editor for a node." },
+  { label: "/mv <old-key> <new-key>", insertText: "/mv ", help: "Rename a node key." },
+  { label: "/rm <node>", insertText: "/rm ", help: "Delete a single node." },
+  { label: "/rm -r <node>", insertText: "/rm -r ", help: "Delete a node and its descendants." },
+  { label: "/add <new-key>", insertText: "/add ", help: "Add a new node without linking it." },
+  { label: "/add <new-key> -p <parent>", insertText: "/add ", help: "Add a new node and link it as a child of the parent." },
+  { label: "/edge <parent> <child>", insertText: "/edge ", help: "Add an edge from parent to child with the default relation value." },
+  { label: "/edge <parent> <child> <weight>", insertText: "/edge ", help: "Add an edge or update its relation value." },
+  { label: "/edge --create-missing <parent> <child>", insertText: "/edge --create-missing ", help: "Create any missing endpoint nodes before adding the edge." },
+  { label: "/edge --create-missing <parent> <child> <weight>", insertText: "/edge --create-missing ", help: "Create missing endpoint nodes and set the edge relation value." },
+  { label: "/rm-edge <parent> <child>", insertText: "/rm-edge ", help: "Remove a single directed edge." },
+  { label: "/parents <node> = A,B", insertText: "/parents ", help: "Replace the parent relation set for a node." },
+  { label: "/children <node> = A,B", insertText: "/children ", help: "Replace the child relation set for a node." },
+  { label: "/set <node> <field> <value>", insertText: "/set ", help: "Set a non-relation field value as string, number, boolean, null, or JSON." },
+  { label: "/unset <node> <field>", insertText: "/unset ", help: "Remove a non-relation field from a node." },
+  { label: "/layout <key> <number>", insertText: "/layout ", help: "Update graph layout appearance, such as rowGap, columnGap, nodeHeight, or stageMinWidth." },
+  { label: "/style-var <var> <value>", insertText: "/style-var --dag-", help: "Set a graph CSS variable. Variable names must start with --dag-." },
+  { label: "/style-var --unset <var>", insertText: "/style-var --unset --dag-", help: "Remove a graph CSS variable override." },
+  { label: "/style-css show", insertText: "/style-css show", help: "Print the current graph appearance CSS." },
+  { label: "/style-css append <css>", insertText: "/style-css append ", help: "Append scoped graph CSS using stable .dag-* selectors." },
+  { label: "/style-css replace <css>", insertText: "/style-css replace ", help: "Replace the full graph appearance CSS." },
+  { label: "/style-reset", insertText: "/style-reset", help: "Reset graph appearance to the default CSS, variables, and layout." },
+  { label: "/clear", insertText: "/clear", help: "Clear the console output." },
+];
+
+export function buildConsoleHelpText(): string {
+  return [
+    "Available commands:",
+    '- /help: Show this command reference.',
+    '- /keys: List every node key in the current graph.',
+    '- /graph: Print graph-level statistics, roots, leaves, and type counts.',
+    '- /find <query>: Search node keys, titles, types, definitions, and custom fields.',
+    '- /neighbors <node> [depth]: Print parents and children around a node up to depth 4.',
+    '- /path <from> <to>: Find the shortest directed path from one node to another.',
+    '- /ls <node>: Print a compact node summary in the console output.',
+    '- /use <node>: Set the current context node. Use . to refer to the current context in later commands.',
+    '- /show <node>: Open the node viewer for a node.',
+    '- /json <node>: Open the raw JSON editor for a node.',
+    '- /mv <old-key> <new-key>: Rename a node key.',
+    '- /rm [-r] <node>: Delete a single node, or delete the full subtree rooted at the node with -r.',
+    '- /add <new-key> [-p <parent>]: Add a new node, and optionally link it as a child of the parent with -p.',
+    '- /edge [--create-missing] <parent> <child> [weight]: Add or update a directed edge, optionally create missing endpoint nodes, and optionally set the edge relation value.',
+    '- /rm-edge <parent> <child>: Remove a single directed edge.',
+    '- /parents <node> = A,B,...: Replace the full parent relation set for a node. Use an empty assignment to clear it.',
+    '- /children <node> = A,B,...: Replace the full child relation set for a node. Use an empty assignment to clear it.',
+    '- /set <node> <field> <value>: Set a non-relation field value as string, number, boolean, null, or JSON.',
+    '- /unset <node> <field>: Remove a non-relation field from a node.',
+    '- /layout <key> <number>: Update layout appearance. Keys include columnGap, rowGap, edgeLaneGap, nodeHeight, minNodeWidth, maxNodeWidth, stageMinWidth, and stageMinHeight.',
+    '- /style-var <var> <value>: Set a --dag-* CSS variable for graph appearance.',
+    '- /style-var --unset <var>: Remove a --dag-* CSS variable override.',
+    '- /style-css show|append|replace: Show, append to, or replace graph CSS using stable .dag-* selectors.',
+    '- /style-reset: Reset graph appearance.',
+    '- /clear | /cls: Clear the console output.',
+  ].join("\n");
+}

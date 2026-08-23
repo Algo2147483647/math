@@ -1,0 +1,30 @@
+:root {
+  --bg-top: #f5f0e7;
+  --bg-bottom: #dbe3ef;
+  --panel: rgba(255, 255, 255, 0.62);
+  --panel-strong: rgba(255, 255, 255, 0.76);
+  --panel-float: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(66, 86, 119, 0.12);
+  --text-strong: #162033;
+  --text-muted: #5f6d82;
+  --text-soft: #8792a2;
+  --accent: #285fdf;
+  --accent-soft: rgba(40, 95, 223, 0.14);
+  --accent-strong: #1b439f;
+  --control-font: "Cormorant Garamond", "Georgia", serif;
+  --edge: rgba(76, 96, 132, 0.24);
+  --edge-glow: rgba(99, 126, 171, 0.1);
+  --edge-active: rgba(41, 92, 207, 0.72);
+  --node-fill: rgba(252, 253, 255, 0.88);
+  --node-border: rgba(91, 109, 142, 0.17);
+  --node-border-strong: rgba(50, 79, 132, 0.35);
+  --node-shadow: 0 16px 34px rgba(28, 40, 63, 0.08);
+  --node-shadow-active: 0 18px 40px rgba(39, 78, 156, 0.12);
+  --scrollbar-thumb: rgba(96, 118, 151, 0.26);
+  --scrollbar-thumb-hover: rgba(96, 118, 151, 0.42);
+  --scrollbar-track: transparent;
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}

@@ -1,0 +1,13 @@
+.dag-graph,
+.dag-backdrop {
+  fill: none;
+}
+
+.dag-edge {
+  pointer-events: none;
+}
+
+.dag-node {
+  cursor: pointer;
+  outline: none;
+}

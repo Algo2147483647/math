@@ -1,0 +1,1004 @@
+{
+  "Abelian_Variety": {
+    "type": "Geometry",
+    "children": {
+      "Elliptic_Curve": "subtype_of"
+    },
+    "parents": {
+      "Scheme": "subtype_of"
+    }
+  },
+  "Affine_Space": {
+    "type": "Geometry",
+    "children": {
+      "Convex_Set": "has_ambient_space"
+    },
+    "parents": {
+      "Linear_Space": "modeled_on"
+    }
+  },
+  "Algebra_Structure": {
+    "type": "Algebra",
+    "children": {
+      "Field": "subtype_of",
+      "Group": "subtype_of",
+      "Lattice": "subtype_of",
+      "Lie_Algebra": "subtype_of",
+      "Ring": "subtype_of"
+    },
+    "parents": {
+      "Set": "has_underlying_set"
+    }
+  },
+  "Automorphic_Form": {
+    "type": "Number Theory",
+    "children": {
+      "Modular_Form": "subtype_of"
+    },
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Banach_Space": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Normed_Linear_Space": "subtype_of"
+    }
+  },
+  "Bessel_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Binary_Tree": {
+    "type": "Discrete Mathematics",
+    "children": {},
+    "parents": {
+      "Tree": "subtype_of"
+    }
+  },
+  "Bipartite_Graph": {
+    "type": "Discrete Mathematics",
+    "children": {},
+    "parents": {
+      "Graph": "subtype_of"
+    }
+  },
+  "Boolean_Algebra": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Lattice": "subtype_of"
+    }
+  },
+  "Branching_Process": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Markov_Chain": "subtype_of"
+    }
+  },
+  "Brownian_Motion": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Diffusion_Process": "subtype_of",
+      "Gaussian_Process": "subtype_of",
+      "Levy_Process": "subtype_of"
+    }
+  },
+  "Chain_Complex": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Module": "has_terms_in",
+      "Sequence": "structured_as"
+    }
+  },
+  "Complete_Graph": {
+    "type": "Discrete Mathematics",
+    "children": {},
+    "parents": {
+      "Graph": "subtype_of"
+    }
+  },
+  "Complex_Field": {
+    "type": "Algebra",
+    "children": {
+      "Complex_Value_Function": "has_codomain"
+    },
+    "parents": {
+      "Field": "subtype_of",
+      "Real_Field": "field_extension_of"
+    }
+  },
+  "Complex_Value_Function": {
+    "type": "Analysis",
+    "children": {
+      "Automorphic_Form": "subtype_of",
+      "Dirichlet_Series": "subtype_of",
+      "Gamma_Function": "subtype_of",
+      "Holomorphic_Function": "subtype_of",
+      "Hypergeometric_Function": "subtype_of",
+      "L_Function": "subtype_of",
+      "Spherical_Harmonics": "subtype_of"
+    },
+    "parents": {
+      "Complex_Field": "has_codomain",
+      "Function": "subtype_of"
+    }
+  },
+  "Cone": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Linear_Space": "has_ambient_space",
+      "Set": "subtype_of"
+    }
+  },
+  "Convex_Set": {
+    "type": "Geometry",
+    "children": {
+      "Polyhedron": "subtype_of"
+    },
+    "parents": {
+      "Affine_Space": "has_ambient_space",
+      "Set": "subtype_of"
+    }
+  },
+  "Cubic_Function": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Polynomial_Function": "subtype_of"
+    }
+  },
+  "Differential_Manifold": {
+    "type": "Geometry",
+    "children": {
+      "Euclidean_Space": "subtype_of",
+      "Lie_Group": "subtype_of",
+      "Riemannian_Manifold": "subtype_of",
+      "Symplectic_Manifold": "subtype_of"
+    },
+    "parents": {
+      "Manifold": "subtype_of"
+    }
+  },
+  "Diffusion_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Brownian_Motion": "subtype_of"
+    },
+    "parents": {
+      "Markov_Process": "subtype_of"
+    }
+  },
+  "Dirac_Delta_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Directed_Acyclic_Graph": {
+    "type": "Discrete Mathematics",
+    "children": {},
+    "parents": {
+      "Graph": "subtype_of"
+    }
+  },
+  "Dirichlet_Character": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of",
+      "Integer_Ring": "has_domain"
+    }
+  },
+  "Dirichlet_Series": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Elliptic_Curve": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Abelian_Variety": "subtype_of"
+    }
+  },
+  "Elliptic_Integral": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Real_Value_Function": "subtype_of"
+    }
+  },
+  "Euclidean_Space": {
+    "type": "Geometry",
+    "children": {
+      "Knot": "has_ambient_space"
+    },
+    "parents": {
+      "Differential_Manifold": "subtype_of",
+      "Hilbert_Space": "subtype_of",
+      "Real_Field": "over_field"
+    }
+  },
+  "Exponential_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Fiber_Bundle": {
+    "type": "Topology",
+    "children": {
+      "Vector_Bundle": "subtype_of"
+    },
+    "parents": {
+      "Topological_Space": "has_base_space"
+    }
+  },
+  "Field": {
+    "type": "Algebra",
+    "children": {
+      "Complex_Field": "subtype_of",
+      "Galois_Representation": "over_field",
+      "Global_Field": "subtype_of",
+      "Linear_Space": "over_field",
+      "Local_Field": "subtype_of",
+      "Rational_Number_Field": "subtype_of",
+      "Real_Field": "subtype_of"
+    },
+    "parents": {
+      "Algebra_Structure": "subtype_of"
+    }
+  },
+  "Filtered_Probability_Space": {
+    "type": "Probability Theory",
+    "children": {
+      "Stopping_Time": "with_respect_to_filtration"
+    },
+    "parents": {
+      "Probability_Space": "subtype_of"
+    }
+  },
+  "Fourth_Order_Function": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Polynomial_Function": "subtype_of"
+    }
+  },
+  "Fractal": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Set": "subtype_of"
+    }
+  },
+  "Function": {
+    "type": "Mathematical Logic and Foundations",
+    "children": {
+      "Bessel_Function": "subtype_of",
+      "Complex_Value_Function": "subtype_of",
+      "Dirac_Delta_Function": "subtype_of",
+      "Dirichlet_Character": "subtype_of",
+      "Exponential_Function": "subtype_of",
+      "Galois_Representation": "subtype_of",
+      "Linear_Transformation": "subtype_of",
+      "Polynomial_Function": "subtype_of",
+      "Radon_Transform": "subtype_of",
+      "Random_Element": "subtype_of",
+      "Real_Value_Function": "subtype_of",
+      "Sequence": "subtype_of"
+    },
+    "parents": {
+      "Relation": "subtype_of"
+    }
+  },
+  "Galois_Representation": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Field": "over_field",
+      "Function": "subtype_of"
+    }
+  },
+  "Gamma_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Gaussian_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Brownian_Motion": "subtype_of"
+    },
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Global_Field": {
+    "type": "Number Theory",
+    "children": {
+      "Number_Field": "subtype_of"
+    },
+    "parents": {
+      "Field": "subtype_of"
+    }
+  },
+  "Graph": {
+    "type": "Discrete Mathematics",
+    "children": {
+      "Bipartite_Graph": "subtype_of",
+      "Complete_Graph": "subtype_of",
+      "Directed_Acyclic_Graph": "subtype_of",
+      "Tree": "subtype_of"
+    },
+    "parents": {
+      "Set": "has_underlying_set"
+    }
+  },
+  "Group": {
+    "type": "Algebra",
+    "children": {
+      "Lie_Group": "subtype_of"
+    },
+    "parents": {
+      "Algebra_Structure": "subtype_of"
+    }
+  },
+  "Hausdorff_Space": {
+    "type": "Topology",
+    "children": {
+      "Manifold": "subtype_of"
+    },
+    "parents": {
+      "Topological_Space": "subtype_of"
+    }
+  },
+  "Hilbert_Space": {
+    "type": "Analysis",
+    "children": {
+      "Euclidean_Space": "subtype_of"
+    },
+    "parents": {
+      "Inner_Product_Space": "subtype_of",
+      "Metric_Space": "subtype_of"
+    }
+  },
+  "Holomorphic_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Hypergeometric_Function": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Inner_Product_Space": {
+    "type": "Algebra",
+    "children": {
+      "Hilbert_Space": "subtype_of"
+    },
+    "parents": {
+      "Normed_Linear_Space": "subtype_of"
+    }
+  },
+  "Integer_Ring": {
+    "type": "Number Theory",
+    "children": {
+      "Dirichlet_Character": "has_domain",
+      "Mobius_Function": "has_domain",
+      "Rational_Number_Field": "fraction_field_of"
+    },
+    "parents": {
+      "Natural_Number": "extends_number_system",
+      "Ring": "subtype_of"
+    }
+  },
+  "Knot": {
+    "type": "Topology",
+    "children": {},
+    "parents": {
+      "Euclidean_Space": "has_ambient_space"
+    }
+  },
+  "L_Function": {
+    "type": "Number Theory",
+    "children": {
+      "Riemann_Zeta_Function": "subtype_of"
+    },
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Lattice": {
+    "type": "Discrete Mathematics",
+    "children": {
+      "Boolean_Algebra": "subtype_of"
+    },
+    "parents": {
+      "Algebra_Structure": "subtype_of"
+    }
+  },
+  "Levy_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Brownian_Motion": "subtype_of",
+      "Poisson_Process": "subtype_of"
+    },
+    "parents": {
+      "Markov_Process": "subtype_of",
+      "Semimartingale": "subtype_of"
+    }
+  },
+  "Lie_Algebra": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Algebra_Structure": "subtype_of",
+      "Lie_Group": "associated_to",
+      "Linear_Space": "subtype_of"
+    }
+  },
+  "Lie_Group": {
+    "type": "Algebra",
+    "children": {
+      "Lie_Algebra": "associated_to"
+    },
+    "parents": {
+      "Differential_Manifold": "subtype_of",
+      "Group": "subtype_of",
+      "Manifold": "subtype_of"
+    }
+  },
+  "Linear_Function": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Polynomial_Function": "subtype_of"
+    }
+  },
+  "Linear_Space": {
+    "type": "Algebra",
+    "children": {
+      "Affine_Space": "modeled_on",
+      "Cone": "has_ambient_space",
+      "Lie_Algebra": "subtype_of",
+      "Linear_Transformation": "maps_between",
+      "Normed_Linear_Space": "subtype_of",
+      "Projective_Space": "projectivization_of",
+      "Tensor": "over_vector_space",
+      "Vector_Bundle": "has_fiber_type"
+    },
+    "parents": {
+      "Field": "over_field",
+      "Module": "subtype_of"
+    }
+  },
+  "Linear_Transformation": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of",
+      "Linear_Space": "maps_between"
+    }
+  },
+  "Local_Field": {
+    "type": "Number Theory",
+    "children": {
+      "p_Adic_Number": "subtype_of"
+    },
+    "parents": {
+      "Field": "subtype_of"
+    }
+  },
+  "Logic": {
+    "type": "Mathematical Logic and Foundations",
+    "children": {},
+    "parents": {}
+  },
+  "Manifold": {
+    "type": "Geometry",
+    "children": {
+      "Differential_Manifold": "subtype_of",
+      "Lie_Group": "subtype_of"
+    },
+    "parents": {
+      "Hausdorff_Space": "subtype_of"
+    }
+  },
+  "Markov_Chain": {
+    "type": "Probability Theory",
+    "children": {
+      "Branching_Process": "subtype_of",
+      "Random_Walk": "subtype_of"
+    },
+    "parents": {
+      "Markov_Process": "subtype_of"
+    }
+  },
+  "Markov_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Diffusion_Process": "subtype_of",
+      "Levy_Process": "subtype_of",
+      "Markov_Chain": "subtype_of"
+    },
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Martingale": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Measurable_Space": {
+    "type": "Analysis",
+    "children": {
+      "Measure_Space": "subtype_of"
+    },
+    "parents": {
+      "Set": "has_underlying_set"
+    }
+  },
+  "Measure_Space": {
+    "type": "Analysis",
+    "children": {
+      "Probability_Space": "subtype_of"
+    },
+    "parents": {
+      "Measurable_Space": "subtype_of"
+    }
+  },
+  "Metric_Space": {
+    "type": "Topology",
+    "children": {
+      "Hilbert_Space": "subtype_of"
+    },
+    "parents": {
+      "Topological_Space": "subtype_of"
+    }
+  },
+  "Mobius_Function": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Integer_Ring": "has_domain"
+    }
+  },
+  "Modular_Curve": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Scheme": "subtype_of"
+    }
+  },
+  "Modular_Form": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Automorphic_Form": "subtype_of"
+    }
+  },
+  "Module": {
+    "type": "Algebra",
+    "children": {
+      "Chain_Complex": "has_terms_in",
+      "Linear_Space": "subtype_of"
+    },
+    "parents": {
+      "Ring": "over_ring"
+    }
+  },
+  "Natural_Number": {
+    "type": "Number Theory",
+    "children": {
+      "Integer_Ring": "extends_number_system",
+      "Prime": "subtype_of"
+    },
+    "parents": {
+      "Set": "subtype_of"
+    }
+  },
+  "Normed_Linear_Space": {
+    "type": "Analysis",
+    "children": {
+      "Banach_Space": "subtype_of",
+      "Inner_Product_Space": "subtype_of"
+    },
+    "parents": {
+      "Linear_Space": "subtype_of"
+    }
+  },
+  "Number_Field": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Global_Field": "subtype_of",
+      "Rational_Number_Field": "field_extension_of"
+    }
+  },
+  "Ordered_Set": {
+    "type": "Discrete Mathematics",
+    "children": {},
+    "parents": {
+      "Set": "subtype_of"
+    }
+  },
+  "Point_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Poisson_Point_Process": "subtype_of",
+      "Poisson_Process": "subtype_of"
+    },
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Poisson_Point_Process": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Point_Process": "subtype_of"
+    }
+  },
+  "Poisson_Process": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Levy_Process": "subtype_of",
+      "Point_Process": "subtype_of"
+    }
+  },
+  "Polyhedron": {
+    "type": "Geometry",
+    "children": {
+      "Simplex": "subtype_of"
+    },
+    "parents": {
+      "Convex_Set": "subtype_of"
+    }
+  },
+  "Polynomial_Function": {
+    "type": "Algebra",
+    "children": {
+      "Cubic_Function": "subtype_of",
+      "Fourth_Order_Function": "subtype_of",
+      "Linear_Function": "subtype_of",
+      "Quadratic_Function": "subtype_of"
+    },
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Prime": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Natural_Number": "subtype_of"
+    }
+  },
+  "Probability_Distribution": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Random_Element": "induced_by"
+    }
+  },
+  "Probability_Space": {
+    "type": "Probability Theory",
+    "children": {
+      "Filtered_Probability_Space": "subtype_of",
+      "Random_Element": "has_base_space",
+      "Stochastic_Process": "has_base_space"
+    },
+    "parents": {
+      "Measure_Space": "subtype_of"
+    }
+  },
+  "Projective_Space": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Linear_Space": "projectivization_of"
+    }
+  },
+  "Quadratic_Function": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Polynomial_Function": "subtype_of"
+    }
+  },
+  "Quaternion_Ring": {
+    "type": "Algebra",
+    "children": {},
+    "parents": {
+      "Real_Field": "over_field",
+      "Ring": "subtype_of"
+    }
+  },
+  "Radon_Transform": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Random_Element": {
+    "type": "Probability Theory",
+    "children": {
+      "Probability_Distribution": "induced_by",
+      "Random_Variable": "subtype_of"
+    },
+    "parents": {
+      "Function": "subtype_of",
+      "Probability_Space": "has_base_space"
+    }
+  },
+  "Random_Field": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Random_Variable": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Random_Element": "subtype_of"
+    }
+  },
+  "Random_Walk": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Markov_Chain": "subtype_of"
+    }
+  },
+  "Rational_Number_Field": {
+    "type": "Number Theory",
+    "children": {
+      "Number_Field": "field_extension_of",
+      "Real_Field": "field_extension_of",
+      "p_Adic_Number": "field_extension_of"
+    },
+    "parents": {
+      "Field": "subtype_of",
+      "Integer_Ring": "fraction_field_of"
+    }
+  },
+  "Real_Field": {
+    "type": "Algebra",
+    "children": {
+      "Complex_Field": "field_extension_of",
+      "Euclidean_Space": "over_field",
+      "Quaternion_Ring": "over_field",
+      "Real_Value_Function": "has_codomain"
+    },
+    "parents": {
+      "Field": "subtype_of",
+      "Rational_Number_Field": "field_extension_of"
+    }
+  },
+  "Real_Value_Function": {
+    "type": "Analysis",
+    "children": {
+      "Elliptic_Integral": "subtype_of"
+    },
+    "parents": {
+      "Function": "subtype_of",
+      "Real_Field": "has_codomain"
+    }
+  },
+  "Relation": {
+    "type": "Mathematical Logic and Foundations",
+    "children": {
+      "Function": "subtype_of"
+    },
+    "parents": {
+      "Set": "subtype_of"
+    }
+  },
+  "Riemann_Zeta_Function": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "L_Function": "subtype_of"
+    }
+  },
+  "Riemannian_Manifold": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Differential_Manifold": "subtype_of",
+      "Tensor": "has_defining_structure"
+    }
+  },
+  "Ring": {
+    "type": "Algebra",
+    "children": {
+      "Integer_Ring": "subtype_of",
+      "Module": "over_ring",
+      "Quaternion_Ring": "subtype_of"
+    },
+    "parents": {
+      "Algebra_Structure": "subtype_of"
+    }
+  },
+  "Scheme": {
+    "type": "Geometry",
+    "children": {
+      "Abelian_Variety": "subtype_of",
+      "Modular_Curve": "subtype_of"
+    },
+    "parents": {
+      "Sheaf": "has_defining_structure",
+      "Topological_Space": "has_underlying_space"
+    }
+  },
+  "Semimartingale": {
+    "type": "Probability Theory",
+    "children": {
+      "Levy_Process": "subtype_of"
+    },
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Sequence": {
+    "type": "Analysis",
+    "children": {
+      "Chain_Complex": "structured_as"
+    },
+    "parents": {
+      "Function": "subtype_of"
+    }
+  },
+  "Set": {
+    "type": "Mathematical Logic and Foundations",
+    "children": {
+      "Algebra_Structure": "has_underlying_set",
+      "Cone": "subtype_of",
+      "Convex_Set": "subtype_of",
+      "Fractal": "subtype_of",
+      "Graph": "has_underlying_set",
+      "Measurable_Space": "has_underlying_set",
+      "Natural_Number": "subtype_of",
+      "Ordered_Set": "subtype_of",
+      "Relation": "subtype_of",
+      "Topological_Space": "has_underlying_set"
+    },
+    "parents": {}
+  },
+  "Sheaf": {
+    "type": "Geometry",
+    "children": {
+      "Scheme": "has_defining_structure"
+    },
+    "parents": {
+      "Topological_Space": "has_base_space"
+    }
+  },
+  "Simplex": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Polyhedron": "subtype_of"
+    }
+  },
+  "Spherical_Harmonics": {
+    "type": "Analysis",
+    "children": {},
+    "parents": {
+      "Complex_Value_Function": "subtype_of"
+    }
+  },
+  "Stationary_Process": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Stochastic_Process": "subtype_of"
+    }
+  },
+  "Stochastic_Process": {
+    "type": "Probability Theory",
+    "children": {
+      "Gaussian_Process": "subtype_of",
+      "Markov_Process": "subtype_of",
+      "Martingale": "subtype_of",
+      "Point_Process": "subtype_of",
+      "Random_Field": "subtype_of",
+      "Semimartingale": "subtype_of",
+      "Stationary_Process": "subtype_of"
+    },
+    "parents": {
+      "Probability_Space": "has_base_space"
+    }
+  },
+  "Stopping_Time": {
+    "type": "Probability Theory",
+    "children": {},
+    "parents": {
+      "Filtered_Probability_Space": "with_respect_to_filtration"
+    }
+  },
+  "Symplectic_Manifold": {
+    "type": "Geometry",
+    "children": {},
+    "parents": {
+      "Differential_Manifold": "subtype_of",
+      "Tensor": "has_defining_structure"
+    }
+  },
+  "Tensor": {
+    "type": "Algebra",
+    "children": {
+      "Riemannian_Manifold": "has_defining_structure",
+      "Symplectic_Manifold": "has_defining_structure"
+    },
+    "parents": {
+      "Linear_Space": "over_vector_space"
+    }
+  },
+  "Topological_Space": {
+    "type": "Topology",
+    "children": {
+      "Fiber_Bundle": "has_base_space",
+      "Hausdorff_Space": "subtype_of",
+      "Metric_Space": "subtype_of",
+      "Scheme": "has_underlying_space",
+      "Sheaf": "has_base_space"
+    },
+    "parents": {
+      "Set": "has_underlying_set"
+    }
+  },
+  "Tree": {
+    "type": "Discrete Mathematics",
+    "children": {
+      "Binary_Tree": "subtype_of"
+    },
+    "parents": {
+      "Graph": "subtype_of"
+    }
+  },
+  "Vector_Bundle": {
+    "type": "Topology",
+    "children": {},
+    "parents": {
+      "Fiber_Bundle": "subtype_of",
+      "Linear_Space": "has_fiber_type"
+    }
+  },
+  "p_Adic_Number": {
+    "type": "Number Theory",
+    "children": {},
+    "parents": {
+      "Local_Field": "subtype_of",
+      "Rational_Number_Field": "field_extension_of"
+    }
+  }
+}
