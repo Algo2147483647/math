@@ -107,7 +107,7 @@ export const DEFAULT_GRAPH_CSS = `
 .dag-node__pin {
   fill: var(--dag-node-pin-fill, rgba(40, 95, 223, 0.14));
   stroke: var(--dag-node-pin-stroke, rgba(40, 95, 223, 0.24));
-  stroke-width: 1;
+  stroke-width: 0.75;
 }
 
 .dag-node__pin-core {

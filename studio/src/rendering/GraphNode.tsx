@@ -77,8 +77,8 @@ const GraphNode = memo(function GraphNode({
       onKeyDown={handleKeyDown}
     >
       <rect className="dag-node__shape" width={node.width} height={node.height} rx={24} ry={24} />
-      <circle className="dag-node__pin" cx={26} cy={node.height / 2} r={11} />
-      <circle className="dag-node__pin-core" cx={26} cy={node.height / 2} r={4} />
+      <circle className="dag-node__pin" cx={26} cy={node.height / 2} r={7} />
+      <circle className="dag-node__pin-core" cx={26} cy={node.height / 2} r={2.25} />
       <text
         className="dag-node__title"
         x={48}
