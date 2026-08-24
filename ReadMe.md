@@ -154,15 +154,15 @@ curl --location 'http://localhost:5000/function' \
 
 ## Applied Mathematics
 
-Applied mathematics is organized by problem type:
+Applied mathematics is organized as problem-oriented graph snapshots:
 
-- [`algorithm/`](./applied%20mathematics/algorithm/) records data structures, graph problems, sequence problems, sorting, hashing, trees, heaps, and related algorithmic patterns.
-- [`cryptography/`](./applied%20mathematics/cryptography/) records symmetric encryption, asymmetric encryption, hash algorithms, RSA, ECC, DES, AES, MD5, and SHA.
-- [`differential equation/`](./applied%20mathematics/differential%20equation/) records ODEs, PDEs, and second-order linear PDEs.
-- [`geometric construction/`](./applied%20mathematics/geometric%20construction/) records Bezier curves, triangulation, convex hulls, sampling, deformation, contour surfaces, and noise generation.
-- [`geometric problem/`](./applied%20mathematics/geometric%20problem/) records intersection problems in flat and curved spaces.
-- [`information/`](./applied%20mathematics/information/) records communication, compressed sensing, error correction, and measurement of information.
-- [`language/`](./applied%20mathematics/language/) records formal language and abstract syntax trees.
-- [`optimization problem/`](./applied%20mathematics/optimization%20problem/) records linear programming, integer programming, convex optimization, descent methods, ADMM, proximal gradient, interior point methods, and knapsack problems.
-- [`statistics/`](./applied%20mathematics/statistics/) records regression, classification, interpolation, Gaussian processes, time series, unit-root tests, hypothesis testing, and stochastic differential equations.
+- [`Cryptography.json`](./applied%20mathematics/Cryptography.json) records encryption, hashing, and related cryptographic methods.
+- [`Differential_Equations.json`](./applied%20mathematics/Differential_Equations.json) records ODE and PDE problem families.
+- [`Geometric_Problem.json`](./applied%20mathematics/Geometric_Problem.json) records geometric intersection problems.
+- [`Geometry_Construction.json`](./applied%20mathematics/Geometry_Construction.json) records curve, mesh, sampling, deformation, and geometry-generation problems and methods.
+- [`Graph_Problem.json`](./applied%20mathematics/Graph_Problem.json) records graph and algorithmic problem families and solutions.
+- [`Optimization_Problem.json`](./applied%20mathematics/Optimization_Problem.json) records optimization problem families, analytical ideas, and solution methods.
+- [`Statistics.json`](./applied%20mathematics/Statistics.json) records statistical problems, models, and methods.
+- [`content/`](./applied%20mathematics/content/) stores longer Markdown notes and their assets.
+- [`rules/`](./applied%20mathematics/rules/) defines applied-math concept, node, edge, graph, and schema policies.
 

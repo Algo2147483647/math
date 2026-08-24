@@ -19,10 +19,7 @@ body {
 body {
   font-family: "IBM Plex Sans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   color: var(--text-strong);
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 30%),
-    radial-gradient(circle at 80% 18%, rgba(40, 95, 223, 0.08), transparent 22%),
-    linear-gradient(155deg, var(--bg-top), var(--bg-bottom));
+  background: #fff;
   overflow: hidden;
 }
 
@@ -30,16 +27,4 @@ body.graph-is-panning,
 body.graph-is-panning * {
   cursor: grabbing !important;
   user-select: none;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at center, rgba(90, 108, 137, 0.1) 1px, transparent 1.2px);
-  background-size: 26px 26px;
-  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
-  opacity: 0.55;
-  pointer-events: none;
 }

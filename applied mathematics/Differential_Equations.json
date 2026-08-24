@@ -1,6 +1,5 @@
 {
   "Differential Equations": {
-    "define": "Start building your graph from this root node.",
     "parents": {},
     "children": {
       "Partial Differential Equation Problems": "related_to",
@@ -8,7 +7,6 @@
     }
   },
   "Partial Differential Equation Problems": {
-    "define": "A partial differential equation (PDE) problem seeks an unknown function\n$u : \\Omega \\to \\mathbb{R}^m$ satisfying a differential relation on a domain\n$\\Omega \\subseteq \\mathbb{R}^n$, together with prescribed auxiliary conditions.\n\nA general PDE problem can be written as\n\n$$\n\\left\\{\n\\begin{aligned}\n\\mathcal{L}\\bigl(x,u(x),Du(x),D^2u(x),\\ldots,D^k u(x)\\bigr) &= f(x), && x \\in \\Omega, \\\\\n\\mathcal{B}\\bigl(x,u(x),Du(x),\\ldots,D^{k-1}u(x)\\bigr) &= g(x), && x \\in \\partial\\Omega.\n\\end{aligned}\n\\right.\n$$\n\nHere:\n- $\\Omega \\subseteq \\mathbb{R}^n$ is the spatial domain.\n- $\\partial\\Omega$ is the boundary of $\\Omega$.\n- $u$ is the unknown solution.\n- $Du, D^2u, \\ldots, D^k u$ denote derivatives of $u$ up to order $k$.\n- $\\mathcal{L}$ is the differential operator defining the PDE.\n- $f$ is a prescribed source term.\n- $\\mathcal{B}$ is the boundary operator.\n- $g$ is prescribed boundary data.\n\nFor time-dependent problems, one often seeks\n\n$$\nu : [0,T] \\times \\Omega \\to \\mathbb{R}^m\n$$\n\nsuch that\n\n$$\n\\left\\{\n\\begin{aligned}\n\\partial_t u(t,x) + \\mathcal{L}\\bigl(t,x,u,Du,\\ldots,D^k u\\bigr) &= f(t,x), && (t,x) \\in (0,T] \\times \\Omega, \\\\\n\\mathcal{B}\\bigl(t,x,u,Du,\\ldots,D^{k-1}u\\bigr) &= g(t,x), && (t,x) \\in (0,T] \\times \\partial\\Omega, \\\\\nu(0,x) &= u_0(x), && x \\in \\Omega.\n\\end{aligned}\n\\right.\n$$\n\nHere:\n- $T>0$ is the final time.\n- $\\partial_t u$ is the time derivative of $u$.\n- $u_0$ is the prescribed initial condition.\n- $(0,T] \\times \\Omega$ is the space-time domain.\n- $(0,T] \\times \\partial\\Omega$ is the lateral boundary.\n\nA classical solution is a function $u$ with sufficient differentiability such that all equations hold pointwise. For example, if the PDE has order $k$, one typically requires\n\n$$\nu \\in C^k(\\Omega)\n$$\n\nor, in the time-dependent case,\n\n$$\nu \\in C^1([0,T];X) \\cap C^k(\\Omega)\n$$\n\nfor a suitable function space $X$.\n\nA weak formulation is obtained by choosing a test space $V$ and requiring\n\n$$\na(u,v) = \\ell(v), \\qquad \\forall v \\in V.\n$$\n\nHere:\n- $V$ is a space of admissible test functions.\n- $a : V \\times V \\to \\mathbb{R}$ is a bilinear or nonlinear form induced by the PDE.\n- $\\ell : V \\to \\mathbb{R}$ is a linear functional induced by the source and boundary data.\n- The solution $u$ is sought in a trial space compatible with the boundary conditions.\n\nA PDE problem is said to be well-posed if:\n1. a solution exists;\n2. the solution is unique;\n3. the solution depends continuously on the data $f$, $g$, and $u_0$.",
     "parents": {
       "Differential Equations": "related_to"
     },
@@ -18,7 +16,6 @@
     }
   },
   "Ordinary Differential Equation Problems": {
-    "define": "",
     "parents": {
       "Differential Equations": "related_to"
     },
@@ -29,30 +26,25 @@
     }
   },
   "First-order Linear ODE": {
-    "define": "$y'+P(x)y=Q(x)$",
     "parents": {
       "Ordinary Differential Equation Problems": "related_to"
     },
     "children": {}
   },
   "Bernoulli Equation": {
-    "define": "The Bernoulli equation is a first-order nonlinear ordinary differential equation of the form $y'+P(x)y=Q(x)y^n$.",
     "parents": {
       "Ordinary Differential Equation Problems": "related_to"
     },
     "children": {}
   },
   "First Order PDE Problems": {
-    "description": "A **first order partial differential equation (PDE) problem** seeks an unknown function\n$u : \\Omega \\subset \\mathbb{R}^n \\to \\mathbb{R}$ satisfying an equation involving $u$\nand its first derivatives.\n\nA general first order PDE has the form\n\n$$\nF(x,u(x),\\nabla u(x)) = 0,\n\\qquad x \\in \\Omega,\n$$\n\nwhere:\n\n- $\\Omega \\subset \\mathbb{R}^n$ is the spatial domain.\n- $x = (x_1,\\dots,x_n)$ is the independent variable.\n- $u(x)$ is the unknown scalar function.\n- $\\nabla u(x) = (u_{x_1}(x),\\dots,u_{x_n}(x))$ is the gradient of $u$.\n- $F : \\Omega \\times \\mathbb{R} \\times \\mathbb{R}^n \\to \\mathbb{R}$ is a prescribed function.\n\nA first order PDE problem is typically specified by\n\n$$\n\\left\\{\n\\begin{aligned}\nF(x,u,\\nabla u) &= 0, && x \\in \\Omega, \\\\\nu(x) &= g(x), && x \\in \\Gamma,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\Gamma \\subseteq \\partial \\Omega$ or $\\Gamma \\subset \\Omega$ is the prescribed data set.\n- $g : \\Gamma \\to \\mathbb{R}$ is the given boundary or initial data.\n- The goal is to determine $u$ on $\\Omega$ consistent with both the PDE and the data.\n\nA common quasilinear first order PDE has the form\n\n$$\n\\sum_{i=1}^n a_i(x,u) u_{x_i} = b(x,u),\n\\qquad x \\in \\Omega,\n$$\n\nwhere $a_i : \\Omega \\times \\mathbb{R} \\to \\mathbb{R}$ are transport coefficients and\n$b : \\Omega \\times \\mathbb{R} \\to \\mathbb{R}$ is a source term.\n\nEquivalently, using the vector field\n$a(x,u) = (a_1(x,u),\\dots,a_n(x,u))$, the equation is\n\n$$\na(x,u) \\cdot \\nabla u = b(x,u).\n$$\n\nThe characteristic curves $(X(s),U(s))$ associated with the quasilinear PDE satisfy\n\n$$\n\\left\\{\n\\begin{aligned}\n\\frac{dX_i}{ds} &= a_i(X(s),U(s)), && i = 1,\\dots,n, \\\\\n\\frac{dU}{ds} &= b(X(s),U(s)).\n\\end{aligned}\n\\right.\n$$\n\nA function $u$ is a classical solution if $u \\in C^1(\\Omega)$ and satisfies the PDE\npointwise for every $x \\in \\Omega$, together with the prescribed data on $\\Gamma$.",
     "parents": {
       "Partial Differential Equation Problems": "related_to"
     },
     "children": {},
-    "type": "problem",
-    "title": "First Order PDE Problems"
+    "type": "problem"
   },
   "Second Order PDE Problems": {
-    "description": "A **second order partial differential equation (PDE) problem** seeks an unknown function\n$u : \\Omega \\subset \\mathbb{R}^n \\to \\mathbb{R}$ satisfying an equation involving $u$,\nits first derivatives, and its second derivatives.\n\nA general second order PDE has the form\n\n$$\nF(x,u(x),\\nabla u(x),D^2u(x)) = 0,\n\\qquad x \\in \\Omega,\n$$\n\nwhere:\n\n- $\\Omega \\subset \\mathbb{R}^n$ is the domain.\n- $x = (x_1,\\dots,x_n)$ is the independent variable.\n- $u(x)$ is the unknown scalar function.\n- $\\nabla u(x) = (u_{x_1}(x),\\dots,u_{x_n}(x))$ is the gradient of $u$.\n- $D^2u(x)$ is the Hessian matrix, defined by\n\n$$\nD^2u(x)\n=\n\\left( u_{x_i x_j}(x) \\right)_{1 \\leq i,j \\leq n}.\n$$\n\n- $F : \\Omega \\times \\mathbb{R} \\times \\mathbb{R}^n \\times \\mathbb{S}^n \\to \\mathbb{R}$\nis a prescribed function, where $\\mathbb{S}^n$ denotes the space of real symmetric\n$n \\times n$ matrices.\n\nA second order PDE problem is typically specified by\n\n$$\n\\left\\{\n\\begin{aligned}\nF(x,u,\\nabla u,D^2u) &= 0, && x \\in \\Omega, \\\\\nB(x,u,\\nabla u) &= 0, && x \\in \\partial \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\partial \\Omega$ is the boundary of $\\Omega$.\n- $B$ is a boundary operator.\n- The second equation prescribes boundary conditions for $u$.\n\nCommon boundary conditions include the Dirichlet condition\n\n$$\nu(x) = g(x),\n\\qquad x \\in \\partial \\Omega,\n$$\n\nthe Neumann condition\n\n$$\n\\frac{\\partial u}{\\partial \\nu}(x)\n=\n\\nabla u(x) \\cdot \\nu(x)\n=\nh(x),\n\\qquad x \\in \\partial \\Omega,\n$$\n\nand the Robin condition\n\n$$\n\\alpha(x)u(x) + \\beta(x)\\frac{\\partial u}{\\partial \\nu}(x) = r(x),\n\\qquad x \\in \\partial \\Omega.\n$$\n\nHere, $\\nu(x)$ is the outward unit normal vector to $\\partial \\Omega$, and\n$g,h,r,\\alpha,\\beta$ are prescribed functions.\n\nA linear second order PDE has the form\n\n$$\n\\sum_{i,j=1}^n a_{ij}(x) u_{x_i x_j}\n+\n\\sum_{i=1}^n b_i(x) u_{x_i}\n+\nc(x)u\n=\nf(x),\n\\qquad x \\in \\Omega,\n$$\n\nwhere:\n\n- $a_{ij}$ are the second order coefficients.\n- $b_i$ are the first order coefficients.\n- $c$ is the zeroth order coefficient.\n- $f$ is the source term.\n\nThe principal part is\n\n$$\n\\sum_{i,j=1}^n a_{ij}(x) u_{x_i x_j}.\n$$\n\nLet $A(x) = (a_{ij}(x))_{1 \\leq i,j \\leq n}$. The PDE is classified by the eigenvalues\nof $A(x)$:\n\n$$\n\\begin{aligned}\nA(x) \\text{ positive or negative definite} &\\implies \\text{ elliptic}, \\\\\nA(x) \\text{ has mixed signs} &\\implies \\text{ hyperbolic}, \\\\\nA(x) \\text{ is degenerate} &\\implies \\text{ parabolic or degenerate elliptic}.\n\\end{aligned}\n$$\n\nA function $u$ is a classical solution if\n$u \\in C^2(\\Omega) \\cap C(\\overline{\\Omega})$, satisfies the PDE pointwise in\n$\\Omega$, and satisfies the prescribed boundary condition on $\\partial \\Omega$.",
     "parents": {
       "Partial Differential Equation Problems": "related_to"
     },
@@ -62,47 +54,37 @@
       "Wave Equation": "related_to",
       "Laplace Equation": "related_to"
     },
-    "type": "problem",
-    "title": "Second Order PDE Problems"
+    "type": "problem"
   },
   "Poisson Equation": {
-    "description": "The **Poisson equation** is a second order elliptic PDE for an unknown function\n$u : \\Omega \\subset \\mathbb{R}^n \\to \\mathbb{R}$.\n\nThe classical Dirichlet problem for the Poisson equation is\n\n$$\n\\left\\{\n\\begin{aligned}\n-\\Delta u(x) &= f(x), && x \\in \\Omega, \\\\\nu(x) &= g(x), && x \\in \\partial \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\Omega \\subset \\mathbb{R}^n$ is the spatial domain.\n- $\\partial \\Omega$ is the boundary of $\\Omega$.\n- $x = (x_1,\\dots,x_n)$ is the spatial variable.\n- $u : \\overline{\\Omega} \\to \\mathbb{R}$ is the unknown scalar function.\n- $f : \\Omega \\to \\mathbb{R}$ is the source term.\n- $g : \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary datum.\n- $\\Delta$ is the Laplace operator, defined by\n\n$$\n\\Delta u(x)\n=\n\\sum_{i=1}^n \\frac{\\partial^2 u}{\\partial x_i^2}(x).\n$$\n\nEquivalently, the equation may be written as\n\n$$\n-\\sum_{i=1}^n u_{x_i x_i}(x) = f(x),\n\\qquad x \\in \\Omega.\n$$\n\nThe Neumann problem is\n\n$$\n\\left\\{\n\\begin{aligned}\n-\\Delta u(x) &= f(x), && x \\in \\Omega, \\\\\n\\frac{\\partial u}{\\partial \\nu}(x) &= h(x), && x \\in \\partial \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\nu(x)$ is the outward unit normal vector to $\\partial \\Omega$ at $x$.\n- $\\frac{\\partial u}{\\partial \\nu} = \\nabla u \\cdot \\nu$ is the normal derivative.\n- $h : \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary flux.\n\nFor the Neumann problem, a necessary compatibility condition is\n\n$$\n\\int_\\Omega f(x) \\, dx\n=\n-\\int_{\\partial \\Omega} h(x) \\, dS.\n$$\n\nA classical solution of the Dirichlet problem is a function\n$u \\in C^2(\\Omega) \\cap C(\\overline{\\Omega})$ such that the equation holds pointwise\nin $\\Omega$ and $u = g$ on $\\partial \\Omega$.\n\nThe Laplace equation is the special case of the Poisson equation with $f = 0$.",
     "parents": {
       "Second Order PDE Problems": "related_to"
     },
     "children": {},
-    "type": "problem",
-    "title": "Poisson Equation"
+    "type": "problem"
   },
   "Heat Equation": {
-    "description": "The **heat equation** is a second order parabolic PDE describing the evolution of a\nscalar quantity $u$ under diffusion.\n\nThe classical initial-boundary value problem for the heat equation is\n\n$$\n\\left\\{\n\\begin{aligned}\n\\partial_t u(t,x) - \\kappa \\Delta u(t,x) &= f(t,x), && (t,x) \\in (0,T) \\times \\Omega, \\\\\nu(t,x) &= g(t,x), && (t,x) \\in (0,T) \\times \\partial \\Omega, \\\\\nu(0,x) &= u_0(x), && x \\in \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $T > 0$ is the final time.\n- $\\Omega \\subset \\mathbb{R}^n$ is the spatial domain.\n- $\\partial \\Omega$ is the boundary of $\\Omega$.\n- $t \\in (0,T)$ is the time variable.\n- $x = (x_1,\\dots,x_n) \\in \\Omega$ is the spatial variable.\n- $u : [0,T] \\times \\overline{\\Omega} \\to \\mathbb{R}$ is the unknown temperature or\n  diffusing scalar field.\n- $\\partial_t u$ is the time derivative of $u$.\n- $\\kappa > 0$ is the diffusion coefficient.\n- $f : (0,T) \\times \\Omega \\to \\mathbb{R}$ is the source term.\n- $g : (0,T) \\times \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary datum.\n- $u_0 : \\Omega \\to \\mathbb{R}$ is the initial datum.\n- $\\Delta$ is the spatial Laplace operator, defined by\n\n$$\n\\Delta u(t,x)\n=\n\\sum_{i=1}^n \\frac{\\partial^2 u}{\\partial x_i^2}(t,x).\n$$\n\nEquivalently, the PDE may be written as\n\n$$\n\\partial_t u(t,x)\n-\n\\kappa \\sum_{i=1}^n u_{x_i x_i}(t,x)\n=\nf(t,x),\n\\qquad (t,x) \\in (0,T) \\times \\Omega.\n$$\n\nThe homogeneous heat equation is obtained by setting $f = 0$:\n\n$$\n\\partial_t u - \\kappa \\Delta u = 0.\n$$\n\nA Neumann boundary condition may be prescribed instead of the Dirichlet condition:\n\n$$\n\\frac{\\partial u}{\\partial \\nu}(t,x)\n=\nh(t,x),\n\\qquad (t,x) \\in (0,T) \\times \\partial \\Omega,\n$$\n\nwhere $\\nu(x)$ is the outward unit normal vector to $\\partial \\Omega$ and\n\n$$\n\\frac{\\partial u}{\\partial \\nu}\n=\n\\nabla_x u \\cdot \\nu\n$$\n\nis the normal derivative.\n\nA classical solution is a function\n$u \\in C^1((0,T) \\times \\Omega) \\cap C^2_x((0,T) \\times \\Omega) \\cap C([0,T] \\times \\overline{\\Omega})$\nsuch that the PDE holds pointwise in $(0,T) \\times \\Omega$, the boundary condition\nholds on $(0,T) \\times \\partial \\Omega$, and the initial condition satisfies\n$u(0,x) = u_0(x)$ for all $x \\in \\Omega$.",
     "parents": {
       "Second Order PDE Problems": "related_to"
     },
     "children": {},
-    "type": "problem",
-    "title": "Heat Equation"
+    "type": "problem"
   },
   "Wave Equation": {
-    "description": "The **wave equation** is a second order hyperbolic PDE describing the propagation of\nwaves with finite speed.\n\nThe classical initial-boundary value problem for the wave equation is\n\n$$\n\\left\\{\n\\begin{aligned}\n\\partial_{tt} u(t,x) - c^2 \\Delta u(t,x) &= f(t,x), && (t,x) \\in (0,T) \\times \\Omega, \\\\\nu(t,x) &= g(t,x), && (t,x) \\in (0,T) \\times \\partial \\Omega, \\\\\nu(0,x) &= u_0(x), && x \\in \\Omega, \\\\\n\\partial_t u(0,x) &= u_1(x), && x \\in \\Omega.\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $T > 0$ is the final time.\n- $\\Omega \\subset \\mathbb{R}^n$ is the spatial domain.\n- $\\partial \\Omega$ is the boundary of $\\Omega$.\n- $t \\in (0,T)$ is the time variable.\n- $x = (x_1,\\dots,x_n) \\in \\Omega$ is the spatial variable.\n- $u : [0,T] \\times \\overline{\\Omega} \\to \\mathbb{R}$ is the unknown wave field.\n- $\\partial_{tt}u$ is the second time derivative of $u$.\n- $c > 0$ is the wave speed.\n- $f : (0,T) \\times \\Omega \\to \\mathbb{R}$ is the forcing term.\n- $g : (0,T) \\times \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary datum.\n- $u_0 : \\Omega \\to \\mathbb{R}$ is the initial displacement.\n- $u_1 : \\Omega \\to \\mathbb{R}$ is the initial velocity.\n- $\\Delta$ is the spatial Laplace operator, defined by\n\n$$\n\\Delta u(t,x)\n=\n\\sum_{i=1}^n \\frac{\\partial^2 u}{\\partial x_i^2}(t,x).\n$$\n\nEquivalently, the PDE may be written as\n\n$$\n\\partial_{tt}u(t,x)\n-\nc^2 \\sum_{i=1}^n u_{x_i x_i}(t,x)\n=\nf(t,x),\n\\qquad (t,x) \\in (0,T) \\times \\Omega.\n$$\n\nThe homogeneous wave equation is obtained by setting $f = 0$:\n\n$$\n\\partial_{tt}u - c^2 \\Delta u = 0.\n$$\n\nA Neumann boundary condition may be prescribed instead of the Dirichlet condition:\n\n$$\n\\frac{\\partial u}{\\partial \\nu}(t,x)\n=\nh(t,x),\n\\qquad (t,x) \\in (0,T) \\times \\partial \\Omega,\n$$\n\nwhere $\\nu(x)$ is the outward unit normal vector to $\\partial \\Omega$ and\n\n$$\n\\frac{\\partial u}{\\partial \\nu}\n=\n\\nabla_x u \\cdot \\nu\n$$\n\nis the normal derivative.\n\nA classical solution is a function\n$u \\in C^2((0,T) \\times \\Omega) \\cap C([0,T] \\times \\overline{\\Omega})$\nsuch that the PDE holds pointwise in $(0,T) \\times \\Omega$, the boundary condition\nholds on $(0,T) \\times \\partial \\Omega$, and the initial conditions satisfy\n$u(0,x) = u_0(x)$ and $\\partial_t u(0,x) = u_1(x)$ for all $x \\in \\Omega$.",
     "parents": {
       "Second Order PDE Problems": "related_to"
     },
     "children": {},
-    "type": "problem",
-    "title": "Wave Equation"
+    "type": "problem"
   },
   "Laplace Equation": {
-    "description": "The **Laplace equation** is a second order elliptic PDE for an unknown function\n$u : \\Omega \\subset \\mathbb{R}^n \\to \\mathbb{R}$.\n\nThe classical Dirichlet problem for the Laplace equation is\n\n$$\n\\left\\{\n\\begin{aligned}\n\\Delta u(x) &= 0, && x \\in \\Omega, \\\\\nu(x) &= g(x), && x \\in \\partial \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\Omega \\subset \\mathbb{R}^n$ is a bounded spatial domain.\n- $\\partial \\Omega$ is the boundary of $\\Omega$.\n- $x = (x_1,\\dots,x_n)$ is the spatial variable.\n- $u : \\overline{\\Omega} \\to \\mathbb{R}$ is the unknown function.\n- $g : \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary datum.\n- $\\Delta$ is the Laplace operator, defined by\n\n$$\n\\Delta u\n=\n\\sum_{i=1}^n \\frac{\\partial^2 u}{\\partial x_i^2}.\n$$\n\nThus, the PDE may be written explicitly as\n\n$$\n\\sum_{i=1}^n u_{x_i x_i}(x) = 0,\n\\qquad x \\in \\Omega.\n$$\n\nA function $u$ satisfying $\\Delta u = 0$ in $\\Omega$ is called **harmonic** in $\\Omega$.\n\nThe Neumann problem is\n\n$$\n\\left\\{\n\\begin{aligned}\n\\Delta u(x) &= 0, && x \\in \\Omega, \\\\\n\\frac{\\partial u}{\\partial \\nu}(x) &= h(x), && x \\in \\partial \\Omega,\n\\end{aligned}\n\\right.\n$$\n\nwhere:\n\n- $\\nu(x)$ is the outward unit normal vector to $\\partial \\Omega$ at $x$.\n- $\\frac{\\partial u}{\\partial \\nu} = \\nabla u \\cdot \\nu$ is the normal derivative.\n- $h : \\partial \\Omega \\to \\mathbb{R}$ is the prescribed boundary flux.\n\nA classical solution of the Dirichlet problem is a function\n$u \\in C^2(\\Omega) \\cap C(\\overline{\\Omega})$ such that $\\Delta u = 0$ pointwise in\n$\\Omega$ and $u = g$ on $\\partial \\Omega$.",
     "parents": {
       "Second Order PDE Problems": "related_to"
     },
     "children": {},
-    "type": "problem",
-    "title": "Laplace Equation"
+    "type": "problem"
   },
   "Second-Order Linear ODE": {
-    "define": "",
     "parents": {
       "Ordinary Differential Equation Problems": "related_to"
     },
@@ -111,7 +93,6 @@
     }
   },
   "Euler-Cauchy ODE": {
-    "define": "The Euler–Cauchy equation is a second-order linear ordinary differential equation of the form $ax^2y''+bxy'+cy=f(x)$.",
     "parents": {
       "Second-Order Linear ODE": "related_to"
     },

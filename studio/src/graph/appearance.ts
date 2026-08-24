@@ -33,7 +33,6 @@ export const DEFAULT_GRAPH_CSS = `
 
 .dag-graph[data-density="dense"] .dag-edge__path,
 .dag-graph[data-density="dense"] .dag-node,
-.dag-graph[data-density="dense"] .dag-node__glow,
 .dag-graph[data-density="dense"] .dag-node__shape,
 .dag-graph[data-density="dense"] .dag-node__affordance {
   transition: none;
@@ -97,12 +96,6 @@ export const DEFAULT_GRAPH_CSS = `
   transition: transform 0.18s ease, opacity 0.18s ease;
 }
 
-.dag-node__glow {
-  fill: var(--dag-node-glow, rgba(44, 83, 166, 0.08));
-  opacity: 0;
-  transition: opacity 0.18s ease;
-}
-
 .dag-node__shape {
   fill: var(--dag-node-fill);
   stroke: var(--dag-node-border);
@@ -155,10 +148,6 @@ export const DEFAULT_GRAPH_CSS = `
   fill: var(--dag-node-root-fill, var(--dag-node-fill));
 }
 
-.dag-node[data-root="true"] .dag-node__glow {
-  opacity: 1;
-}
-
 .dag-node:hover .dag-node__shape,
 .dag-node[data-hovered="true"] .dag-node__shape,
 .dag-node[data-focused="true"] .dag-node__shape,
@@ -166,12 +155,6 @@ export const DEFAULT_GRAPH_CSS = `
   stroke: var(--dag-node-active-border, rgba(39, 79, 152, 0.48));
   fill: var(--dag-node-active-fill, var(--dag-node-fill));
   filter: drop-shadow(0 14px 26px rgba(29, 52, 97, 0.1));
-}
-
-.dag-node:hover .dag-node__glow,
-.dag-node[data-hovered="true"] .dag-node__glow,
-.dag-node[data-focused="true"] .dag-node__glow {
-  opacity: 1;
 }
 
 .dag-node:hover .dag-node__affordance,

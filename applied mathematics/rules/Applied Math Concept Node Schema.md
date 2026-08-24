@@ -23,7 +23,7 @@ Use this as the default schema for an applied mathematics concept node:
 
 Apply the template rules strictly:
 
-- keep all six standard fields: `type`, `description`, `parents`, and `children`
+- keep all four standard fields: `type`, `description`, `parents`, and `children`
 - use `""` for empty `description`
 - use `{}` for empty `parents` and `children`
 - do not use `null`

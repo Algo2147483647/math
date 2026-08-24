@@ -142,6 +142,7 @@
   flex: 1 1 auto;
   min-width: 0;
   min-height: 0;
+  background: #fff;
 }
 
 .workspace-error-banner {
@@ -166,9 +167,7 @@
   inset: 0;
   display: none;
   overflow: auto;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(242, 246, 252, 0.86)),
-    radial-gradient(circle at 50% 8%, rgba(60, 94, 161, 0.08), transparent 30%);
+  background: #fff;
 }
 
 #main-content.is-ready {
@@ -187,9 +186,7 @@
   display: grid;
   place-items: center;
   padding: 32px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.54), rgba(248, 250, 253, 0.9)),
-    radial-gradient(circle at top left, rgba(40, 95, 223, 0.08), transparent 24%);
+  background: #fff;
 }
 
 .empty-state.is-hidden {

@@ -1,7 +1,6 @@
 {
   "Statistics": {
     "type": "problem",
-    "description": "Statistics studies how to infer structure, uncertainty, and predictive rules from data. Typical tasks include estimation, testing, interpolation, forecasting, supervised learning, and stochastic-process modeling.",
     "parents": {},
     "children": {
       "Regression": "subtype_of",
@@ -15,7 +14,6 @@
   },
   "Regression": {
     "type": "problem",
-    "description": "Regression seeks a rule that maps explanatory variables to a numeric response, typically by minimizing prediction error subject to modeling assumptions or regularity conditions.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -30,7 +28,6 @@
   },
   "Linear Regression": {
     "type": "problem",
-    "description": "Linear regression fits a response variable by an affine function of the input variables, often under squared-loss or Gaussian-noise assumptions.",
     "parents": {
       "Regression": "subtype_of"
     },
@@ -42,7 +39,6 @@
   },
   "Generalized Linear Model": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Regression": "subtype_of"
     },
@@ -53,7 +49,6 @@
   },
   "Classification": {
     "type": "problem",
-    "description": "Classification assigns each observation to one of finitely many labels. The task is to learn a decision rule that separates classes while controlling generalization error.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -69,7 +64,6 @@
   },
   "Binary Classification": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Classification": "subtype_of"
     },
@@ -80,7 +74,6 @@
   },
   "Multiclass Classification": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Classification": "subtype_of"
     },
@@ -90,7 +83,6 @@
   },
   "Interpolation": {
     "type": "problem",
-    "description": "Interpolation constructs a function or predictor that matches observed values at sampled locations and extends them consistently to unsampled points.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -102,7 +94,6 @@
   },
   "Time Series Analysis": {
     "type": "problem",
-    "description": "Time series analysis studies stochastic dependence across ordered observations, with tasks such as forecasting, filtering, decomposition, and stationarity assessment.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -116,7 +107,6 @@
   },
   "Forecasting": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Time Series Analysis": "subtype_of"
     },
@@ -128,7 +118,6 @@
   },
   "Unit Root Testing": {
     "type": "problem",
-    "description": "Unit root testing asks whether a time series contains a unit root, which is a central distinction between stationary and nonstationary stochastic behavior.",
     "parents": {
       "Time Series Analysis": "subtype_of",
       "Hypothesis Testing": "subtype_of"
@@ -141,7 +130,6 @@
   },
   "Hypothesis Testing": {
     "type": "problem",
-    "description": "Hypothesis testing evaluates whether observed data provide sufficient evidence against a null hypothesis under a specified sampling model and significance criterion.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -154,7 +142,6 @@
   },
   "Gaussian Process Modeling": {
     "type": "problem",
-    "description": "Gaussian process modeling represents unknown functions or latent fields through Gaussian process priors, enabling nonparametric prediction with uncertainty quantification.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -169,7 +156,6 @@
   },
   "Gaussian Process Regression": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Regression": "subtype_of",
       "Gaussian Process Modeling": "subtype_of"
@@ -182,7 +168,6 @@
   },
   "Gaussian Process Classification": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Classification": "subtype_of",
       "Gaussian Process Modeling": "subtype_of"
@@ -195,7 +180,6 @@
   },
   "Stochastic Differential Equation Modeling": {
     "type": "problem",
-    "description": "Stochastic differential equation modeling describes dynamical systems driven by random noise, with goals including simulation, filtering, calibration, and uncertainty propagation.",
     "parents": {
       "Statistics": "subtype_of"
     },
@@ -206,7 +190,6 @@
   },
   "Empirical Risk Minimization": {
     "type": "idea",
-    "description": "Empirical risk minimization turns supervised learning into optimization of an average loss over observed samples, optionally augmented by constraints or penalties.",
     "parents": {
       "Regression": "analyzed_by",
       "Classification": "analyzed_by"
@@ -219,7 +202,6 @@
   },
   "Likelihood-Based Inference": {
     "type": "idea",
-    "description": "Likelihood-based inference compares parameter values or hypotheses through the probability or density they assign to the observed data.",
     "parents": {
       "Hypothesis Testing": "analyzed_by"
     },
@@ -230,7 +212,6 @@
   },
   "Bayesian Inference": {
     "type": "idea",
-    "description": "Bayesian inference updates a prior distribution with observed data to produce a posterior distribution that supports prediction and uncertainty quantification.",
     "parents": {
       "Interpolation": "analyzed_by",
       "Gaussian Process Modeling": "analyzed_by"
@@ -241,7 +222,6 @@
   },
   "Regularization": {
     "type": "idea",
-    "description": "Regularization stabilizes estimation by penalizing complexity, shrinking parameters, or imposing structural bias to improve generalization or identifiability.",
     "parents": {
       "Linear Regression": "analyzed_by",
       "Classification": "analyzed_by"
@@ -253,7 +233,6 @@
   },
   "State Space Modeling": {
     "type": "idea",
-    "description": "",
     "parents": {
       "Time Series Analysis": "analyzed_by",
       "Forecasting": "analyzed_by"
@@ -264,7 +243,6 @@
   },
   "Stationarity Analysis": {
     "type": "idea",
-    "description": "",
     "parents": {
       "Unit Root Testing": "analyzed_by"
     },
@@ -275,7 +253,6 @@
   },
   "Gaussian Process Prior": {
     "type": "idea",
-    "description": "A Gaussian process prior specifies a joint Gaussian law over function values, usually through a mean function and covariance kernel, before observing data.",
     "parents": {
       "Gaussian Process Modeling": "analyzed_by",
       "Gaussian Process Regression": "analyzed_by",
@@ -288,7 +265,6 @@
   },
   "Least Squares Estimation": {
     "type": "solution",
-    "description": "Least squares estimation solves regression problems by minimizing the sum of squared residuals between observed responses and model predictions.",
     "parents": {
       "Regression": "solved_by",
       "Linear Regression": "solved_by"
@@ -297,7 +273,6 @@
   },
   "Maximum Likelihood Estimation": {
     "type": "solution",
-    "description": "Maximum likelihood estimation chooses model parameters that maximize the likelihood of the observed data under a parametric statistical model.",
     "parents": {
       "Regression": "solved_by",
       "Generalized Linear Model": "solved_by",
@@ -307,7 +282,6 @@
   },
   "Ridge Regression": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Linear Regression": "solved_by",
       "Empirical Risk Minimization": "realized_by",
@@ -317,7 +291,6 @@
   },
   "Logistic Regression Fitting": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Generalized Linear Model": "solved_by",
       "Classification": "solved_by",
@@ -328,7 +301,6 @@
   },
   "Support Vector Machine": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Classification": "solved_by",
       "Binary Classification": "solved_by",
@@ -340,7 +312,6 @@
   },
   "Spline Interpolation": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Interpolation": "solved_by"
     },
@@ -348,7 +319,6 @@
   },
   "Gaussian Process Posterior Inference": {
     "type": "solution",
-    "description": "Gaussian process posterior inference conditions a Gaussian process prior on observed data to obtain predictive means, covariances, and posterior uncertainty.",
     "parents": {
       "Interpolation": "solved_by",
       "Gaussian Process Modeling": "solved_by",
@@ -361,7 +331,6 @@
   },
   "Sparse Gaussian Process": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Gaussian Process Modeling": "solved_by",
       "Gaussian Process Regression": "solved_by",
@@ -372,7 +341,6 @@
   },
   "ARIMA Modeling": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Time Series Analysis": "solved_by",
       "Forecasting": "solved_by"
@@ -381,7 +349,6 @@
   },
   "Kalman Filter": {
     "type": "solution",
-    "description": "The Kalman filter recursively estimates latent states in linear Gaussian state-space models using prediction and measurement updates.",
     "parents": {
       "Time Series Analysis": "solved_by",
       "Forecasting": "solved_by",
@@ -391,7 +358,6 @@
   },
   "Augmented Dickey-Fuller Test": {
     "type": "solution",
-    "description": "The Augmented Dickey-Fuller test detects a unit root by regressing first differences on lagged levels and lagged differences under an autoregressive model.",
     "parents": {
       "Unit Root Testing": "solved_by",
       "Stationarity Analysis": "realized_by"
@@ -400,7 +366,6 @@
   },
   "KPSS Test": {
     "type": "solution",
-    "description": "The KPSS test evaluates stationarity by testing whether a series can be decomposed into a deterministic trend plus a stationary error process.",
     "parents": {
       "Unit Root Testing": "solved_by",
       "Stationarity Analysis": "realized_by"
@@ -409,7 +374,6 @@
   },
   "Likelihood Ratio Test": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Hypothesis Testing": "solved_by",
       "Likelihood-Based Inference": "realized_by"
@@ -418,7 +382,6 @@
   },
   "Bootstrap Test": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Hypothesis Testing": "solved_by"
     },
@@ -426,7 +389,6 @@
   },
   "Euler-Maruyama Method": {
     "type": "solution",
-    "description": "The Euler-Maruyama method discretizes a stochastic differential equation by applying an Euler step to the drift term and a Brownian increment to the diffusion term.",
     "parents": {
       "Stochastic Differential Equation Modeling": "solved_by"
     },
@@ -434,7 +396,6 @@
   },
   "Milstein Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Stochastic Differential Equation Modeling": "solved_by"
     },

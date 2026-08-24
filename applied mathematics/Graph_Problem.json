@@ -1,7 +1,6 @@
 {
   "Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {},
     "children": {
       "Directed Graph Problem": "subtype_of",
@@ -22,7 +21,6 @@
   },
   "Directed Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -35,7 +33,6 @@
   },
   "Undirected Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -48,7 +45,6 @@
   },
   "Weighted Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -56,7 +52,6 @@
   },
   "Unweighted Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -66,7 +61,6 @@
   },
   "Directed Acyclic Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Graph Problem": "subtype_of"
     },
@@ -79,7 +73,6 @@
   },
   "Bipartite Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Undirected Graph Problem": "subtype_of"
     },
@@ -90,7 +83,6 @@
   },
   "Flow Network Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -102,7 +94,6 @@
   },
   "Matching Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -112,7 +103,6 @@
   },
   "Connectivity Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Undirected Graph Problem": "subtype_of"
     },
@@ -123,7 +113,6 @@
   },
   "Reachability Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -134,7 +123,6 @@
   },
   "Cycle Detection Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -145,7 +133,6 @@
   },
   "Topological Ordering Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Graph Problem": "subtype_of",
       "Directed Acyclic Graph Problem": "subtype_of"
@@ -156,7 +143,6 @@
   },
   "Strongly Connected Components Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Graph Problem": "subtype_of"
     },
@@ -166,7 +152,6 @@
   },
   "Bridge and Articulation Point Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Undirected Graph Problem": "subtype_of"
     },
@@ -176,7 +161,6 @@
   },
   "Shortest Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -189,7 +173,6 @@
   },
   "Single-Source Shortest Path Problem": {
     "type": "problem",
-    "description": "Let $G = (V, E)$ be a directed graph, where $V$ is a finite set of vertices and $E \\subseteq V \\times V$ is a set of directed edges. Let $w : E \\to \\mathbb{R}$ be an edge-weight function, and let $s \\in V$ be a distinguished source vertex.\n\nA path from $s$ to $v$ is a finite sequence\n\n$$\nP = (v_0, v_1, \\dots, v_k)\n$$\n\nsuch that $v_0 = s$, $v_k = v$, and $(v_{i-1}, v_i) \\in E$ for all $i \\in \\{1, \\dots, k\\}$.\n\nThe weight of a path $P$ is\n\n$$\nw(P) = \\sum_{i=1}^{k} w(v_{i-1}, v_i).\n$$\n\nThe shortest-path distance from $s$ to $v$ is defined by\n\n$$\n\\delta(s, v)\n=\n\\begin{cases}\n\\min \\left\\{ w(P) : P \\text{ is a path from } s \\text{ to } v \\right\\}, & \\text{if such a path exists}, \\\\\n+\\infty, & \\text{otherwise}.\n\\end{cases}\n$$\n\nThe Single-Source Shortest Path problem is to compute\n\n$$\n\\left\\{ \\delta(s, v) : v \\in V \\right\\}.\n$$\n\nEquivalently, the problem is to find a function $d : V \\to \\mathbb{R} \\cup \\{+\\infty\\}$ such that\n\n$$\nd(v) = \\delta(s, v)\n\\quad \\text{for every } v \\in V.\n$$\n\nWhen shortest paths are also required, one may compute a predecessor map\n\n$$\n\\pi : V \\to V \\cup \\{\\bot\\},\n$$\n\nwhere $\\pi(v)$ is the vertex immediately preceding $v$ on a shortest path from $s$ to $v$, and $\\pi(v) = \\bot$ if $v = s$ or if no such path exists.\n\nThe distances satisfy the Bellman optimality conditions\n\n$$\nd(s) = 0, \\\\\nd(v) \\le d(u) + w(u, v)\n\\quad \\text{for every } (u, v) \\in E.\n$$\n\nIf $v$ is reachable from $s$ and has a shortest predecessor $u$, then\n\n$$\nd(v) = d(u) + w(u, v).\n$$\n\nHere, $G$ denotes the graph, $V$ the vertex set, $E$ the edge set, $w$ the edge-weight function, $s$ the source vertex, $P$ a path, $w(P)$ the total path weight, $\\delta(s,v)$ the true shortest-path distance, $d(v)$ the computed distance value, and $\\pi(v)$ the predecessor of $v$ in a shortest-path tree.",
     "parents": {
       "Shortest Path Problem": "subtype_of"
     },
@@ -202,7 +185,6 @@
   },
   "All-Pairs Shortest Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Shortest Path Problem": "subtype_of"
     },
@@ -212,7 +194,6 @@
   },
   "Unweighted Shortest Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Unweighted Graph Problem": "subtype_of",
       "Single-Source Shortest Path Problem": "subtype_of"
@@ -223,7 +204,6 @@
   },
   "DAG Shortest Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Acyclic Graph Problem": "subtype_of",
       "Single-Source Shortest Path Problem": "subtype_of"
@@ -234,7 +214,6 @@
   },
   "Negative-Weight Shortest Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Shortest Path Problem": "subtype_of",
       "Single-Source Shortest Path Problem": "subtype_of"
@@ -245,7 +224,6 @@
   },
   "Minimum Spanning Tree Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Undirected Graph Problem": "subtype_of"
     },
@@ -255,7 +233,6 @@
   },
   "Bipartite Recognition Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Bipartite Graph Problem": "subtype_of"
     },
@@ -265,7 +242,6 @@
   },
   "Bipartite Matching Problem": {
     "type": "problem",
-    "description": "Let $G=(U,V,E)$ be a bipartite graph, where $U$ and $V$ are disjoint vertex sets and\n$E \\subseteq U \\times V$ is the set of admissible edges. A matching is a set\n$M \\subseteq E$ such that no two edges in $M$ share an endpoint:\n\n$$\n\\forall e_1,e_2 \\in M,\\ e_1 \\neq e_2\n\\implies\ne_1 \\cap e_2 = \\varnothing .\n$$\n\nEquivalently, introduce a binary decision variable $x_{uv}$ for each edge\n$(u,v)\\in E$:\n\n$$\nx_{uv} =\n\\begin{cases}\n1, & \\text{if } (u,v) \\text{ is selected in the matching},\\\\\n0, & \\text{otherwise}.\n\\end{cases}\n$$\n\nThe maximum-cardinality bipartite matching problem is:\n\n$$\n\\begin{aligned}\n\\max_{x} \\quad & \\sum_{(u,v)\\in E} x_{uv} \\\\\n\\text{s.t.} \\quad\n& \\sum_{v:(u,v)\\in E} x_{uv} \\leq 1,\n&& \\forall u \\in U, \\\\\n& \\sum_{u:(u,v)\\in E} x_{uv} \\leq 1,\n&& \\forall v \\in V, \\\\\n& x_{uv} \\in \\{0,1\\},\n&& \\forall (u,v)\\in E .\n\\end{aligned}\n$$\n\nHere, the objective maximizes the number of selected edges. The first constraint\nensures that each vertex $u\\in U$ is incident to at most one selected edge. The\nsecond constraint ensures that each vertex $v\\in V$ is incident to at most one\nselected edge. The binary constraint enforces that each edge is either selected\nor not selected.\n\nIf each edge $(u,v)\\in E$ has weight $w_{uv}\\in\\mathbb{R}$, the maximum-weight\nbipartite matching problem is:\n\n$$\n\\begin{aligned}\n\\max_{x} \\quad & \\sum_{(u,v)\\in E} w_{uv}x_{uv} \\\\\n\\text{s.t.} \\quad\n& \\sum_{v:(u,v)\\in E} x_{uv} \\leq 1,\n&& \\forall u \\in U, \\\\\n& \\sum_{u:(u,v)\\in E} x_{uv} \\leq 1,\n&& \\forall v \\in V, \\\\\n& x_{uv} \\in \\{0,1\\},\n&& \\forall (u,v)\\in E .\n\\end{aligned}\n$$\n\nA feasible solution $x$ defines the matching\n\n$$\nM(x)=\\left\\{(u,v)\\in E : x_{uv}=1\\right\\}.\n$$",
     "parents": {
       "Bipartite Graph Problem": "subtype_of",
       "Matching Problem": "subtype_of"
@@ -276,7 +252,6 @@
   },
   "Maximum Flow Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Flow Network Problem": "subtype_of"
     },
@@ -287,7 +262,6 @@
   },
   "Minimum Cut Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Flow Network Problem": "subtype_of"
     },
@@ -297,7 +271,6 @@
   },
   "Eulerian Path Problem": {
     "type": "problem",
-    "description": "Let $G=(V,E)$ be a finite graph, where $V$ is the vertex set and $E$ is the edge set. An Eulerian path is a sequence\n\n$$\nP=(v_0,e_1,v_1,e_2,\\ldots,e_m,v_m)\n$$\n\nsuch that\n\n$$\n\\left\\{e_1,e_2,\\ldots,e_m\\right\\}=E,\n\\qquad\ne_i \\neq e_j \\text{ for } i \\neq j,\n\\qquad\ne_i=\\left\\{v_{i-1},v_i\\right\\} \\text{ for all } i \\in \\left\\{1,\\ldots,m\\right\\}.\n$$\n\nThe Eulerian Path Problem is the decision problem\n\n$$\n\\text{Given } G=(V,E), \\text{ determine whether there exists an Eulerian path } P \\text{ in } G.\n$$\n\nEquivalently, it asks whether the edge set $E$ can be ordered as\n\n$$\n(e_1,e_2,\\ldots,e_m)\n$$\n\nso that consecutive edges are incident and every edge of $G$ appears exactly once.\n\nFor an undirected graph, an Eulerian path exists if and only if\n\n$$\nG \\text{ is connected after deleting isolated vertices}\n\\quad\\text{and}\\quad\n\\left|\\left\\{v \\in V : \\deg(v) \\text{ is odd}\\right\\}\\right| \\in \\left\\{0,2\\right\\}.\n$$\n\nHere, $V$ is the set of vertices, $E$ is the set of edges, $m=|E|$ is the number of edges, $v_i$ are vertices visited by the path, $e_i$ are edges traversed by the path, and $\\deg(v)$ denotes the degree of vertex $v$.",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -307,7 +280,6 @@
   },
   "Hamiltonian Path Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -318,7 +290,6 @@
   },
   "Graph Coloring Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -328,7 +299,6 @@
   },
   "Transitive Closure Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "subtype_of"
     },
@@ -338,7 +308,6 @@
   },
   "Residual Network Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Graph Problem": "subtype_of",
       "Flow Network Problem": "subtype_of",
@@ -350,7 +319,6 @@
   },
   "Level Graph Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Acyclic Graph Problem": "subtype_of",
       "Level Graph Construction": "produces"
@@ -361,7 +329,6 @@
   },
   "Condensation DAG Problem": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Directed Acyclic Graph Problem": "subtype_of",
       "Strong Component Decomposition": "produces"
@@ -372,7 +339,6 @@
   },
   "Graph Traversal": {
     "type": "problem",
-    "description": "",
     "parents": {
       "Graph Problem": "analyzed_by"
     },
@@ -383,7 +349,6 @@
   },
   "Breadth-First Search": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Reachability Problem": "solved_by",
       "Unweighted Shortest Path Problem": "solved_by",
@@ -396,7 +361,6 @@
   },
   "Depth-First Search": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Reachability Problem": "solved_by",
       "Connectivity Problem": "solved_by",
@@ -411,7 +375,6 @@
   },
   "Shortest Path Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Shortest Path Problem": "solved_by"
     },
@@ -425,7 +388,6 @@
   },
   "Relaxation Procedure": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Shortest Path Method": "decomposed_by",
       "Dijkstra's Algorithm": "implemented_by",
@@ -435,7 +397,6 @@
   },
   "Topological Sort": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Topological Ordering Problem": "solved_by",
       "Condensation DAG Problem": "solved_by",
@@ -447,7 +408,6 @@
   },
   "Kahn's Algorithm": {
     "type": "solution",
-    "description": "Let $G=(V,E)$ be a finite directed graph, where $V$ is the set of vertices and\n$E \\subseteq V \\times V$ is the set of directed edges. For each $v \\in V$, define\nthe indegree of $v$ by\n\n$$\nd(v) = \\left|\\left\\{ u \\in V : (u,v) \\in E \\right\\}\\right|.\n$$\n\nKahn's Algorithm constructs a sequence $L$ as follows. Initialize\n\n$$\nS_0 = \\left\\{ v \\in V : d(v)=0 \\right\\},\n\\qquad\nL_0 = ().\n$$\n\nAt step $t \\geq 0$, if $S_t \\neq \\varnothing$, choose some vertex $v_t \\in S_t$,\nappend it to the output sequence, and remove it from the graph. Formally,\n\n$$\nL_{t+1} = L_t \\circ (v_t),\n$$\n\nwhere $\\circ$ denotes sequence concatenation. For every outgoing edge\n$(v_t,w) \\in E$, decrease the indegree of $w$ by one:\n\n$$\nd_{t+1}(w)\n=\nd_t(w) - \\left|\\left\\{ v_t : (v_t,w) \\in E_t \\right\\}\\right|.\n$$\n\nThe next zero-indegree set is\n\n$$\nS_{t+1}\n=\n\\left(S_t \\setminus \\left\\{ v_t \\right\\}\\right)\n\\cup\n\\left\\{ w \\in V_t : d_{t+1}(w)=0 \\right\\}.\n$$\n\nThe algorithm terminates when $S_t=\\varnothing$. If all vertices have been\noutput, that is,\n\n$$\n|L_t| = |V|,\n$$\n\nthen $L_t$ is a topological ordering of $G$. Otherwise, $G$ contains at least\none directed cycle.\n\nThe meaning of each component is as follows:\n\n- $G=(V,E)$ is the input directed graph.\n- $V$ is the vertex set.\n- $E$ is the directed edge set.\n- $d(v)$ is the indegree of vertex $v$.\n- $S_t$ is the set of vertices with indegree zero at step $t$.\n- $L_t$ is the partial topological ordering after $t$ steps.\n- $v_t$ is the zero-indegree vertex selected at step $t$.\n- $E_t$ and $V_t$ denote the remaining edges and vertices at step $t$.\n\nCorrectness follows from the invariant that every vertex in $S_t$ has no\nincoming edge from any remaining vertex. Therefore, selecting any $v_t \\in S_t$\ncannot violate the topological order condition. If no such vertex exists while\nsome vertices remain, every remaining vertex has positive indegree, which implies\nthe existence of a directed cycle.",
     "parents": {
       "Topological Sort": "specializes"
     },
@@ -455,7 +415,6 @@
   },
   "Dijkstra's Algorithm": {
     "type": "solution",
-    "description": "Let $G=(V,E,w)$ be a weighted directed graph, where $V$ is the finite vertex set,\n$E \\subseteq V \\times V$ is the edge set, and $w:E \\to \\mathbb{R}_{\\ge 0}$ assigns\na nonnegative weight to each edge. For a source vertex $s \\in V$, Dijkstra's\nalgorithm computes the shortest-path distance\n\n$$\n\\delta(s,v)\n=\n\\min \\left\\{\n\\sum_{i=0}^{k-1} w(v_i,v_{i+1})\n:\nk \\ge 0,\\ v_0=s,\\ v_k=v,\\ (v_i,v_{i+1}) \\in E\n\\right\\}.\n$$\n\nThe algorithm maintains:\n- $S \\subseteq V$: vertices whose shortest-path distances are finalized.\n- $Q = V \\setminus S$: vertices not yet finalized.\n- $d:V \\to \\mathbb{R}_{\\ge 0} \\cup \\{\\infty\\}$: tentative distance estimates.\n- $\\pi:V \\to V \\cup \\{\\bot\\}$: predecessor map encoding shortest paths.\n\nInitialization:\n\n$$\nd(v)\n=\n\\begin{cases}\n0, & v=s, \\\\\n\\infty, & v \\ne s,\n\\end{cases}\n\\qquad\n\\pi(v)=\\bot\n\\quad \\text{for all } v \\in V,\n\\qquad\nS=\\varnothing.\n$$\n\nAt each iteration, choose the unsettled vertex with minimum tentative distance:\n\n$$\nu \\in \\arg\\min_{v \\in Q} d(v).\n$$\n\nThen finalize $u$:\n\n$$\nS \\leftarrow S \\cup \\{u\\},\n\\qquad\nQ \\leftarrow Q \\setminus \\{u\\}.\n$$\n\nFor each outgoing edge $(u,v) \\in E$ with $v \\in Q$, perform relaxation:\n\n$$\n\\text{if } d(v) > d(u)+w(u,v), \\text{ then}\n\\\\\nd(v) \\leftarrow d(u)+w(u,v),\n\\qquad\n\\pi(v) \\leftarrow u.\n$$\n\nThe fundamental invariant is:\n\n$$\n\\forall u \\in S,\\qquad d(u)=\\delta(s,u).\n$$\n\nBecause all edge weights satisfy $w(e)\\ge 0$, once a vertex $u$ has minimum\ntentative distance among $Q$, no later path through vertices in $Q$ can produce\na shorter path to $u$. Hence finalizing $u$ preserves the invariant.\n\nWhen the algorithm terminates, $Q=\\varnothing$, and therefore\n\n$$\n\\forall v \\in V,\\qquad d(v)=\\delta(s,v).\n$$\n\nThus $d$ gives the shortest-path distances from $s$, and $\\pi$ reconstructs\ncorresponding shortest paths whenever such paths exist.",
     "parents": {
       "Single-Source Shortest Path Problem": "solved_by",
       "Shortest Path Method": "specializes"
@@ -467,7 +426,6 @@
   },
   "Bellman-Ford Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Negative-Weight Shortest Path Problem": "solved_by",
       "Shortest Path Method": "specializes"
@@ -478,7 +436,6 @@
   },
   "Floyd-Warshall Algorithm": {
     "type": "solution",
-    "description": "Let $G = (V,E,w)$ be a weighted directed graph, where\n$V = \\{1,2,\\dots,n\\}$, $E \\subseteq V \\times V$, and\n$w : E \\to \\mathbb{R}$ is the edge-weight function.\n\nDefine the initial distance matrix $D^{(0)} \\in (\\mathbb{R} \\cup \\{\\infty\\})^{n \\times n}$ by\n\n$$\nD_{ij}^{(0)} =\n\\left\\{\n\\begin{array}{ll}\n0, & i = j, \\\\\nw(i,j), & (i,j) \\in E, \\\\\n\\infty, & (i,j) \\notin E \\text{ and } i \\neq j.\n\\end{array}\n\\right.\n$$\n\nFor each $k \\in \\{1,2,\\dots,n\\}$, define $D^{(k)}$ recursively by\n\n$$\nD_{ij}^{(k)}\n=\n\\min\\left\\{\nD_{ij}^{(k-1)},\nD_{ik}^{(k-1)} + D_{kj}^{(k-1)}\n\\right\\}\n\\quad\n\\text{for all } i,j \\in V.\n$$\n\nThe interpretation is that $D_{ij}^{(k)}$ is the minimum weight of any path from $i$ to $j$ whose internal vertices all belong to the set $\\{1,2,\\dots,k\\}$.\n\nThus, after $n$ iterations,\n\n$$\nD_{ij}^{(n)}\n=\n\\min\\left\\{\n\\sum_{\\ell=0}^{m-1} w(v_\\ell,v_{\\ell+1})\n:\nm \\geq 0,\\,\nv_0=i,\\,\nv_m=j,\\,\n(v_\\ell,v_{\\ell+1}) \\in E\n\\right\\}.\n$$\n\nHere, $D_{ij}^{(n)}$ is the shortest-path distance from $i$ to $j$, provided no negative-weight cycle is reachable on a path from $i$ to $j$.\n\nA negative-weight cycle exists if and only if\n\n$$\n\\exists i \\in V \\text{ such that } D_{ii}^{(n)} < 0.\n$$\n\nThe Floyd-Warshall algorithm computes all entries of $D^{(n)}$ using the recurrence above. Its time complexity is $O(n^3)$ and its space complexity is $O(n^2)$.",
     "parents": {
       "All-Pairs Shortest Path Problem": "solved_by",
       "Transitive Closure Problem": "solved_by",
@@ -488,7 +445,6 @@
   },
   "Dynamic Programming on DAG": {
     "type": "solution",
-    "description": "",
     "parents": {
       "DAG Shortest Path Problem": "solved_by",
       "Shortest Path Method": "specializes"
@@ -499,7 +455,6 @@
   },
   "Minimum Spanning Tree Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Minimum Spanning Tree Problem": "solved_by"
     },
@@ -510,7 +465,6 @@
   },
   "Kruskal's Algorithm": {
     "type": "solution",
-    "description": "Let $G=(V,E,w)$ be a finite, undirected, weighted graph, where:\n\n- $V$ is the vertex set.\n- $E \\subseteq \\left\\{ \\{u,v\\} : u,v \\in V,\\ u \\neq v \\right\\}$ is the edge set.\n- $w:E \\to \\mathbb{R}$ assigns a weight to each edge.\n- The goal is to find a minimum spanning tree $T \\subseteq E$ minimizing\n\n$$\n\\min_{T \\subseteq E}\n\\sum_{e \\in T} w(e)\n$$\n\nsubject to $(V,T)$ being connected and acyclic.\n\nKruskal's algorithm constructs $T$ greedily. Initialize\n\n$$\nT_0=\\varnothing\n$$\n\nand sort the edges as\n\n$$\ne_1,e_2,\\dots,e_m\n$$\n\nsuch that\n\n$$\nw(e_1) \\leq w(e_2) \\leq \\cdots \\leq w(e_m).\n$$\n\nFor $i=1,\\dots,m$, define\n\n$$\nT_i =\n\\begin{cases}\nT_{i-1} \\cup \\left\\{ e_i \\right\\}, & \\text{if } (V,T_{i-1} \\cup \\left\\{ e_i \\right\\}) \\text{ is acyclic}, \\\\\nT_{i-1}, & \\text{otherwise}.\n\\end{cases}\n$$\n\nThe output is\n\n$$\nT = T_m.\n$$\n\nEquivalently, at each step Kruskal selects the minimum-weight edge crossing two distinct connected components of the current forest:\n\n$$\ne^\\star \\in\n\\operatorname*{arg\\,min}_{e=\\{u,v\\} \\in E}\n\\left\\{ w(e) : u \\text{ and } v \\text{ lie in distinct components of } (V,T) \\right\\}.\n$$\n\nThen update\n\n$$\nT \\leftarrow T \\cup \\left\\{ e^\\star \\right\\}.\n$$\n\nThe algorithm terminates when\n\n$$\n|T| = |V|-1.\n$$\n\nIf $G$ is connected, the resulting set $T$ is a minimum spanning tree. If $G$ is disconnected, the same procedure returns a minimum spanning forest.\n\nThe acyclicity condition ensures that $T$ remains a forest at every step. The greedy choice is valid by the cut property: for any cut of $G$, a minimum-weight edge crossing that cut is safe to add to some minimum spanning tree.",
     "parents": {
       "Minimum Spanning Tree Method": "specializes"
     },
@@ -520,7 +474,6 @@
   },
   "Prim's Algorithm": {
     "type": "solution",
-    "description": "Let $G=(V,E,w)$ be a finite, connected, undirected weighted graph, where\n$V$ is the vertex set, $E \\subseteq \\{\\{u,v\\}:u,v \\in V,\\ u \\neq v\\}$ is the\nedge set, and $w:E \\to \\mathbb{R}$ assigns a weight to each edge.\n\nPrim's Algorithm constructs a minimum spanning tree $T=(V,A)$ by maintaining\na set $S \\subseteq V$ of vertices already included in the tree and a set\n$A \\subseteq E$ of chosen edges.\n\nChoose an arbitrary root vertex $r \\in V$ and initialize\n\n$$\nS := \\{r\\}, \\qquad A := \\emptyset .\n$$\n\nAt each iteration, choose a minimum-weight edge crossing the cut\n$(S, V \\setminus S)$:\n\n$$\ne_k\n\\in\n\\operatorname*{arg\\,min}_{\\{u,v\\} \\in E}\n\\left\\{\nw(\\{u,v\\}) :\nu \\in S,\\ v \\in V \\setminus S\n\\right\\}.\n$$\n\nIf $e_k=\\{u_k,v_k\\}$ with $u_k \\in S$ and $v_k \\in V \\setminus S$, update\n\n$$\nS := S \\cup \\{v_k\\}, \\qquad\nA := A \\cup \\{e_k\\}.\n$$\n\nThe algorithm terminates when\n\n$$\nS = V .\n$$\n\nThe output is the spanning tree\n\n$$\nT = (V,A).\n$$\n\nEquivalently, after $k$ iterations,\n\n$$\n|S| = k+1, \\qquad\n|A| = k, \\qquad\nA \\subseteq E.\n$$\n\nMeaning of components:\n- $G=(V,E,w)$: the input weighted graph.\n- $V$: all vertices.\n- $E$: all undirected edges.\n- $w(e)$: weight of edge $e$.\n- $S$: vertices already connected to the growing tree.\n- $A$: edges selected so far.\n- $(S,V \\setminus S)$: the cut separating selected and unselected vertices.\n- $e_k$: the minimum-weight edge crossing that cut at iteration $k$.\n- $T=(V,A)$: the final minimum spanning tree.\n\nCorrectness follows from the cut property: for any nonempty proper subset\n$S \\subset V$, every minimum-weight edge crossing the cut $(S,V \\setminus S)$\nis safe to add to some minimum spanning tree. Since each step of Prim's\nAlgorithm adds such a safe edge, the final set $A$ is the edge set of a\nminimum spanning tree.",
     "parents": {
       "Minimum Spanning Tree Method": "specializes"
     },
@@ -530,7 +483,6 @@
   },
   "Disjoint Set Union": {
     "type": "solution",
-    "description": "Let $U$ be a finite universe of elements. A Disjoint Set Union maintains a partition\n$\\mathcal{P}$ of $U$:\n\n$$\n\\mathcal{P} = \\left\\{ S_1, S_2, \\ldots, S_k \\right\\}\n$$\n\nwhere each $S_i \\subseteq U$ satisfies\n\n$$\nS_i \\neq \\varnothing,\\quad\nS_i \\cap S_j = \\varnothing \\text{ for } i \\neq j,\\quad\n\\bigcup_{i=1}^k S_i = U.\n$$\n\nEach set $S_i$ has a distinguished representative $r_i \\in S_i$. The DSU stores a\nparent function\n\n$$\np : U \\to U\n$$\n\nsuch that the directed graph induced by edges $x \\to p(x)$ is a forest of rooted\ntrees. An element $r \\in U$ is a root precisely when\n\n$$\np(r) = r.\n$$\n\nFor any $x \\in U$, the representative of the set containing $x$ is\n\n$$\n\\operatorname{Find}(x) = r\n\\quad\\Longleftrightarrow\\quad\np^{(m)}(x) = r \\text{ for some } m \\geq 0 \\text{ and } p(r)=r.\n$$\n\nHere, $p^{(m)}$ denotes $m$ repeated applications of $p$.\n\nThe equivalence relation represented by the DSU is\n\n$$\nx \\sim y\n\\quad\\Longleftrightarrow\\quad\n\\operatorname{Find}(x) = \\operatorname{Find}(y).\n$$\n\nThus each equivalence class is\n\n$$\n[x] = \\left\\{ y \\in U : \\operatorname{Find}(y) = \\operatorname{Find}(x) \\right\\}.\n$$\n\nThe operation $\\operatorname{Union}(x,y)$ replaces the two classes containing $x$\nand $y$ by their union. If\n\n$$\nr_x = \\operatorname{Find}(x),\\quad\nr_y = \\operatorname{Find}(y),\n$$\n\nthen\n\n$$\n\\operatorname{Union}(x,y)\n=\n\\begin{cases}\n\\mathcal{P}, & r_x = r_y, \\\\\n\\left(\\mathcal{P} \\setminus \\left\\{ [x], [y] \\right\\}\\right)\n\\cup \\left\\{ [x] \\cup [y] \\right\\}, & r_x \\neq r_y.\n\\end{cases}\n$$\n\nOperationally, when $r_x \\neq r_y$, one root is made the parent of the other:\n\n$$\np(r_x) \\gets r_y\n\\quad\\text{or}\\quad\np(r_y) \\gets r_x.\n$$\n\nWith union by rank or size, an auxiliary function such as\n\n$$\ns : U \\to \\mathbb{N}\n$$\n\nmay be stored on roots, where $s(r)$ denotes the size or rank of the tree rooted at\n$r$. The smaller-rank or smaller-size tree is attached below the larger one.\n\nWith path compression, after computing $\\operatorname{Find}(x)=r$, every vertex on\nthe search path from $x$ to $r$ has its parent reset to $r$:\n\n$$\np(v) \\gets r\n\\quad\n\\text{for each } v \\text{ on the path from } x \\text{ to } r.\n$$\n\nThe DSU invariant is that for all $x,y \\in U$,\n\n$$\nx \\text{ and } y \\text{ are in the same maintained set}\n\\quad\\Longleftrightarrow\\quad\n\\operatorname{Find}(x)=\\operatorname{Find}(y).\n$$\n\nUsing both union by rank or size and path compression, any sequence of $m$\noperations on $n = |U|$ elements runs in\n\n$$\nO\\left(m\\,\\alpha(n)\\right),\n$$\n\nwhere $\\alpha$ is the inverse Ackermann function.",
     "parents": {
       "Connectivity Problem": "solved_by",
       "Cycle Detection Problem": "solved_by",
@@ -542,7 +494,6 @@
   },
   "Union-Find Forest": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Disjoint Set Union": "implemented_by"
     },
@@ -550,7 +501,6 @@
   },
   "Strong Component Decomposition": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Strongly Connected Components Problem": "solved_by"
     },
@@ -562,7 +512,6 @@
   },
   "Kosaraju's Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Strong Component Decomposition": "specializes"
     },
@@ -572,7 +521,6 @@
   },
   "Tarjan's Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Strong Component Decomposition": "specializes"
     },
@@ -582,7 +530,6 @@
   },
   "Low-Link Analysis": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Bridge and Articulation Point Problem": "solved_by"
     },
@@ -592,7 +539,6 @@
   },
   "Matching Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Bipartite Matching Problem": "solved_by"
     },
@@ -602,7 +548,6 @@
   },
   "Network Flow Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Maximum Flow Problem": "solved_by",
       "Minimum Cut Problem": "solved_by"
@@ -617,7 +562,6 @@
   },
   "Augmenting Path Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Residual Network Problem": "solved_by",
       "Network Flow Method": "decomposed_by"
@@ -626,7 +570,6 @@
   },
   "Residual Graph Construction": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Network Flow Method": "decomposed_by"
     },
@@ -636,7 +579,6 @@
   },
   "Ford-Fulkerson Method": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Network Flow Method": "specializes"
     },
@@ -644,7 +586,6 @@
   },
   "Edmonds-Karp Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Network Flow Method": "specializes"
     },
@@ -652,7 +593,6 @@
   },
   "Dinic's Algorithm": {
     "type": "solution",
-    "description": "Let $N=(V,E,c,s,t)$ be a directed capacitated network, where $V$ is the finite vertex set, $E \\subseteq V \\times V$ is the arc set, $c:E \\to \\mathbb{R}_{\\ge 0}$ is the capacity function, and $s,t \\in V$ are the source and sink.\n\nExtend $c$ to all ordered pairs by setting $c(u,v)=0$ whenever $(u,v)\\notin E$. A flow is a function $f:V\\times V \\to \\mathbb{R}$ satisfying\n\n$$\n\\begin{aligned}\n&f(u,v)=-f(v,u) && \\text{for all } u,v \\in V, \\\\\n&f(u,v)\\le c(u,v) && \\text{for all } u,v \\in V, \\\\\n&\\sum_{v\\in V} f(u,v)=0 && \\text{for all } u\\in V\\setminus \\{s,t\\}.\n\\end{aligned}\n$$\n\nThe value of $f$ is\n\n$$\n|f|=\\sum_{v\\in V} f(s,v).\n$$\n\nFor a current flow $f$, the residual capacity of an ordered pair $(u,v)$ is\n\n$$\nc_f(u,v)=c(u,v)-f(u,v).\n$$\n\nThe residual graph is\n\n$$\nG_f=(V,E_f),\n\\qquad\nE_f=\\left\\{(u,v)\\in V\\times V : c_f(u,v)>0\\right\\}.\n$$\n\nDinic's algorithm proceeds in phases.\n\nIn each phase, compute the distance label $\\ell_f:V\\to \\mathbb{Z}_{\\ge 0}\\cup \\{\\infty\\}$ by breadth-first search in $G_f$ from $s$:\n\n$$\n\\ell_f(v)=\n\\begin{cases}\n\\text{length of a shortest directed path from } s \\text{ to } v \\text{ in } G_f, & \\text{if such a path exists}, \\\\\n\\infty, & \\text{otherwise}.\n\\end{cases}\n$$\n\nIf $\\ell_f(t)=\\infty$, then there is no residual $s$-$t$ path, so $f$ is a maximum flow.\n\nOtherwise, construct the level graph\n\n$$\nL_f=(V,E_f^{\\mathrm{lev}}),\n\\qquad\nE_f^{\\mathrm{lev}}\n=\n\\left\\{(u,v)\\in E_f : \\ell_f(v)=\\ell_f(u)+1\\right\\}.\n$$\n\nA blocking flow in $L_f$ is a feasible flow $g$ on $L_f$ with capacities $c_f$ such that every directed $s$-$t$ path in $L_f$ contains at least one saturated arc $(u,v)$ satisfying\n\n$$\ng(u,v)=c_f(u,v).\n$$\n\nAugment the original flow by $g$:\n\n$$\nf(u,v)\\leftarrow f(u,v)+g(u,v)\n\\qquad\n\\text{for all } u,v\\in V.\n$$\n\nThen recompute the residual graph and repeat.\n\nEquivalently, Dinic's algorithm is:\n\n$$\n\\begin{aligned}\n&\\text{initialize } f(u,v)=0 \\text{ for all } u,v\\in V, \\\\\n&\\text{while } \\ell_f(t)<\\infty: \\\\\n&\\qquad \\text{construct } L_f, \\\\\n&\\qquad \\text{find a blocking flow } g \\text{ in } L_f, \\\\\n&\\qquad f \\leftarrow f+g, \\\\\n&\\text{return } f.\n\\end{aligned}\n$$\n\nThe components are:\n- $G_f$: the residual graph describing all currently possible augmentations.\n- $\\ell_f$: the BFS distance from $s$ in $G_f$.\n- $L_f$: the acyclic graph of shortest residual paths from $s$.\n- $g$: a blocking flow that eliminates all current shortest residual $s$-$t$ paths.\n- $f\\leftarrow f+g$: the augmentation step increasing the flow value.\n\nCorrectness follows because each phase eliminates all shortest residual $s$-$t$ paths, and the algorithm terminates exactly when no residual $s$-$t$ path remains. By the max-flow min-cut theorem, this condition is equivalent to optimality of $f$.",
     "parents": {
       "Network Flow Method": "specializes"
     },
@@ -662,7 +602,6 @@
   },
   "Bipartite BFS Coloring": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Bipartite Recognition Problem": "solved_by"
     },
@@ -672,7 +611,6 @@
   },
   "Hopcroft-Karp Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Matching Method": "specializes"
     },
@@ -683,7 +621,6 @@
   },
   "Hierholzer's Algorithm": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Eulerian Path Problem": "solved_by"
     },
@@ -691,7 +628,6 @@
   },
   "Backtracking Search": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Hamiltonian Path Problem": "solved_by",
       "Graph Coloring Problem": "solved_by"
@@ -700,7 +636,6 @@
   },
   "Branch and Bound": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Hamiltonian Path Problem": "solved_by"
     },
@@ -708,7 +643,6 @@
   },
   "Priority Queue": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Dijkstra's Algorithm": "implemented_by",
       "Prim's Algorithm": "implemented_by"
@@ -717,7 +651,6 @@
   },
   "Minimum-Cut Maximum-Flow Theorem": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Maximum Flow Problem": "analyzed_by"
     },
@@ -725,7 +658,6 @@
   },
   "Level Graph Construction": {
     "type": "solution",
-    "description": "",
     "parents": {
       "Dinic's Algorithm": "decomposed_by"
     },

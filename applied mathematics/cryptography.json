@@ -1,7 +1,6 @@
 {
   "Cryptography": {
     "type": "problem",
-    "define": "Start building your graph from this root node.",
     "parents": {},
     "children": {
       "Symmetric Encryption": "related_to",
@@ -11,7 +10,6 @@
   },
   "Symmetric Encryption": {
     "type": "problem",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Cryptography": "related_to"
     },
@@ -22,7 +20,6 @@
   },
   "Asymmetric Encryption": {
     "type": "problem",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Cryptography": "related_to"
     },
@@ -33,7 +30,6 @@
   },
   "Advanced Encryption Standard (AES)": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Symmetric Encryption": "related_to"
     },
@@ -41,7 +37,6 @@
   },
   "Data Encryption Standard (DES)": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Symmetric Encryption": "related_to"
     },
@@ -49,7 +44,6 @@
   },
   "Elliptic Curve Cryptography": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Asymmetric Encryption": "related_to"
     },
@@ -57,7 +51,6 @@
   },
   "Hash": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Cryptography": "related_to"
     },
@@ -68,7 +61,6 @@
   },
   "Rivest Shamir Adleman (RSA)": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Asymmetric Encryption": "related_to"
     },
@@ -76,7 +68,6 @@
   },
   "Secure Hash Algorithms (SHA)": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Hash": "related_to"
     },
@@ -84,7 +75,6 @@
   },
   "Message Digest 5 (MD5)": {
     "type": "solution",
-    "define": "Start building your graph from this root node.",
     "parents": {
       "Hash": "related_to"
     },

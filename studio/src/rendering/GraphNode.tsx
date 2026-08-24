@@ -24,7 +24,6 @@ const GraphNode = memo(function GraphNode({
   onFocusChange,
 }: GraphNodeProps) {
   const style = node.colorTokens ? ({
-    "--dag-node-glow": node.colorTokens.glow,
     "--dag-node-border": node.colorTokens.border,
     "--dag-node-border-strong": node.colorTokens.borderStrong,
     "--dag-node-active-border": node.colorTokens.activeBorder,
@@ -77,7 +76,6 @@ const GraphNode = memo(function GraphNode({
       onBlur={() => onFocusChange(null)}
       onKeyDown={handleKeyDown}
     >
-      <ellipse className="dag-node__glow" cx={node.width / 2} cy={node.height / 2} rx={node.width / 2 + 16} ry={node.height / 2 + 10} />
       <rect className="dag-node__shape" width={node.width} height={node.height} rx={24} ry={24} />
       <circle className="dag-node__pin" cx={26} cy={node.height / 2} r={11} />
       <circle className="dag-node__pin-core" cx={26} cy={node.height / 2} r={4} />
