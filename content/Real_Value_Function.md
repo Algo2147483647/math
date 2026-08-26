@@ -36,9 +36,13 @@ $$
 \forall\epsilon > 0,\exists\delta > 0,\text{ s.t. }0 < |x - a|<\delta\Rightarrow|f(x)-L|<\epsilon
 $$
 
+No matter how small a tolerance $\epsilon > 0$ we demand around $L$, there exists a sufficiently small distance $\delta > 0$ around $a$ such that whenever $x$ is within $\delta$ of $a$, but $x \neq a$, $f(x)$ is within $\epsilon$ of $L$.
+
+> A limit means that every desired degree of closeness in the output can be guaranteed by sufficient closeness in the input.
+
 #### Properties
 
-- Uniqueness: if $\lim_{x\rightarrow a}f(x)$ exists, then it is unique.
+- Uniqueness: if $\lim\limits_{x\rightarrow a}f(x)$ exists, then it is unique.
 - Local boundedness: if $\lim_{x\rightarrow a}f(x)=L$, then $f$ is bounded in some deleted neighborhood of $a$.
 - Local sign preservation: if $\lim_{x\rightarrow a}f(x)=L>0$ (or $L<0$), then $f(x)>0$ (or $f(x)<0$) near $a$.
 - Squeeze theorem:
@@ -49,14 +53,20 @@ $$
   $$
 - Heine's theorem: $\lim_{x\to x_0} f(x)=L$ iff for every sequence $x_n \to x_0$ with $x_n \ne x_0$, we have $f(x_n)\to L$.
 
+#### Infinitesimal equivalents
+
 Equivalent infinitesimal formulas as $x \to 0$:
 $$
 \begin{align*}
 \sin x &\sim x\\
 \tan x &\sim x\\
-1 - \cos x &\sim\frac{1}{2}x^2\\
-e^x - 1 &\sim x\\
-\ln(1 + x) &\sim x
+\arcsin x &\sim x\\
+\arctan x &\sim x\\
+1-\cos x &\sim \frac{x^2}{2}\\
+e^x-1 &\sim x\\
+\ln(1+x) &\sim x\\
+a^x-1 &\sim x\ln a\\
+(1+x)^\alpha-1 &\sim \alpha x
 \end{align*}
 $$
 
@@ -84,11 +94,13 @@ $$
 \lim_{x\to x_0} f(x)=f(x_0)
 $$
 
+> The important difference between Limit and Continuity is that continuity includes $x=a$ and explicitly connects the nearby values of $f(x)$ to the actual value $f(a)$.
+
 #### Discontinuity Classification
 
-- Removable discontinuity
-- Jump discontinuity
-- Discontinuity of the second kind
+- Removable discontinuity: $\displaystyle \lim_{x\to a}f(x)$ exists and is finite, but $f(a)$ is missing or unequal to the limit. Typical behavior is a hole.
+- Jump discontinuity: Both one-sided limits exist and are finite, but are unequal. Typical behavior is a finite jump.
+- Discontinuity of the second kind: At least one one-sided limit does not exist as a finite real number. Typical behavior is Infinite or oscillatory behavior
 
 #### Properties
 
@@ -96,7 +108,7 @@ $$
 - Local sign preservation
 - Closure under addition, multiplication, and division by nonzero continuous functions
 
-### Differential: Derivative and Partial Derivative
+### Differential
 
 $$
 f'(x) = \lim_{\Delta x \to 0} \frac{f(x+\Delta x)-f(x)}{\Delta x}
@@ -287,3 +299,4 @@ f \left(D^k u(x), ... , D^2 u(x), u(x), x \right) = 0
 $$
 
 A partial differential equation relates an unknown function $u$ of several variables to its partial derivatives.
+
