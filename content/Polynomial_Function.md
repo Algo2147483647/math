@@ -6,10 +6,13 @@
 
 > A polynomial function is a function formed from powers of a variable using finitely many additions and scalar multiplications.
 
-$$\begin{align*}
-  f(x) &= \sum_{i=0}^{n} a_i x^i  \tag{one variable}  \\
-  f(\boldsymbol x) &= \sum_{\boldsymbol i=(0,...,0)_n, i_j \le i_k, \forall j \le k}^{(\dim,...,\dim)_n} \left(a_{\boldsymbol i} \cdot \prod_{i_j \in \boldsymbol i, x_0 = 1}x_{i_j} \right)  \tag{multi-variate}  
-\end{align*}$$
+$$
+\begin{align*}
+f(x) &= \sum_{i=0}^{n} a_i x^i  \tag{one variable}  \\
+f(\boldsymbol x) &= \sum_{\substack{\boldsymbol i=(0,\ldots,0)_n\\ i_j \le i_k,\ \forall j \le k }}^{(\dim,\ldots,\dim)_n} 
+\left(a_{\boldsymbol i} \cdot \prod_{\substack{i_j \in \boldsymbol i \\ x_0 := 1}}x_{i_j} \right)  \tag{multi-variate}  
+\end{align*}
+$$
 
 Polynomial function is a kind of [function](./Function.md).
 
