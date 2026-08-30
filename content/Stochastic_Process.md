@@ -6,9 +6,12 @@
 
 > A stochastic process is a family of random variables indexed by time or another parameter.
 
+$$
+\{X(t): t \in T\}
+$$
+
 A Stochastic Process $X(t, \omega), \omega \in \Omega, t \in T$ is defined as a collection of random variables defined on a [Probability Space](./Probability_Space.md) $(Ω, \mathcal F, P)$, and these random variables indexed by set $T$.
 
-Note
 - When the time $t$ is fixed, the random process degenerates into a random variable.
 - When the random sample $ζ$ is determined, the random process degenerates into a continuous time function
 

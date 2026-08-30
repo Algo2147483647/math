@@ -8,19 +8,19 @@
 
 A logical system specifies:
 
-- **Syntax**: which symbolic expressions are well-formed formulas.
+- **Syntax**: which symbolic expressions are well-formed formulas. Syntax describes the formal symbols and formation rules of a logical language.
 - **Semantics**: when formulas are true under an interpretation.
 - **Proof system**: which formal inference rules are allowed.
 
-Two central relations are:
+
+
 $$
 \Gamma\models\varphi
 \quad\text{and}\quad
 \Gamma\vdash\varphi.
 $$
 
-Here $\Gamma$ is a set of formulas and $\varphi$ is a formula.
-
+- $\Gamma$ is a set of formulas and $\varphi$ is a formula.
 - $\Gamma\models\varphi$ means $\varphi$ is a semantic consequence of $\Gamma$.
 - $\Gamma\vdash\varphi$ means $\varphi$ is formally derivable from $\Gamma$.
 
@@ -28,87 +28,81 @@ Here $\Gamma$ is a set of formulas and $\varphi$ is a formula.
 
 ### Syntax
 
-Syntax describes the formal symbols and formation rules of a logical language.
+#### Basic Concepts
+
+The **truth constants** are:
+
+- true: $\top$
+- false: $\bot$
+
+**Variables** represent arbitrary objects:
+$$
+x,y,z,\cdots
+$$
+
+**Constants** represent fixed objects:
+$$
+a,b,c,\cdots
+$$
+
+**Predicates** represent properties or relations:
+$$
+P(x),\quad R(x,y),\quad S(x_1,\cdots,x_n).
+$$
+
+**Quantifiers** bind variables and express quantity over a domain of discourse:
+
+- Universal quantifier: $\forall x\,\varphi(x)$. It states that the property $\varphi(x)$ holds for all elements in the domain.
+- Existential quantifier: $\exists x\,\varphi(x)$. It states that at least one element in the domain satisfies the property.
+- Unique existence quantifier: $\exists!x\,\varphi(x)$. It states both that such an element exists and that no other element satisfies the property.
 
 #### Proposition
 
-A proposition is a statement that has a truth value: true or false.
-
-In formal logic, one usually works with formulas. A proposition may be understood as a formula with a determined truth value, or as a closed formula in a given interpretation.
+A proposition is a statement that has a truth value: true or false. In formal logic, one usually works with formulas. A proposition may be understood as a formula with a determined truth value, or as a closed formula in a given interpretation.
 
 #### Logical Connectives
 
 Logical connectives combine formulas into larger formulas:
 
-- Negation: $\neg\varphi$
-- Conjunction: $\varphi\wedge\psi$
-- Disjunction: $\varphi\vee\psi$
-- Implication: $\varphi\rightarrow\psi$
-- Equivalence: $\varphi\leftrightarrow\psi$
+- Negation: $\neg\varphi$. It reverses the truth value of $\varphi$. If $\varphi$ is true, then $\neg\varphi$ is false, and vice versa.
+- Conjunction: $\varphi\wedge\psi$. It is true only when both $\varphi$ and $\psi$ are true.
+- Disjunction: $\varphi\vee\psi$. It is true when at least one of $\varphi$ or $\psi$ is true. It is false only when both are false.
+- Implication: $\varphi\rightarrow\psi \equiv \neg \varphi \vee \psi$. It is false only when $\varphi$ is true and $\psi$ is false.
+- Equivalence: $\varphi\leftrightarrow\psi \equiv (\varphi \rightarrow \psi)\wedge(\psi \rightarrow \varphi)$. It is true when $\varphi$ and $\psi$ have the same truth value—both true or both false.
 
 <img src="assets/Logical_connectives_Hasse_diagram.svg" alt="Logical_connectives_Hasse_diagram" style="zoom: 33%;" />
 
-#### Truth Constants
+#### Contrapositive
 
-The truth constants are:
-
-- true: $\top$
-- false: $\bot$
-
-#### Variables, Constants, and Predicates
-
-Variables represent arbitrary objects:
 $$
-x,y,z,\cdots
+\neg Q \rightarrow \neg P.
 $$
 
-Constants represent fixed objects:
+**Contrapositive:** For an implication $P \rightarrow Q$, the contrapositive is if $Q$ is false, then $P$ must also be false. An implication and its contrapositive are logically equivalent:
 $$
-a,b,c,\cdots
+P\rightarrow Q \equiv \neg Q\rightarrow \neg P
 $$
-
-Predicates represent properties or relations:
-$$
-P(x),\quad R(x,y),\quad S(x_1,\cdots,x_n).
-$$
-
-#### Quantifiers
-
-Quantifiers bind variables and express quantity over a domain of discourse:
-
-- Universal quantifier: $\forall x\,\varphi(x)$
-- Existential quantifier: $\exists x\,\varphi(x)$
-- Unique existence quantifier: $\exists!x\,\varphi(x)$
 
 ### Semantics
 
 Semantics assigns meaning and truth values to formulas.
 
-#### Interpretation
-
-An interpretation gives meanings to the non-logical symbols of a language. It specifies:
+An **interpretation** gives meanings to the non-logical symbols of a language. It specifies:
 
 - a domain of discourse;
 - the objects denoted by constants;
 - the relations denoted by predicates;
 - the functions denoted by function symbols, if the language has them.
 
-#### Model
+A **model** is an interpretation in which a formula or a set of formulas is true. The notation means that the formula $\varphi$ is true in the model $\mathcal M$.
 
-A model is an interpretation in which a formula or a set of formulas is true.
-
-The notation
 $$
 \mathcal M\models\varphi
 $$
-means that the formula $\varphi$ is true in the model $\mathcal M$.
-
-For a set of formulas $\Gamma$,
+For a set of formulas $\Gamma$, means that every formula in $\Gamma$ is true in $\mathcal M$.
 $$
 \mathcal M\models\Gamma
 $$
-means that every formula in $\Gamma$ is true in $\mathcal M$.
-
 #### Satisfiability
 
 A set of formulas $\Gamma$ is satisfiable if there exists a model $\mathcal M$ such that
@@ -123,7 +117,7 @@ $$
 \models\varphi.
 $$
 
-### Logical Consequence
+### Logical Consequence, Axiom, Theorem
 
 A formula $\varphi$ is a semantic consequence of $\Gamma$ if every model of $\Gamma$ is also a model of $\varphi$:
 $$
@@ -138,34 +132,22 @@ $$
 \mathcal M\models\varphi.
 $$
 
-### Formal Proof
+**Formal proof** is syntactic. It depends only on symbols, axioms, and inference rules.
 
-Formal proof is syntactic. It depends only on symbols, axioms, and inference rules.
+- An **axiom** is a formula accepted as a starting point of a formal system.
 
-#### Axiom
+- An **inference rule** specifies when a formula may be derived from earlier formulas. For example, modus ponens has the form:
 
-An axiom is a formula accepted as a starting point of a formal system.
-
-#### Inference Rule
-
-An inference rule specifies when a formula may be derived from earlier formulas.
-
-For example, modus ponens has the form:
 $$
 \frac{\varphi,\quad \varphi\rightarrow\psi}{\psi}.
 $$
 
-#### Theorem
+A **theorem** is a formula derivable from the axioms using inference rules. The notation means that there is a finite formal proof of $\varphi$ from assumptions $\Gamma$.
 
-A theorem is a formula derivable from the axioms using inference rules.
-
-The notation
 $$
 \Gamma\vdash\varphi
 $$
-means that there is a finite formal proof of $\varphi$ from assumptions $\Gamma$.
-
-### Soundness and Completeness
+#### Soundness and Completeness
 
 Soundness says that formal proof preserves semantic truth:
 $$
@@ -183,7 +165,7 @@ $$
 
 These statements depend on the specific logical system and proof system being used.
 
-### Consistency
+#### Consistency
 
 A set of formulas $\Gamma$ is syntactically consistent if there is no formula $\varphi$ such that both $\varphi$ and its negation are derivable:
 $$
@@ -200,21 +182,15 @@ For classical logic, inconsistency is explosive: from a contradiction, every for
 
 ### Propositional Logic
 
-Propositional logic studies formulas built from atomic propositions using logical connectives.
+Propositional logic studies formulas built from atomic propositions using logical connectives. The truth of a propositional formula is determined by a truth assignment to its atomic propositions.
 
-The truth of a propositional formula is determined by a truth assignment to its atomic propositions.
-
-### First-order Logic
-
-First-order logic extends propositional logic by adding:
+**First-order logic** extends propositional logic by adding as following. First-order logic can express statements about elements of a domain and relations between them.
 
 - variables;
 - constants;
 - predicates;
 - function symbols;
 - quantifiers over individual objects.
-
-First-order logic can express statements about elements of a domain and relations between them.
 
 ### Axiomatic System
 

@@ -59,6 +59,18 @@ If an object $x$ is a member of a set $S$, we write $x \in S$. Otherwise, we wri
    \forall A (\exists B \forall x (x \in B \leftrightarrow (\exists y (y \in A ∧ \forall z (z \in A \rightarrow (z = y ∨ ¬S(z, y)))))))
    $$
 
+
+### Empty Set
+$$
+\varnothing = \{\}  \tag{Empty Set}
+$$
+Empty Set is a set without any element. 
+
+Property:
+- $\varnothing \subseteq S, \forall \text{ set } S$
+- $A \cap \varnothing= \varnothing$
+- $A \cup \varnothing= A$
+
 ## Properties
 
 ### Cardinality & Counting
@@ -150,194 +162,149 @@ $$
 
 #### Property
 
-* Addition theorem  
-  for $S = \cap_{i=1}^n S_i, S_i \cap S_j = \emptyset (i ≠ j)$
-  $$
-  \Rightarrow |S| = \sum_{i=1}^n |S_i|
-  $$
+Addition theorem. for $S = \cap_{i=1}^n S_i, S_i \cap S_j = \emptyset (i ≠ j)$
+$$
+\Rightarrow |S| = \sum_{i=1}^n |S_i|
+$$
+Multiplication theorem. for sets $S_A, S_B$, and
+$$
+\begin{align*}
+  S &= \{(a, b) | a \in S_A, b \in S_B\}  \\
+    &= S_A × S_B  \tag{Cartesian积}  \\
+\end{align*}
+$$
+$$
+\Rightarrow |S| = |S_A| × |S_B|
+$$
 
-* Multiplication theorem  
-  for sets $S_A, S_B$, and
-  $$
-  \begin{align*}
-    S &= \{(a, b) | a \in S_A, b \in S_B\}  \\
-      &= S_A × S_B  \tag{Cartesian积}  \\
-  \end{align*}
-  $$
-  $$
-  \Rightarrow |S| = |S_A| × |S_B|
-  $$
+> Proof of Addition theorem
+> $$
+> \begin{align*}
+>   S 
+>   &= \{(a, b) | a \in S_A, b \in S_B\}  \\
+>   &= \bigcap_{a_i \in S_A} \{(a_i, b) | b \in S_B\}  \\
+>   \Rightarrow |S| &= \sum_{i=1}^{|S_A|} |S_B|  \tag{Addition theorem}  \\
+>   &= |S_A| × |S_B|  \\
+> \end{align*}
+> $$
 
-  Proof
-  $$
-  \begin{align*}
-    S 
-    &= \{(a, b) | a \in S_A, b \in S_B\}  \\
-    &= \bigcap_{a_i \in S_A} \{(a_i, b) | b \in S_B\}  \\
-    \Rightarrow |S| &= \sum_{i=1}^{|S_A|} |S_B|  \tag{Addition theorem}  \\
-    &= |S_A| × |S_B|  \\
-  \end{align*}
-  $$
+Principle of Inclusion-Exclusion. for $A_1,...,A_n \subseteq S$
 
-* Principle of Inclusion-Exclusion
 
-  for $A_1,...,A_n \subseteq S$
-  $$
-  \begin{align*}
-    \left|\bigcup_{i=1}^n A_i\right| &= \sum_{k=1}^n \left((-1)^{k-1} \sum_{\substack{i_1,...,i_k \in 1:n \\ i_1≠...≠i_k}} \left|\bigcup_{i\in\{i_1,...,i_k\}} A_i\right|\right)
-  \end{align*}
-  $$
+$$
+\begin{align*}
+  \left|\bigcup_{i=1}^n A_i\right| &= \sum_{k=1}^n \left((-1)^{k-1} \sum_{\substack{i_1,...,i_k \in 1:n \\ i_1≠...≠i_k}} \left|\bigcup_{i\in\{i_1,...,i_k\}} A_i\right|\right)
+\end{align*}
+$$
 
-- Special Counting Sequence: Catalan Numbers 
-  $$
-  \begin{align*}
-    f_n 
-    &= \frac{C(2n, n)}{n+1}\quad, n \ge 0  \\
-    &= C(2n, n) - C(2n, n - 1)  \\
-    &= C(2n, n) - C(2n, n + 1)  \\
-    &= \frac{(2n)!}{(n+1)! n!}\\
-    &= \left\{\begin{matrix}
-      \sum\limits_{i=1}^n f_{i-1}f_{n-i}  & n \ge 2\\
-      1 & n = 0, 1
-    \end{matrix}\right. \tag{recurrence form}\\
-    &= \frac{4n-2}{n+1} f_{n-1}
-  \end{align*}
-  $$
-  Catalan Numbers are a sequence of natural numbers.
-* Pigeonhole Principle
-  
-  for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
+(Special Counting Sequence) Catalan numbers are a sequence of integers that count recursively nested, non-crossing, or balanced structures.
+$$
+\begin{align*}
+  f_n 
+  &= \frac{C(2n, n)}{n+1}\quad, n \ge 0  \\
+  &= C(2n, n) - C(2n, n - 1)  \\
+  &= C(2n, n) - C(2n, n + 1)  \\
+  &= \frac{(2n)!}{(n+1)! n!}\\
+  &= \left\{\begin{matrix}
+    \sum\limits_{i=1}^n f_{i-1}f_{n-i}  & n \ge 2\\
+    1 & n = 0, 1
+  \end{matrix}\right. \tag{recurrence form}\\
+  &= \frac{4n-2}{n+1} f_{n-1}
+\end{align*}
+$$
+Pigeonhole Principle. for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
 
-### Relationship between sets
+### Relationship between Sets
 
-* Subset & Proper Subset 
-  $$
-  A \subseteq B \quad\Leftrightarrow\quad x \in B, \forall x \in A \tag{Subset}
-  $$
-  If all the elements of set $A$ are contained in a set $B$, then we say $A$ is a subset of $B$.
+**Subset & Proper Subset.** If all the elements of set $A$ are contained in a set $B$, then we say $A$ is a subset of $B$. A set $A$ is a proper subset of $B$, if $A \subseteq B$, but not $A = B$.
+$$
+\begin{align*}
+A \subseteq B \quad & \Leftrightarrow\quad x \in B, \forall x \in A \tag{Subset} \\
+A \subset B \quad &\Leftrightarrow \quad x \in B, \forall x \in A \text{ and } \exist x \notin A, x \in B \tag{Proper Subset}
+\end{align*}
+$$
 
-  $$
-  A \subset B \Leftrightarrow x \in B, \forall x \in A \text{ and } \exist x \notin A, x \in B \tag{Proper Subset}
-  $$
+**Equal.** Two sets are equal, if they contain the same elements.
+$$
+\begin{align*}
+A = B &\quad\Leftrightarrow\quad x \in B, \forall x \in A \text{ and } x \in A, \forall x \in B  \tag{Equal}\\
+&\quad\Leftrightarrow\quad A \subseteq B, B \subseteq A
+\end{align*}
+$$
 
-  A set $A$ is a proper subset of $B$, if $A \subseteq B$, but not $A = B$.
-
-* Equal  
-  $$
-  \begin{align*}
-    A = B &\quad\Leftrightarrow\quad x \in B, \forall x \in A \text{ and } x \in A, \forall x \in B  \tag{equal}\\
-    &\quad\Leftrightarrow\quad A \subseteq B, B \subseteq A
-  \end{align*}
-  $$
-  Two sets are equal, if they contain the same elements.
-
-* Disjoint
-  $$
-  A, B \text{ is Disjoint } \quad\Leftrightarrow\quad A \cap B = \emptyset
-  $$
+**Disjoint.** 
+$$
+A, B \text{ is Disjoint } \quad\Leftrightarrow\quad A \cap B = \emptyset \tag{Disjoint}
+$$
 
 ### Operations
 
-#### Intersection
+#### Basic Operations
+
 
 $$
-A \cap B = \{x \ |\ x \in A, x \in B\}  \tag{Intersection}
-$$
-
-Property:
-- idempotency law: $A \cap A = A$
-- commutative law: $A \cap B = B \cap A$  
-- associative law: $A \cap (B \cap C) = (A \cap B) \cap C$
-
-#### Union
-
-$$
-A \cup B = \{x \ |\ x \in A \text{ or } x \in B \}  \tag{Union}
-$$
-
-Property:
-- idempotency law: $A \cup A = A$
-- commutative law: $A \cup B = B \cup A$  
-- associative law: $A \cup (B \cup C) = (A \cup B) \cup C$
-
-#### Difference
-
-$$
-A - B = \{x \ |\ x \in A \text{ and } x \notin B\}  \tag{Difference}
-$$
-
-#### Complement of A Set
-
-$$
-\bar A = U - A = \{x \ |\ x \in U, x \notin A\}  \tag{Complement of A Set}
+\begin{align*}
+A \cap B &= \{x \ |\ x \in A, x \in B\}  \tag{Intersection} \\
+A \cup B &= \{x \ |\ x \in A \text{ or } x \in B \}  \tag{Union}\\
+A - B &= \{x \ |\ x \in A, x \notin B\}  \tag{Difference}\\
+\bar A = U - A &= \{x \ |\ x \in U, x \notin A\}  \tag{Complement of A Set}\\
+\end{align*}
 $$
 
 For a universal set $U$, the complement of a set $A$ is $U - A$.
 
 Property:
+- idempotency law: $A \cap A = A$
+- commutative law: $A \cap B = B \cap A$  
+- associative law: $A \cap (B \cap C) = (A \cap B) \cap C$
+- idempotency law: $A \cup A = A$
+- commutative law: $A \cup B = B \cup A$  
+- associative law: $A \cup (B \cup C) = (A \cup B) \cup C$
 - $\bar{\bar A} = A$ 
-
 - distributive laws 
   $$
+  \begin{align*}
   A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
-  $$
-  $$
   A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+  \end{align*}
   $$
 - absorption laws
   $$
-  A \cap (A \cup B) = A
-  $$
-  $$
+  \begin{align*}
+  A \cap (A \cup B) = A  \\
   A \cup (A \cap B) = A
+  \end{align*}
   $$
 - DeMorgan's laws
   $$
-  A - (B \cap C) = (A - B) \cup (A - C)
-  $$
-  $$
-  A - (B \cup C) = (A - B) \cap (A - C)
-  $$
-  $$
-  \overline{A \cap B} = \bar A \cup \bar B
-  $$
-  $$
-  \overline{A \cup B} = \bar A \cap \bar B
+  \begin{align*}
+  A - (B \cap C) &= (A - B) \cup (A - C)  \\
+  A - (B \cup C) &= (A - B) \cap (A - C)  \\
+  \overline{A \cap B} &= \bar A \cup \bar B  \\ 
+  \overline{A \cup B} &= \bar A \cap \bar B
+  \end{align*}
   $$
 
-### Cartesian Product
+#### Cartesian Product
 
 $$
-A \times B = \{(a, b) \ | a \in A \text{ and } b \in B\}
+A \times B = \{(a, b) \ |\ a \in A \text{ and } b \in B\} \tag{Cartesian Product}
 $$
 For two sets $A, B$, cartesian product is the set of all ordered pairs such that the first element of the pair is an element of $A$ and the second one is from $B$.
 
 Property:
-- $\text{number}(A \times B) = \text{number}(A) \cdot \text{number}(B)$
+- $|A \times B| = |A| \cdot |B|$
 
-### Power Set
+#### Power Set
 
-The power set of $A$ is the set of all subsets of $A$:
+The power set of $A$ is the set of all subsets of $A$.
 $$
 \mathcal P(A)=\{B \mid B \subseteq A\}.
 $$
 
-This is stored here as a standard set construction rather than as a standalone node.
-
-### Ordered Pair
+#### Ordered Pair
 
 $$
 (a, b) = \{\{a\}, \{a, b\}\}
 $$
 Ordered pair $(a, b)$ is a pair of two elements $a, b$ in which order matters.
-
-### Empty Set
-$$
-\emptyset = \{\}  \tag{Empty Set}
-$$
-Empty Set is a set without any element. 
-
-Property:
-- $\emptyset \subseteq S, \forall \text{ set } S$
-- $A \cap \emptyset = \emptyset$
-- $A \cup \emptyset = A$
