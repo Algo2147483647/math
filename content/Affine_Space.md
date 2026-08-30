@@ -4,7 +4,7 @@
 
 ## Define
 
-> An affine space is a space of points where differences are vectors but no origin is intrinsically chosen.
+> An affine space is a geometric space with no distinguished origin.
 
 $$
 (\mathcal{A}, V, \phi)
@@ -18,9 +18,9 @@ $$
 
 that associates to each point $p \in \mathcal{A}$ and each vector $v \in V$ a point $q = \phi(v, p)$, written as $q = p + v$, such that the following axioms hold:
 
-1. For every point $p \in \mathcal{A}$, $p + 0 = p$, where $0$ is the zero vector in $V$.
-2. For every point $p \in \mathcal{A}$ and all vectors $u, v \in V$, $p + (u + v) = (p + u) + v$.
-3. For any two points $p, q \in \mathcal{A}$, there exists a unique vector $v \in V$ such that $q = p + v$.
+1. Identity: For every point $p \in \mathcal{A}$, $p + 0 = p$, where $0$ is the zero vector in $V$.
+2. Compatibility with vector addition: For every point $p \in \mathcal{A}$ and all vectors $u, v \in V$, $p + (u + v) = (p + u) + v$.
+3. Free and transitive action: For any two points $p, q \in \mathcal{A}$, there exists a unique vector $v \in V$ such that $q = p + v$.
 
 ## Properties
 
