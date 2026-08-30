@@ -107,8 +107,29 @@ Togliatti quintic surface is a quintic nodal surface with 31 ordinary double poi
 #### Chmutov surface
 
 $$
-P_d(x_1,x_2)+T_d(x_3)=0,
+\begin{align*}
+P_d(x_1,x_2)+T_d(x_3)=0
+\end{align*}
+$$
+
+$$
+P_d(x_1,x_2)=\det \begin{pmatrix}
+x_1&1&0&0&\cdots&0\\
+2x_2&x_1&1&0&\cdots&0\\
+3&x_2&x_1&1&\ddots&\vdots\\
+0&1&x_2&x_1&\ddots&0\\
+\vdots&\ddots&\ddots&\ddots&\ddots&1\\
+0&\cdots&0&1&x_2&x_1
+\end{pmatrix}_{d\times d} +\det \begin{pmatrix}
+x_2&1&0&0&\cdots&0\\
+2x_1&x_2&1&0&\cdots&0\\
+3&x_1&x_2&1&\ddots&\vdots\\
+0&1&x_1&x_2&\ddots&0\\
+\vdots&\ddots&\ddots&\ddots&\ddots&1\\
+0&\cdots&0&1&x_1&x_2
+\end{pmatrix}_{d\times d}\\
 $$
 
 Chmutov's key idea is to combine two polynomials having carefully controlled critical values. Singularities occur when critical points of the two component polynomials line up at compatible critical values. This produces approximately ordinary double points as $d$ grows, making Chmutov surfaces important in the problem of constructing algebraic surfaces with many singularities.
 
+- $T_n(x)$ is again a Chebyshev polynomial of the first kind.

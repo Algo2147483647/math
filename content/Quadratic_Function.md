@@ -153,6 +153,19 @@ Property:
 
 - Ellipsoid is a convex set
 
+For ellipse,
+
+- Semi-major axis $2a$, $a$ is the distance from the center to a vertex along the longer axis.
+- Semi-minor axis $2b$, $b$ is the distance from the center to a co-vertex along the shorter axis.
+- Foci
+  - The distance from the center to each focus is $c = \sqrt{a^2 - b^2}$.
+  - For any point $P$ on the ellipse $PF_1 + PF_2 = 2a$
+- Eccentricity, The eccentricity describes how stretched the ellipse is. $e = \frac ca \in (0,1)$
+- Area $S = \pi ab$
+- Circumference 
+  - Ramanujan’s first approximation $C\approx \pi\left[3(a+b)-\sqrt{(3a+b)(a+3b)}\right]$
+  - Ramanujan’s second approximation $C\approx\pi(a+b)\left(1+\frac{3h}{10+\sqrt{4-3h}}\right), h=\left(\frac{a-b}{a+b}\right)^2$
+
 #### Hyperboloid
 
 if $\boldsymbol A$ is a non-positive definite matrix. Hyperboloid of one sheet, Hyperboloid of two sheets, Conical surface in between
