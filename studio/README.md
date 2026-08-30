@@ -12,8 +12,6 @@ It is built for fast graph inspection and editing in the browser:
 - undo and redo graph mutations without losing navigation history
 - write every graph edit directly to `content/math.json`
 
-![DAG Studio screenshot](./docs/assets/screenshot.png)
-
 ## Quick Start
 
 Double-click the launcher for your platform from the repository root:
@@ -90,6 +88,3 @@ For the recommended data model and additional examples, see [Data Format Guide](
 - [`docs/`](docs/): user and developer documentation
 - [`src/styles/`](src/styles/): split global styles (tokens, layout, controls, graph, console, modals)
 
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.

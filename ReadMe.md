@@ -1,168 +1,82 @@
-# Math
+# Math Knowledge Graph
 
-[TOC]
+> Understand not only what a mathematical concept means, but where it belongs.
 
-## Introduction
+Math is a living, graph-structured knowledge base for mathematics. It combines human-readable notes with a directed concept graph, making definitions, properties, and structural relationships visible in one workspace.
 
-This library is a concept-oriented notebook for mathematics, applied mathematics, and physics.
+Traditional notes explain ideas one page at a time, but often hide how those ideas fit together. This project keeps both views: **Markdown explains each concept; the graph reveals the larger mathematical structure.**
 
-- **Mathematics**: A formal language built from axioms, definitions, structures, and logical consequences.
-- **Applied mathematics**: The use and development of mathematical models, methods, and analyses to solve problems arising outside pure mathematics.
-- **Physics**: The study of natural phenomena by formulating mathematical models and validating them through observation and experiment.
-- **Engineering**: The application of proven knowledge to design, implement, verify, operate, and maintain systems that satisfy requirements under real-world constraints.
+![DAG Studio showing the mathematical concept graph, graph console, and editing controls](./rules/assets/screenshot.png)
 
-### Map
+## How It Works
 
-| Path | Role |
-| :---: | --- |
-| [`math/`](./math/) | Pure mathematical concepts organized as a directed knowledge graph. |
-| [`applied mathematics/`](./applied%20mathematics/) | Problem-oriented mathematical tools: algorithms, cryptography, differential equations, geometry, information, language, optimization, and statistics. |
-| [`physics/`](./physics/) | Physical theories, core principles, fields, spacetime models, fluids, statistical mechanics, and experiments. |
+| Layer | Role | Main question |
+| --- | --- | --- |
+| **Concept notes** | Definitions, formulas, properties, examples, and remarks | What is this concept? |
+| **Knowledge graph** | Direct relationships between mathematical objects | Where does it sit in mathematics? |
+| **DAG Studio** | Visual exploration, editing, synchronization, and optional AI assistance | How can I explore and maintain it? |
 
-## Mathematics
+The current workspace contains more than 100 pure-mathematics concepts across foundations, algebra, analysis, geometry, topology, and probability.
 
-![](./math/assets/math.svg)
+One path through the graph, for example, is:
 
-The math folder is maintained as a concept graph. Each Markdown file is a node; links in `Include` and `Parents` define directed edges between nodes.
+> [`Set`](./content/Set.md) → [`Topological Space`](./content/Topological_Space.md) → [`Hausdorff Space`](./content/Hausdorff_Space.md) → [`Manifold`](./content/Manifold.md) → [`Differential Manifold`](./content/Differential_Manifold.md) → [`Riemannian Manifold`](./content/Riemannian_Manifold.md)
 
-### Note Format
+Each step can be explored as both a graph node and a complete mathematical note.
 
-Each mathematical concept should use the following structure:
+## What You Can Do
 
-```markdown
-# Concept Name
+With DAG Studio, you can:
 
-[TOC]
+- explore the graph by root, branch, parent level, or focused concept;
+- read full Markdown and LaTeX content without leaving the graph;
+- create, rename, connect, and remove concepts interactively;
+- undo and redo graph changes;
+- apply batch operations through the graph console;
+- open a concept's source note in Typora;
+- optionally ask an AI provider to inspect the graph or propose validated, reviewable changes.
 
-## Define
+Graph edits are written to [`content/math.json`](./content/math.json). Creating, renaming, or deleting a node also keeps its matching Markdown file aligned with the workspace.
 
-The definition of the concept.
+## Quick Start
 
-## Properties
+DAG Studio requires Python 3 and Node.js with npm. Typora is optional and is only needed for opening source notes from the Studio.
 
-Important theorems, equivalent characterizations, operations, examples, and counterexamples.
+Launch it from the repository root:
 
-## Include
+- **Windows:** double-click [`launch-studio.cmd`](./launch-studio.cmd)
+- **macOS:** run [`launch-studio.command`](./launch-studio.command)
 
-- [Child_Concept](./Child_Concept.md): edge_label
+The first launch installs the Studio's frontend dependencies automatically and opens the local workspace in your browser.
 
-## Parents
+If you prefer to read without running the Studio, start with [`Set`](./content/Set.md), [`Logic`](./content/Logic.md), or [`Relation`](./content/Relation.md).
 
-- [Parent_Concept](./Parent_Concept.md): edge_label
-```
+## Scope
 
-### Graph Rules
+The project has one core and two extension layers:
 
-- A note should focus on one mathematical entity.
-- `Define` should contain the minimal definition and the notation needed to identify the entity.
-- `Properties` should hold the working knowledge: identities, closure properties, constructions, canonical examples, and important theorems.
-- `Include` lists lower-level or contained concepts.
-- `Parents` lists higher-level or prerequisite concepts.
-- Together, the notes are intended to form a directed acyclic graph.
+- **Core — pure mathematics:** [`content/`](./content/) contains the concept notes and the structural graph explored by DAG Studio.
+- **Applied mathematics:** [`applied mathematics/`](./applied%20mathematics/) organizes problem-oriented material such as algorithms, differential equations, geometry, optimization, and statistics.
+- **Formal proofs:** [`proof/`](./proof/) contains machine-checkable proofs alongside the broader knowledge base.
 
-### Graph Maintenance Layout
+Supporting components live outside the mathematical content:
 
-[`math/skills/`](.agents/skills/) stores the repository rules used to maintain the math graph as an object-centered, sparse, and consistent ontology.
+- [`studio/`](./studio/) contains the visual graph workspace;
+- [`rules/`](./rules/) defines which concepts and relationships belong in the graph;
+- [`rules/scripts/`](./rules/scripts/) contains synchronization, lookup, validation, and maintenance tools;
+- [`history/`](./history/) preserves historical graph artifacts.
 
-| Path | Role |
-| --- | --- |
-| [`math/skills/classify-math-concept-node/`](.agents/skills/classify-math-concept-node/) | Node-boundary policy: decide whether a concept becomes a standalone node, is merged upward, or is stored as non-object information. |
-| [`math/skills/classify-math-concept-node/references/`](.agents/skills/classify-math-concept-node/references/) | Node examples, ontology rules, and borderline cases. |
-| [`math/skills/classify-math-object-edges/`](.agents/skills/classify-math-object-edges/) | Edge-retention policy: decide whether an edge between approved object nodes should be kept and how it should be typed. |
-| [`math/skills/classify-math-object-edges/references/`](.agents/skills/classify-math-object-edges/references/) | Canonical edge judgments and excluded edge categories. |
+## Design Principles
 
-Apply the policies in this order:
+- **Concepts first.** Each note focuses on one reusable mathematical object or object class.
+- **Structure stays sparse.** The graph keeps direct, meaningful relationships instead of every possible semantic connection.
+- **Depth stays in the notes.** Theorems, methods, proofs, and extended explanations remain readable Markdown content.
+- **Tools serve the knowledge.** Studio, scripts, and AI assistance exist to make the mathematical structure easier to explore and maintain.
 
-1. Decide node boundaries first.
-2. Keep only approved object nodes.
-3. Classify edges only between retained nodes.
+## Further Reading
 
-### Node Decision Policy
-
-Use [`math/skills/classify-math-concept-node/SKILL.md`](.agents/skills/classify-math-concept-node/SKILL.md) when deciding whether a term such as `group`, `compactness`, `dual space`, or `Banach space` should become its own note.
-
-- Default policy is `STRICT`.
-- Create a node only when the concept is a core mathematical object class, or a specialized object class that is mathematically classical, frequently used, or a stable subject of discourse.
-- Merge structures into their parent object node.
-- Merge standard constructions into their source object node.
-- Store properties, relations, theorems, methods, procedures, representations, and invariants inside object nodes instead of creating standalone nodes for them.
-- When the boundary between specialized object, structure on an object, and construction remains unclear, prefer the smaller ontology or request human judgment.
-
-The node classifier returns a normalized record with:
-
-- `decision`: create node, merge into a target object, or store as non-object information.
-- `classification`: core object, specialized object class, structure on object, construction, property, relation, theorem, method, procedure, invariant, representation, or related category.
-- `merge_target`, `storage_location`, and `confidence`.
-
-### Edge Decision Policy
-
-Use [`math/skills/classify-math-object-edges/SKILL.md`](.agents/skills/classify-math-object-edges/SKILL.md) after node policy has already approved both endpoints as retained object nodes.
-
-- Default policy mode is `STRICT_DEFAULT`.
-- The default retained edge set is `is_a` and `defined_over`.
-- `modeled_on` is optional and should be enabled only for geometric objects whose identity depends on a standard local model.
-- `requires_object` is disabled by default and should be used only in explicitly expanded policies.
-- Add an edge only if it is object-level, semantically necessary, direct, non-redundant, and improves the global skeleton of the graph.
-- Reject theorem dependencies, proof methods, historical influence, pedagogical ordering, analogies, and other non-structural relations from the main DAG.
-- Prefer the nearest valid parent for `is_a`, and reject transitive shortcuts by default.
-
-The edge classifier returns a structured judgment with:
-
-- `decision`: add or reject the edge.
-- `edge_type`: one of `is_a`, `defined_over`, `modeled_on`, `requires_object`, or `null`.
-- `redundancy_check`: whether the edge violates nearest-parent, transitive, or low-value-edge rules.
-- `reasoning`, `notes`, and `confidence`.
-
-## Graph Synchronization
-
-The graph tools live in [`math/src/`](./math/src/). Start the local Flask service first:
-
-```powershell
-cd D:/Algo/Notes/math_physics/math/src
-python service.py
-```
-
-### Markdown To Graph JSON
-
-Build a graph JSON snapshot from the Markdown notes:
-
-```bash
-curl --location 'http://localhost:5000/function' \
---header 'Content-Type: application/json' \
---data '{
-  "function": "build_graph_json_from_markdown_folder",
-  "params": {
-    "folder_path": "D:/Algo/Notes/math_physics/math/"
-  }
-}'
-```
-
-### Graph JSON To Markdown
-
-Regenerate Markdown notes from the graph JSON:
-
-```bash
-curl --location 'http://localhost:5000/function' \
---header 'Content-Type: application/json' \
---data '{
-  "function": "build_markdown_from_graph_json",
-  "params": {
-    "json_file": "D:/Algo/Notes/math_physics/math/lib/math.json"
-  }
-}'
-```
-
-## Applied Mathematics
-
-Applied mathematics is organized as problem-oriented graph snapshots:
-
-- [`Cryptography.json`](./applied%20mathematics/Cryptography.json) records encryption, hashing, and related cryptographic methods.
-- [`Differential_Equations.json`](./applied%20mathematics/Differential_Equations.json) records ODE and PDE problem families.
-- [`Geometric_Problem.json`](./applied%20mathematics/Geometric_Problem.json) records geometric intersection problems.
-- [`Geometry_Construction.json`](./applied%20mathematics/Geometry_Construction.json) records curve, mesh, sampling, deformation, and geometry-generation problems and methods.
-- [`Graph_Problem.json`](./applied%20mathematics/Graph_Problem.json) records graph and algorithmic problem families and solutions.
-- [`Optimization_Problem.json`](./applied%20mathematics/Optimization_Problem.json) records optimization problem families, analytical ideas, and solution methods.
-- [`Statistics.json`](./applied%20mathematics/Statistics.json) records statistical problems, models, and methods.
-- [`content/`](./applied%20mathematics/content/) stores longer Markdown notes and their assets.
-- [`rules/`](./applied%20mathematics/rules/) defines applied-math concept, node, edge, graph, and schema policies.
-
+- [`studio/README.md`](./studio/README.md) — DAG Studio usage and development
+- [`rules/Math Concept Graph.md`](./rules/Math%20Concept%20Graph.md) — graph purpose and design principles
+- [`rules/Math Concept Node Policy.md`](./rules/Math%20Concept%20Node%20Policy.md) — when a concept should become a node
+- [`rules/Math Concept Edge Policy.md`](./rules/Math%20Concept%20Edge%20Policy.md) — which relationships belong in the graph
+- [`rules/scripts/ReadMe.md`](./rules/scripts/ReadMe.md) — synchronization, validation, and maintenance tools
