@@ -57,3 +57,66 @@ For a univariate $N$-th degree equation, there is no root-finding formula compos
 
 ### Fundamental Theorem of Algebra
 Every non-constant single-variable polynomial with complex coefficients has at least one complex root. (Theorem states the field of complex numbers is algebraically closed.)
+
+### Special Surfaces
+
+#### Barth sextic surface
+
+A standard homogeneous equation for the Barth sextic is
+$$
+\left\{
+[x:y:z:w]\in\mathbb P^3
+\mid
+F_{\mathrm B}(x,y,z,w)=0
+\right\}
+$$
+
+$$
+F_{\mathrm B}(x,y,z,w)
+=
+4(\phi^2x^2-y^2)
+(\phi^2y^2-z^2)
+(\phi^2z^2-x^2)
+ -(1+2\phi)
+(x^2+y^2+z^2-w^2)^2w^2
+=0
+$$
+
+$$
+\phi=\frac{1+\sqrt5}{2}
+$$
+
+Barth sextic surface is a degree-$6$ algebraic surface with 65 ordinary double points (nodes)in complex projective $3$-space, the maximum possible for a sextic. In the standard affine chart $w=1$, 50 of these nodes are finite; the remaining 15 lie at infinity. The surface has strong icosahedral symmetry, closely related to the golden ratio appearing in its equation.
+
+#### Togliatti quintic surface
+
+$$
+\left\{
+[x:y:z:w]\in\mathbb P^3
+\mid
+F_{\mathrm T}(x,y,z,w)=0
+\right\}
+$$
+
+$$
+F_{\mathrm T} = 64(x-w) \Big[ x^4 -4x^3w -10x^2y^2 -4x^2w^2 +16xw^3 -20xy^2w +5y^4 +16w^4 -20y^2w^2 \Big]  - 5\sqrt{5-\sqrt5} \left( 2z-\sqrt{5-\sqrt5}\,w \right) \times \left[ 4(x^2+y^2+z^2) +(1+3\sqrt5)w^2 \right]^2 .
+$$
+
+Togliatti quintic surface is a quintic nodal surface with 31 ordinary double points, which is the maximum possible number for a quintic surface in $\mathbb P^3$. This particular explicit model has dihedral $D_5$ symmetry and contains 15 distinguished lines.
+
+#### Chmutov surface
+
+$$
+P_d(x_1,x_2)+T_d(x_3)=0,
+$$
+
+Chmutov's key idea is to combine two polynomials having carefully controlled critical values. Singularities occur when critical points of the two component polynomials line up at compatible critical values. This produces approximately ordinary double points as $d$ grows, making Chmutov surfaces important in the problem of constructing algebraic surfaces with many singularities.
+
+#### Togliatti Surface
+
+$$
+64(x-w)[x^4-4x^3w-10x^2y^2-4x^2w^2+16xw^3-20xy^2w+5y^4+16w^4-20y^2w^2]
+-5\sqrt{5-\sqrt{5}}(2z-\sqrt{5-\sqrt{5}}w)[4(x^2+y^2+z^2)+(1+3\sqrt5)w^2]^2,
+$$
+
+The Dervish is essentially a particular Togliatti-type 31-nodal quintic, rather than a separate degree or category of algebraic surface. The name comes from the appearance of a rotated affine visualization, which resembles a whirling dervish.

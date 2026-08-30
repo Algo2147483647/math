@@ -23,9 +23,8 @@ $$
 
 ## Properties
 
-### Zero Set of Quartic Function, Quartic Surface
+### Univariate Quartic Equation  
 
-### Solution of Univariate Quartic Equation  
 For an Univariate Quartic Equation,
 $$
 a x^4 + b x^3 + c x^2 + d x + e = 0
@@ -61,6 +60,8 @@ $$
 \end{align*}
 $$
 
+### Quartic Surface, Quartic Function
+
 ### Torus
 
 $$
@@ -76,3 +77,30 @@ $$
 $$
 
 <img src="./assets/Tanglecube1_700.svg" alt="Tanglecube1_700" style="zoom:67%;" />
+
+#### Kummer surface
+
+$$
+x^4+y^4+z^4-1.15(x^2y^2+x^2z^2+y^2z^2)-0.28(x^2+y^2+z^2)+0.08=0
+$$
+
+#### $L^4$ Superellipsoid
+
+$$
+\boldsymbol x^4 = r
+$$
+
+#### Roman surface
+
+$$
+x^2y^2+y^2z^2+z^2x^2-xyz=0
+$$
+
+The Roman surface is a quartic nonorientable surface. The Roman surface is one of the three possible surfaces obtained by sewing a Möbius strip to the edge of a disk. The other two are the Boy surface and cross-cap, all of which are homeomorphic to the real projective plane.
+
+#### Dupin cyclide
+
+$$
+\left(1-2dx+C\rho^2\right)^2-4R^2\left((x-d\rho^2)^2+y^2\right)=0
+$$
+
