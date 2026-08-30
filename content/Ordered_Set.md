@@ -4,7 +4,7 @@
 
 ## Define
 
-> An ordered set is a set equipped with a relation that compares elements according to a specified order.
+> An ordered set is a set where the elements can be compared to tell which comes before or after another.
 
 An ordered set, or more formally, a partially ordered set (poset), is a pair $(S, \le)$ consisting of a set $S$ and  a binary relation $\le$ that satisfies the following properties for all $a, b, c \in S$:
 
@@ -33,67 +33,65 @@ Strict Partial Order is a homogeneous relation $<$ on a set $S$ that is irreflex
 
 ## Properties
 
-* Least Element & Greatest Element
-    $$
-    m \le a \quad, m \in S, \forall a \in S  \tag{Least element}
-    $$
-    $$
-    a \le g \quad, g \in S, \forall a \in S  \tag{Greatest element}
-    $$
-    
-  * Minimal Element & Maximal Element  
-    $$
-    \nexists a \in S, \text{ let } a < m \quad, m \in S \tag{Minimal element}
-    $$
-    $$
-    \nexists a \in S, \text{ let } g < a \quad, g \in S \tag{Maximal element}
-    $$
-    
-  * Infimum & Supremum
-    Infimum (greatest lower bound) of a subset $S$ of a partially ordered set $(P, \le)$ is an element $a^*\in P$ such that,
-    $$
-    a \le x \quad, \forall x \in S  \tag{lower bounds}
-    $$
-    $$
-    a \le a^*, \forall a \tag{Infimum}
-    $$
-    
-    Supremum (least upper bound) of a subset $S$ of a partially ordered set $(P, \le)$ is an element $b^* \in P$ such that,
-    $$
-    x \le b \quad, \forall x \in S  \tag{upper bounds}
-    $$
-    $$
-    b^* \le b, \forall b \tag{Supremum}
-    $$
+Least Element & Greatest Element
+$$
+m \le a \quad, m \in S, \forall a \in S  \tag{Least element}
+$$
+$$
+a \le g \quad, g \in S, \forall a \in S  \tag{Greatest element}
+$$
 
-Include
-* Total Order 
-  Total Order is a partial order in which any two elements are comparable, such that, 
-  - strongly connected, formerly called total: $a \le b$ or $b \le a$.
+Minimal Element & Maximal Element  
+$$
+\nexists a \in S, \text{ let } a < m \quad, m \in S \tag{Minimal element}
+$$
+$$
+\nexists a \in S, \text{ let } g < a \quad, g \in S \tag{Maximal element}
+$$
+
+Infimum & Supremum. Infimum (greatest lower bound) of a subset $S$ of a partially ordered set $(P, \le)$ is an element $a^*\in P$ such that,
+$$
+a \le x \quad, \forall x \in S  \tag{lower bounds}
+$$
+$$
+a \le a^*, \forall a \tag{Infimum}
+$$
+
+Supremum (least upper bound) of a subset $S$ of a partially ordered set $(P, \le)$ is an element $b^* \in P$ such that,
+$$
+x \le b \quad, \forall x \in S  \tag{upper bounds}
+$$
+$$
+b^* \le b, \forall b \tag{Supremum}
+$$
+
+
+Total Order is a partial order in which any two elements are comparable, such that, 
+
+- strongly connected, formerly called total: $a \le b$ or $b \le a$.
 
 ### Permutation
 
-- Define  
-  Permutation, is the arrangement of $k$ elements from a set of $n$ elements in a particular order. 
+**Permutation**, is the arrangement of $k$ elements from a set of $n$ elements in a particular order. The number of permutation subsets is,
+$$
+A(n, k) = \frac{n!}{(n - k)!}  \tag{Permutation}
+$$
 
-  The number of combination and permutation subsets
-  $$A(n, k) = \frac{n!}{(n - k)!}  \tag{Permutation}$$
+Properties,
 
-- Property
-  * Full Permutation
-    - Define  
-      Full Permutation refers to all possible permutations of all elements in a sequence.  
+- Full Permutation $A(n,n) = n!$
 
-    - Problem: Generate Full Permutation
-      $$\begin{align*}
-        f(\{a_i | i\in 1:n\}) 
-        &= \{(a_1, a_2, ..., a_n), (a_2, a_1, ..., a_n), (a_n, a_{n-1}, ..., a_1)\}  \\
-        &= \cup_{i=1}^n (\{(a_i)\} × f(\{a_j\ |\ j ≠ i, j\in 1:n\}))  \tag{$×$: 序列合并}  \\
-        f(\{a_1\}) &= \{(a_1)\}  \tag{initial}  \\
-      \end{align*}$$
-      
-    - Property
-      * Cantor Expansion  
-        - Define  
-          Cantor expansion is a bijection from a permutation sequence $a$ to a natural number $y$ that refer to the index of sequence in full permutation ordered by dictionary order. Where $f(a_i)$ is the number of elements smaller than $a_i$ and not appearing in $a_n:a_i$.
-          $$y = \sum\limits_{i=1}^n f(a_i) (i-1)!$$
+**Full Permutation**, refers to all possible permutations of all elements in a sequence. Generate Full Permutation
+$$
+\begin{align*}
+  f(\{a_i | i\in 1:n\}) 
+  &= \{(a_1, a_2, ..., a_n), (a_2, a_1, ..., a_n), (a_n, a_{n-1}, ..., a_1)\}  \\
+  &= \bigcup_{i=1}^n \left(\{(a_i)\} \times f(\{a_j\ |\ j ≠ i, j\in 1:n\})\right)  \tag{$\times$: Sequence merging}  \\
+  f(\{a_1\}) &= \{(a_1)\}  \tag{initial}  \\
+\end{align*}
+$$
+
+**Cantor expansion** is a bijection from a permutation sequence $a$ to a natural number $y$ that refer to the index of sequence in full permutation ordered by dictionary order. Where $f(a_i)$ is the number of elements smaller than $a_i$ and not appearing in $a_n:a_i$.
+$$
+y = \sum\limits_{i=1}^n f(a_i) (i-1)!
+$$

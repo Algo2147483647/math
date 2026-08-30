@@ -197,6 +197,8 @@ $$
 \end{align*}
 $$
 
+#### Catalan numbers
+
 (Special Counting Sequence) Catalan numbers are a sequence of integers that count recursively nested, non-crossing, or balanced structures.
 $$
 \begin{align*}
@@ -213,6 +215,21 @@ $$
 \end{align*}
 $$
 Pigeonhole Principle. for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
+
+### Combination
+
+> A combination is a selection of items where order does not matter.
+
+A combination of $r$ elements from a set $S$ is an $r$-element subset of $S$. if $\vert S\vert=n$, an $r$-combination is any subset $A\subseteq S$ such that $\vert A\vert = r$. The number of such combinations is
+$$
+C(n,r)=\frac{n!}{r!(n-r)!},\qquad 0\le r\le n.
+$$
+Since combinations are subsets, the order of the selected elements is irrelevant.
+
+Properties,
+
+- $C(n,m) = C(n,n-m)$
+- $C(n,m) + C(n,m-1) = C(n+1,m)$
 
 ### Relationship between Sets
 

@@ -96,6 +96,8 @@ $$
 \frac{1}{\pi}=\frac{2\sqrt{2}}{9801}\sum_{n=0}^{\infty}\frac{(4n)!(1103+26390n)}{(n!)^4\,396^{4n}}
 $$
 
+> Ramanujan’s $1/\pi$ series can be derived using elliptic integrals, modular functions, and modular equations.
+
 #### Euler’s number $e$
 
 $e$ is the base of the natural logarithm, and the unique positive number satisfying
