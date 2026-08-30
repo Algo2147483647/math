@@ -112,11 +112,3 @@ $$
 
 Chmutov's key idea is to combine two polynomials having carefully controlled critical values. Singularities occur when critical points of the two component polynomials line up at compatible critical values. This produces approximately ordinary double points as $d$ grows, making Chmutov surfaces important in the problem of constructing algebraic surfaces with many singularities.
 
-#### Togliatti Surface
-
-$$
-64(x-w)[x^4-4x^3w-10x^2y^2-4x^2w^2+16xw^3-20xy^2w+5y^4+16w^4-20y^2w^2]
--5\sqrt{5-\sqrt{5}}(2z-\sqrt{5-\sqrt{5}}w)[4(x^2+y^2+z^2)+(1+3\sqrt5)w^2]^2,
-$$
-
-The Dervish is essentially a particular Togliatti-type 31-nodal quintic, rather than a separate degree or category of algebraic surface. The name comes from the appearance of a rotated affine visualization, which resembles a whirling dervish.
