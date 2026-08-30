@@ -26,7 +26,20 @@ $$
   - Odd function: $f(-x) = -f(x)$. An odd function is symmetric about the origin.
   - Even function: $f(-x) = f(x)$. An even function is symmetric about the $y$-axis.
 
-### Limit
+### Monotonicity
+
+If $f'(x)\ge 0$ on an interval, then $f$ is nondecreasing there. If $f'(x)\le 0$, then $f$ is nonincreasing there.
+
+### Concavity and Convexity
+
+For twice differentiable functions:
+
+- $f''(x) \le 0$ suggests concavity
+- $f''(x) \ge 0$ suggests convexity
+
+
+
+## Limit
 
 $$
 \lim_{x\rightarrow a}f(x)=L
@@ -38,7 +51,7 @@ No matter how small a tolerance $\epsilon > 0$ we demand around $L$, there exist
 
 > A limit means that every desired degree of closeness in the output can be guaranteed by sufficient closeness in the input.
 
-#### Properties
+### Properties
 
 - Uniqueness: if $\lim\limits_{x\rightarrow a}f(x)$ exists, then it is unique.
 - Local boundedness: if $\lim_{x\rightarrow a}f(x)=L$, then $f$ is bounded in some deleted neighborhood of $a$.
@@ -51,7 +64,7 @@ No matter how small a tolerance $\epsilon > 0$ we demand around $L$, there exist
   $$
 - Heine's theorem: $\lim_{x\to x_0} f(x)=L$ iff for every sequence $x_n \to x_0$ with $x_n \ne x_0$, we have $f(x_n)\to L$.
 
-#### Infinitesimal equivalents
+### Infinitesimal equivalents
 
 Equivalent infinitesimal formulas as $x \to 0$:
 $$
@@ -68,7 +81,7 @@ a^x-1 &\sim x\ln a\\
 \end{align*}
 $$
 
-#### Limit Operation Rules
+### Limit Operation Rules
 
 - Addition and subtraction:
   $$
@@ -106,7 +119,9 @@ $$
 - Local sign preservation
 - Closure under addition, multiplication, and division by nonzero continuous functions
 
-### Differential
+## Differentiation
+
+### Derivative
 
 $$
 f'(x) = \lim_{\Delta x \to 0} \frac{f(x+\Delta x)-f(x)}{\Delta x}
@@ -239,7 +254,10 @@ The curl measures local rotational tendency, with direction given by the right-h
 - $\nabla \cdot (\phi \boldsymbol F) = (\nabla \phi) \cdot \boldsymbol F + \phi (\nabla \cdot \boldsymbol F)$
 - $\nabla \times (\phi \boldsymbol F) = (\nabla \phi) \times \boldsymbol F + \phi (\nabla \times \boldsymbol F)$
 
-### Integral
+## Integral
+
+
+### Indefinite Integral
 
 $$
 \int f(x) \, \mathrm d x  = F(x)  + C \tag{Indefinite Integral}
@@ -304,7 +322,7 @@ $$
   \int_a^b f(x)\,dx=f(\xi)(b-a).
   $$
 
-#### Major Integral Theorems
+### Major Integral Theorems
 
 * **Green's theorem:** For a positively oriented simple closed curve $C=\partial D$,
 
@@ -338,18 +356,7 @@ $$
 I would separate **Green, Gauss, and Stokes** from “Properties,” since they are integral theorems in vector calculus rather than properties of the one-dimensional Riemann integral.
 
 
-### Monotonicity
-
-If $f'(x)\ge 0$ on an interval, then $f$ is nondecreasing there. If $f'(x)\le 0$, then $f$ is nonincreasing there.
-
-### Concavity and Convexity
-
-For twice differentiable functions:
-
-- $f''(x) \le 0$ suggests concavity
-- $f''(x) \ge 0$ suggests convexity
-
-### Differential Equation
+## Differential Equation
 
 $$
 f \left(x, y, \frac{\mathrm d y}{\mathrm d x}, \frac{\mathrm d^2 y}{\mathrm dx^2}, ..., \frac{\mathrm d^n y}{\mathrm d x^n} \right) = 0
@@ -364,4 +371,3 @@ f \left(D^k u(x), ... , D^2 u(x), u(x), x \right) = 0
 $$
 
 A partial differential equation relates an unknown function $u$ of several variables to its partial derivatives.
-

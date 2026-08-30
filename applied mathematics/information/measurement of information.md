@@ -1,4 +1,4 @@
-# Measurement Of Information
+# Measurement of Information
 
 [TOC]
 

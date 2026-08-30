@@ -4,9 +4,8 @@
 
 ## Define
 
-> The integer ring is the ring of whole numbers under ordinary addition and multiplication.
+> The integer ring is the set of integers with usual addition and multiplication.
 
-Ring of Integers is a kind of Integral Domain (整环).
 $$
 \mathbb Z
 $$
@@ -41,32 +40,27 @@ Division with remainder decomposes an integer into a quotient part and a smaller
 
 ### Multiplicative Function
 
-- Define  
-  A mapping $f: \mathbb Z \to \mathbb R$, such that
-  $$
-  f(a \times b) = f(a) f(b) \quad \text{when}\ a, b \in \mathbb Z, gcd(a, b) = 1
-  $$
+A mapping $f: \mathbb Z \to \mathbb R$, such that
+$$
+f(a \times b) = f(a) f(b) \quad \text{when}\ a, b \in \mathbb Z, gcd(a, b) = 1
+$$
+Properties,
+- $f(1) = 1$
 
-- Property
-  - $f(1) = 1$
+#### Eular Function
 
-- Example
-  * Eular Function
-    - Define  
-      The number of coprimes with $n$ in positive integers less than $n$.
-      $$
-      \phi(n) = \text{number}(\{i\ |\ i \in 1:n, \text{GCD}(i, n) = 1\})
-      $$
-
-    - Property
-      $$
-      \begin{align*}
-        n &= \prod_i p_i^{k_i}  \\
-        \phi(n) &= n \prod_{p|n} (1 - 1/p)  
-      \end{align*}
-      $$
-
-  * [Möbius Function](./Mobius_Function.md)
+Eular Function, The number of coprimes with $n$ in positive integers less than $n$.
+$$
+\phi(n) = \text{number}(\{i\ |\ i \in 1:n, \text{GCD}(i, n) = 1\})
+$$
+Properties,
+$$
+\begin{align*}
+  n &= \prod_i p_i^{k_i}  \\
+  \phi(n) &= n \prod_{p|n} (1 - 1/p)  
+\end{align*}
+$$
+[Möbius Function](./Mobius_Function.md)
 
 ### Fermat's Last Theorem
 
