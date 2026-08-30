@@ -16,35 +16,101 @@ $$
 
 ## Properties
 
-### Zero Set of Quadratic Function, Quadric Surface
+### Univariate Quadratic Equation  
+
+A univariate quadratic equation has the form
+$$
+a x^2 + b x + c = 0
+$$
+
+- $a,b,c$ are constants and $a \neq 0$.
+
+The solutions are given by
+$$
+\begin{align*}
+  x &= \frac{- b \pm \sqrt{\Delta}}{2 a}  \tag{solutions}\\
+  \Delta &= b^2 - 4 a c \tag{discriminant}
+\end{align*}
+$$
+The discriminant determines the nature of the roots:
+
+- $\Delta > 0$, There are two real roots.
+- $\Delta = 0$, There is A real double root.
+- $\Delta < 0$, There are two complex roots.
+
+The relationship between roots provided by Vieta's formulas
+$$
+\left\{
+\begin{aligned}
+x_1 + x_2 &= -\frac{b}{a} \\
+x_1x_2 &= \frac{c}{a}
+\end{aligned}
+\right. \tag{Vieta's formulas}
+$$
+
+the $x$-coordinate and the corresponding $y$-coordinate of the **vertex** is,
+$$
+\left(
+-\frac{b}{2a},
+-\frac{\Delta}{4a}
+\right) \tag{vertex}
+$$
+
+- The vertex is a **minimum point** if $a>0$;
+
+- The vertex is a **maximum point** if $a<0$.
+
+### Quadric Surface, Quadratic Equation  
 
 Quadric Surface is the zero set of a quadratic function,
 $$
 \begin{align*}
-  &\{ \boldsymbol x \ |\ \boldsymbol x^T \boldsymbol A \boldsymbol x + \boldsymbol b \boldsymbol x + c = 0\} \tag{Quadric Surface}\\
-\Leftrightarrow &\left\{ \boldsymbol x' \ |\ \boldsymbol x'^T \boldsymbol A' \boldsymbol x' = 0, \boldsymbol x' = \left(\begin{matrix} \boldsymbol x \\ 1 \end{matrix}\right)\right\}
+&\{ \boldsymbol x \ |\ \boldsymbol x^T \boldsymbol A \boldsymbol x + \boldsymbol b \boldsymbol x + c = 0\} \tag{Quadric Surface}\\
+&\left\{ \boldsymbol x' \ |\ \boldsymbol x'^T \boldsymbol A' \boldsymbol x' = 0, \boldsymbol x' = \left(\begin{matrix} \boldsymbol x \\ 1 \end{matrix}\right)\right\}
 \end{align*}
 $$
 
-#### Solution of Univariate Quadratic Equation  
-For the given parameters $a, b, c$, and a univariate quadratic equation,
+- $\boldsymbol{x}\in\mathbb{R}^n, \boldsymbol{A}\in\mathbb{R}^{n\times n}, 
+\boldsymbol{b}\in\mathbb{R}^n, c\in\mathbb{R}.$
+
+#### Solutions
+
+If $\boldsymbol A$ is invertible and symmetry, we can complete the solution of the quadratic equations. The center is,
 $$
-f(x) = a x^2 + b x + c = 0
+\boldsymbol{x}_0=-\frac12\boldsymbol{A}^{-1}\boldsymbol b.
+$$
+and the solutions are,
+$$
+(\boldsymbol{x}-\boldsymbol{x}_0)^T
+\boldsymbol A
+(\boldsymbol{x}-\boldsymbol{x}_0)
+=
+\frac14\boldsymbol b^T\boldsymbol A^{-1}\boldsymbol b-c
 $$
 
-The solutions of equation are, 
 $$
-\begin{align*}
-  x &= \frac{- b \pm \sqrt{Δ}}{2 a}\\
-  Δ &= b^2 - 4 a c
-\end{align*}
+\boldsymbol x=-\frac12 \boldsymbol A^{-1} \boldsymbol b
++\sqrt{
+\frac{\frac14 \boldsymbol b^T \boldsymbol A^{-1} \boldsymbol b- \boldsymbol c}{ \boldsymbol z^T \boldsymbol A \boldsymbol z}
+}\, \boldsymbol z
 $$
-Properties of solutions, 
-- $Δ > 0$, Two real roots
-- $Δ = 0$, A real double root
-- $Δ < 0$, Two complex roots
 
-##### Sphere & Spherical Surface
+- $z\in\mathbb R^n\setminus\{0\}$
+
+| Quadric                                                                          | $\boldsymbol A'$ such that ${\boldsymbol x'}^T\boldsymbol A'\boldsymbol x'=0$                                   |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Ellipsoid** $\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$              | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&\frac1{c^2}&0\\0&0&0&-1\end{pmatrix}$     |
+| **Sphere** $x^2+y^2+z^2=r^2$                                                   | $\displaystyle \begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&-r^2\end{pmatrix}$                                 |
+| **One-sheet hyperboloid** $\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$  | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&-\frac1{c^2}&0\\0&0&0&-1\end{pmatrix}$    |
+| **Two-sheet hyperboloid** $-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ | $\displaystyle \begin{pmatrix}-\frac1{a^2}&0&0&0\\0&-\frac1{b^2}&0&0\\0&0&\frac1{c^2}&0\\0&0&0&-1\end{pmatrix}$   |
+| **Elliptic cone** $\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=0$          | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&-\frac1{c^2}&0\\0&0&0&0\end{pmatrix}$     |
+| **Elliptic paraboloid** $\frac{x^2}{a^2}+\frac{y^2}{b^2}-z=0$                  | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&0&-\frac12\\0&0&-\frac12&0\end{pmatrix}$  |
+| **Hyperbolic paraboloid** $\frac{x^2}{a^2}-\frac{y^2}{b^2}-z=0$                | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&-\frac1{b^2}&0&0\\0&0&0&-\frac12\\0&0&-\frac12&0\end{pmatrix}$ |
+| **Elliptic cylinder** $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$                      | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&0&0\\0&0&0&-1\end{pmatrix}$               |
+| **Hyperbolic cylinder** $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$                    | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&-\frac1{b^2}&0&0\\0&0&0&0\\0&0&0&-1\end{pmatrix}$              |
+| **Parabolic cylinder** $x^2/a^2-y=0$                                           | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&0&0&-\frac12\\0&0&0&0\\0&-\frac12&0&0\end{pmatrix}$            |
+
+#### Sphere, Spherical Surface
 
 For $\boldsymbol A = \boldsymbol I, \boldsymbol b = \boldsymbol 0, c = -r^2$ of a Quadratic Function,
 $$
@@ -66,7 +132,7 @@ Spherical Surface is a point set with a constant distance value $r$ from the cen
 Property:
 - Sphere is a convex set
 
-##### Ellipsoid & Ellipsoid Surface
+#### Ellipsoid, Ellipsoid Surface
 
 In a Quadratic Function, if $\boldsymbol A = \boldsymbol P^{-1}, \boldsymbol b = \boldsymbol 0, c = -1$ is a positive definite matrix, the zero set of the function is an Ellipsoid Surface,
 
@@ -87,23 +153,21 @@ Property:
 
 - Ellipsoid is a convex set
 
-##### Hyperboloid
+#### Hyperboloid
 
-if $\boldsymbol A$ is a non-positive definite matrix.
-
-Hyperboloid of one sheet, Hyperboloid of two sheets, Conical surface in between
+if $\boldsymbol A$ is a non-positive definite matrix. Hyperboloid of one sheet, Hyperboloid of two sheets, Conical surface in between
 
 <img src="./assets/Hyperboloid_Of_Two_Sheets_Quadric.png" alt="img" style="zoom: 18%;" />
 
 <img src="./assets/Hyperboloid_Of_One_Sheet_Quadric.png" alt="img" style="zoom:18%;" />
 
-##### Paraboloid
+#### Paraboloid
 
 <img src="./assets/Paraboloid_Quadric.png" alt="img" style="zoom:20%;" />
 
 <img src="./assets/Hyperbolic_Paraboloid_Quadric.png" alt="img" style="zoom:18%;" />
 
-##### Cylinder & Cylinder Surface
+#### Cylinder
 
 <img src="./assets/Elliptic_Cylinder_Quadric.png" alt="img" style="zoom:18%;" />
 
@@ -111,6 +175,6 @@ Hyperboloid of one sheet, Hyperboloid of two sheets, Conical surface in between
 
 <img src="./assets/Parabolic_Cylinder_Quadric.png" alt="img" style="zoom:18%;" />
 
-##### Cone
+#### Cone
 
 <img src="./assets/Circular_Cone_Quadric.png" alt="img" style="zoom:18%;" />

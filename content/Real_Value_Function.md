@@ -10,9 +10,7 @@ $$
 f: \mathbb R \to \mathbb R
 $$
 
-A real-valued function is a [function](./Function.md) from [real numbers](./Real_Field.md) to real numbers.
-
-For multivariate real-valued functions:
+For multivariate real-valued functions,
 $$
 f: \mathbb R^n \to \mathbb R
 $$
@@ -21,12 +19,12 @@ $$
 
 ### Basic Properties
 
-- Boundedness
-- Differentiability
-- Periodicity: $f(x + T) = f(x)$, where $T$ is a period
+- Boundedness: A function is bounded if its values stay within fixed limits.
+- Differentiability: A function is differentiable at a point if it has a well-defined derivative there. 
+- Periodicity: $f(x + T) = f(x)$, A function is periodic if its values repeat after a fixed interval $T>0$. The number $T$ is called a *period* of the function.
 - Odd and even symmetry
-  - Odd function: $f(-x) = -f(x)$
-  - Even function: $f(-x) = f(x)$
+  - Odd function: $f(-x) = -f(x)$. An odd function is symmetric about the origin.
+  - Even function: $f(-x) = f(x)$. An even function is symmetric about the $y$-axis.
 
 ### Limit
 

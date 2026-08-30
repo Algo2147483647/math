@@ -4,7 +4,7 @@
 
 ## Define
 
-> A function assigns each input in its domain exactly one output in its codomain.
+> A function assigns each input exactly one output.
 
 $$
 f: X \to Y  \tag{Function}
@@ -12,37 +12,34 @@ $$
 $$
 \forall x \in X, \exists_{= 1} y \in Y, f(x) = y
 $$
-Mapping, refer to a [binary relation](./Relation.md) from the element of set $X$ to that of set $Y$, and satisfy any element in $X$ has a unique element in $Y$ corresponding to it (One-to-many is not allowed).
+Function, or Mapping, refer to a [binary relation](./Relation.md) from the element of set $X$ to that of set $Y$, and satisfy any element in $X$ has a unique element in $Y$ corresponding to it (One-to-many is not allowed).
 
-$X$: domain of Definition.
+$X$: Domain of Definition.
 
-### Injective
+### Injective, Surjection, Bijection
+
+> Injective means no two inputs share an output, surjective means every output is reached, and bijective means both are true.
 
 $$
 \forall x, x', f(x) = f(x') \Rightarrow x = x'
 $$
 Each mapped element $y$ has a unique element $x$ corresponding to it.
 
-### Surjection
-
 $$
 \forall y \in Y, \exists x \in X, f(x) = y
 $$
 Each element $y$ in set $Y$ has a element $x$ in set $X$ corresponding to it.
 
-### Bijection, One-to-One Correspondence
-
 $$
 \forall y \in Y, \exists_{= 1} x \in X, f(x) = y
 $$
-A map that is both injective and surjective. Each element $y$ in set $Y$ has a unique element $x$ in set $X$ corresponding to it. Meanwhile, each element $x$ in set $X$ has a unique element $y$ in set $Y$ corresponding to it.
+Bijection, or One-to-One Correspondence, is a map that is both injective and surjective. Each element $y$ in set $Y$ has a unique element $x$ in set $X$ corresponding to it. Meanwhile, each element $x$ in set $X$ has a unique element $y$ in set $Y$ corresponding to it.
 
 <img src="assets/R-16983288702011.png" alt="R" style="zoom: 30%;" />
 
 ## Properties
 
-* Inverse Function
-  if $f$ is a bijection, its inverse function is $f^{-1}(b) = a \Leftrightarrow f(a) = b$
+Inverse Function. if $f$ is a bijection, its inverse function is $f^{-1}(b) = a \Leftrightarrow f(a) = b$
 
 ### Convolution
 
