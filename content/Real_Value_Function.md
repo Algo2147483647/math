@@ -170,13 +170,19 @@ $$
 
 ### Mean Value Theorems
 
-- Rolle's theorem
-- Lagrange mean value theorem:
+- **Rolle's theorem**: If $f$ is continuous on $[a,b]$, differentiable on $(a,b)$, and $f(a)=f(b)$, then there exists $\xi\in(a,b)$ such that $f'(\xi)=0$.
+
+- **Lagrange mean value theorem**: If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $\xi\in(a,b)$ such that
   $$
   f(b)-f(a)=f'(\xi)(b-a)
   $$
-- Cauchy mean value theorem
-- Fermat's theorem on stationary points
+  
+- **Cauchy mean value theorem**: If $f$ and $g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $\xi\in(a,b)$ such that
+  $$
+  [f(b)-f(a)]g'(\xi)=[g(b)-g(a)]f'(\xi)
+  $$
+
+- **Fermat's theorem on stationary points**: If $f$ has a local maximum or minimum at an interior point $c$ and is differentiable at $c$, then $f'(c)=0$.
 
 ### Gradient, Divergence, and Curl
 
@@ -254,22 +260,83 @@ The indefinite integral of $f$ is a family of antiderivatives $F$ such that $F'(
 
 ### Riemann Integral
 
+The Riemann integral is defined as the limit of Riemann sums,
+
 $$
-\int_a^b f(x) \, \mathrm d x = F(b) - F(a)
-\tag{Definite Integral}
+\int_a^b f(x)\,dx
+=
+\lim_{\|P\|\to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i.
 $$
 
-The definite integral can be defined as the limit of Riemann sums.
+If $F'(x)=f(x)$, then by the Fundamental Theorem of Calculus,
+
+$$
+\int_a^b f(x)\,dx=F(b)-F(a).
+$$
 
 #### Properties
 
-- Linearity
-- Additivity over intervals
-- Comparison theorem
-- Integral mean value theorem
-- Green's theorem
-- Gauss's divergence theorem
-- Stokes' theorem
+* **Linearity:**
+
+  $$
+  \int_a^b(\alpha f+\beta g)\,dx
+  =
+  \alpha\int_a^b f\,dx+\beta\int_a^b g\,dx.
+  $$
+
+* **Additivity over intervals:** For $c\in[a,b]$,
+
+  $$
+  \int_a^b f\,dx
+  =
+  \int_a^c f\,dx+\int_c^b f\,dx.
+  $$
+
+* **Comparison theorem:** If $f(x)\le g(x)$ on $[a,b]$, then
+
+  $$
+  \int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
+  $$
+
+* **Integral mean value theorem:** If $f$ is continuous on $[a,b]$, then some $\xi\in[a,b]$ satisfies
+
+  $$
+  \int_a^b f(x)\,dx=f(\xi)(b-a).
+  $$
+
+#### Major Integral Theorems
+
+* **Green's theorem:** For a positively oriented simple closed curve $C=\partial D$,
+
+  $$
+  \oint_C P\,dx+Q\,dy
+  =
+  \iint_D
+  \left(
+  \frac{\partial Q}{\partial x}
+  -
+  \frac{\partial P}{\partial y}
+  \right)dA.
+  $$
+
+* **Gauss's divergence theorem:** For a region $V$ with boundary surface $\partial V$,
+
+  $$
+  \iint_{\partial V}\mathbf F\cdot\mathbf n\,dS
+  =
+  \iiint_V\nabla\cdot\mathbf F\,dV.
+  $$
+
+* **Stokes' theorem:** For an oriented surface $S$ with boundary $\partial S$,
+
+  $$
+  \oint_{\partial S}\mathbf F\cdot d\mathbf r
+  =
+  \iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,dS.
+  $$
+
+I would separate **Green, Gauss, and Stokes** from “Properties,” since they are integral theorems in vector calculus rather than properties of the one-dimensional Riemann integral.
+
 
 ### Monotonicity
 

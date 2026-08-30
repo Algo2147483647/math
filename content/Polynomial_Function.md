@@ -18,6 +18,16 @@ Polynomial function is a kind of [function](./Function.md).
 
 ## Properties
 
+### Binomial Theorem
+
+For every non-negative integer $n$ and any two commuting elements $x$ and $y$ in a ring,
+
+$$
+(x+y)^n = \sum_{k=0}^{n} \binom{n}{k}x^{n-k}y^k,
+$$
+
+The binomial coefficient $\binom{n}{k}=\frac{n!}{k!(n-k)!}$ counts the number of ways to choose the $k$ factors that contribute $y$ when the product of $n$ copies of $(x+y)$ is expanded. The coefficients satisfy Pascal's identity $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}.$
+
 ### Abel-Ruffini theorem
 
 For a univariate $N$-th degree equation, there is no root-finding formula composed of finite addition, subtraction, multiplication, division, and square root operations $(+, -, \times, /, \sqrt{\ })$ from the fifth degree onwards.
