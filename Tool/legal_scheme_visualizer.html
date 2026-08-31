@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Maximal Bichromatic Connections</title>
+  <style>
+    :root {
+      --bg: #f1f3f7;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fc;
+      --text: #172033;
+      --muted: #667085;
+      --line: #d9dee8;
+      --line-strong: #aab4c3;
+      --primary: #3159d9;
+      --red: #e74856;
+      --red-soft: #ffe8eb;
+      --blue: #2878d0;
+      --blue-soft: #e5f2ff;
+      --mandatory: #d49b11;
+      --diagonal: #6a4fcf;
+      --danger: #c73845;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #10141d;
+        --surface: #181e2a;
+        --surface-soft: #202735;
+        --text: #eef2f8;
+        --muted: #a7b0c0;
+        --line: #333c4c;
+        --line-strong: #5b6678;
+        --primary: #88a2ff;
+        --red: #ff7180;
+        --red-soft: #4b2730;
+        --blue: #63aef5;
+        --blue-soft: #1f3e59;
+        --mandatory: #f1bf46;
+        --diagonal: #b09afa;
+        --danger: #ff7f8a;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .page {
+      width: 100%;
+      padding: 8px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      margin-bottom: 8px;
+      border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--surface) 74%, transparent);
+      box-shadow: 0 8px 28px rgba(23, 32, 51, 0.12);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .input-bar {
+      display: grid;
+      grid-template-columns: auto minmax(180px, 1fr) auto auto;
+      gap: 8px;
+      align-items: center;
+      min-height: 48px;
+      padding: 6px;
+    }
+
+    h1 {
+      margin: 0 8px 0 6px;
+      font-size: 0.98rem;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+    }
+
+    .input-shell {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      height: 36px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--surface-soft) 84%, transparent);
+    }
+
+    .input-shell:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent);
+    }
+
+    .input-prefix {
+      padding-left: 10px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+    }
+
+    #sequence-input {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      padding: 0 10px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .icon-button,
+    .action-button,
+    .vertex-button {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-soft) 82%, transparent);
+      cursor: pointer;
+    }
+
+    .icon-button {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 9px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .icon-button:hover,
+    .action-button:hover { border-color: var(--primary); color: var(--text); }
+
+    .icon-button:focus-visible,
+    .action-button:focus-visible,
+    .vertex-button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--primary) 32%, transparent);
+      outline-offset: 1px;
+    }
+
+    .tools-body {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 0 6px 6px;
+    }
+
+    .vertex-editor {
+      display: flex;
+      flex: 1;
+      gap: 4px;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .vertex-button {
+      display: inline-flex;
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-color: transparent;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 850;
+    }
+
+    .vertex-button.red { color: var(--red); background: var(--red-soft); }
+    .vertex-button.blue { color: var(--blue); background: var(--blue-soft); }
+
+    .vertex-button span {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      color: #fff;
+      background: currentColor;
+      place-items: center;
+    }
+
+    .vertex-button b {
+      color: #fff;
+      font-size: 0.62rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+
+    .actions {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 4px;
+    }
+
+    .action-button {
+      min-height: 30px;
+      padding: 0 9px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 750;
+    }
+
+    .error {
+      display: none;
+      margin: 0;
+      padding: 0 10px 7px;
+      color: var(--danger);
+      font-size: 0.74rem;
+    }
+
+    .error:not(:empty) { display: block; }
+
+    .toolbar.is-collapsed {
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    .toolbar.is-collapsed .input-bar {
+      grid-template-columns: auto auto auto;
+    }
+
+    .toolbar.is-collapsed .input-shell,
+    .toolbar.is-collapsed .tools-body,
+    .toolbar.is-collapsed .error { display: none; }
+
+    .toolbar.is-collapsed #collapse-button { transform: rotate(180deg); }
+
+    .patterns-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 7px;
+      width: 100%;
+    }
+
+    .pattern-card {
+      min-width: 0;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+    }
+
+    .pattern-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      min-width: 0;
+      margin-bottom: 3px;
+    }
+
+    .pattern-header h2 {
+      margin: 0;
+      overflow: hidden;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pattern-header span {
+      color: var(--muted);
+      font-size: 0.62rem;
+      white-space: nowrap;
+    }
+
+    .pattern-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1.52;
+      border-radius: 6px;
+      background: var(--surface-soft);
+    }
+
+    .edge-list {
+      min-height: 2.4em;
+      margin: 4px 1px 0;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.59rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .empty-state {
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 5px; }
+      .toolbar { top: 5px; margin-bottom: 5px; }
+      .input-bar { grid-template-columns: 1fr auto auto; }
+      h1 { grid-column: 1 / -1; margin: 3px 6px 0; }
+      .input-shell { grid-column: 1 / 2; }
+      .tools-body { align-items: flex-start; flex-direction: column; }
+      .vertex-editor { width: 100%; }
+      .actions { width: 100%; overflow-x: auto; }
+      .toolbar.is-collapsed .input-bar { grid-template-columns: auto auto auto; }
+      .toolbar.is-collapsed h1 { grid-column: auto; margin-top: 0; }
+      .patterns-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 5px; }
+      .pattern-card { padding: 5px; }
+    }
+
+    @media (max-width: 390px) {
+      .status { max-width: 94px; overflow: hidden; text-overflow: ellipsis; }
+      .patterns-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section id="toolbar" class="toolbar" aria-labelledby="tool-title">
+      <div class="input-bar">
+        <h1 id="tool-title">Maximal Bichromatic Connections</h1>
+        <label class="input-shell" for="sequence-input">
+          <span class="input-prefix">CW</span>
+          <input id="sequence-input" type="text" value="RRBB" maxlength="64" autocomplete="off" spellcheck="false" aria-label="Clockwise color sequence">
+        </label>
+        <span id="results-status" class="status" aria-live="polite">2 patterns · N=4</span>
+        <button id="collapse-button" class="icon-button" type="button" aria-label="Collapse controls" aria-expanded="true">⌃</button>
+      </div>
+      <div class="tools-body">
+        <div id="vertex-editor" class="vertex-editor" aria-label="Vertex color editor"></div>
+        <div class="actions">
+          <button class="action-button" type="button" data-pattern="alternating">Alternating</button>
+          <button class="action-button" type="button" data-pattern="split">Split</button>
+          <button class="action-button" type="button" data-pattern="red">All red</button>
+          <button class="action-button" type="button" data-pattern="invert">Invert</button>
+        </div>
+      </div>
+      <p id="input-error" class="error" role="alert" aria-live="assertive"></p>
+    </section>
+
+    <section id="patterns-grid" class="patterns-grid" aria-label="All maximal patterns"></section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const svgNS = "http://www.w3.org/2000/svg";
+      const toolbar = document.getElementById("toolbar");
+      const sequenceInput = document.getElementById("sequence-input");
+      const vertexEditor = document.getElementById("vertex-editor");
+      const patternsGrid = document.getElementById("patterns-grid");
+      const resultsStatus = document.getElementById("results-status");
+      const errorBox = document.getElementById("input-error");
+      const collapseButton = document.getElementById("collapse-button");
+      let colors = [0, 0, 1, 1];
+      let renderVersion = 0;
+      let inputTimer = 0;
+
+      function edgeKey(u, v) {
+        return u < v ? `${u}:${v}` : `${v}:${u}`;
+      }
+
+      function makeMatrix(n, factory) {
+        return Array.from({ length: n }, () =>
+          Array.from({ length: n }, () => factory())
+        );
+      }
+
+      function parseSequence(value) {
+        const symbols = Array.from(value.replace(/[\s,，、]/g, ""));
+        if (!symbols.length) throw new Error("Enter at least one color symbol.");
+        if (symbols.length > 14) throw new Error("The compact visualizer supports up to 14 vertices.");
+
+        const upper = symbols.map((symbol) => symbol.toUpperCase());
+        const recognized = upper.every((symbol) => ["R", "B", "0", "1"].includes(symbol));
+        if (recognized) return upper.map((symbol) => symbol === "R" || symbol === "0" ? 0 : 1);
+
+        const unique = [];
+        symbols.forEach((symbol) => {
+          if (!unique.includes(symbol)) unique.push(symbol);
+        });
+        if (unique.length > 2) throw new Error("Use no more than two distinct color symbols.");
+        return symbols.map((symbol) => unique.indexOf(symbol));
+      }
+
+      function buildSolver(c) {
+        const n = c.length;
+        const trivial = n <= 2 || c.every((value) => value === c[0]);
+        const f = makeMatrix(n, () => 0n);
+        const t = makeMatrix(n, () => [0n, 0n]);
+
+        function isPolygonSide(i, j) {
+          if (i > j) [i, j] = [j, i];
+          return j === i + 1 || (i === 0 && j === n - 1);
+        }
+
+        function closingEdgeAllowed(i, j) {
+          return isPolygonSide(i, j) || c[i] !== c[j];
+        }
+
+        if (!trivial) {
+          for (let i = 0; i < n - 1; i += 1) f[i][i + 1] = 1n;
+          for (let gap = 2; gap < n; gap += 1) {
+            for (let left = 0; left + gap < n; left += 1) {
+              const right = left + gap;
+              for (let middle = left + 1; middle < right; middle += 1) {
+                t[left][right][c[middle]] += f[left][middle] * f[middle][right];
+              }
+              if (!closingEdgeAllowed(left, right)) continue;
+              let value = t[left][right][0] + t[left][right][1];
+              for (let a = left + 1; a < right - 1; a += 1) {
+                if (c[a] === c[right]) value += f[left][a] * t[a][right][c[left]];
+              }
+              f[left][right] = value;
+            }
+          }
+        }
+
+        const mandatory = [];
+        const mandatoryKeys = new Set();
+        for (let i = 0; i < n; i += 1) {
+          const j = (i + 1) % n;
+          if (i !== j && c[i] !== c[j]) {
+            const key = edgeKey(i, j);
+            if (!mandatoryKeys.has(key)) {
+              mandatoryKeys.add(key);
+              mandatory.push(i < j ? [i, j] : [j, i]);
+            }
+          }
+        }
+
+        function mergeEdges(...groups) {
+          const map = new Map();
+          groups.forEach((group) => {
+            group.forEach(([u, v]) => {
+              const edge = u < v ? [u, v] : [v, u];
+              map.set(edgeKey(edge[0], edge[1]), edge);
+            });
+          });
+          return Array.from(map.values()).sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+        }
+
+        function faceDiagonals(sides) {
+          return sides
+            .map(([u, v]) => (u < v ? [u, v] : [v, u]))
+            .filter(([u, v]) => !isPolygonSide(u, v));
+        }
+
+        function* enumerateRegion(left, right) {
+          if (right - left <= 1) {
+            yield [];
+            return;
+          }
+
+          for (let middle = left + 1; middle < right; middle += 1) {
+            if (f[left][middle] === 0n || f[middle][right] === 0n) continue;
+            const face = faceDiagonals([[left, middle], [middle, right]]);
+            for (const first of enumerateRegion(left, middle)) {
+              for (const second of enumerateRegion(middle, right)) {
+                yield mergeEdges(face, first, second);
+              }
+            }
+          }
+
+          for (let a = left + 1; a < right - 1; a += 1) {
+            if (c[a] !== c[right] || f[left][a] === 0n) continue;
+            for (let b = a + 1; b < right; b += 1) {
+              if (c[b] !== c[left] || f[a][b] === 0n || f[b][right] === 0n) continue;
+              const face = faceDiagonals([[left, a], [a, b], [b, right]]);
+              for (const first of enumerateRegion(left, a)) {
+                for (const second of enumerateRegion(a, b)) {
+                  for (const third of enumerateRegion(b, right)) {
+                    yield mergeEdges(face, first, second, third);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        function* enumerateSchemes() {
+          if (trivial) {
+            yield mergeEdges(mandatory);
+            return;
+          }
+          for (const diagonals of enumerateRegion(0, n - 1)) {
+            yield mergeEdges(mandatory, diagonals);
+          }
+        }
+
+        return {
+          c,
+          n,
+          count: trivial ? 1n : f[0][n - 1],
+          mandatoryKeys,
+          enumerateSchemes
+        };
+      }
+
+      function svgElement(name, attributes = {}) {
+        const element = document.createElementNS(svgNS, name);
+        Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, String(value)));
+        return element;
+      }
+
+      function formatScheme(scheme) {
+        return scheme.length
+          ? scheme.map(([u, v]) => `(${u + 1},${v + 1})`).join(" ")
+          : "Empty edge set";
+      }
+
+      function createSchemeSvg(solver, scheme, patternNumber) {
+        const svg = svgElement("svg", {
+          class: "pattern-svg",
+          viewBox: "0 0 220 145",
+          role: "img",
+          "aria-label": `Pattern ${patternNumber}: ${formatScheme(scheme)}`
+        });
+        const centerX = 110;
+        const centerY = 72.5;
+        const radius = solver.n <= 2 ? 42 : 52;
+        const points = Array.from({ length: solver.n }, (_, i) => {
+          const angle = -Math.PI / 2 + (2 * Math.PI * i) / Math.max(solver.n, 1);
+          return {
+            x: centerX + radius * Math.cos(angle),
+            y: centerY + radius * Math.sin(angle),
+            angle
+          };
+        });
+
+        svg.appendChild(svgElement("circle", {
+          cx: centerX,
+          cy: centerY,
+          r: radius,
+          fill: "none",
+          stroke: "var(--line)",
+          "stroke-width": 1
+        }));
+
+        if (solver.n > 1) {
+          for (let i = 0; i < solver.n; i += 1) {
+            const j = (i + 1) % solver.n;
+            svg.appendChild(svgElement("line", {
+              x1: points[i].x,
+              y1: points[i].y,
+              x2: points[j].x,
+              y2: points[j].y,
+              stroke: "var(--line-strong)",
+              "stroke-width": 0.9,
+              opacity: 0.48
+            }));
+          }
+        }
+
+        scheme.forEach(([u, v]) => {
+          const mandatory = solver.mandatoryKeys.has(edgeKey(u, v));
+          svg.appendChild(svgElement("line", {
+            x1: points[u].x,
+            y1: points[u].y,
+            x2: points[v].x,
+            y2: points[v].y,
+            stroke: mandatory ? "var(--mandatory)" : "var(--diagonal)",
+            "stroke-width": mandatory ? 2.7 : 2.2,
+            "stroke-linecap": "round"
+          }));
+        });
+
+        points.forEach((point, i) => {
+          svg.appendChild(svgElement("circle", {
+            cx: point.x,
+            cy: point.y,
+            r: 5.2,
+            fill: solver.c[i] === 0 ? "var(--red)" : "var(--blue)",
+            stroke: "var(--surface)",
+            "stroke-width": 1.5
+          }));
+          if (solver.n <= 10) {
+            const labelRadius = radius + 13;
+            const label = svgElement("text", {
+              x: centerX + labelRadius * Math.cos(point.angle),
+              y: centerY + labelRadius * Math.sin(point.angle),
+              fill: "var(--text)",
+              "font-size": 7.5,
+              "font-weight": 700,
+              "text-anchor": "middle",
+              "dominant-baseline": "central"
+            });
+            label.textContent = String(i + 1);
+            svg.appendChild(label);
+          }
+        });
+        return svg;
+      }
+
+      function renderVertexEditor() {
+        vertexEditor.replaceChildren();
+        colors.forEach((color, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `vertex-button ${color === 0 ? "red" : "blue"}`;
+          button.setAttribute("aria-label", `Vertex ${index + 1}, ${color === 0 ? "red" : "blue"}. Click to toggle.`);
+          button.innerHTML = `<span><b>${index + 1}</b></span>`;
+          button.addEventListener("click", () => {
+            colors[index] = colors[index] === 0 ? 1 : 0;
+            sequenceInput.value = colors.map((value) => value === 0 ? "R" : "B").join("");
+            renderVertexEditor();
+            scheduleRender();
+          });
+          vertexEditor.appendChild(button);
+        });
+      }
+
+      function applySequenceInput() {
+        try {
+          colors = parseSequence(sequenceInput.value);
+          sequenceInput.value = colors.map((value) => value === 0 ? "R" : "B").join("");
+          errorBox.textContent = "";
+          renderVertexEditor();
+          scheduleRender();
+        } catch (error) {
+          errorBox.textContent = error instanceof Error ? error.message : String(error);
+        }
+      }
+
+      function applyPattern(pattern) {
+        if (pattern === "alternating") colors = colors.map((_, i) => i % 2);
+        if (pattern === "split") colors = colors.map((_, i) => i < Math.ceil(colors.length / 2) ? 0 : 1);
+        if (pattern === "red") colors = colors.map(() => 0);
+        if (pattern === "invert") colors = colors.map((value) => value === 0 ? 1 : 0);
+        sequenceInput.value = colors.map((value) => value === 0 ? "R" : "B").join("");
+        renderVertexEditor();
+        scheduleRender();
+      }
+
+      function renderPatternCards(solver, schemes) {
+        const fragment = document.createDocumentFragment();
+        schemes.forEach((scheme, index) => {
+          const card = document.createElement("article");
+          card.className = "pattern-card";
+
+          const header = document.createElement("div");
+          header.className = "pattern-header";
+          const heading = document.createElement("h2");
+          heading.textContent = `Pattern ${index + 1}`;
+          const edgeCount = document.createElement("span");
+          edgeCount.textContent = `${scheme.length}e`;
+          header.append(heading, edgeCount);
+
+          const edgeList = document.createElement("p");
+          edgeList.className = "edge-list";
+          edgeList.textContent = formatScheme(scheme);
+
+          card.append(header, createSchemeSvg(solver, scheme, index + 1), edgeList);
+          fragment.appendChild(card);
+        });
+        patternsGrid.replaceChildren(fragment);
+      }
+
+      async function scheduleRender() {
+        const version = ++renderVersion;
+        errorBox.textContent = "";
+        resultsStatus.textContent = "Generating…";
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        if (version !== renderVersion) return;
+
+        try {
+          const solver = buildSolver(colors.slice());
+          const schemes = Array.from(solver.enumerateSchemes());
+          if (BigInt(schemes.length) !== solver.count) {
+            throw new Error("Enumeration count does not match the dynamic-programming count.");
+          }
+          renderPatternCards(solver, schemes);
+          resultsStatus.textContent = `${schemes.length} pattern${schemes.length === 1 ? "" : "s"} · N=${solver.n}`;
+        } catch (error) {
+          patternsGrid.innerHTML = '<p class="empty-state">Unable to generate patterns.</p>';
+          errorBox.textContent = error instanceof Error ? error.message : String(error);
+          resultsStatus.textContent = "Error";
+        }
+      }
+
+      sequenceInput.addEventListener("input", () => {
+        window.clearTimeout(inputTimer);
+        inputTimer = window.setTimeout(applySequenceInput, 280);
+      });
+      sequenceInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          window.clearTimeout(inputTimer);
+          applySequenceInput();
+        }
+      });
+
+      document.querySelectorAll("[data-pattern]").forEach((button) => {
+        button.addEventListener("click", () => applyPattern(button.dataset.pattern));
+      });
+
+      collapseButton.addEventListener("click", () => {
+        const collapsed = toolbar.classList.toggle("is-collapsed");
+        collapseButton.setAttribute("aria-expanded", String(!collapsed));
+        collapseButton.setAttribute("aria-label", collapsed ? "Expand controls" : "Collapse controls");
+      });
+
+      renderVertexEditor();
+      scheduleRender();
+    })();
+  </script>
+</body>
+</html>

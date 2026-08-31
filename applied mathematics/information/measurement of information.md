@@ -13,13 +13,7 @@ Information measurement is designed to solve the problem of **quantifying uncert
 
 Information theory assigns numerical quantities to probability distributions and statistical relationships.
 
-## Core Idea
-
-Information is tied to uncertainty.
-
-Rare events carry more self-information than common events. A distribution with many equally likely outcomes has more entropy than one concentrated on a few outcomes.
-
-The practical essence of information measurement is:
+Information is tied to uncertainty. Rare events carry more self-information than common events. A distribution with many equally likely outcomes has more entropy than one concentrated on a few outcomes. The practical essence of information measurement is:
 
 1. **Measure surprise of one event with self-information**
 2. **Measure average uncertainty with entropy**
