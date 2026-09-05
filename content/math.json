@@ -217,7 +217,7 @@
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Real_Value_Function": "subtype_of"
+      "Real_Valued_Function": "subtype_of"
     }
   },
   "Euclidean_Space": {
@@ -298,8 +298,8 @@
       "Polynomial_Function": "subtype_of",
       "Radon_Transform": "subtype_of",
       "Random_Element": "subtype_of",
-      "Real_Value_Function": "subtype_of",
-      "Sequence": "subtype_of"
+      "Sequence": "subtype_of",
+      "Real_Valued_Function": "subtype_of"
     },
     "parents": {
       "Relation": "subtype_of"
@@ -796,21 +796,11 @@
       "Complex_Field": "field_extension_of",
       "Euclidean_Space": "over_field",
       "Quaternion_Ring": "over_field",
-      "Real_Value_Function": "has_codomain"
+      "Real_Valued_Function": "has_codomain"
     },
     "parents": {
       "Field": "subtype_of",
       "Rational_Number_Field": "field_extension_of"
-    }
-  },
-  "Real_Value_Function": {
-    "type": "Analysis",
-    "children": {
-      "Elliptic_Integral": "subtype_of"
-    },
-    "parents": {
-      "Function": "subtype_of",
-      "Real_Field": "has_codomain"
     }
   },
   "Relation": {
@@ -871,7 +861,8 @@
   "Sequence": {
     "type": "Analysis",
     "children": {
-      "Chain_Complex": "structured_as"
+      "Chain_Complex": "structured_as",
+      "Real_Valued_Sequence": "related_to"
     },
     "parents": {
       "Function": "subtype_of"
@@ -1000,5 +991,25 @@
       "Local_Field": "subtype_of",
       "Rational_Number_Field": "field_extension_of"
     }
+  },
+  "Real_Valued_Function": {
+    "type": "Analysis",
+    "children": {
+      "Elliptic_Integral": "subtype_of",
+      "Real_Valued_Sequence": "related_to"
+    },
+    "parents": {
+      "Function": "subtype_of",
+      "Real_Field": "has_codomain"
+    }
+  },
+  "Real_Valued_Sequence": {
+    "define": "",
+    "type": "",
+    "parents": {
+      "Real_Valued_Function": "related_to",
+      "Sequence": "related_to"
+    },
+    "children": {}
   }
 }
