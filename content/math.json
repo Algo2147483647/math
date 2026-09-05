@@ -36,7 +36,7 @@
       "Modular_Form": "subtype_of"
     },
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Banach_Space": {
@@ -108,27 +108,11 @@
   "Complex_Field": {
     "type": "Algebra",
     "children": {
-      "Complex_Value_Function": "has_codomain"
+      "Complex_Valued_Function": "has_codomain"
     },
     "parents": {
       "Field": "subtype_of",
       "Real_Field": "field_extension_of"
-    }
-  },
-  "Complex_Value_Function": {
-    "type": "Analysis",
-    "children": {
-      "Automorphic_Form": "subtype_of",
-      "Dirichlet_Series": "subtype_of",
-      "Gamma_Function": "subtype_of",
-      "Holomorphic_Function": "subtype_of",
-      "Hypergeometric_Function": "subtype_of",
-      "L_Function": "subtype_of",
-      "Spherical_Harmonics": "subtype_of"
-    },
-    "parents": {
-      "Complex_Field": "has_codomain",
-      "Function": "subtype_of"
     }
   },
   "Cone": {
@@ -203,7 +187,7 @@
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Elliptic_Curve": {
@@ -289,7 +273,6 @@
     "type": "Mathematical Logic and Foundations",
     "children": {
       "Bessel_Function": "subtype_of",
-      "Complex_Value_Function": "subtype_of",
       "Dirac_Delta_Function": "subtype_of",
       "Dirichlet_Character": "subtype_of",
       "Exponential_Function": "subtype_of",
@@ -299,7 +282,8 @@
       "Radon_Transform": "subtype_of",
       "Random_Element": "subtype_of",
       "Sequence": "subtype_of",
-      "Real_Valued_Function": "subtype_of"
+      "Real_Valued_Function": "subtype_of",
+      "Complex_Valued_Function": "subtype_of"
     },
     "parents": {
       "Relation": "subtype_of"
@@ -317,7 +301,7 @@
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Gaussian_Process": {
@@ -382,14 +366,14 @@
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Hypergeometric_Function": {
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Inner_Product_Space": {
@@ -426,7 +410,7 @@
       "Riemann_Zeta_Function": "subtype_of"
     },
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Lattice": {
@@ -904,7 +888,7 @@
     "type": "Analysis",
     "children": {},
     "parents": {
-      "Complex_Value_Function": "subtype_of"
+      "Complex_Valued_Function": "subtype_of"
     }
   },
   "Stationary_Process": {
@@ -1011,5 +995,21 @@
       "Sequence": "related_to"
     },
     "children": {}
+  },
+  "Complex_Valued_Function": {
+    "type": "Analysis",
+    "children": {
+      "Automorphic_Form": "subtype_of",
+      "Dirichlet_Series": "subtype_of",
+      "Gamma_Function": "subtype_of",
+      "Holomorphic_Function": "subtype_of",
+      "Hypergeometric_Function": "subtype_of",
+      "L_Function": "subtype_of",
+      "Spherical_Harmonics": "subtype_of"
+    },
+    "parents": {
+      "Complex_Field": "has_codomain",
+      "Function": "subtype_of"
+    }
   }
 }

@@ -1,4 +1,4 @@
-# Complex Value Function
+# Complex Valued Function
 
 [TOC]
 

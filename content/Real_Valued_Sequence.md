@@ -1,11 +1,11 @@
-# Real_Value_Sequence
+# Real Valued Sequence
 
 [TOC]
 
 ## Define
 
 $$
-f: \mathbb N \to \mathbb R  \tag{Sequence}
+f: \mathbb N \to \mathbb R \\
 $$
 
 ## Properties
@@ -94,4 +94,54 @@ S = \sum_{i=0}^\infty a_i  \\
 S_n = \sum_{i=0}^n a_i
 $$
 
-### 
+#### Power series
+
+$$
+S = \sum_{n=0}^\infty a_n x^n
+$$
+
+Special Cases,
+$$
+\begin{align*}
+\sum_{n=0}^\infty x^n &= \frac{1}{(1-x)} \\
+\sum_{n=0}^\infty (-1)^n x^n &= \frac{1}{(1+x)} \\
+\sum_{n=0}^\infty (n+1) x^{n} &= \frac{1}{(1-x)^2} \\
+\end{align*}
+$$
+
+### Generating Functions
+
+A Generating Function $A(x)$ for a given sequence $\{a_n\}_{n=0}^\infty$ is a way to encode an infinite sequence into a formal power series.
+$$
+a_0, a_1, a_2, \dots  \qquad \Rightarrow \qquad A(x) = \sum_\limits{n=0}^\infty a_n x^n
+$$
+Special Cases,
+
+| Notes                             | Generating Function                         |
+| --------------------------------- | ------------------------------------------- |
+| $a_n = 1$                         | $\displaystyle \frac{1}{1-x}$               |
+| $a_n=r^n$                         | $\displaystyle \frac{1}{1-rx}$              |
+| $a_n=n$                           | $\displaystyle \frac{x}{(1-x)^2}$           |
+| $a_n=n+1$                         | $\displaystyle \frac{1}{(1-x)^2}$           |
+| $a_n=n^2$                         | $\displaystyle \frac{x(1+x)}{(1-x)^3}$      |
+| $a_n=n^3$                         | $\displaystyle \frac{x(1+4x+x^2)}{(1-x)^4}$ |
+| $\binom{n+k}{k}$                  | $\displaystyle \frac{1}{(1-x)^{k+1}}$       |
+| $\binom{n}{k}$                    | $\displaystyle \frac{x^k}{(1-x)^{k+1}}$     |
+| $a_n=(-1)^n$                      | $\displaystyle \frac{1}{1+x}$               |
+| Even indices only $1,0,1,0,\dots$ | $\displaystyle \frac{1}{1-x^2}$             |
+| Odd indices only $0,1,0,1,\dots$  | $\displaystyle \frac{x}{1-x^2}$             |
+| Fibonacci $1,1,2,3,5,8,\dots$     | $\displaystyle \frac{1}{1-x-x^2}$           |
+
+#### Operators
+
+| Operation on sequence                | Effect on generating function           |
+| ------------------------------------ | --------------------------------------- |
+| $b_n=c\,a_n$                         | $B(x)=cA(x)$                            |
+| $b_n=a_n+d_n$                        | $B(x)=A(x)+D(x)$                        |
+| $b_n=a_{n-1}$, $b_0=0$               | $B(x)=xA(x)$                            |
+| $b_n=a_{n-k}$                        | $B(x)=x^kA(x)$                          |
+| $b_n=a_{n+1}$                        | $\displaystyle B(x)=\frac{A(x)-a_0}{x}$ |
+| $b_n=n\,a_n$                         | $B(x)=xA'(x)$                           |
+| $b_n=(n+1)a_n$                       | $B(x)=(xA(x))'$                         |
+| $b_n=\sum\limits_{j=0}^n a_j$        | $\displaystyle B(x)=\frac{A(x)}{1-x}$   |
+| $c_n=\sum\limits_{k=0}^n a_kb_{n-k}$ | $C(x)=A(x)B(x)$                         |
