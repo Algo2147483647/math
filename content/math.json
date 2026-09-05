@@ -390,7 +390,8 @@
     "children": {
       "Dirichlet_Character": "has_domain",
       "Mobius_Function": "has_domain",
-      "Rational_Number_Field": "fraction_field_of"
+      "Rational_Number_Field": "fraction_field_of",
+      "Prime": "related_to"
     },
     "parents": {
       "Natural_Number": "extends_number_system",
@@ -598,8 +599,7 @@
   "Natural_Number": {
     "type": "Number Theory",
     "children": {
-      "Integer_Ring": "extends_number_system",
-      "Prime": "subtype_of"
+      "Integer_Ring": "extends_number_system"
     },
     "parents": {
       "Set": "subtype_of"
@@ -680,7 +680,7 @@
     "type": "Number Theory",
     "children": {},
     "parents": {
-      "Natural_Number": "subtype_of"
+      "Integer_Ring": "related_to"
     }
   },
   "Probability_Distribution": {

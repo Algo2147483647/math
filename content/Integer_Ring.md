@@ -42,7 +42,7 @@ Division with remainder decomposes an integer into a quotient part and a smaller
 
 A mapping $f: \mathbb Z \to \mathbb R$, such that
 $$
-f(a \times b) = f(a) f(b) \quad \text{when}\ a, b \in \mathbb Z, gcd(a, b) = 1
+f(a \times b) = f(a) f(b) \quad \text{when}\ a, b \in \mathbb Z, \gcd(a, b) = 1
 $$
 Properties,
 - $f(1) = 1$
@@ -60,8 +60,49 @@ $$
   \phi(n) &= n \prod_{p|n} (1 - 1/p)  
 \end{align*}
 $$
-[Möbius Function](./Mobius_Function.md)
+
 
 ### Fermat's Last Theorem
 
+$$
+a^n + b^n = c^n
+$$
+
 No three positive integers $a, b, c$ satisfy the equation $a^n + b^n = c^n$ for any integer value of $n$ greater than $2$. The cases $n = 1$ and $n = 2$ have been known since antiquity to have infinitely many solutions.
+
+### Integer partitioning
+
+Integer partitioning is the representation of a positive integer $n$ as a sum of positive integers, where the order of the terms does not matter. The **partition number** $p(n)$ denotes the number of distinct ways in which $n$ can be expressed as such a sum.
+
+$$
+\begin{align*}
+p(n) &=\frac1{\pi\sqrt2} \sum_{k=1}^{\infty} A_k(n)\sqrt{k}\, \frac{d}{dn} \left[ \frac{ \sinh\!\left( \frac{\pi}{k} \sqrt{\frac23\left(n-\frac1{24}\right)} \right)} {\sqrt{n-\frac1{24}}} \right] \\
+A_k(n) &= \sum_{\substack{0\le h<k\\(h,k)=1}} \exp\left( \pi i\,s(h,k)-\frac{2\pi i nh}{k} \right)\\
+s(h,k) &= \sum_{r=1}^{k-1} \frac r k \left( \frac{hr}{k} -\left\lfloor\frac{hr}{k}\right\rfloor -\frac12 \right)
+\end{align*}
+$$
+
+- Recurrence relation:
+
+$$
+p(n)=
+\sum_{k=1}^{\infty}(-1)^{k-1}
+\left[
+p\!\left(n-\frac{k(3k-1)}2\right)
++
+p\!\left(n-\frac{k(3k+1)}2\right)
+\right]
+$$
+
+
+- The generations functions of partition numbers is,
+$$
+\sum\limits_{n=0}^\infty p(n) x^n = \prod\limits_{k=1}^{\infty} \frac{1}{1-x^k}
+$$
+
+Properties,
+$$
+p(5n+4)\equiv0\pmod5,\\
+p(7n+5)\equiv0\pmod7,\\
+p(11n+6)\equiv0\pmod{11}
+$$

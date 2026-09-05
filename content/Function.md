@@ -50,6 +50,32 @@ $$
 
 Convolution is an operation on functions rather than a standalone object node.
 
+
+
+Properties,
+
+- convolution in the time domain becomes multiplication in the frequency domain.
+
+$$
+f(t)*g(t)\quad \longleftrightarrow\quad F(\omega)G(\omega)
+$$
+
+| Function $f(t)$          | Function $g(t)$          | Result $f(t)*g(t)$                             |
+| ------------------------ | ------------------------ | ---------------------------------------------- |
+| $f(t)$                   | $\delta(t)$              | $f(t)$                                         |
+| $f(t)$                   | $\delta(t-t_0)$          | $f(t-t_0)$                                     |
+| $\delta(t-t_1)$          | $\delta(t-t_2)$          | $\delta(t-t_1-t_2)$                            |
+| $u(t)$                   | $u(t)$                   | $t\,u(t)$                                      |
+| $t\,u(t)$                | $u(t)$                   | $\frac{t^2}{2}u(t)$                            |
+| $\frac{t^{n}}{n!}u(t)$   | $u(t)$                   | $\frac{t^{n+1}}{(n+1)!}u(t)$                   |
+| $e^{-at}u(t)$            | $e^{-bt}u(t)$, $a\neq b$ | $\displaystyle\frac{e^{-at}-e^{-bt}}{b-a}u(t)$ |
+| $e^{-at}u(t)$            | $e^{-at}u(t)$            | $t e^{-at}u(t)$                                |
+| $\operatorname{rect}(t)$ | $\operatorname{rect}(t)$ | $\operatorname{tri}(t)$                        |
+| Gaussian                 | Gaussian                 | Gaussian                                       |
+| $f(t)$                   | $g(t)$                   | $g(t)*f(t)$                                    |
+| $f*g$                    | $h$                      | $f*(g*h)$                                      |
+| $f$                      | $g+h$                    | $f*g+f*h$                                      |
+
 ### Hilbert Transform
 
 For a suitable function $u$, the Hilbert transform is the principal-value singular integral

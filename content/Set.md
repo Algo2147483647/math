@@ -200,21 +200,37 @@ $$
 #### Catalan numbers
 
 (Special Counting Sequence) Catalan numbers are a sequence of integers that count recursively nested, non-crossing, or balanced structures.
+
+> Once a combinatorial problem can be decomposed into "$i$ elements on the left + $(n-i)$ elements on the right" at a certain key position, and the two parts are independent of each other, it is easy to encounter Catalan numbers.
+
 $$
 \begin{align*}
   f_n 
-  &= \frac{C(2n, n)}{n+1}\quad, n \ge 0  \\
+  &= \frac{C(2n, n)}{n+1},\qquad n \ge 0  \\
   &= C(2n, n) - C(2n, n - 1)  \\
   &= C(2n, n) - C(2n, n + 1)  \\
-  &= \frac{(2n)!}{(n+1)! n!}\\
-  &= \left\{\begin{matrix}
-    \sum\limits_{i=1}^n f_{i-1}f_{n-i}  & n \ge 2\\
-    1 & n = 0, 1
-  \end{matrix}\right. \tag{recurrence form}\\
-  &= \frac{4n-2}{n+1} f_{n-1}
+  &= \frac{(2n)!}{(n+1)! n!}
 \end{align*}
 $$
-Pigeonhole Principle. for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
+- Basic recurrence relation,
+
+$$
+\begin{align*}
+  f_n &= 
+    \sum\limits_{i=1}^n f_{i-1}f_{n-i} , \qquad f_0 = f_1 = 1\\
+  &= \frac{2 (2n-1)}{n+1} f_{n-1}
+\end{align*}  \tag{recurrence form}\\
+$$
+
+- Generation functions,
+
+$$
+F(x) = \frac{1 - \sqrt{1 - 4x}}{2x}
+$$
+
+
+
+**Pigeonhole Principle.** for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
 
 ### Combination
 
