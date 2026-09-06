@@ -162,38 +162,44 @@ $$
 
 #### Property
 
-Addition theorem. for $S = \cap_{i=1}^n S_i, S_i \cap S_j = \emptyset (i ≠ j)$
+**Addition theorem.** for $S = \cap_{i=1}^n S_i, S_i \cap S_j = \emptyset (i ≠ j)$
 $$
 \Rightarrow |S| = \sum_{i=1}^n |S_i|
-$$
-Multiplication theorem. for sets $S_A, S_B$, and
-$$
-\begin{align*}
-  S &= \{(a, b) | a \in S_A, b \in S_B\}  \\
-    &= S_A × S_B  \tag{Cartesian积}  \\
-\end{align*}
-$$
-$$
-\Rightarrow |S| = |S_A| × |S_B|
 $$
 
 > Proof of Addition theorem
 > $$
 > \begin{align*}
 >   S 
->   &= \{(a, b) | a \in S_A, b \in S_B\}  \\
->   &= \bigcap_{a_i \in S_A} \{(a_i, b) | b \in S_B\}  \\
->   \Rightarrow |S| &= \sum_{i=1}^{|S_A|} |S_B|  \tag{Addition theorem}  \\
->   &= |S_A| × |S_B|  \\
-> \end{align*}
-> $$
+>   &= \{(a, b) | a \in S_A, b \in S_B\} = \bigcap_{a_i \in S_A} \{(a_i, b) | b \in S_B\}  \\
+>   \Rightarrow |S| &= \sum_{i=1}^{|S_A|} |S_B|  = |S_A| × |S_B|  \\
+>   \end{align*}
+>   $$
+> 
 
-Principle of Inclusion-Exclusion. for $A_1,...,A_n \subseteq S$
+**Multiplication theorem.** for sets $S_A, S_B$, and
+$$
+\begin{align*}
+  S &= \{(a, b) | a \in S_A, b \in S_B\}  \\
+    &= S_A × S_B\\
+\end{align*}
+$$
+$$
+\Rightarrow |S| = |S_A| × |S_B|
+$$
 
-
+**Principle of Inclusion-Exclusion.** for $A_1,...,A_n \subseteq S$
 $$
 \begin{align*}
   \left|\bigcup_{i=1}^n A_i\right| &= \sum_{k=1}^n \left((-1)^{k-1} \sum_{\substack{i_1,...,i_k \in 1:n \\ i_1≠...≠i_k}} \left|\bigcup_{i\in\{i_1,...,i_k\}} A_i\right|\right)
+\end{align*}
+$$
+
+**Pigeonhole Principle.**
+$$
+\begin{align*}
+A_1, ..., A_n \subseteq A, |A| = n + 1 \qquad&\Rightarrow\qquad \exists A_i, |A_i| \ge 2 \\
+A_1, ..., A_k \subseteq A, |A| = N \qquad&\Rightarrow\qquad \exists A_i, |A_i| \ge \left\lceil \frac{N}{k}\right\rceil \\
 \end{align*}
 $$
 
@@ -228,9 +234,6 @@ $$
 F(x) = \frac{1 - \sqrt{1 - 4x}}{2x}
 $$
 
-
-
-**Pigeonhole Principle.** for $A_1, ..., A_n \subseteq A, |A| = n + 1$, $\Rightarrow \exists A_i, |A_i| ≥ 2$.
 
 ### Combination
 

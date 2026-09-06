@@ -38,6 +38,48 @@ a = qb + r, \quad 0 \le r < |b|.
 $$
 Division with remainder decomposes an integer into a quotient part and a smaller remainder.
 
+#### Modulus
+
+$$
+a \equiv b \mod n
+$$
+
+Modulus means $a$ and $b$ leave the some remainder when devided by $n$.
+
+Properties,
+
+- $a \equiv b \mod n, c \equiv d \mod n \Rightarrow ac \equiv bd \mod n$
+- Modular inverse, we called $b$ is a modular inverse $a^{-1} \mod n$, means $ab \equiv 1 \mod n$.
+- $a^{-1} \mod n$ is existed, when $\gcd(a, n) = 1$.
+
+#### Greatest common factor
+
+$$
+\gcd(a,b)=\max\{d\in \mathbb N : d\mid a \text{ and } d\mid b\}
+$$
+
+**Euclidean algorithm.** A method for finding the greatest common divisor (GCD) of two integers. $a, b \in \mathbb Z_+, a > b > 0$, we have,
+$$
+\gcd(a,b) = \gcd(b,a \text{ mod } b)
+$$
+Repeat this process until the remainder becomes $0$. The last nonzero remainder is the GCD.
+
+```C
+int gcd(int a, int b){return b ? gcd(b, a%b) : a;}
+```
+
+> **Proof of Euclidean algorithm.**
+>
+> Assume $g = \gcd(a, b), r = a \text{ mod } b < b$,
+> $$
+> \begin{align*}
+> a &= b q + r \\
+> yg &= xgq + r \\
+> r &= (y-xq)g\\
+> \Rightarrow r &\equiv a \equiv b \equiv0\mod g
+> \end{align*}
+> $$
+
 ### Multiplicative Function
 
 A mapping $f: \mathbb Z \to \mathbb R$, such that
@@ -47,12 +89,38 @@ $$
 Properties,
 - $f(1) = 1$
 
-#### Eular Function
+### Eular Function, Euler's theorem
 
-Eular Function, The number of coprimes with $n$ in positive integers less than $n$.
+Eular Function counts the number of positive integers less than or equal to $n$ which coprime with $n$.
 $$
-\phi(n) = \text{number}(\{i\ |\ i \in 1:n, \text{GCD}(i, n) = 1\})
+\varphi(n) = \text{number}(\{i\ |\ i \in 1:n, \gcd(i, n) = 1\})
 $$
+
+For $a \in \mathbb Z_+, \gcd(a,n) = 1$, we have
+
+$$
+a^{\varphi(n)} \equiv 1 \mod n
+$$
+
+> ***Proof of Euler's theorem***
+>
+> Consider a reduced residue class $\{r_i\}_{i=1}^{\varphi(n)}$ modulo $n$, we have 
+>
+> 1. $\gcd\left(\prod\limits_{i=1}^{\varphi(n)} r_i, n\right) = 1$, therefore $\exist u = \left(\prod\limits_{i=1}^{\varphi(n)} r_i\right)^{-1}$, let $u \prod\limits_{i=1}^{\varphi(n)} r_i \equiv 1 \mod p$.
+> 2. The remainders of $\{a r_i\}_{i=1}^{\varphi(n)}$ is a rearrangement of $\{r_i\}_{i=1}^{\varphi(n)}$.
+>
+> Since the set of remainders of $\{a r_i\}_{i=1}^{\varphi(n)}$ is as some as $\{r_i\}_{i=1}^{\varphi(n)}$, we have the relationship between the products of these two sequences themselves,
+>
+> $$
+> \begin{align*}
+> a^{\varphi(n)} \prod\limits_{i=1}^{\varphi(n)} r_i &\equiv \prod\limits_{i=1}^{\varphi(n)} r_i &\mod p\\
+> a^{\varphi(n)}  u \prod\limits_{i=1}^{\varphi(n)} r_i &\equiv  u \prod\limits_{i=1}^{\varphi(n)} r_i &\mod p\\
+> a^{\varphi(n)} &\equiv  1 &\mod p\\
+> \end{align*}
+> $$
+> Q.E.D
+> 
+
 Properties,
 $$
 \begin{align*}
@@ -61,6 +129,47 @@ $$
 \end{align*}
 $$
 
+#### Fermat's Little Theorem
+
+$$
+a^{p-1} \equiv 1 \mod p
+$$
+
+An important special case for Euler's theorem is Fermat's Little Theorem. Where $p$ is a prime and $a$ is any integer that is not a multiple of $p$, $p\nmid a$.
+
+> ***Proof of Fermat's Little Theorem***
+>
+> Consider a sequence $1, \cdots , p-1$. we have 
+>
+> 1. $\gcd((p-1)!, p) = 1$, therefore $\exist u = ((p-1)!)^{-1}$, let $u (p-1)! \equiv 1 \mod p$.
+> 2. The remainders of $a, 2a, \cdots , (p-1)a \mod p$ is a rearrangement of $1, \cdots , p-1$.
+>
+> Since the set of remainders of $a, \ldots, a (p-1) \mod p$ is as some as $1, \ldots , p-1 \mod p$, we have the relationship between the products of these two sequences themselves,
+>
+> $$
+> \begin{align*}
+> a^{p-1} (p-1)! &\equiv (p-1)! &\mod p\\
+> a^{p-1}  u (p-1)! &\equiv  u (p-1)! &\mod p\\
+> a^{p-1} &\equiv  1 &\mod p\\
+> \end{align*}
+> $$
+> Q.E.D
+
+Property:
+$$
+\frac{a}{b}\equiv a b^{p-2} \mod p
+$$
+
+> ***Proof***
+> $$
+> \begin{align*}
+> \frac{a}{b} &= a  b^{-1} &\mod p  \\
+> b^{p-1} &\equiv 1 &\mod p \\
+> b \times b^{p-1} &\equiv 1 &\mod p  \\
+> b^{-1} &\equiv b^{p-2}  &\mod p \\
+> \Rightarrow \quad \frac{a}{b} &\equiv a  b^{p-2} &\mod p
+> \end{align*}
+> $$
 
 ### Fermat's Last Theorem
 
