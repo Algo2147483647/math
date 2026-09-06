@@ -111,4 +111,24 @@ $$
 >
 > Case 2. $1 \not\mapsto n$, there are $D_{n-1}$ derangements in positions $2:n$.
 >
-> Merge two cases, we get $D_n = (n-1) (D_{n-1} + D_{n-2})$
+> Combining these cases, we get $D_n = (n-1) (D_{n-1} + D_{n-2})$
+
+#### Increasing pairs, Eulerian numbers
+
+$S(n,k)$ counts the number of permutations of $1,2,\ldots,n$ having exactly $k$ increasing pairs.
+$$
+S(n,k) = (k+1)S(n-1,k) + (n-k)S(n-1,k-1)
+$$
+
+> **Proof**
+>
+> Assume the subproblems $S_{n-1}$ is known. For size $n$, we insert the $n$ element to the sequence.
+>
+> Case 1. Increasing pairs. There are $k$ increasing pairs. After inserting $n$ into an increasing pair, the original pair becomes one decreasing pair before a one increasing pair, so $k \mapsto k$.
+>
+> Case 2. Decreasing pairs. There are $n-1-k$ decreasing pairs. After inserting $n$ into a decreasing pair, the original pair becomes one increasing pair before a decreasing pair, so $k \mapsto k+1$, 
+>
+> Case 3. Head and Tail. Inserting $n$ at the head creates a decreasing pair $k \mapsto k$, while inserting it at the tail creates an increasing pair $k \mapsto k+1$.
+>
+> Combining these cases, we get $S(n,k) = (k+1)S(n-1,k) + (n-k)S(n-1,k-1)$
+
