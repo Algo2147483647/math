@@ -86,6 +86,27 @@ Properties
 - $m + n = p + q \Rightarrow a_{m}\cdot a_{n}=a_{p}\cdot a_{q}$
 - **Monotonicity**: When $a_{1}>0$, $q>1$ or $a_{1}<0$, $0<q<1$, the sequence is an increasing sequence; when $a_{1}>0$, $0<q<1$ or $a_{1}<0$, $q>1$, the sequence is a decreasing sequence; when $q = 1$, the sequence is a constant sequence; when $q<0$, the sequence is an oscillating sequence.
 
+#### Fibonacci Sequence
+
+$$
+F_n = F_{n-1} + F_{n-2}, \qquad F_0 = F_1 = 1
+$$
+
+Generating Function,
+$$
+F(x) = \frac{1}{1-x-x^2}
+$$
+
+> ***Proof***
+> $$
+> \begin{align*}
+> \sum_{n=0}^\infty F_n x^n &= F_0 + F_1 x + \sum_{i=2}^\infty F_{n-1} x^n + \sum_{i=2}^\infty F_{n-2} x^n \\
+> F(x) &= 1 + \sum_{i=0}^\infty F_{n-1} x^n + \sum_{i=0}^\infty F_{n-2} x^n \\
+> &= 1 + x F(x) + x^2 F(x) \\
+> &= \frac{1}{1-x-x^2}
+> \end{align*}
+> $$
+
 ### Series
 
 A series refers to the sum of the terms of a sequence. Given a sequence $a_n$, the series $S$ is given by:

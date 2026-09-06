@@ -95,3 +95,20 @@ $$
 $$
 y = \sum\limits_{i=1}^n f(a_i) (i-1)!
 $$
+
+#### Derangement
+
+A derangement is a permutation of the elements of a set in which no element appears in its original position. Let $D_n$ denote the number of derangements of $n$ objects,
+$$
+D_n = (n-1) (D_{n-1} + D_{n-2})
+$$
+
+> ***Proof***
+>
+> Assume the subproblems $D_{n-1}$ is known. For size $n$, there are $n-1$ possible choices for the image of $n$. By symmetry, take $n \mapsto 1$, there are $2:n$ positions remaining. Due to $1$ cannot remain in its original position, we classify the cases as follows,
+>
+> Case 1. 1 $\mapsto$ n, there are $D_{n-2}$ derangements in remaining positions $2:n-1$.
+>
+> Case 2. $1 \not\mapsto n$, there are $D_{n-1}$ derangements in positions $2:n$.
+>
+> Merge two cases, we get $D_n = (n-1) (D_{n-1} + D_{n-2})$
