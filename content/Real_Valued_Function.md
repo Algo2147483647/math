@@ -296,36 +296,44 @@ $$
 
 * **Linearity:**
 
-  $$
-  \int_a^b(\alpha f+\beta g)\,dx
-  =
-  \alpha\int_a^b f\,dx+\beta\int_a^b g\,dx.
-  $$
+$$
+\int_a^b(\alpha f+\beta g)\,dx
+=
+\alpha\int_a^b f\,dx+\beta\int_a^b g\,dx.
+$$
 
 * **Additivity over intervals:** For $c\in[a,b]$,
 
-  $$
-  \int_a^b f\,dx
-  =
-  \int_a^c f\,dx+\int_c^b f\,dx.
-  $$
+$$
+\int_a^b f\,dx
+=
+\int_a^c f\,dx+\int_c^b f\,dx.
+$$
 
 * **Comparison theorem:** If $f(x)\le g(x)$ on $[a,b]$, then
 
-  $$
-  \int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
-  $$
+$$
+\int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
+$$
 
 * **Integral mean value theorem:** If $f$ is continuous on $[a,b]$, then some $\xi\in[a,b]$ satisfies
 
-  $$
-  \int_a^b f(x)\,dx=f(\xi)(b-a).
-  $$
+$$
+\int_a^b f(x)\,dx=f(\xi)(b-a).
+$$
+
+- **Leibniz integral rule**
+
+$$
+\begin{align*}
+\frac{\mathrm d}{\mathrm d x}  \int_{a(x)}^{b(x)} f(x, t) \mathrm d t &=  f(x, b(x))\frac{\mathrm d b(x)}{\mathrm d x} -f(x, a(x))\frac{\mathrm d a(x)}{\mathrm d x}+ \int_{a(x)}^{b(x)} \frac{\mathrm \partial}{\partial x} f(x, t) \mathrm dt \\
+\frac{\mathrm d}{\mathrm d x}  \int_{a}^{b} f(x, t) \mathrm d t &=  \int_{a}^{b} \frac{\mathrm \partial}{\partial x} f(x, t) \mathrm dt \\
+\end{align*}
+$$
 
 ### Major Integral Theorems
 
 * **Green's theorem:** For a positively oriented simple closed curve $C=\partial D$,
-
   $$
   \oint_C P\,dx+Q\,dy
   =
@@ -336,7 +344,7 @@ $$
   \frac{\partial P}{\partial y}
   \right)dA.
   $$
-
+  
 * **Gauss's divergence theorem:** For a region $V$ with boundary surface $\partial V$,
 
   $$
