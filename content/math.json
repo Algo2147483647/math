@@ -62,7 +62,9 @@
   },
   "Bipartite_Graph": {
     "type": "Discrete Mathematics",
-    "children": {},
+    "children": {
+      "Tree": "related_to"
+    },
     "parents": {
       "Graph": "subtype_of"
     }
@@ -327,8 +329,7 @@
     "children": {
       "Bipartite_Graph": "subtype_of",
       "Complete_Graph": "subtype_of",
-      "Directed_Acyclic_Graph": "subtype_of",
-      "Tree": "subtype_of"
+      "Directed_Acyclic_Graph": "subtype_of"
     },
     "parents": {
       "Set": "has_underlying_set"
@@ -957,7 +958,7 @@
       "Binary_Tree": "subtype_of"
     },
     "parents": {
-      "Graph": "subtype_of"
+      "Bipartite_Graph": "related_to"
     }
   },
   "Vector_Bundle": {
