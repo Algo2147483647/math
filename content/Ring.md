@@ -26,7 +26,7 @@ Ring is an algebraic structure, where $G$ is a set, $\cdot$ and $+$ are binary o
 
 ## Properties
 
-### Ideal
+### Ideal, Multiplicatively absorbing additive subgroup
 
 For a ring $R = (R, +, \cdot)$ and a subring $I$ of $R$, if $I$ satisfies two following conditions, we call $I$ is the ideal subring of $R$.
 

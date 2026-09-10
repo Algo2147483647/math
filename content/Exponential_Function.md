@@ -6,8 +6,9 @@
 
 > The exponential function is the function whose rate of change is proportional to its current value.
 
-Trigonometric functions $f: \mathbb R \to \mathbb R$ are a set of mathematical [functions](./Function.md) that relate angles $\theta$ to the ratios of the sides (opposite $a$, adjacent $b$, hypotenuse $c$) of a right-angled triangle. Where hypotenuse is the length of the side opposite the right angle, opposite represents the side opposite the given angle $\theta$, adjacent represents the side between the angle $\theta$ and the right angle.
+### Trigonometric Function
 
+Trigonometric functions $f: \mathbb R \to \mathbb R$ are a set of mathematical [functions](./Function.md) that relate angles $\theta$ to the ratios of the sides (opposite $a$, adjacent $b$, hypotenuse $c$) of a right-angled triangle. Where hypotenuse is the length of the side opposite the right angle, opposite represents the side opposite the given angle $\theta$, adjacent represents the side between the angle $\theta$ and the right angle.
 $$
 \begin{align*}
   \sin(\theta) &= \frac{a}{c}  \quad\in [-1, 1]\tag{sine}\\
@@ -16,10 +17,20 @@ $$
 \end{align*}
 $$
 
+### Hyperbolic Function
+
 Hyperbolic Functions $f: \mathbb R \to \mathbb R$ are defined by hyperbola $x^2 - y^2 = 1$, where the angles $\theta$ refer to twice the included angle of the ray from zero point to the point in hyperbola and positive half of x-axis, $\sinh(\theta)$ is the coordinate value $x$ of the point, and $\cosh(\theta)$ is the coordinate value $y$ of the point.
 
-For the complex field $z \in \mathbb C$, the exponential function with an imaginary argument is defined by Euler's formula:
+### Exponential Function
 
+$$
+\begin{align*}
+e^{x} &= \sum\limits_{n=0}^\infty \frac{x^n}{n!}  \\
+&= \lim_{n\to\infty} \left(1+\frac{x}{n}\right)^n
+\end{align*}
+$$
+
+For the complex field $z \in \mathbb C$, the exponential function with an imaginary argument is defined by Euler's formula:
 $$
 e^{i \pi} + 1 = 0  \tag{Euler's formula}
 $$
@@ -65,7 +76,7 @@ $$
 **Double-Angle Formulas & Half-Angle Formulas**:
 $$
 \begin{align*}
-\sin(2a) &= 2\sin(a) \cos(b) \\
+\sin(2a) &= 2\sin(a) \cos(a) \\
 \cos(2a) &= \cos(a)^2  - \sin^2(a)  \\
 \tan(2a) &= \frac{2 \tan(a)}{1 - \tan^2(a)}\\
   \sin(3a) &= 3\sin(a) - 4\sin^3(a) \\
@@ -121,21 +132,13 @@ $$
 ### Derivatives
 $$
 \begin{align*}
-\frac{d}{dx} \sin(x) &= \cos(x) \\
-\frac{d}{dx} \cos(x) &= -\sin(x) \\
-\frac{d}{dx} \tan(x) &= \frac{1}{\cos^2(x)} \\
-\frac{d}{dx} \frac{1}{\sin(x)} &= -\frac{1}{\sin(x)\tan(x)}\\
-\frac{d}{dx} \frac{1}{\cos(x)} &= \frac{\tan(x)}{\cos(x)} \\
-\frac{d}{dx} \frac{1}{\tan(x)} &= -\frac{1}{\sin^2(x)} \\
-\end{align*}
-$$
-
-Chain Rule Applications. For a function $u = u(x)$:
-$$
-\begin{align*}
-\frac{d}{dx} \sin(u) &= \cos(u) \cdot \frac{du}{dx} \\
-\frac{d}{dx} \cos(u) &= -\sin(u) \cdot \frac{du}{dx} \\
-\frac{d}{dx} \tan(u) &= \frac{1}{\cos^2(x)} \cdot \frac{du}{dx}
+\frac{\mathrm d}{\mathrm dx} e^x &= e^x \\
+\frac{\mathrm d}{\mathrm dx} \sin(x) &= \cos(x) \\
+\frac{\mathrm d}{\mathrm dx} \cos(x) &= -\sin(x) \\
+\frac{\mathrm d}{\mathrm dx} \tan(x) &= \frac{1}{\cos^2(x)} \\
+\frac{\mathrm d}{\mathrm dx} \frac{1}{\sin(x)} &= -\frac{1}{\sin(x)\tan(x)}\\
+\frac{\mathrm d}{\mathrm dx} \frac{1}{\cos(x)} &= \frac{\tan(x)}{\cos(x)} \\
+\frac{\mathrm d}{\mathrm dx} \frac{1}{\tan(x)} &= -\frac{1}{\sin^2(x)} \\
 \end{align*}
 $$
 
