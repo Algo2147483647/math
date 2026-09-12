@@ -73,7 +73,7 @@ Properties,
   \frac12 \sum_{v\in V} \deg(v) = \sum_{v\in V} \deg^+(v) = \sum_{v\in V} \deg^-(v) = 2 |E|
   $$
 
-- k-regular graph, defined by $\deg(v) = k, \forall v \in V$.
+- $k$-regular graph, defined by $\deg(v) = k, \forall v \in V$.
 
 ### Representation by Adjacency Matrix
 
@@ -101,6 +101,12 @@ A walk is a sequence of vertices $(v_0,v_1,\cdots,v_k)$ such that consecutive ve
 - **Trail** is a walk in which no edge is repeated but vertices may still be repeated.
 - **Path** is a walk in which no vertex is repeated. $v_i\neq v_j, \forall i\neq j$
 
+
+
+**Distance.** The **distance** between $u$ and $v$, denoted by $d(u,v)$, is the length of a shortest $u$-$v$ path. If no path exists between $u$ and $v$, then commonly $d(u,v)=\infty$.
+$$
+d(u,v)=\min\{|P|:P\text{ is a }u\text{-}v\text{ path}\}
+$$
 
 #### Connectivity
 
