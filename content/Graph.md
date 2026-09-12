@@ -75,8 +75,6 @@ Properties,
 
 - k-regular graph, defined by $\deg(v) = k, \forall v \in V$.
 
-- 
-
 ### Representation by Adjacency Matrix
 
 Edges of a finite graph can be representation by a matrix $A\in S^{n\times n}$ called adjacency matrix. For a simple undirected graph, the adjacency matrix is symmetric.
@@ -98,7 +96,10 @@ A_{ij}=w(v_i,v_j)
 $$
 ### Path
 
-A path is a sequence of vertices $(v_0,v_1,\cdots,v_k)$ such that consecutive vertices are connected by edges. For a directed graph, the edges must follow the direction $(v_i,v_{i+1})\in E$.
+A walk is a sequence of vertices $(v_0,v_1,\cdots,v_k)$ such that consecutive vertices are connected by edges $\{v_i,v_{i+1}\}\in E \text{  or  } (v_i,v_{i+1})\in E$.
+
+- **Trail** is a walk in which no edge is repeated but vertices may still be repeated.
+- **Path** is a walk in which no vertex is repeated. $v_i\neq v_j, \forall i\neq j$
 
 
 #### Connectivity
