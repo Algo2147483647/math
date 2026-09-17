@@ -1,18 +1,37 @@
 # Complex — Transformation Lab
 
-A minimalist, offline HTML tool for exploring complex transformations. Open
+A full-screen, offline HTML tool for exploring complex transformations. Open
 [`index.html`](./index.html) directly in a modern browser. No build, server,
 installation, or network connection is required.
 
 ## Explore
 
-- Enter an expression in **f(z)** and press **Enter** or **Transform**.
+- The two canvases fill the viewport in equal left and right halves. The glass
+  toolbar and side panels float over the plots, without reserving canvas space.
+- Enter an expression in the top **f(z)** field and press **Enter** or the arrow button.
+- Open **Functions** for 32 searchable presets across linear maps, powers, roots,
+  exponential/logarithmic, trigonometric/hyperbolic, rational, and projection maps.
+- Use the left panel for domain, grid, unit-circle, coordinate guides, and probe
+  settings. Use the right panel for mapped values, animation, zoom, fitting, and
+  quick presets. Each panel folds by clicking its header. Narrow screens start
+  with both panels folded and allow one expanded panel at a time.
 - Compare the original and transformed Cartesian or polar grids. Matching colors
   identify corresponding curves; the dashed amber curve is the unit circle.
-- Click or drag on the input plane to move a point, or enter its real and imaginary
-  coordinates. The inspector reports the full `f(z)` and both magnitudes.
-- Change the input domain and grid density. Scroll over the input to resize its domain.
-- Drag the output to pan; scroll to zoom around the pointer. **Fit to view** (or
+- In **Probe** mode, click or drag on the input plane to move a point, or enter
+  its real and imaginary coordinates. Points are not clamped to a fixed region.
+  The inspector reports the full `f(z)` and both magnitudes.
+- Enter any positive finite **Domain half-span**, including scientific notation,
+  and press Enter, click the arrow, or leave the field to apply it. There is no
+  fixed minimum or maximum range. Invalid or unrepresentable values preserve the
+  previous view and show an inline error.
+- Choose **Pan**, Shift-drag, or middle-drag to move the input view. Scroll to zoom
+  around the pointer. The displayed center follows the input view.
+- Cartesian and polar grids continue across the entire visible input region and
+  regenerate as you pan, zoom, or resize. Density adapts to the scale so distant
+  views do not create unbounded amounts of work. The output maps this sampled
+  input region; it does not claim to render all preimages of an arbitrary function
+  on the whole infinite plane.
+- Drag the output to pan; scroll to zoom around the pointer. **Fit** (or
   double-click the output) fits sampled finite values. Extreme tails near poles
   are excluded when they would dwarf the rest of the image.
 - Scrub the transformation slider or press play to show `(1-t)z + t f(z)`.
@@ -20,8 +39,9 @@ installation, or network connection is required.
 - **Reset view** restores the domain to ±2, the complete transformation, and the
   fitted output. The expression, selected grid, and probe remain available.
 
-Keyboard: focus the input canvas and use the arrow keys to move the point (Shift
-for larger steps). On the output canvas, arrows pan, `+` / `-` zoom, and `0` fits.
+Keyboard: focus the input canvas and use the arrow keys to move the point or pan,
+depending on the selected tool (Shift for larger steps). Both canvases accept
+`+` / `-` to zoom; `0` resets the input view or fits the output. Output arrows pan.
 All settings and the numerical point inputs are also keyboard accessible.
 
 ## Expressions
@@ -63,8 +83,11 @@ not a symbolic algebra or proof system.
 
 - `index.html`, `styles.css`: accessible controls and responsive layout.
 - `math.js`: complex arithmetic and the expression parser.
-- `geometry.js`: adaptive curve sampling and view fitting.
+- `geometry.js`: viewport grids, numerical view validation, adaptive curve sampling,
+  and fitting across small and large scales.
 - `app.js`: canvas rendering, point inspection, and interactions.
+- `presets.js`: grouped function presets, shared with the numerical checks.
+- `icon.svg`: the original glass-orbit app icon; no remote assets are required.
 
 Run the numerical and parser checks using Node.js (no packages needed):
 

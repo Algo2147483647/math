@@ -3,55 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f6f7f3" />
+    <meta name="theme-color" content="#eef2f7" />
     <meta
       name="description"
-      content="An interactive, offline complex transformation explorer. Enter a function and watch the complex plane change."
+      content="Explore complex transformations on two full-screen planes."
     />
-    <title>Complex — Transformation Lab</title>
+    <title>Complex · Transformation Lab</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="math.js"></script>
     <script defer src="geometry.js"></script>
+    <script defer src="presets.js"></script>
     <script defer src="app.js"></script>
   </head>
   <body>
-    <main class="app">
-      <header class="masthead">
-        <a
-          class="brand"
-          href="./index.html"
-          aria-label="Complex transformation lab home"
-        >
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path
-              d="M5 24V8h16M11 28V12h16M4 20c9 0 9-12 18-12M10 26c9 0 9-12 18-12"
-            />
-          </svg>
-          <span
-            >complex<span class="brand-divider">/</span
-            ><span class="brand-subtitle">transformation lab</span></span
+    <svg
+      class="icon-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+          <path d="M5 12h14m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="icon-library" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="6" height="6" rx="2" />
+          <rect x="14" y="4" width="6" height="6" rx="2" />
+          <rect x="4" y="14" width="6" height="6" rx="2" />
+          <rect x="14" y="14" width="6" height="6" rx="2" />
+        </symbol>
+        <symbol id="icon-sliders" viewBox="0 0 24 24">
+          <path d="M4 7h7m4 0h5M4 17h3m4 0h9" />
+          <circle cx="13" cy="7" r="2" />
+          <circle cx="9" cy="17" r="2" />
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+          <path d="m7 7 10 10M7 17 17 7" />
+        </symbol>
+        <symbol id="icon-chevron" viewBox="0 0 24 24">
+          <path d="m9 5 7 7-7 7" />
+        </symbol>
+        <symbol id="icon-fit" viewBox="0 0 24 24">
+          <path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4M9 12h6m-3-3v6" />
+        </symbol>
+        <symbol id="icon-reset" viewBox="0 0 24 24">
+          <path d="M4 10a8 8 0 1 1 1 7M4 4v6h6" />
+        </symbol>
+        <symbol id="icon-help" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9.5 9a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 1.8-2.5 3.5m0 3h.01" />
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 4 4" />
+        </symbol>
+      </defs>
+    </svg>
+    <main class="app" aria-label="Complex transformation explorer">
+      <section class="planes" aria-label="Complex planes">
+        <article class="plane-panel source-plane" aria-label="Input plane">
+          <canvas
+            id="source"
+            tabindex="0"
+            aria-label="Input plane. Drag to probe; choose Pan or Shift-drag to pan. Scroll to zoom."
+            >Input complex plane. Use the coordinate inputs to move the
+            probe.</canvas
           >
-        </a>
-        <span class="local-note"><span></span> A little space to explore</span>
-      </header>
-
-      <section class="intro" aria-labelledby="title">
-        <div>
-          <p class="eyebrow">THE COMPLEX PLANE, REIMAGINED</p>
-          <h1 id="title">A function. A new perspective.</h1>
-          <p class="subtitle">
-            Turn an expression into geometry. Follow a point, bend a grid, see
-            the connection.
-          </p>
-        </div>
-        <span class="intro-equation" aria-hidden="true"
-          >z <span>↦</span> f(z)</span
-        >
+          <div class="plane-caption">
+            <span class="plane-dot source-dot"></span><span>Input</span><i>z</i>
+          </div>
+        </article>
+        <article class="plane-panel target-plane" aria-label="Output plane">
+          <canvas
+            id="target"
+            tabindex="0"
+            aria-label="Output plane. Drag or use arrow keys to pan; scroll or use plus and minus to zoom; 0 to fit."
+            >Transformed complex plane. The mapped probe is shown in the output
+            panel.</canvas
+          >
+          <div class="plane-caption">
+            <span class="plane-dot target-dot"></span><span>Output</span
+            ><i>w = f(z)</i>
+          </div>
+          <span
+            id="output-message"
+            class="output-message glass"
+            role="status"
+            hidden
+          ></span>
+        </article>
       </section>
-
-      <section class="function-panel" aria-label="Transformation expression">
+      <header class="topbar glass">
+        <img
+          class="app-icon"
+          src="icon.svg"
+          width="42"
+          height="42"
+          alt="Complex"
+        />
+        <span class="bar-divider" aria-hidden="true"></span>
         <form id="function-form" novalidate>
-          <label class="function-label" for="expression">f(z) =</label>
+          <label for="expression" class="function-label">f(z) =</label>
           <input
             id="expression"
             name="expression"
@@ -60,255 +112,395 @@
             spellcheck="false"
             autocomplete="off"
             autocapitalize="off"
-            aria-describedby="expression-help expression-error"
             aria-label="Complex function expression"
+            aria-describedby="expression-error"
           />
-          <button class="primary" type="submit">
-            Transform <span aria-hidden="true">↗</span>
+          <button
+            class="transform-button"
+            type="submit"
+            aria-label="Apply transformation"
+            title="Apply transformation · Enter"
+          >
+            <svg class="icon"><use href="#icon-arrow" /></svg>
           </button>
         </form>
-        <div class="expression-meta">
-          <div class="presets" aria-label="Example functions">
-            <span class="quiet">Try</span
-            ><button type="button" data-expression="z^2" aria-pressed="true">
-              z²</button
-            ><button type="button" data-expression="1/z" aria-pressed="false">
-              1/z</button
-            ><button
-              type="button"
-              data-expression="exp(z)"
-              aria-pressed="false"
+        <span class="bar-divider" aria-hidden="true"></span>
+        <button
+          id="presets-toggle"
+          class="bar-button"
+          type="button"
+          aria-label="Functions"
+          aria-haspopup="dialog"
+          aria-controls="preset-dialog"
+          aria-expanded="false"
+        >
+          <svg class="icon"><use href="#icon-library" /></svg
+          ><span>Functions</span>
+        </button>
+        <button
+          id="help-toggle"
+          class="icon-button"
+          type="button"
+          aria-label="Expression help"
+          aria-haspopup="dialog"
+          aria-controls="help-dialog"
+        >
+          <svg class="icon"><use href="#icon-help" /></svg>
+        </button>
+        <p id="expression-error" class="error glass" role="alert" hidden></p>
+      </header>
+      <aside
+        id="source-panel"
+        class="config-panel source-config glass"
+        aria-label="Input settings"
+      >
+        <button
+          class="panel-heading"
+          id="source-toggle"
+          type="button"
+          aria-expanded="true"
+          aria-controls="source-controls"
+        >
+          <span class="panel-title"
+            ><svg class="icon"><use href="#icon-sliders" /></svg>Input</span
+          ><svg class="icon collapse-chevron"><use href="#icon-chevron" /></svg>
+        </button>
+        <div id="source-controls" class="panel-body">
+          <section class="control-section">
+            <div class="control-row">
+              <label for="domain">Domain half-span</label
+              ><span
+                class="infinite-badge"
+                title="The grid extends with the input view"
+                >∞</span
+              >
+            </div>
+            <form id="domain-form" class="domain-entry" novalidate>
+              <span aria-hidden="true">±</span>
+              <input
+                id="domain"
+                type="number"
+                step="any"
+                value="2"
+                aria-label="Domain half-span"
+                aria-describedby="domain-error"
+              />
+              <button
+                type="submit"
+                aria-label="Apply domain"
+                title="Apply domain · Enter"
+              >
+                <svg class="icon"><use href="#icon-arrow" /></svg>
+              </button>
+            </form>
+            <p id="domain-error" class="field-error" role="alert" hidden></p>
+            <div class="domain-meta">
+              <span>Center</span><output id="domain-center">0</output>
+            </div>
+            <div
+              class="segmented navigation-mode"
+              aria-label="Input interaction"
             >
-              eᶻ</button
-            ><button
-              type="button"
-              data-expression="sin(z)"
-              aria-pressed="false"
-            >
-              sin(z)</button
-            ><button
-              type="button"
-              data-expression="(z-1)/(z+1)"
-              aria-pressed="false"
-            >
-              (z−1)/(z+1)</button
-            ><button
-              type="button"
-              data-expression="conj(z)"
-              aria-pressed="false"
-            >
-              conj(z)
-            </button>
-          </div>
-          <span id="expression-help" class="quiet"
-            >Use z, i, π, and your imagination.</span
-          >
-        </div>
-        <p id="expression-error" class="error" role="alert" hidden></p>
-      </section>
-
-      <section class="workspace" aria-label="Complex planes">
-        <div class="workspace-toolbar">
-          <div class="toolbar-group">
-            <span class="control-label">Grid</span>
+              <button id="probe-mode" type="button" aria-pressed="true">
+                Probe</button
+              ><button id="pan-mode" type="button" aria-pressed="false">
+                Pan
+              </button>
+            </div>
             <div class="segmented" aria-label="Grid type">
-              <button type="button" id="cartesian" aria-pressed="true">
+              <button id="cartesian" type="button" aria-pressed="true">
                 Cartesian</button
-              ><button type="button" id="polar" aria-pressed="false">
+              ><button id="polar" type="button" aria-pressed="false">
                 Polar
               </button>
             </div>
-            <label class="circle-toggle"
-              ><input id="unit-circle" type="checkbox" checked /> Unit
-              circle</label
-            >
-          </div>
-          <div class="toolbar-group">
-            <label for="density" class="control-label">Density</label
-            ><select id="density">
-              <option value="8">Light</option>
-              <option value="12" selected>Balanced</option>
-              <option value="20">Fine</option></select
-            ><button type="button" class="text-button" id="reset">
-              Reset view <span aria-hidden="true">↺</span>
-            </button>
-          </div>
-        </div>
-        <div class="planes">
-          <article class="plane-panel">
-            <div class="plane-heading">
-              <div>
-                <span class="plane-index">01</span>
-                <h2>Input plane <i>z</i></h2>
-              </div>
-              <span class="plane-tag">DOMAIN</span>
+            <div class="control-row density-row">
+              <label for="density">Density</label
+              ><select id="density">
+                <option value="8">Light</option>
+                <option value="12" selected>Balanced</option>
+                <option value="20">Fine</option>
+              </select>
             </div>
-            <div class="plot-wrap">
-              <canvas
-                id="source"
-                tabindex="0"
-                aria-label="Input complex plane. Click or drag to move the probe; arrow keys move it, Shift for larger steps. Scroll to change the domain."
-                >Interactive complex input plane. Use the real and imaginary
-                coordinate inputs below to move the probe.</canvas
-              ><span class="plot-hint">Click or drag to explore</span>
-            </div>
-            <div class="plane-footer">
-              <label for="domain"
-                >Domain
-                <span class="mono"
-                  >±<output id="domain-value">2</output></span
-                ></label
-              ><input
-                id="domain"
-                type="range"
-                min="0.5"
-                max="5"
-                step="0.1"
-                value="2"
-              /><span class="axis-note">Re(z) × Im(z)</span>
-            </div>
-          </article>
-          <article class="plane-panel">
-            <div class="plane-heading">
-              <div>
-                <span class="plane-index">02</span>
-                <h2>Output plane <i>w</i></h2>
-              </div>
-              <button
-                id="fit"
-                type="button"
-                class="fit-button"
-                title="Fit finite samples; extreme tails near poles are excluded"
+          </section>
+          <section class="control-section display-controls">
+            <label class="control-row switch-row" for="unit-circle"
+              ><span>Unit circle <span class="inline-math">|z| = 1</span></span
+              ><input class="switch" id="unit-circle" type="checkbox" checked
+            /></label>
+            <label class="control-row switch-row" for="show-axes"
+              ><span>Coordinate guides</span
+              ><input class="switch" id="show-axes" type="checkbox" checked
+            /></label>
+            <div class="legend">
+              <span
+                ><b class="swatch teal"></b
+                ><span id="legend-first">Horizontal</span></span
+              ><span
+                ><b class="swatch rose"></b
+                ><span id="legend-second">Vertical</span></span
               >
-                Fit to view <span aria-hidden="true">⤢</span>
-              </button>
             </div>
-            <div class="plot-wrap">
-              <canvas
-                id="target"
-                tabindex="0"
-                aria-label="Transformed complex plane. Drag to pan, scroll or press plus and minus to zoom, arrow keys to pan, and 0 to fit."
-                >Transformed complex plane. The mapped probe value is shown
-                below.</canvas
-              ><span class="plot-hint">Scroll to zoom · drag to pan</span
-              ><span id="output-message" class="output-message" hidden></span>
+          </section>
+          <section class="control-section probe-section">
+            <div class="section-label">Probe <i>z</i></div>
+            <div class="coordinate-inputs">
+              <label for="probe-real"
+                ><span>Real</span
+                ><input
+                  id="probe-real"
+                  type="number"
+                  step="0.1"
+                  value="0.7"
+                  aria-label="Probe real part" /></label
+              ><label for="probe-imag"
+                ><span>Imaginary</span
+                ><input
+                  id="probe-imag"
+                  type="number"
+                  step="0.1"
+                  value="0.5"
+                  aria-label="Probe imaginary part"
+              /></label>
             </div>
-            <div class="plane-footer">
-              <span class="mapping-label"
-                >w = <span id="active-expression" class="mono">z^2</span></span
-              ><span class="axis-note" id="view-scale"></span>
-            </div>
-          </article>
+            <span class="panel-hint">Drag to probe · Shift-drag to pan</span>
+          </section>
         </div>
-        <div class="workspace-bottom">
-          <div class="legend">
-            <span
-              ><b class="swatch teal"></b
-              ><span id="legend-first">Horizontal lines</span></span
-            ><span
-              ><b class="swatch rose"></b
-              ><span id="legend-second">Vertical lines</span></span
-            ><span><b class="swatch circle"></b>|z| = 1</span>
-          </div>
-          <span class="quiet">Matching colors, connected points.</span>
-        </div>
-      </section>
-
-      <section class="explore-controls" aria-label="Explore the transformation">
-        <div class="probe">
-          <div class="section-label">FOLLOW A POINT</div>
-          <div class="probe-values">
-            <label for="probe-real">z =</label
-            ><input
-              id="probe-real"
-              type="number"
-              step="0.1"
-              value="0.7"
-              aria-label="Real part of input point"
-            /><span>+</span
-            ><input
-              id="probe-imag"
-              type="number"
-              step="0.1"
-              value="0.5"
-              aria-label="Imaginary part of input point"
-            /><i>i</i><span class="probe-arrow" aria-hidden="true">→</span
-            ><output id="probe-output" aria-live="polite" aria-atomic="true"
+      </aside>
+      <aside
+        id="target-panel"
+        class="config-panel target-config glass"
+        aria-label="Output settings"
+      >
+        <button
+          class="panel-heading"
+          id="target-toggle"
+          type="button"
+          aria-expanded="true"
+          aria-controls="target-controls"
+        >
+          <span class="panel-title"
+            ><svg class="icon"><use href="#icon-sliders" /></svg>Output</span
+          ><svg class="icon collapse-chevron"><use href="#icon-chevron" /></svg>
+        </button>
+        <div id="target-controls" class="panel-body">
+          <section class="control-section result-section">
+            <div class="section-label">Mapped point</div>
+            <div class="mapping-label">
+              w = <span id="active-expression">z^2</span>
+            </div>
+            <output
+              id="probe-output"
+              class="probe-result"
+              aria-live="polite"
+              aria-atomic="true"
               >0.24 + 0.7i</output
             >
-          </div>
-          <p id="probe-detail" class="quiet">|z| = 0.86 · |f(z)| = 0.74</p>
-        </div>
-        <div class="deformation">
-          <div class="section-label">
-            <label for="morph">WATCH THE TRANSFORMATION</label
-            ><output id="morph-value">100%</output>
-          </div>
-          <div class="animation-controls">
-            <button id="play" type="button" aria-label="Play transformation">
-              <span id="play-icon" aria-hidden="true">▶</span></button
-            ><span class="quiet">z</span
-            ><input
-              id="morph"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="1"
-            /><span class="quiet">f(z)</span>
-          </div>
-          <p class="quiet">Slide between the original grid and its image.</p>
-        </div>
-      </section>
-
-      <details class="syntax">
-        <summary>Expression guide <span aria-hidden="true">+</span></summary>
-        <div class="syntax-content">
-          <div>
-            <h3>Write naturally</h3>
-            <p id="syntax-operators">
-              <code>+ − * / ^</code> and parentheses. Multiplication can be
-              implicit: <code>2z</code>, <code>iz</code>, or
-              <code>(z+1)(z-1)</code>. Powers associate right:
-              <code>z^2^3 = z^8</code>.
+            <p id="probe-detail" class="probe-detail">
+              |z| = 0.86 · |f(z)| = 0.74
             </p>
-            <p>
-              Constants: <code>i</code>, <code>pi</code> / <code>π</code>,
-              <code>e</code>, <code>tau</code>. Angles are in radians.
-            </p>
-          </div>
-          <div>
-            <h3>Go a little further</h3>
-            <p>
-              <code
-                >exp log ln sqrt sin cos tan sinh cosh tanh asin acos atan abs
-                arg re im conj</code
+          </section>
+          <section class="control-section">
+            <div class="control-row">
+              <label for="morph">Transformation</label
+              ><output id="morph-value" class="value-pill">100%</output>
+            </div>
+            <div class="animation-controls">
+              <button
+                id="play"
+                type="button"
+                class="play-button"
+                aria-label="Play transformation"
               >
-            </p>
-            <p>
-              Also <code>pow(z, 2)</code> and <code>complex(1, 2)</code>. Try
-              <code>exp(i*pi*z)</code> or <code>z + 0.5/z</code>.
-            </p>
-          </div>
-          <div>
-            <h3>A note on the picture</h3>
-            <p>
-              Logarithms, roots, and noninteger powers use principal values.
-              Poles, overflow, and detected discontinuities leave gaps. Curves
-              are numerical samples, so very rapid oscillations may be
-              under-resolved.
-            </p>
-            <p>
-              During animation, the output shows <code>(1−t)z + t f(z)</code>.
-              Point values always report the full function.
-            </p>
-          </div>
+                <span id="play-icon" aria-hidden="true">▶</span></button
+              ><input
+                id="morph"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              />
+            </div>
+            <div class="animation-labels">
+              <i>z</i><span>→</span><i>f(z)</i>
+            </div>
+          </section>
+          <section class="control-section view-section">
+            <div class="control-row">
+              <span>View</span><span id="view-scale" class="quiet mono"></span>
+            </div>
+            <div class="view-buttons">
+              <button
+                id="zoom-out"
+                class="icon-button"
+                type="button"
+                aria-label="Zoom out"
+              >
+                −</button
+              ><button
+                id="fit"
+                type="button"
+                title="Fit the sampled input region; exclude extreme tails near poles"
+              >
+                <svg class="icon"><use href="#icon-fit" /></svg>Fit</button
+              ><button
+                id="zoom-in"
+                class="icon-button"
+                type="button"
+                aria-label="Zoom in"
+              >
+                +
+              </button>
+            </div>
+            <button id="reset" class="reset-button" type="button">
+              <svg class="icon"><use href="#icon-reset" /></svg>Reset view
+            </button>
+          </section>
+          <section class="control-section quick-section">
+            <div class="section-label">Quick presets</div>
+            <div class="quick-presets" aria-label="Quick presets">
+              <button type="button" data-expression="z^2" aria-pressed="true">
+                z²</button
+              ><button type="button" data-expression="z^3" aria-pressed="false">
+                z³</button
+              ><button type="button" data-expression="1/z" aria-pressed="false">
+                1/z</button
+              ><button
+                type="button"
+                data-expression="exp(z)"
+                aria-pressed="false"
+              >
+                eᶻ</button
+              ><button
+                type="button"
+                data-expression="log(z)"
+                aria-pressed="false"
+              >
+                log z</button
+              ><button
+                type="button"
+                data-expression="z + 1/z"
+                aria-pressed="false"
+              >
+                z + 1/z
+              </button>
+            </div>
+            <button
+              id="all-presets"
+              class="all-presets"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="preset-dialog"
+            >
+              All presets <span id="preset-count">32</span
+              ><svg class="icon"><use href="#icon-chevron" /></svg>
+            </button>
+          </section>
         </div>
-      </details>
-      <footer class="page-footer">
-        <span>Made for mathematical curiosity.</span
-        ><span>Runs entirely in your browser · No installation</span>
-      </footer>
+      </aside>
+      <div class="canvas-hints" aria-hidden="true">
+        <span>Drag to probe · Shift-drag to pan · Scroll to zoom</span
+        ><span>Drag to pan · Scroll to zoom</span>
+      </div>
+      <dialog
+        id="preset-dialog"
+        class="floating-dialog glass"
+        aria-labelledby="presets-title"
+      >
+        <div class="dialog-heading">
+          <div>
+            <h2 id="presets-title">Functions</h2>
+            <span class="quiet">Start with a familiar transformation</span>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            data-close-dialog="preset-dialog"
+            aria-label="Close function library"
+          >
+            <svg class="icon"><use href="#icon-close" /></svg>
+          </button>
+        </div>
+        <label class="search-field"
+          ><svg class="icon"><use href="#icon-search" /></svg
+          ><input
+            id="preset-search"
+            type="search"
+            placeholder="Search functions, formulas, or groups"
+            aria-label="Search function presets"
+            autocomplete="off"
+        /></label>
+        <div id="preset-groups" class="preset-groups"></div>
+        <p id="preset-empty" class="empty-state" hidden>
+          No matching functions
+        </p>
+      </dialog>
+      <dialog
+        id="help-dialog"
+        class="floating-dialog help-dialog glass"
+        aria-labelledby="help-title"
+      >
+        <div class="dialog-heading">
+          <h2 id="help-title">Expressions</h2>
+          <button
+            type="button"
+            class="icon-button"
+            data-close-dialog="help-dialog"
+            aria-label="Close help"
+          >
+            <svg class="icon"><use href="#icon-close" /></svg>
+          </button>
+        </div>
+        <div class="syntax-content">
+          <p>
+            Variable <code>z</code>; constants
+            <code>i · pi / π · e · tau</code>.
+          </p>
+          <p>
+            Use <code>+ − * / ^</code>, parentheses, and implicit
+            multiplication: <code>2z</code>, <code>iz</code>,
+            <code>(z+1)(z−1)</code>. Press Enter to apply.
+          </p>
+          <h3>Functions</h3>
+          <p>
+            <code
+              >exp log ln sqrt sin cos tan sinh cosh tanh asin acos atan abs arg
+              re im conj</code
+            >
+          </p>
+          <p><code>pow(z, 2)</code> · <code>complex(1, 2)</code></p>
+          <h3>Domain &amp; infinite grid</h3>
+          <p>
+            Enter any positive finite domain half-span, including scientific
+            notation. The grid continues as you pan and zoom the input plane.
+            The output maps the currently sampled input region, not every point
+            of the infinite plane.
+          </p>
+          <p>
+            Grid spacing adapts to the view. Floating-point precision and
+            function overflow still apply at extreme scales.
+          </p>
+          <h3>Numerical conventions</h3>
+          <p>
+            Angles use radians. Logarithms, roots, and noninteger powers use
+            principal values. Poles and detected discontinuities leave gaps;
+            fast oscillations may exceed sampling resolution.
+          </p>
+          <p>
+            Animation shows <code>(1−t)z + t f(z)</code>. The point inspector
+            always reports the full <code>f(z)</code>.
+          </p>
+          <h3>Navigation</h3>
+          <p>
+            Input: choose Probe or Pan, or hold Shift while dragging to pan.
+            Arrow keys follow the selected tool. Both canvases support
+            <code>+ / −</code> and the scroll wheel for zoom.
+            <code>0</code> resets the input or fits the output. Escape closes
+            dialogs.
+          </p>
+        </div>
+      </dialog>
     </main>
   </body>
 </html>

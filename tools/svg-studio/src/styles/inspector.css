@@ -177,15 +177,6 @@ input[type='number']:hover::-webkit-inner-spin-button {
   border: 0;
   background: transparent;
 }
-.inspector-tip {
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #93a1b2;
-  font-size: 10px;
-  line-height: 1.7;
-}
 .selection-heading {
   padding: 8px 18px 18px;
   display: flex;

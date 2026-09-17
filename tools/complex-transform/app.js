@@ -2,21 +2,26 @@
 (() => {
   "use strict";
   const { compile, C, finite } = window.ComplexMath;
-  const { sampleCurve, fitBounds } = window.ComplexGeometry;
+  const { sampleCurve, fitBounds, niceStep, ticks, viewBounds, createGrid } =
+    window.ComplexGeometry;
   const $ = (id) => document.getElementById(id);
   const colors = {
-    teal: "#368f8b",
-    rose: "#b76b88",
-    circle: "#ba9151",
-    ink: "#284c3c",
+    teal: "#559cbd",
+    rose: "#a17bc2",
+    circle: "#c4a165",
+    ink: "#5779b5",
   };
   const state = {
     expression: "z^2",
     fn: compile("z^2"),
-    extent: 2,
+    sourceView: { re: 0, im: 0, span: 2 },
+    tool: "probe",
+    gridDirty: true,
+    fitPending: true,
     divisions: 12,
     grid: "cartesian",
     circle: true,
+    axes: true,
     t: 1,
     probe: C(0.7, 0.5),
     view: { re: 0, im: 0, span: 9.2 },
@@ -45,7 +50,7 @@
   }
   function format(n, digits = 3) {
     if (!Number.isFinite(n)) return "undefined";
-    if (Math.abs(n) < 1e-10) return "0";
+    if (n === 0) return "0";
     if (Math.abs(n) >= 1e5 || Math.abs(n) < 0.001) return n.toExponential(2);
     return String(Number(n.toFixed(digits)));
   }
@@ -64,50 +69,21 @@
     return C((1 - t) * z.re + t * w.re, (1 - t) * z.im + t * w.im);
   }
   function buildCurves() {
-    const e = state.extent,
-      n = state.divisions;
-    const curves = [];
-    if (state.grid === "cartesian") {
-      for (let j = 0; j <= n; j++) {
-        const value = -e + (2 * e * j) / n;
-        curves.push({
-          curve: (t) => C(-e + 2 * e * t, value),
-          color: colors.teal,
-        });
-        curves.push({
-          curve: (t) => C(value, -e + 2 * e * t),
-          color: colors.rose,
-        });
-      }
-    } else {
-      for (let j = 1; j <= n / 2; j++) {
-        const radius = (2 * e * j) / n;
-        curves.push({
-          curve: (t) =>
-            C(
-              radius * Math.cos(t * 2 * Math.PI),
-              radius * Math.sin(t * 2 * Math.PI),
-            ),
-          color: colors.teal,
-        });
-      }
-      for (let j = 0; j < n * 2; j++) {
-        const angle = (j * Math.PI) / n;
-        curves.push({
-          curve: (t) => C(e * t * Math.cos(angle), e * t * Math.sin(angle)),
-          color: colors.rose,
-        });
-      }
-    }
-    if (state.circle)
-      curves.push({
-        curve: (t) => C(Math.cos(t * Math.PI * 2), Math.sin(t * Math.PI * 2)),
-        color: colors.circle,
-        circle: true,
-      });
-    state.curves = curves;
-    gridGeneration++;
+    state.gridDirty = true;
     requestDraw(true);
+  }
+  function rebuildGrid() {
+    state.curves = createGrid(
+      state.sourceView,
+      source.width,
+      source.height,
+      state.divisions,
+      state.grid,
+      state.circle,
+    ).map((line) => ({ ...line, color: colors[line.color] }));
+    gridGeneration++;
+    state.gridDirty = false;
+    state.geometryDirty = true;
   }
   function resize(plot) {
     const rect = plot.canvas.getBoundingClientRect();
@@ -118,13 +94,13 @@
       plot.canvas.width = width;
       plot.canvas.height = height;
       state.geometryDirty = true;
+      if (plot === source) state.gridDirty = true;
     }
     plot.width = rect.width;
     plot.height = rect.height;
     plot.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    plot.view =
-      plot === source ? { re: 0, im: 0, span: state.extent * 1.2 } : state.view;
-    plot.scale = Math.min(plot.width, plot.height) / (2 * plot.view.span);
+    plot.view = plot === source ? state.sourceView : state.view;
+    plot.scale = Math.min(plot.width, plot.height) / 2 / plot.view.span;
   }
   function pixel(plot, z) {
     return {
@@ -139,60 +115,51 @@
     );
   }
   function tickStep(scale) {
-    const ideal = 65 / scale,
-      power = 10 ** Math.floor(Math.log10(ideal));
-    return [1, 2, 5, 10].find((n) => n * power >= ideal) * power;
+    return niceStep(65 / scale) || Number.MIN_VALUE;
   }
   function background(plot) {
     const { ctx, width, height, scale } = plot;
     ctx.clearRect(0, 0, width, height);
+    if (!state.axes) return;
     const step = tickStep(scale),
       origin = pixel(plot, C(0));
     const min = world(plot, 0, height),
       max = world(plot, width, 0);
     ctx.lineWidth = 0.7;
-    ctx.strokeStyle = "#e9ede5";
+    ctx.strokeStyle = "#b9c9dd3b";
     ctx.font = "10px Consolas, monospace";
-    ctx.fillStyle = "#a0a99a";
-    for (
-      let n = Math.ceil(min.re / step);
-      n <= Math.floor(max.re / step);
-      n++
-    ) {
-      const x = pixel(plot, C(n * step)).x;
+    ctx.fillStyle = "#96a7be";
+    for (const value of ticks(min.re, max.re, step)) {
+      const x = pixel(plot, C(value)).x;
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x, height);
       ctx.stroke();
-      if (n !== 0 && x > 16 && x < width - 20) {
+      if (value !== 0 && x > 16 && x < width - 20) {
         ctx.textAlign = "center";
         ctx.fillText(
-          format(n * step, 2),
+          format(value, 2),
           x,
           Math.max(16, Math.min(height - 30, origin.y + 15)),
         );
       }
     }
-    for (
-      let n = Math.ceil(min.im / step);
-      n <= Math.floor(max.im / step);
-      n++
-    ) {
-      const y = pixel(plot, C(0, n * step)).y;
+    for (const value of ticks(min.im, max.im, step)) {
+      const y = pixel(plot, C(0, value)).y;
       ctx.beginPath();
       ctx.moveTo(0, y);
       ctx.lineTo(width, y);
       ctx.stroke();
-      if (n !== 0 && y > 17 && y < height - 23) {
+      if (value !== 0 && y > 17 && y < height - 23) {
         ctx.textAlign = "left";
         ctx.fillText(
-          format(n * step, 2),
+          format(value, 2),
           Math.max(8, Math.min(width - 42, origin.x + 8)),
           y - 5,
         );
       }
     }
-    ctx.strokeStyle = "#bbc7b8";
+    ctx.strokeStyle = "#a6b8cd88";
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(origin.x, 0);
@@ -200,7 +167,7 @@
     ctx.moveTo(0, origin.y);
     ctx.lineTo(width, origin.y);
     ctx.stroke();
-    ctx.fillStyle = "#788b78";
+    ctx.fillStyle = "#8196b3";
     ctx.font = "italic 12px Georgia, serif";
     ctx.textAlign = "right";
     ctx.fillText(
@@ -217,7 +184,7 @@
       origin.y < height - 25
     ) {
       ctx.font = "10px Consolas, monospace";
-      ctx.fillStyle = "#9da897";
+      ctx.fillStyle = "#96a7be";
       ctx.fillText("0", origin.x + 6, origin.y + 14);
     }
   }
@@ -225,8 +192,8 @@
     const ctx = plot.ctx;
     ctx.beginPath();
     ctx.strokeStyle = style.color;
-    ctx.globalAlpha = style.circle ? 0.95 : plot === source ? 0.52 : 0.73;
-    ctx.lineWidth = style.circle ? 1.6 : 1.05;
+    ctx.globalAlpha = style.circle ? 0.85 : plot === source ? 0.57 : 0.76;
+    ctx.lineWidth = style.circle ? 1.6 : 1.15;
     ctx.setLineDash(style.circle ? [5, 4] : []);
     let pen = false;
     for (const p of points) {
@@ -255,7 +222,7 @@
       return false;
     ctx.beginPath();
     ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
-    ctx.fillStyle = "#28645118";
+    ctx.fillStyle = "#7292c51f";
     ctx.fill();
     ctx.beginPath();
     ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
@@ -284,6 +251,11 @@
     frame = 0;
     resize(source);
     resize(target);
+    if (state.gridDirty) rebuildGrid();
+    if (state.fitPending) {
+      fitOutput();
+      resize(target);
+    }
     if (sourceGeneration !== gridGeneration) {
       sourceGeometry = state.curves.map((line) =>
         Array.from({ length: 129 }, (_, i) => line.curve(i / 128)),
@@ -291,8 +263,12 @@
       sourceGeneration = gridGeneration;
     }
     if (state.geometryDirty) {
+      const budget = Math.min(
+        8192,
+        Math.max(128, Math.floor(60000 / Math.max(1, state.curves.length))),
+      );
       geometry = state.curves.map((line) =>
-        sampleCurve(line.curve, mapped, target.scale),
+        sampleCurve(line.curve, mapped, target.scale, { budget }),
       );
       state.geometryDirty = false;
     }
@@ -309,7 +285,7 @@
       points.some((p) => p && finite(p)),
     );
     const message = !anyFinite
-      ? "No finite values in this domain"
+      ? "No finite values in the sampled region"
       : !finite(w)
         ? "The function is undefined at this point"
         : !onScreen
@@ -317,21 +293,27 @@
           : state.fitMessage;
     $("output-message").textContent = message;
     $("output-message").hidden = !message;
-    $("view-scale").textContent = `${format(state.view.span)} / half-height`;
+    $("view-scale").textContent = `±${format(state.view.span)}`;
+    $("view-scale").title = "Half-span along the shorter canvas edge";
   }
   function fitView() {
+    state.fitPending = true;
+    requestDraw(true);
+  }
+  function fitOutput() {
     const points = state.curves.flatMap((line) =>
       Array.from({ length: 129 }, (_, i) => mapped(line.curve(i / 128))),
     );
     const fit = fitBounds(points);
-    if (fit) {
+    if (fit && viewBounds(fit, target.width, target.height)) {
       state.view = { re: fit.re, im: fit.im, span: fit.span };
       state.fitMessage = fit.trimmed ? "Extreme tails omitted from fit" : "";
     } else {
-      state.view = { re: 0, im: 0, span: state.extent * 1.2 };
+      state.view = { re: 0, im: 0, span: state.sourceView.span };
       state.fitMessage = "";
     }
-    requestDraw(true);
+    state.fitPending = false;
+    state.geometryDirty = true;
   }
   function updateProbe(syncInputs = true) {
     if (syncInputs) {
@@ -405,21 +387,22 @@
     event.preventDefault();
     applyExpression();
   });
-  document.querySelectorAll("[data-expression]").forEach((button) =>
-    button.addEventListener("click", () => {
-      $("expression").value = button.dataset.expression;
-      applyExpression();
-    }),
-  );
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-expression]");
+    if (!button) return;
+    $("expression").value = button.dataset.expression;
+    applyExpression();
+    if ($("preset-dialog").open) $("preset-dialog").close();
+  });
   for (const type of ["cartesian", "polar"])
     $(type).addEventListener("click", () => {
       state.grid = type;
       $("cartesian").setAttribute("aria-pressed", String(type === "cartesian"));
       $("polar").setAttribute("aria-pressed", String(type === "polar"));
       $("legend-first").textContent =
-        type === "cartesian" ? "Horizontal lines" : "Circles";
+        type === "cartesian" ? "Horizontal" : "Circles";
       $("legend-second").textContent =
-        type === "cartesian" ? "Vertical lines" : "Rays";
+        type === "cartesian" ? "Vertical" : "Rays";
       buildCurves();
       fitView();
     });
@@ -427,25 +410,59 @@
     state.circle = $("unit-circle").checked;
     buildCurves();
   });
+  $("show-axes").addEventListener("change", () => {
+    state.axes = $("show-axes").checked;
+    requestDraw();
+  });
   $("density").addEventListener("change", () => {
     state.divisions = Number($("density").value);
     buildCurves();
   });
-  function setDomain(value) {
-    state.extent = Math.max(0.5, Math.min(5, Math.round(value * 10) / 10));
-    $("domain").value = state.extent;
-    $("domain-value").textContent = format(state.extent, 1);
+  function domainError(message) {
+    $("domain-error").textContent = message;
+    $("domain-error").hidden = !message;
+    $("domain").setAttribute("aria-invalid", String(Boolean(message)));
+  }
+  function setSourceView(view) {
+    resize(source);
+    if (!viewBounds(view, source.width, source.height, 0.04)) {
+      domainError(
+        "This view exceeds numerical precision. Try another span or press 0 on the input canvas to recenter.",
+      );
+      return false;
+    }
+    const changed =
+      view.re !== state.sourceView.re ||
+      view.im !== state.sourceView.im ||
+      view.span !== state.sourceView.span;
+    state.sourceView = view;
+    $("domain").value = String(view.span);
+    $("domain-center").textContent = formatComplex(C(view.re, view.im));
+    domainError("");
+    if (!changed) return true;
     buildCurves();
     fitView();
+    return true;
   }
-  $("domain").addEventListener("input", () =>
-    setDomain(Number($("domain").value)),
+  function setDomain(value) {
+    if (!(value > 0) || !Number.isFinite(value)) {
+      domainError("Enter a positive finite number, for example 20 or 1e-4.");
+      return;
+    }
+    setSourceView({ ...state.sourceView, span: value });
+  }
+  $("domain-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    setDomain($("domain").valueAsNumber);
+  });
+  $("domain").addEventListener("change", () =>
+    setDomain($("domain").valueAsNumber),
   );
   $("fit").addEventListener("click", fitView);
   $("reset").addEventListener("click", () => {
     stopAnimation();
     setMorph(1);
-    setDomain(2);
+    setSourceView({ re: 0, im: 0, span: 2 });
   });
   for (const id of ["probe-real", "probe-imag"])
     $(id).addEventListener("input", () => {
@@ -483,37 +500,85 @@
     const rect = plot.canvas.getBoundingClientRect();
     return { x: event.clientX - rect.left, y: event.clientY - rect.top };
   }
-  let probePointer = null;
+  let probePointer = null,
+    sourcePan = null;
+  for (const mode of ["probe", "pan"])
+    $(mode + "-mode").addEventListener("click", () => {
+      state.tool = mode;
+      source.canvas.dataset.tool = mode;
+      $("probe-mode").setAttribute("aria-pressed", String(mode === "probe"));
+      $("pan-mode").setAttribute("aria-pressed", String(mode === "pan"));
+    });
   function moveProbe(event) {
     const p = localPoint(event, source),
       z = world(source, p.x, p.y);
-    state.probe = C(
-      Math.max(-state.extent, Math.min(state.extent, z.re)),
-      Math.max(-state.extent, Math.min(state.extent, z.im)),
-    );
+    if (!finite(z)) return;
+    state.probe = z;
     updateProbe();
   }
   source.canvas.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0) return;
-    probePointer = event.pointerId;
+    if (event.button !== 0 && event.button !== 1) return;
+    event.preventDefault();
     source.canvas.setPointerCapture(event.pointerId);
     source.canvas.focus({ preventScroll: true });
-    moveProbe(event);
+    if (state.tool === "pan" || event.shiftKey || event.button === 1) {
+      sourcePan = {
+        pointer: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        view: { ...state.sourceView },
+        scale: source.scale,
+      };
+      source.canvas.classList.add("panning");
+    } else {
+      probePointer = event.pointerId;
+      moveProbe(event);
+    }
   });
   source.canvas.addEventListener("pointermove", (event) => {
-    if (probePointer === event.pointerId) moveProbe(event);
+    if (sourcePan && sourcePan.pointer === event.pointerId) {
+      setSourceView({
+        ...sourcePan.view,
+        re: sourcePan.view.re - (event.clientX - sourcePan.x) / sourcePan.scale,
+        im: sourcePan.view.im + (event.clientY - sourcePan.y) / sourcePan.scale,
+      });
+    } else if (probePointer === event.pointerId) moveProbe(event);
   });
-  source.canvas.addEventListener("lostpointercapture", () => {
-    probePointer = null;
-  });
-  source.canvas.addEventListener("pointerup", () => {
-    probePointer = null;
-  });
+  for (const name of ["lostpointercapture", "pointerup", "pointercancel"])
+    source.canvas.addEventListener(name, () => {
+      probePointer = null;
+      sourcePan = null;
+      source.canvas.classList.remove("panning");
+    });
+  function zoomedView(plot, factor, position) {
+    resize(plot);
+    const view = plot === source ? state.sourceView : state.view;
+    const before = world(plot, position.x, position.y);
+    const span = view.span * factor;
+    const candidate = {
+      re: before.re + (view.re - before.re) * factor,
+      im: before.im + (view.im - before.im) * factor,
+      span,
+    };
+    return viewBounds(candidate, plot.width, plot.height, 0.04)
+      ? candidate
+      : null;
+  }
+  function zoomSource(
+    factor,
+    position = { x: source.width / 2, y: source.height / 2 },
+  ) {
+    const view = zoomedView(source, factor, position);
+    if (view) setSourceView(view);
+  }
   source.canvas.addEventListener(
     "wheel",
     (event) => {
       event.preventDefault();
-      setDomain(state.extent + Math.sign(event.deltaY) * 0.2);
+      zoomSource(
+        Math.exp(Math.max(-200, Math.min(200, event.deltaY)) * 0.0015),
+        localPoint(event, source),
+      );
     },
     { passive: false },
   );
@@ -524,21 +589,31 @@
       ArrowUp: [0, 1],
       ArrowDown: [0, -1],
     };
-    if (!moves[event.key]) return;
-    event.preventDefault();
-    const [x, y] = moves[event.key],
-      step = state.extent * (event.shiftKey ? 0.1 : 0.02);
-    state.probe = C(
-      Math.max(
-        -state.extent,
-        Math.min(state.extent, state.probe.re + x * step),
-      ),
-      Math.max(
-        -state.extent,
-        Math.min(state.extent, state.probe.im + y * step),
-      ),
-    );
-    updateProbe();
+    if (moves[event.key]) {
+      event.preventDefault();
+      const [x, y] = moves[event.key];
+      const step = state.sourceView.span * (event.shiftKey ? 0.1 : 0.02);
+      if (state.tool === "pan") {
+        setSourceView({
+          ...state.sourceView,
+          re: state.sourceView.re + x * step * 5,
+          im: state.sourceView.im + y * step * 5,
+        });
+      } else {
+        const candidate = C(
+          state.probe.re + x * step,
+          state.probe.im + y * step,
+        );
+        if (finite(candidate)) {
+          state.probe = candidate;
+          updateProbe();
+        }
+      }
+    } else if (["+", "=", "-", "0"].includes(event.key)) {
+      event.preventDefault();
+      if (event.key === "0") setSourceView({ re: 0, im: 0, span: 2 });
+      else zoomSource(event.key === "-" ? 1.25 : 1 / 1.25);
+    }
   });
   let pan = null;
   target.canvas.addEventListener("pointerdown", (event) => {
@@ -555,8 +630,13 @@
   });
   target.canvas.addEventListener("pointermove", (event) => {
     if (!pan || pan.pointer !== event.pointerId) return;
-    state.view.re = pan.re - (event.clientX - pan.x) / target.scale;
-    state.view.im = pan.im + (event.clientY - pan.y) / target.scale;
+    const candidate = {
+      ...state.view,
+      re: pan.re - (event.clientX - pan.x) / target.scale,
+      im: pan.im + (event.clientY - pan.y) / target.scale,
+    };
+    if (!viewBounds(candidate, target.width, target.height)) return;
+    state.view = candidate;
     state.fitMessage = "";
     requestDraw();
   });
@@ -570,12 +650,9 @@
     factor,
     position = { x: target.width / 2, y: target.height / 2 },
   ) {
-    const before = world(target, position.x, position.y),
-      oldSpan = state.view.span;
-    state.view.span = Math.max(1e-6, Math.min(1e12, oldSpan * factor));
-    const ratio = state.view.span / oldSpan;
-    state.view.re = before.re + (state.view.re - before.re) * ratio;
-    state.view.im = before.im + (state.view.im - before.im) * ratio;
+    const view = zoomedView(target, factor, position);
+    if (!view) return;
+    state.view = view;
     state.fitMessage = "";
     requestDraw(true);
   }
@@ -591,6 +668,8 @@
     { passive: false },
   );
   target.canvas.addEventListener("dblclick", fitView);
+  $("zoom-in").addEventListener("click", () => zoom(1 / 1.25));
+  $("zoom-out").addEventListener("click", () => zoom(1.25));
   target.canvas.addEventListener("keydown", (event) => {
     const moves = {
       ArrowLeft: [-1, 0],
@@ -601,8 +680,13 @@
     if (moves[event.key]) {
       event.preventDefault();
       const [x, y] = moves[event.key];
-      state.view.re += x * state.view.span * 0.1;
-      state.view.im += y * state.view.span * 0.1;
+      const candidate = {
+        ...state.view,
+        re: state.view.re + x * state.view.span * 0.1,
+        im: state.view.im + y * state.view.span * 0.1,
+      };
+      if (!viewBounds(candidate, target.width, target.height)) return;
+      state.view = candidate;
       requestDraw();
     } else if (["+", "=", "-", "0"].includes(event.key)) {
       event.preventDefault();
@@ -610,6 +694,137 @@
       else zoom(event.key === "-" ? 1.2 : 1 / 1.2);
     }
   });
+
+  // The canvases always occupy two equal viewport halves. Controls only overlay
+  // them, and folding a panel must not resize or change the plotted coordinates.
+  const compactViewport = window.matchMedia("(max-width: 900px)");
+  function setPanelCollapsed(side, collapsed) {
+    const panel = $(`${side}-panel`),
+      controls = $(`${side}-controls`);
+    const toggle = $(`${side}-toggle`);
+    if (collapsed && controls.contains(document.activeElement))
+      toggle.focus({ preventScroll: true });
+    panel.dataset.collapsed = String(collapsed);
+    controls.hidden = collapsed;
+    toggle.setAttribute("aria-expanded", String(!collapsed));
+  }
+  for (const side of ["source", "target"]) {
+    $(`${side}-toggle`).addEventListener("click", () => {
+      const collapsed = $(`${side}-panel`).dataset.collapsed === "true";
+      if (compactViewport.matches && collapsed)
+        setPanelCollapsed(side === "source" ? "target" : "source", true);
+      setPanelCollapsed(side, !collapsed);
+    });
+  }
+  function syncCompactPanels() {
+    for (const side of ["source", "target"])
+      setPanelCollapsed(side, compactViewport.matches);
+  }
+  compactViewport.addEventListener("change", syncCompactPanels);
+  syncCompactPanels();
+
+  const presetGroups = window.ComplexPresets;
+  const normalizeSearch = (text) =>
+    text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, "");
+  const presetCards = [];
+  for (const group of presetGroups) {
+    const section = document.createElement("section");
+    section.className = "preset-group";
+    const heading = document.createElement("h3");
+    heading.textContent = group.name;
+    const grid = document.createElement("div");
+    grid.className = "preset-grid";
+    for (const preset of group.presets) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "preset-card";
+      button.dataset.expression = preset.expression;
+      button.title = preset.expression;
+      button.setAttribute(
+        "aria-pressed",
+        String(preset.expression === state.expression),
+      );
+      const formula = document.createElement("span"),
+        name = document.createElement("span");
+      formula.className = "preset-formula";
+      formula.textContent = preset.formula;
+      name.className = "preset-name";
+      name.textContent = preset.name;
+      button.append(formula, name);
+      grid.append(button);
+      presetCards.push({
+        button,
+        section,
+        search: normalizeSearch(
+          `${group.name} ${preset.name} ${preset.formula} ${preset.expression}`,
+        ),
+      });
+    }
+    section.append(heading, grid);
+    $("preset-groups").append(section);
+  }
+  $("preset-count").textContent = presetCards.length;
+  function filterPresets() {
+    const query = normalizeSearch($("preset-search").value);
+    const visibleSections = new Set();
+    for (const card of presetCards) {
+      card.button.hidden = !card.search.includes(query);
+      if (!card.button.hidden) visibleSections.add(card.section);
+    }
+    for (const section of $("preset-groups").children)
+      section.hidden = !visibleSections.has(section);
+    $("preset-empty").hidden = visibleSections.size > 0;
+  }
+  $("preset-search").addEventListener("input", filterPresets);
+  function openPresets() {
+    stopAnimation();
+    $("preset-search").value = "";
+    filterPresets();
+    $("preset-dialog").showModal();
+    $("preset-dialog").scrollTop = 0;
+    $("presets-toggle").setAttribute("aria-expanded", "true");
+    $("preset-search").focus({ preventScroll: true });
+  }
+  $("presets-toggle").addEventListener("click", openPresets);
+  $("all-presets").addEventListener("click", openPresets);
+  $("help-toggle").addEventListener("click", () => {
+    stopAnimation();
+    $("help-dialog").showModal();
+  });
+  $("preset-dialog").addEventListener("close", () =>
+    $("presets-toggle").setAttribute("aria-expanded", "false"),
+  );
+  document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+    button.addEventListener("click", () =>
+      $(button.dataset.closeDialog).close(),
+    );
+  });
+  for (const id of ["preset-dialog", "help-dialog"]) {
+    // Search inputs normally consume Escape to clear their value. Close the
+    // dialog on the first Escape consistently, even while a search is active.
+    $(id).addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        $(id).close();
+      }
+    });
+    $(id).addEventListener("click", (event) => {
+      if (event.target !== $(id)) return;
+      const box = $(id).getBoundingClientRect();
+      if (
+        event.clientX < box.left ||
+        event.clientX > box.right ||
+        event.clientY < box.top ||
+        event.clientY > box.bottom
+      )
+        $(id).close();
+    });
+  }
+
   const observer = new ResizeObserver(() => requestDraw(true));
   observer.observe(source.canvas);
   observer.observe(target.canvas);

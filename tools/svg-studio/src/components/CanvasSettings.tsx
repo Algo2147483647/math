@@ -79,12 +79,6 @@ export function CanvasSettings() {
       <Section title="Workspace">
         <WorkspaceControls />
       </Section>
-      <div className="inspector-tip">
-        <Icon name="select" size={16} />
-        <span>
-          Hold <kbd>Shift</kbd> to add to your selection.
-        </span>
-      </div>
     </>
   );
 }

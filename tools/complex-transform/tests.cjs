@@ -1,7 +1,13 @@
 // Run with: node tools/complex-transform/tests.cjs
 const assert = require("node:assert/strict");
 const { compile, C, finite } = require("./math.js");
-const { sampleCurve, fitBounds } = require("./geometry.js");
+const {
+  sampleCurve,
+  fitBounds,
+  viewBounds,
+  createGrid,
+  ticks,
+} = require("./geometry.js");
 let checks = 0;
 function close(expression, input, expected, tolerance = 1e-10) {
   const actual = compile(expression)(input);
@@ -103,6 +109,85 @@ const outliers = Array.from({ length: 100 }, (_, i) => C(i / 100, i / 100));
 outliers.push(C(1e8, 1e8));
 assert.ok(fitBounds(outliers).trimmed);
 checks++;
+// The grid must cover the full viewport at every scale, not a fixed [-2, 2] box.
+for (const view of [
+  { re: 0, im: 0, span: 20 },
+  { re: 0, im: 0, span: 1e-12 },
+  { re: 0, im: 0, span: 1e100 },
+  { re: 1e12, im: -3e11, span: 2 },
+]) {
+  const bounds = viewBounds(view, 500, 800);
+  assert.ok(bounds, JSON.stringify(view));
+  for (const type of ["cartesian", "polar"]) {
+    const grid = createGrid(view, 500, 800, 12, type, true);
+    assert.ok(
+      grid.length > 0 && grid.length < 520,
+      `${type} grid has bounded work`,
+    );
+    for (const line of grid)
+      for (const t of [0, 0.25, 0.5, 0.75, 1]) assert.ok(finite(line.curve(t)));
+    if (type === "cartesian") {
+      const horizontal = grid.find((line) => line.color === "teal");
+      const vertical = grid.find((line) => line.color === "rose");
+      assert.ok(
+        horizontal.curve(0).re <= bounds.left &&
+          horizontal.curve(1).re >= bounds.right,
+      );
+      assert.ok(
+        vertical.curve(0).im <= bounds.bottom &&
+          vertical.curve(1).im >= bounds.top,
+      );
+    }
+    checks++;
+  }
+  checks++;
+}
+const smallFit = fitBounds([C(-1e-20, -2e-20), C(1e-20, 2e-20)]);
+assert.ok(smallFit.span > 2e-20 && smallFit.span < 3e-20);
+checks++;
+const largeFit = fitBounds([C(-1e100), C(1e100)]);
+assert.ok(largeFit.span > 1e100 && largeFit.span < 2e100);
+checks++;
+for (const span of [0, -1, NaN, Infinity]) {
+  assert.equal(viewBounds({ re: 0, im: 0, span }, 500, 800), null);
+  checks++;
+}
+assert.equal(viewBounds({ re: 1e20, im: 0, span: 1 }, 500, 800), null);
+checks++;
+assert.ok(ticks(-1e100, 1e100, 1).length <= 256);
+checks++;
+assert.equal(
+  createGrid(
+    { re: 0, im: 0, span: 1e-5 },
+    500,
+    800,
+    12,
+    "cartesian",
+    true,
+  ).some((line) => line.circle),
+  false,
+);
+checks++;
+// Moving far beyond the original domain must produce lines near the new center.
+const farGrid = createGrid(
+  { re: 10000, im: -20000, span: 10 },
+  500,
+  800,
+  12,
+  "cartesian",
+  false,
+);
+assert.ok(farGrid.some((line) => Math.abs(line.curve(0.5).re - 10000) < 1));
+checks++;
+// Every library card must produce a usable map at representative regular points.
+const presets = require("./presets.js").flatMap((group) => group.presets);
+for (const preset of presets) {
+  const evaluate = compile(preset.expression);
+  for (const z of [C(0.7, 0.5), C(-1.3, 0.8), C(2.4, -1.2)]) {
+    assert.ok(finite(evaluate(z)), `${preset.name}: ${preset.expression}`);
+    checks++;
+  }
+}
 console.log(
-  `Passed ${checks} checks: complex arithmetic, parser, principal values, invalid inputs, curve discontinuities, and view fitting.`,
+  `Passed ${checks} checks: complex arithmetic, parser, principal values, invalid inputs, curve discontinuities, viewport grids, view fitting, and ${presets.length} presets.`,
 );
