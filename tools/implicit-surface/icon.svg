@@ -1,0 +1,54 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <defs>
+    <linearGradient
+      id="tile"
+      x1="8"
+      y1="3"
+      x2="56"
+      y2="61"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#fff" />
+      <stop offset=".5" stop-color="#e1eeff" />
+      <stop offset="1" stop-color="#f0eafa" />
+    </linearGradient>
+    <linearGradient
+      id="surface"
+      x1="16"
+      y1="15"
+      x2="49"
+      y2="49"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#b6e9e9" />
+      <stop offset=".5" stop-color="#7eb8e3" />
+      <stop offset="1" stop-color="#a099d7" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#tile)" />
+  <rect
+    x="2.7"
+    y="2.7"
+    width="58.6"
+    height="58.6"
+    rx="17.3"
+    stroke="#fff"
+    stroke-width="1.4"
+  />
+  <path
+    d="M13 37c7-1 10-23 20-23 11 0 8 25 19 29-11 11-29 10-39-6Z"
+    fill="url(#surface)"
+  />
+  <path
+    d="M13 37c13 8 22 9 39 6M19 27c10 8 19 11 29 12M24 18c6 7 11 10 19 12M25 45c2-9 0-24 8-31m5 35c-1-9-5-26-5-35"
+    stroke="#ffffff"
+    stroke-opacity=".6"
+    stroke-width="1.2"
+  />
+</svg>

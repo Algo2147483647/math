@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f0f4f8" />
+    <meta
+      name="description"
+      content="An offline, full-screen explorer for implicit surfaces in three dimensions."
+    />
+    <title>Surface · Implicit Geometry Lab</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="math.js"></script>
+    <script defer src="mesh.js"></script>
+    <script defer src="renderer.js"></script>
+    <script defer src="presets.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <svg
+      class="icon-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="arrow" viewBox="0 0 24 24">
+          <path d="M5 12h14m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="library" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="6" height="6" rx="2" />
+          <rect x="14" y="4" width="6" height="6" rx="2" />
+          <rect x="4" y="14" width="6" height="6" rx="2" />
+          <rect x="14" y="14" width="6" height="6" rx="2" />
+        </symbol>
+        <symbol id="sliders" viewBox="0 0 24 24">
+          <path d="M4 7h7m4 0h5M4 17h3m4 0h9" />
+          <circle cx="13" cy="7" r="2" />
+          <circle cx="9" cy="17" r="2" />
+        </symbol>
+        <symbol id="chevron" viewBox="0 0 24 24">
+          <path d="m9 5 7 7-7 7" />
+        </symbol>
+        <symbol id="close" viewBox="0 0 24 24">
+          <path d="m7 7 10 10M7 17 17 7" />
+        </symbol>
+        <symbol id="fit" viewBox="0 0 24 24">
+          <path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4M9 12h6m-3-3v6" />
+        </symbol>
+        <symbol id="reset" viewBox="0 0 24 24">
+          <path d="M4 10a8 8 0 1 1 1 7M4 4v6h6" />
+        </symbol>
+        <symbol id="help" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9.5 9a2.6 2.6 0 0 1 5 .8c0 1.8-2.5 1.8-2.5 3.5m0 3h.01" />
+        </symbol>
+        <symbol id="rotate" viewBox="0 0 24 24">
+          <path
+            d="M19 8a8 8 0 0 0-14 1m0-5v5h5M5 16a8 8 0 0 0 14-1m0 5v-5h-5"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <main class="app" aria-label="Implicit surface explorer">
+      <canvas
+        id="surface"
+        tabindex="0"
+        aria-label="3D surface. Drag or use arrow keys to orbit, Shift-drag to pan, scroll or press plus and minus to zoom, and press 0 to reset."
+        >Your browser needs WebGL to display this interactive 3D
+        surface.</canvas
+      >
+      <canvas id="labels" aria-hidden="true"></canvas>
+      <header class="topbar glass">
+        <img
+          class="app-icon"
+          src="icon.svg"
+          width="43"
+          height="43"
+          alt="Surface"
+        />
+        <span class="bar-divider" aria-hidden="true"></span>
+        <form id="equation-form" novalidate>
+          <label class="function-label" for="expression"
+            >F<span>(x,y,z)</span></label
+          >
+          <input
+            id="expression"
+            name="expression"
+            value="x^2 + y^2 + z^2 = 4"
+            placeholder="Enter an equation…"
+            maxlength="512"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            aria-label="Implicit equation"
+            aria-describedby="expression-error"
+          />
+          <button
+            type="submit"
+            class="render-button"
+            title="Render surface · Enter"
+            aria-label="Render surface"
+          >
+            <svg class="icon"><use href="#arrow" /></svg>
+          </button>
+        </form>
+        <span class="bar-divider secondary-divider" aria-hidden="true"></span>
+        <button
+          id="presets-toggle"
+          class="bar-button"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="preset-dialog"
+        >
+          <svg class="icon"><use href="#library" /></svg><span>Surfaces</span>
+        </button>
+        <button
+          id="help-toggle"
+          class="icon-button"
+          type="button"
+          aria-label="Equation help"
+          aria-haspopup="dialog"
+          aria-controls="help-dialog"
+        >
+          <svg class="icon"><use href="#help" /></svg>
+        </button>
+        <p id="expression-error" class="error glass" role="alert" hidden></p>
+      </header>
+
+      <div class="scene-heading" aria-hidden="true">
+        <span class="eyebrow">GEOMETRY LAB</span>
+        <h1>Implicit surfaces</h1>
+        <p>A little equation. A new dimension.</p>
+      </div>
+
+      <aside class="config-panel glass" aria-label="Surface settings">
+        <button
+          id="config-toggle"
+          class="panel-heading"
+          type="button"
+          aria-expanded="true"
+          aria-controls="config-body"
+        >
+          <span class="panel-title"
+            ><svg class="icon"><use href="#sliders" /></svg>Configuration</span
+          ><svg class="icon collapse-chevron"><use href="#chevron" /></svg>
+        </button>
+        <div id="config-body" class="panel-body">
+          <section class="control-section">
+            <div class="section-heading">
+              <h2>Domain</h2>
+              <span class="quiet">min → max</span>
+            </div>
+            <form id="domain-form" novalidate>
+              <div class="domain-row">
+                <label class="axis-x" for="x-min">x</label
+                ><input
+                  id="x-min"
+                  type="number"
+                  step="any"
+                  value="-3"
+                  aria-label="X minimum"
+                  aria-describedby="domain-error"
+                /><span>to</span
+                ><input
+                  id="x-max"
+                  type="number"
+                  step="any"
+                  value="3"
+                  aria-label="X maximum"
+                  aria-describedby="domain-error"
+                />
+              </div>
+              <div class="domain-row">
+                <label class="axis-y" for="y-min">y</label
+                ><input
+                  id="y-min"
+                  type="number"
+                  step="any"
+                  value="-3"
+                  aria-label="Y minimum"
+                  aria-describedby="domain-error"
+                /><span>to</span
+                ><input
+                  id="y-max"
+                  type="number"
+                  step="any"
+                  value="3"
+                  aria-label="Y maximum"
+                  aria-describedby="domain-error"
+                />
+              </div>
+              <div class="domain-row">
+                <label class="axis-z" for="z-min">z</label
+                ><input
+                  id="z-min"
+                  type="number"
+                  step="any"
+                  value="-3"
+                  aria-label="Z minimum"
+                  aria-describedby="domain-error"
+                /><span>to</span
+                ><input
+                  id="z-max"
+                  type="number"
+                  step="any"
+                  value="3"
+                  aria-label="Z maximum"
+                  aria-describedby="domain-error"
+                />
+              </div>
+              <p id="domain-error" class="field-error" role="alert" hidden></p>
+              <button class="apply-button" type="submit">
+                Apply domain<svg class="icon"><use href="#arrow" /></svg>
+              </button>
+            </form>
+            <p class="panel-hint">The surface is clipped to this region.</p>
+          </section>
+          <section class="control-section">
+            <div class="control-row">
+              <label for="quality">Detail</label
+              ><select id="quality">
+                <option value="32">Draft</option>
+                <option value="52" selected>Balanced</option>
+                <option value="76">Fine</option>
+              </select>
+            </div>
+            <div class="control-row color-row">
+              <span>Surface color</span>
+              <div class="swatches" role="group" aria-label="Surface color">
+                <button
+                  type="button"
+                  data-color="glacier"
+                  class="swatch glacier"
+                  aria-label="Glacier blue"
+                  aria-pressed="true"
+                ></button
+                ><button
+                  type="button"
+                  data-color="iris"
+                  class="swatch iris"
+                  aria-label="Iris purple"
+                  aria-pressed="false"
+                ></button
+                ><button
+                  type="button"
+                  data-color="jade"
+                  class="swatch jade"
+                  aria-label="Jade green"
+                  aria-pressed="false"
+                ></button
+                ><button
+                  type="button"
+                  data-color="rose"
+                  class="swatch rose"
+                  aria-label="Rose pink"
+                  aria-pressed="false"
+                ></button>
+              </div>
+            </div>
+            <label class="control-row switch-row" for="wireframe"
+              ><span>Surface mesh</span
+              ><input class="switch" id="wireframe" type="checkbox"
+            /></label>
+            <label class="control-row switch-row" for="show-grid"
+              ><span>Coordinate guides</span
+              ><input class="switch" id="show-grid" type="checkbox" checked
+            /></label>
+            <label class="control-row switch-row" for="show-box"
+              ><span>Domain box</span
+              ><input class="switch" id="show-box" type="checkbox"
+            /></label>
+          </section>
+          <section class="control-section">
+            <div class="section-heading">
+              <h2>Try a surface</h2>
+              <button
+                id="all-presets"
+                class="text-button"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="preset-dialog"
+              >
+                View all <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <div class="quick-presets" role="group" aria-label="Quick surfaces">
+              <button type="button" data-preset="sphere" aria-pressed="true">
+                Sphere</button
+              ><button type="button" data-preset="torus" aria-pressed="false">
+                Torus</button
+              ><button type="button" data-preset="saddle" aria-pressed="false">
+                Saddle</button
+              ><button type="button" data-preset="gyroid" aria-pressed="false">
+                Gyroid
+              </button>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <div class="view-toolbar glass" role="group" aria-label="View controls">
+        <button
+          id="zoom-out"
+          class="icon-button zoom-button"
+          type="button"
+          aria-label="Zoom out"
+        >
+          −
+        </button>
+        <button
+          id="reset-view"
+          class="icon-button"
+          type="button"
+          aria-label="Fit domain and reset view"
+          title="Fit domain · 0"
+        >
+          <svg class="icon"><use href="#fit" /></svg>
+        </button>
+        <button
+          id="zoom-in"
+          class="icon-button zoom-button"
+          type="button"
+          aria-label="Zoom in"
+        >
+          +
+        </button>
+        <span class="bar-divider" aria-hidden="true"></span>
+        <button
+          id="auto-rotate"
+          class="icon-button"
+          type="button"
+          aria-label="Auto rotate"
+          aria-pressed="false"
+          title="Auto rotate"
+        >
+          <svg class="icon"><use href="#rotate" /></svg>
+        </button>
+      </div>
+      <div id="message" class="scene-message glass" role="status" hidden></div>
+      <footer class="scene-footer">
+        <div class="surface-status">
+          <span id="status-dot" class="status-dot"></span
+          ><span id="surface-name">Sphere</span
+          ><span class="status-divider">/</span
+          ><output id="mesh-status" aria-live="polite"
+            >Preparing surface…</output
+          >
+        </div>
+        <span class="navigation-hint"
+          >Drag to orbit <b>·</b> Shift-drag to pan <b>·</b> Scroll to
+          zoom</span
+        >
+      </footer>
+      <noscript
+        ><p class="scene-message glass">
+          Enable JavaScript to explore implicit surfaces.
+        </p></noscript
+      >
+
+      <dialog
+        id="preset-dialog"
+        class="floating-dialog glass"
+        aria-labelledby="presets-title"
+      >
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">A STARTING POINT</span>
+            <h2 id="presets-title">Surface library</h2>
+            <p>Choose a shape, then make it your own.</p>
+          </div>
+          <button
+            class="icon-button"
+            type="button"
+            data-close="preset-dialog"
+            aria-label="Close surface library"
+          >
+            <svg class="icon"><use href="#close" /></svg>
+          </button>
+        </div>
+        <div id="preset-list" class="preset-list"></div>
+      </dialog>
+      <dialog
+        id="help-dialog"
+        class="floating-dialog help-dialog glass"
+        aria-labelledby="help-title"
+      >
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">EQUATIONS INTO GEOMETRY</span>
+            <h2 id="help-title">A field of possibilities</h2>
+          </div>
+          <button
+            class="icon-button"
+            type="button"
+            data-close="help-dialog"
+            aria-label="Close equation help"
+          >
+            <svg class="icon"><use href="#close" /></svg>
+          </button>
+        </div>
+        <div class="help-body">
+          <p>
+            Enter an equation in <i>x</i>, <i>y</i>, and <i>z</i>. Both sides
+            can be expressions. Without an equals sign, the expression is set
+            equal to zero.
+          </p>
+          <div class="help-example">
+            <code>x^2 + y^2 + z^2 = 4</code><span>A sphere of radius 2</span>
+          </div>
+          <div class="help-example">
+            <code>z = sin(x) * cos(y)</code><span>An undulating surface</span>
+          </div>
+          <dl>
+            <dt>Operators</dt>
+            <dd>
+              <code>+ − * / ^</code>, parentheses, and <code>**</code> for
+              powers. Implicit multiplication: <code>2x</code>, <code>xy</code>,
+              <code>2sin(x)</code>.
+            </dd>
+            <dt>Functions</dt>
+            <dd>
+              <code
+                >sin cos tan asin acos atan atan2 sinh cosh tanh sqrt cbrt abs
+                exp log ln log10 log2 pow min max</code
+              >
+            </dd>
+            <dt>Constants</dt>
+            <dd>
+              <code>pi</code> / <code>π</code>, <code>e</code>,
+              <code>tau</code>. Angles are in radians; <code>log</code> is the
+              natural logarithm.
+            </dd>
+            <dt>Navigation</dt>
+            <dd>
+              Drag to orbit, Shift-drag or right-drag to pan, and scroll to
+              zoom. On touchscreens, use two fingers to pan and pinch. With the
+              canvas focused, use arrow keys, <code>+</code>, <code>−</code>, or
+              <code>0</code>.
+            </dd>
+          </dl>
+          <p class="help-note">
+            Surfaces are numerical approximations within the selected domain.
+            Very small features, isolated points, and zeros that only touch zero
+            (such as <code>x^2 = 0</code>) may be missed. For the latter, try
+            <code>x = 0</code>. Increase detail or narrow the domain to reveal
+            finer features.
+          </p>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>
