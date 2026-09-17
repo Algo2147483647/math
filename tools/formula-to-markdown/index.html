@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="将 GPT 文本中的 LaTeX 公式定界符实时转换为 Markdown 的 $ 与 $$ 格式。"
+    />
+    <title>公式格式转换</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f5f2;
+        --panel: #ffffff;
+        --ink: #191918;
+        --muted: #777771;
+        --line: #deded8;
+        --accent: #20201e;
+        --accent-soft: #eeeeea;
+        --success: #33745a;
+        --shadow: 0 18px 60px rgb(24 24 20 / 7%);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { min-height: 100%; }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% -20%, #fff 0, transparent 38rem),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      button, textarea, input { font: inherit; }
+
+      .app {
+        width: min(1500px, 100%);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: clamp(24px, 4vw, 56px);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      h1 {
+        margin: 0 0 7px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .actions { display: flex; gap: 8px; }
+
+      button {
+        height: 38px;
+        padding: 0 15px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: var(--panel);
+        color: var(--ink);
+        cursor: pointer;
+        transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+      }
+
+      button:hover { background: var(--accent-soft); border-color: #c9c9c2; }
+      button:active { transform: translateY(1px); }
+      button.primary { background: var(--accent); border-color: var(--accent); color: white; }
+      button.primary:hover { background: #3a3a36; }
+
+      .workspace {
+        flex: 1;
+        min-height: 560px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .pane {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pane + .pane { border-left: 1px solid var(--line); }
+
+      .pane-head {
+        height: 54px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .label {
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: 0.04em;
+      }
+
+      .count { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+      textarea {
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        resize: none;
+        border: 0;
+        outline: none;
+        padding: 22px;
+        background: transparent;
+        color: var(--ink);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 14px;
+        line-height: 1.75;
+        tab-size: 2;
+      }
+
+      textarea::placeholder { color: #aaa9a2; }
+      #output { background: #fbfbf9; }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .option { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+      .option input { width: 15px; height: 15px; accent-color: var(--accent); }
+      .status { min-width: 8em; text-align: right; color: var(--success); }
+
+      kbd {
+        padding: 2px 5px;
+        border: 1px solid var(--line);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        background: var(--panel);
+        font-family: inherit;
+        font-size: 11px;
+      }
+
+      @media (max-width: 760px) {
+        .app { padding: 20px 14px; gap: 18px; }
+        header { align-items: flex-start; flex-direction: column; }
+        .actions { width: 100%; }
+        .actions button { flex: 1; }
+        .workspace { min-height: 720px; grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+        .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
+        footer { align-items: flex-start; flex-direction: column; }
+        .status { text-align: left; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div>
+          <h1>公式格式转换</h1>
+          <p class="subtitle">v1.4 · 粘贴 GPT 文本，即时转为 Markdown 数学公式格式。</p>
+        </div>
+        <div class="actions">
+          <button id="clearButton" type="button">清空</button>
+          <button id="copyButton" class="primary" type="button">复制结果</button>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="公式转换工作区">
+        <div class="pane">
+          <div class="pane-head">
+            <span class="label">输入</span>
+            <span id="inputCount" class="count">0 字符</span>
+          </div>
+          <textarea
+            id="input"
+            autofocus
+            spellcheck="false"
+            aria-label="待转换的 GPT 文本"
+            placeholder="在这里粘贴内容，例如：&#10;&#10;行内公式 \(E = mc^2\)&#10;&#10;独立公式 \[&#10;f(x) = x^2 + 1&#10;\]"
+          ></textarea>
+        </div>
+
+        <div class="pane">
+          <div class="pane-head">
+            <span class="label">Markdown 输出</span>
+            <span id="outputCount" class="count">0 字符</span>
+          </div>
+          <textarea
+            id="output"
+            readonly
+            spellcheck="false"
+            aria-label="转换后的 Markdown 文本"
+            placeholder="转换结果会立即出现在这里"
+          ></textarea>
+        </div>
+      </section>
+
+      <footer>
+        <label class="option">
+          <input id="detectBare" type="checkbox" checked />
+          <span>识别明显的裸 <code>(…)</code> / <code>[…]</code> 公式</span>
+        </label>
+        <span id="status" class="status" role="status" aria-live="polite"></span>
+        <span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> 复制结果</span>
+      </footer>
+    </main>
+
+    <script>
+      const input = document.querySelector('#input');
+      const output = document.querySelector('#output');
+      const inputCount = document.querySelector('#inputCount');
+      const outputCount = document.querySelector('#outputCount');
+      const detectBare = document.querySelector('#detectBare');
+      const copyButton = document.querySelector('#copyButton');
+      const clearButton = document.querySelector('#clearButton');
+      const status = document.querySelector('#status');
+      let statusTimer;
+
+      function looksLikeMath(value) {
+        const text = value.trim();
+        if (!text || text.length > 1000) return false;
+        if (/\\(?:displaystyle|frac|dfrac|tfrac|sqrt|sum|prod|int|lim|log|ln|sin|cos|tan|alpha|beta|gamma|delta|theta|lambda|mu|pi|sigma|phi|omega|mathbf|mathrm|text|begin|left|right|leq?|geq?|neq?|approx|equiv|in|notin)(?![A-Za-z])/i.test(text)) return true;
+        if (/[∑∏∫√∞≈≠≤≥±×÷∂∇∈∉⊂⊆∪∩→↦]/u.test(text)) return true;
+        if (/[A-Za-z0-9)}\]]\s*(?:\^|_)\s*[A-Za-z0-9{(]/.test(text)) return true;
+        if (/[A-Za-z0-9)}\]]\s*(?:=|[<>]=?|[+*/−-])\s*[A-Za-z0-9{(]/.test(text)) return true;
+        if (/^[A-Za-z](?:_[A-Za-z0-9]+)?$/.test(text)) return true;
+        if (/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)\s*[%°]?$/.test(text)) return true;
+        return false;
+      }
+
+      function normalizeInline(content) {
+        return `$${protectTablePipes(content.trim())}$`;
+      }
+
+      function normalizeBlock(content) {
+        const math = protectTablePipes(content.trim());
+        return `\n$$\n${math}\n$$\n`;
+      }
+
+      function protectTablePipes(content) {
+        let result = '';
+        for (let index = 0; index < content.length; index += 1) {
+          const char = content[index];
+          const previous = index > 0 ? content[index - 1] : '';
+          result += char === '|' && previous !== '\\' ? '\\vert' : char;
+        }
+        return result;
+      }
+
+      function findClosingDelimiter(text, start, opening, closing) {
+        let depth = 0;
+        for (let index = start; index < text.length; index += 1) {
+          if (text[index] === opening) depth += 1;
+          if (text[index] === closing) depth -= 1;
+          if (depth === 0) return index;
+        }
+        return -1;
+      }
+
+      function convertBareDelimiters(text) {
+        let result = '';
+        let cursor = 0;
+
+        while (cursor < text.length) {
+          const opening = text[cursor];
+          if (opening !== '(' && opening !== '[') {
+            result += opening;
+            cursor += 1;
+            continue;
+          }
+
+          const previous = cursor > 0 ? text[cursor - 1] : '';
+          const isMarkdownImage = opening === '[' && previous === '!';
+          const canStartFormula = !previous || !/[\w$\\!]/.test(previous);
+          if (!canStartFormula || isMarkdownImage) {
+            result += opening;
+            cursor += 1;
+            continue;
+          }
+
+          const closing = opening === '(' ? ')' : ']';
+          const end = findClosingDelimiter(text, cursor, opening, closing);
+          if (end < 0) {
+            result += opening;
+            cursor += 1;
+            continue;
+          }
+
+          const content = text.slice(cursor + 1, end);
+          const after = text.slice(end + 1);
+          const isMarkdownLink = opening === '[' && /^\s*\(/.test(after);
+          if (!isMarkdownLink && looksLikeMath(content)) {
+            result += opening === '(' ? normalizeInline(content) : normalizeBlock(content);
+            cursor = end + 1;
+            continue;
+          }
+
+          result += opening;
+          cursor += 1;
+        }
+
+        return result;
+      }
+
+      function convertPlainText(text, allowBare) {
+        // Handle escaped GPT delimiters as atomic regions. Their converted output must
+        // never be sent through bare-parenthesis detection a second time.
+        const escapedFormula = /\\+\(([\s\S]*?)\\+\)|\\+\[([\s\S]*?)\\+\]/g;
+        let result = '';
+        let cursor = 0;
+
+        for (const match of text.matchAll(escapedFormula)) {
+          const plain = text.slice(cursor, match.index);
+          result += allowBare ? convertBareDelimiters(plain) : plain;
+          result += match[1] !== undefined
+            ? normalizeInline(match[1])
+            : normalizeBlock(match[2]);
+          cursor = match.index + match[0].length;
+        }
+
+        const remaining = text.slice(cursor);
+        result += allowBare ? convertBareDelimiters(remaining) : remaining;
+        return result;
+      }
+
+      function splitTableRow(line) {
+        const body = line.trim().replace(/^\|/, '').replace(/\|$/, '');
+        const cells = [];
+        let cell = '';
+        let roundDepth = 0;
+        let squareDepth = 0;
+        let braceDepth = 0;
+        let inlineMath = false;
+
+        for (let index = 0; index < body.length; index += 1) {
+          const char = body[index];
+          const previous = index > 0 ? body[index - 1] : '';
+
+          if (char === '$' && previous !== '\\') {
+            inlineMath = !inlineMath;
+            cell += char;
+            continue;
+          }
+
+          if (!inlineMath) {
+            if (char === '(') roundDepth += 1;
+            if (char === ')' && roundDepth > 0) roundDepth -= 1;
+            if (char === '[') squareDepth += 1;
+            if (char === ']' && squareDepth > 0) squareDepth -= 1;
+            if (char === '{') braceDepth += 1;
+            if (char === '}' && braceDepth > 0) braceDepth -= 1;
+          }
+
+          const isCellSeparator = char === '|' && previous !== '\\' &&
+            !inlineMath && roundDepth === 0 && squareDepth === 0 && braceDepth === 0;
+          if (isCellSeparator) {
+            cells.push(cell.trim());
+            cell = '';
+          } else {
+            cell += char;
+          }
+        }
+        cells.push(cell.trim());
+        return cells;
+      }
+
+      function trimEmptyTail(cells) {
+        const trimmed = [...cells];
+        while (trimmed.length && !trimmed[trimmed.length - 1]) trimmed.pop();
+        return trimmed;
+      }
+
+      function isSeparatorRow(cells) {
+        return cells.length > 0 && cells.every((cell) => /^:?-{1,}:?$/.test(cell.trim()));
+      }
+
+      function formatTableRow(cells) {
+        return `| ${cells.join(' | ')} |`;
+      }
+
+      function repairMarkdownTables(text) {
+        const lines = text.split('\n');
+        const repaired = [...lines];
+
+        for (let index = 0; index < lines.length - 1; index += 1) {
+          if (!/^\s*\|/.test(lines[index]) || !/^\s*\|/.test(lines[index + 1])) continue;
+
+          const header = trimEmptyTail(splitTableRow(lines[index]));
+          const separator = splitTableRow(lines[index + 1]);
+          if (!header.length || !isSeparatorRow(separator)) continue;
+
+          const columnCount = header.length;
+          repaired[index] = formatTableRow(header);
+          repaired[index + 1] = formatTableRow(separator.slice(0, columnCount));
+
+          let rowIndex = index + 2;
+          while (rowIndex < lines.length && /^\s*\|/.test(lines[rowIndex])) {
+            const cells = trimEmptyTail(splitTableRow(lines[rowIndex]));
+            repaired[rowIndex] = formatTableRow(cells);
+            rowIndex += 1;
+          }
+          index = rowIndex - 1;
+        }
+
+        return repaired.join('\n');
+      }
+
+      function convert(text, allowBare) {
+        text = repairMarkdownTables(text);
+        // Preserve existing Markdown math, fenced code and inline code exactly as written.
+        // Existing math must be matched first so parentheses inside it are not converted twice.
+        const protectedPattern = /(\$\$[\s\S]*?\$\$|\$(?!\$)[^$\n]+?\$|```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`\n]*`)/g;
+        let result = '';
+        let cursor = 0;
+        for (const match of text.matchAll(protectedPattern)) {
+          result += convertPlainText(text.slice(cursor, match.index), allowBare);
+          result += match[0];
+          cursor = match.index + match[0].length;
+        }
+        result += convertPlainText(text.slice(cursor), allowBare);
+        return result
+          .replace(/\n{3,}\$\$/g, '\n\n$$')
+          .replace(/\$\$\n{3,}/g, '$$\n\n')
+          .replace(/^\n(?=\$\$)/, '')
+          .replace(/\n$/, text.endsWith('\n') ? '\n' : '');
+      }
+
+      function update() {
+        output.value = convert(input.value, detectBare.checked);
+        inputCount.textContent = `${input.value.length.toLocaleString()} 字符`;
+        outputCount.textContent = `${output.value.length.toLocaleString()} 字符`;
+      }
+
+      function showStatus(message) {
+        clearTimeout(statusTimer);
+        status.textContent = message;
+        statusTimer = setTimeout(() => { status.textContent = ''; }, 1800);
+      }
+
+      async function copyResult() {
+        if (!output.value) {
+          showStatus('暂无可复制内容');
+          input.focus();
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(output.value);
+        } catch {
+          output.select();
+          document.execCommand('copy');
+          input.focus();
+        }
+        showStatus('已复制');
+      }
+
+      input.addEventListener('input', update);
+      detectBare.addEventListener('change', update);
+      copyButton.addEventListener('click', copyResult);
+      clearButton.addEventListener('click', () => {
+        input.value = '';
+        update();
+        input.focus();
+      });
+      document.addEventListener('keydown', (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          event.preventDefault();
+          copyResult();
+        }
+      });
+
+      update();
+    </script>
+  </body>
+</html>
