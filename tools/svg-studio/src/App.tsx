@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback, type CSSProperties } from 'react';
 import { useEditor } from './model/context';
 import { useKeyboard } from './model/useKeyboard';
 import { Topbar } from './components/Topbar';
@@ -9,8 +9,12 @@ import { ContextMenu } from './components/ContextMenu';
 import { Dialogs } from './components/Dialogs';
 import { Canvas } from './canvas/Canvas';
 import { Icon } from './components/Icon';
+import { WorkspaceSettings } from './components/WorkspaceSettings';
+import { useDocumentFonts } from './model/fonts';
 export function App() {
-  const { store, view } = useEditor();
+  const { store, view, document: doc } = useEditor();
+  const fontError = useCallback(() => store.notify('A document font could not be loaded'), [store]);
+  useDocumentFonts(doc.fonts, fontError);
   useKeyboard(store);
   useEffect(() => {
     const persist = () => store.flush();
@@ -28,6 +32,12 @@ export function App() {
   return (
     <main
       className="app-shell"
+      style={
+        {
+          '--left-visible': view.leftPanel ? 'var(--library-width)' : '0px',
+          '--right-visible': view.rightPanel ? 'var(--inspector-width)' : '0px',
+        } as CSSProperties
+      }
       onContextMenu={(e) => {
         if ((e.target as Element).closest('input,textarea,select')) return;
         e.preventDefault();
@@ -44,6 +54,7 @@ export function App() {
       <Library />
       <Inspector />
       <Toolbar />
+      <WorkspaceSettings />
       <ContextMenu />
       <Dialogs />
       <div className={`toast ${view.toast ? 'visible' : ''}`} role="status" aria-live="polite">

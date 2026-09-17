@@ -41,6 +41,18 @@ export function useKeyboard(store: EditorStore) {
         return;
       }
       if (event.key === 'Escape') {
+        if (store.view.workspaceOpen) {
+          store.setView({ workspaceOpen: false });
+          return;
+        }
+        if (store.view.gradientEdit) {
+          store.setView({ gradientEdit: null });
+          return;
+        }
+        if (store.view.nodeIndex !== null) {
+          store.setView({ nodeIndex: null });
+          return;
+        }
         if (store.view.tool === 'node') store.setView({ tool: 'select', nodeIndex: null });
         else {
           store.select([]);
@@ -55,8 +67,8 @@ export function useKeyboard(store: EditorStore) {
       }
       if (event.key === 'Delete' || event.key === 'Backspace') {
         event.preventDefault();
-        if (store.view.tool === 'node') {
-          if (store.view.nodeIndex !== null) store.removeNode();
+        if (store.view.nodeIndex !== null) {
+          store.removeNode();
         } else store.remove();
         return;
       }
@@ -67,7 +79,7 @@ export function useKeyboard(store: EditorStore) {
           dy = key === 'arrowup' ? -n : key === 'arrowdown' ? n : 0;
         const active = store.active,
           index = store.view.nodeIndex;
-        if (store.view.tool === 'node' && active?.points && index !== null) {
+        if (active?.points && index !== null) {
           const matrix = elementMatrix(active),
             world = apply(matrix, active.points[index]);
           store.moveNode(
@@ -112,7 +124,7 @@ export function useKeyboard(store: EditorStore) {
     };
     const up = (e: KeyboardEvent) => {
       if (e.key.startsWith('Arrow') && !(e.target as Element).closest('input,textarea,select')) {
-        if (store.view.tool === 'node' && store.active && !store.active.locked) {
+        if (store.view.nodeIndex !== null && store.active && !store.active.locked) {
           const id = store.active.id;
           store.preview((d) => normalizePoints(d.elements.find((e) => e.id === id)!));
         }

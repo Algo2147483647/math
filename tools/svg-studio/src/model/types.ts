@@ -1,6 +1,26 @@
 export type Point = [number, number];
 export type Matrix = [number, number, number, number, number, number];
 export type Bounds = { x: number; y: number; width: number; height: number };
+export interface GradientStop {
+  id: string;
+  offset: number;
+  color: string;
+  opacity: number;
+}
+export interface GradientPaint {
+  type: 'linear' | 'radial';
+  start: Point;
+  end: Point;
+  stops: GradientStop[];
+  spread: 'pad' | 'reflect' | 'repeat';
+}
+export type AnchorMode = 'corner' | 'smooth' | 'symmetric';
+export interface EmbeddedFont {
+  id: string;
+  name: string;
+  family: string;
+  data: string;
+}
 export type ElementType =
   | 'rect'
   | 'circle'
@@ -29,6 +49,8 @@ export interface StudioElement extends Bounds {
   rotation: number;
   fill: string;
   stroke: string;
+  fillGradient?: GradientPaint;
+  strokeGradient?: GradientPaint;
   strokeWidth: number;
   opacity: number;
   fillOpacity: number;
@@ -42,6 +64,7 @@ export interface StudioElement extends Bounds {
   locked: boolean;
   affine?: Matrix;
   points?: Point[];
+  anchorModes?: Record<number, AnchorMode>;
   children?: StudioElement[];
   sides?: number;
   pointsCount?: number;
@@ -79,6 +102,7 @@ export interface StudioDocument {
   canvas: { width: number; height: number; background: string };
   elements: StudioElement[];
   sharedDefs: string;
+  fonts?: EmbeddedFont[];
 }
 export interface EditorView {
   selectedIds: string[];
@@ -88,6 +112,13 @@ export interface EditorView {
   pan: Point;
   grid: boolean;
   snap: boolean;
+  gridSize: number;
+  gridStyle: 'dots' | 'lines';
+  marqueeMode: 'touch' | 'contain';
+  workspaceOpen: boolean;
+  keepRatio: boolean;
+  gradientEdit: 'fill' | 'stroke' | null;
+  editingTextId: string | null;
   leftPanel: boolean;
   rightPanel: boolean;
   inspectorTab: 'design' | 'layers';

@@ -2,9 +2,12 @@ import { SVG_NS } from '../model/utils';
 import { iconPaths } from '../model/elements';
 import { elementTransform } from '../model/geometry';
 import type { Point, StudioElement } from '../model/types';
+import { paintDefinitions, paintValue } from './gradients';
 
 export function buildSvgElement(element: StudioElement, forExport = false, interactive = true) {
   const group = document.createElementNS(SVG_NS, 'g');
+  const paints = paintDefinitions(element);
+  if (paints) group.append(paints);
   if (interactive) group.dataset.elementId = element.id;
   group.setAttribute('transform', String(elementTransform(element)));
   group.setAttribute('opacity', String(element.opacity ?? 1));
@@ -14,8 +17,8 @@ export function buildSvgElement(element: StudioElement, forExport = false, inter
   if (element.locked && !forExport) group.classList.add('locked');
   let shape: SVGElement | undefined;
   const common = <T extends SVGElement>(node: T): T => {
-    node.setAttribute('fill', String(element.fill || 'none'));
-    node.setAttribute('stroke', String(element.stroke || 'none'));
+    node.setAttribute('fill', paintValue(element, 'fill'));
+    node.setAttribute('stroke', paintValue(element, 'stroke'));
     node.setAttribute('stroke-width', String(element.strokeWidth || 0));
     node.setAttribute('fill-opacity', String(element.fillOpacity ?? 1));
     node.setAttribute('stroke-opacity', String(element.strokeOpacity ?? 1));
@@ -106,7 +109,7 @@ export function buildSvgElement(element: StudioElement, forExport = false, inter
       ),
     );
   } else if (element.type === 'polyline') {
-    shape = common(document.createElementNS(SVG_NS, 'polyline'));
+    shape = common(document.createElementNS(SVG_NS, element.closed ? 'polygon' : 'polyline'));
     shape.setAttribute(
       'points',
       String((element.points || []).map((point) => point.join(',')).join(' ')),
@@ -154,8 +157,8 @@ export function buildSvgElement(element: StudioElement, forExport = false, inter
     const inner = document.createElementNS(SVG_NS, 'g');
     inner.innerHTML = iconPaths[element.icon || 'heart'] || iconPaths.heart;
     inner.setAttribute('transform', String(`scale(${element.width / 24} ${element.height / 24})`));
-    inner.setAttribute('fill', String(element.fill || 'none'));
-    inner.setAttribute('stroke', String(element.stroke || '#7656EE'));
+    inner.setAttribute('fill', paintValue(element, 'fill'));
+    inner.setAttribute('stroke', paintValue(element, 'stroke'));
     inner.setAttribute('stroke-width', String(element.strokeWidth || 1.8));
     inner.setAttribute('stroke-linecap', String(element.strokeLinecap || 'round'));
     inner.setAttribute('stroke-linejoin', String(element.strokeLinejoin || 'round'));
@@ -216,9 +219,9 @@ function applyRawOverrides(container: SVGElement, element: StudioElement) {
     .querySelectorAll<SVGElement>('path,rect,circle,ellipse,line,polyline,polygon,text,use,image')
     .forEach((target) => {
       if (element.overrideFill)
-        target.style.setProperty('fill', element.fill || 'none', 'important');
+        target.style.setProperty('fill', paintValue(element, 'fill'), 'important');
       if (element.overrideStroke)
-        target.style.setProperty('stroke', element.stroke || 'none', 'important');
+        target.style.setProperty('stroke', paintValue(element, 'stroke'), 'important');
       if (element.overrideStrokeWidth)
         target.style.setProperty('stroke-width', String(element.strokeWidth || 0), 'important');
       if (element.overrideStrokeStyle) {

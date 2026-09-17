@@ -1,4 +1,6 @@
 import { elementTransform, isNodeEditable, localBounds, selectionBounds } from '../model/geometry';
+import { ShapeHandles } from './ShapeHandles';
+import { GradientOverlay } from './GradientOverlay';
 import type { Bounds, EditorView, Point, StudioElement } from '../model/types';
 
 const handles: Record<string, Point> = {
@@ -33,7 +35,7 @@ export function SelectionOverlay({
             />
             {elements.length === 1 &&
               !e.locked &&
-              (view.tool === 'node' && isNodeEditable(e) ? (
+              (isNodeEditable(e) && !view.gradientEdit ? (
                 <>
                   {e.type === 'bezier' &&
                     e.points?.map((p, i) =>
@@ -48,17 +50,22 @@ export function SelectionOverlay({
                         />
                       ),
                     )}
+                  {e.type === 'bezier' &&
+                    e.points?.map(([x, y], i) =>
+                      i % 3 !== 0 ? (
+                        <circle
+                          key={i}
+                          cx={x}
+                          cy={y}
+                          r={5 / view.zoom}
+                          data-node-index={i}
+                          className={`node-handle control ${view.nodeIndex === i ? 'selected' : ''}`}
+                        />
+                      ) : null,
+                    )}
+                  {/* Anchors stay above coincident control handles on sharp corners. */}
                   {e.points?.map(([x, y], i) =>
-                    e.type === 'bezier' && i % 3 !== 0 ? (
-                      <circle
-                        key={i}
-                        cx={x}
-                        cy={y}
-                        r={5 / view.zoom}
-                        data-node-index={i}
-                        className={`node-handle control ${view.nodeIndex === i ? 'selected' : ''}`}
-                      />
-                    ) : (
+                    e.type !== 'bezier' || i % 3 === 0 ? (
                       <rect
                         key={i}
                         x={x - size / 2}
@@ -69,27 +76,71 @@ export function SelectionOverlay({
                         data-node-index={i}
                         className={`node-handle ${view.nodeIndex === i ? 'selected' : ''}`}
                       />
-                    ),
+                    ) : null,
                   )}
                 </>
-              ) : (
-                Object.entries(handles).map(([name, [x, y]]) => (
-                  <rect
-                    key={name}
-                    data-handle={name}
-                    x={x * e.width - size / 2}
-                    y={y * e.height - size / 2}
-                    width={size}
-                    height={size}
-                    rx={1 / view.zoom}
-                    className="resize-handle"
-                  />
-                ))
-              ))}
+              ) : null)}
+            {elements.length === 1 && !e.locked && (
+              <>
+                <ShapeHandles element={e} zoom={view.zoom} />
+                <line
+                  x1={e.width / 2}
+                  y1={-14 / view.zoom}
+                  x2={e.width / 2}
+                  y2={-34 / view.zoom}
+                  className="rotation-guide"
+                />
+                <circle
+                  cx={e.width / 2}
+                  cy={-34 / view.zoom}
+                  r={6 / view.zoom}
+                  className="rotation-handle"
+                  data-rotate="true"
+                >
+                  <title>Drag to rotate · Shift snaps to 15°</title>
+                </circle>
+                {Object.entries(handles).map(([name, [x, y]]) => {
+                  const pad = isNodeEditable(e) ? 14 / view.zoom : 0;
+                  return (
+                    <rect
+                      key={name}
+                      data-handle={name}
+                      x={-pad + x * (e.width + 2 * pad) - size / 2}
+                      y={-pad + y * (e.height + 2 * pad) - size / 2}
+                      width={size}
+                      height={size}
+                      rx={1 / view.zoom}
+                      className="resize-handle"
+                    />
+                  );
+                })}
+                {view.gradientEdit && (
+                  <GradientOverlay element={e} kind={view.gradientEdit} zoom={view.zoom} />
+                )}
+              </>
+            )}
           </g>
         ))}
       {elements.length > 1 && (
-        <rect {...selectionBounds(elements)} className="selection-outline collective" />
+        <g>
+          <rect {...selectionBounds(elements)} className="selection-outline collective" />
+          {Object.entries(handles)
+            .filter(([name]) => name.length === 2)
+            .map(([name, [x, y]]) => {
+              const b = selectionBounds(elements);
+              return (
+                <rect
+                  key={name}
+                  x={b.x + x * b.width - size / 2}
+                  y={b.y + y * b.height - size / 2}
+                  width={size}
+                  height={size}
+                  data-multi-handle={name}
+                  className="resize-handle"
+                />
+              );
+            })}
+        </g>
       )}
       {marquee && <rect {...marquee} className="marquee" />}
     </g>

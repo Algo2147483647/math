@@ -10,10 +10,21 @@ import {
   scale,
   selectionBounds,
   splitCubic,
+  transformElement,
+  translate,
 } from './geometry';
 import { blankDocument, persistDocument } from './storage';
 import { clone, uid } from './utils';
-import type { EditorView, ElementType, Point, StudioDocument, StudioElement } from './types';
+import type {
+  AnchorMode,
+  EditorView,
+  ElementType,
+  Point,
+  StudioDocument,
+  StudioElement,
+} from './types';
+import { loadPreferences, savePreferences } from './preferences';
+import { convertPath, setAnchorMode, shiftAnchorModes } from './nodes';
 
 export class EditorStore {
   document: StudioDocument;
@@ -25,6 +36,13 @@ export class EditorStore {
     pan: [0, 0],
     grid: true,
     snap: false,
+    gridSize: 8,
+    gridStyle: 'dots',
+    marqueeMode: 'touch',
+    workspaceOpen: false,
+    keepRatio: false,
+    gradientEdit: null,
+    editingTextId: null,
     leftPanel: true,
     rightPanel: true,
     inspectorTab: 'design',
@@ -52,6 +70,7 @@ export class EditorStore {
     private save: (doc: StudioDocument) => void = persistDocument,
   ) {
     this.document = clone(doc);
+    this.view = { ...this.view, ...loadPreferences() };
     this.history = [JSON.stringify(doc)];
     this.snapshot = this.getCurrent();
   }
@@ -77,6 +96,7 @@ export class EditorStore {
   }
   setView(changes: Partial<EditorView>) {
     this.view = { ...this.view, ...changes };
+    savePreferences(this.view, changes);
     this.emit();
   }
   get selected() {
@@ -154,12 +174,16 @@ export class EditorStore {
       ),
       nodeIndex: null,
       contextMenu: null,
+      gradientEdit: null,
+      editingTextId: null,
     };
   }
   select(ids: string[], additive = false) {
     this.setView({
       selectedIds: additive ? [...new Set([...this.view.selectedIds, ...ids])] : ids,
       nodeIndex: null,
+      gradientEdit: null,
+      editingTextId: null,
     });
   }
   toggleSelection(id: string) {
@@ -187,7 +211,15 @@ export class EditorStore {
       doc.elements.forEach((e) => {
         if (!selected.has(e.id) || e.locked) return;
         const patch = { ...changes };
+        for (const kind of ['fill', 'stroke'] as const)
+          if (kind in patch && !(`${kind}Gradient` in patch)) patch[`${kind}Gradient`] = undefined;
         if (patch.width !== undefined || patch.height !== undefined) {
+          if (this.view.keepRatio && e.type !== 'circle') {
+            if (patch.width !== undefined && patch.height === undefined)
+              patch.height = (e.height * patch.width) / e.width;
+            else if (patch.height !== undefined && patch.width === undefined)
+              patch.width = (e.width * patch.height) / e.height;
+          }
           if (e.type === 'circle') {
             patch.width = patch.width ?? patch.height;
             patch.height = patch.width;
@@ -204,6 +236,8 @@ export class EditorStore {
     const props = [
       'fill',
       'stroke',
+      'fillGradient',
+      'strokeGradient',
       'strokeWidth',
       'fillOpacity',
       'strokeOpacity',
@@ -213,8 +247,8 @@ export class EditorStore {
     ] as const;
     const paint = Object.fromEntries(props.filter((k) => k in patch).map((k) => [k, patch[k]]));
     if (e.type === 'raw') {
-      if ('fill' in paint) e.overrideFill = true;
-      if ('stroke' in paint) e.overrideStroke = true;
+      if ('fill' in paint || 'fillGradient' in paint) e.overrideFill = true;
+      if ('stroke' in paint || 'strokeGradient' in paint) e.overrideStroke = true;
       if ('strokeWidth' in paint) e.overrideStrokeWidth = true;
       if ('fillOpacity' in paint) e.overrideFillOpacity = true;
       if ('strokeOpacity' in paint) e.overrideStrokeOpacity = true;
@@ -392,6 +426,7 @@ export class EditorStore {
       if (e.type === 'bezier') {
         const i = clamp(index ?? Math.floor((this.view.nodeIndex ?? 0) / 3) * 3, 0, pts.length - 4);
         pts.splice(i, 4, ...splitCubic(pts.slice(i, i + 4), t));
+        shiftAnchorModes(e, i, 3);
         next = i + 3;
       } else {
         const i = clamp(index ?? this.view.nodeIndex ?? 0, 0, pts.length - 2);
@@ -413,6 +448,7 @@ export class EditorStore {
       const e = d.elements.find((x) => x.id === active.id)!,
         pts = e.points!;
       if (e.type === 'bezier') {
+        shiftAnchorModes(e, index, -3);
         if (index === 0) pts.splice(0, 3);
         else if (index === pts.length - 1) pts.splice(index - 2, 3);
         else pts.splice(index - 1, 3);
@@ -429,6 +465,39 @@ export class EditorStore {
   newDocument() {
     this.setDocument(blankDocument());
   }
+  setNodeMode(mode: AnchorMode) {
+    const id = this.active?.id,
+      index = this.view.nodeIndex;
+    if (!id || index === null || this.active?.locked) return;
+    this.change((d) => {
+      const e = d.elements.find((e) => e.id === id)!;
+      setAnchorMode(e, index, mode);
+      normalizePoints(e);
+    });
+  }
+  convertSelectedPath() {
+    const id = this.active?.id;
+    if (!id || this.active?.locked) return;
+    this.change((d) => convertPath(d.elements.find((e) => e.id === id)!));
+    this.setView({ nodeIndex: null });
+  }
+  flip(axis: 'horizontal' | 'vertical') {
+    const elements = this.selected.filter((e) => !e.locked);
+    if (!elements.length) return;
+    const b = selectionBounds(elements),
+      matrix = multiply(
+        translate(b.x + b.width / 2, b.y + b.height / 2),
+        multiply(
+          scale(axis === 'horizontal' ? -1 : 1, axis === 'vertical' ? -1 : 1),
+          translate(-b.x - b.width / 2, -b.y - b.height / 2),
+        ),
+      );
+    this.change((d) =>
+      d.elements.forEach((e) => {
+        if (elements.some((x) => x.id === e.id)) transformElement(e, matrix);
+      }),
+    );
+  }
   moveNode(id: string, index: number, point: Point, before: StudioElement, breakHandles = false) {
     this.preview((d) => {
       const e = d.elements.find((x) => x.id === id);
@@ -442,13 +511,20 @@ export class EditorStore {
         if (index % 3 === 0) {
           for (const i of [index - 1, index + 1])
             if (e.points[i]) e.points[i] = [e.points[i][0] + dx, e.points[i][1] + dy];
-        } else if (!breakHandles) {
+        } else if (breakHandles) {
+          const anchor = index % 3 === 1 ? index - 1 : index + 1;
+          e.anchorModes = { ...e.anchorModes, [anchor]: 'corner' };
+        } else {
           const anchor = index % 3 === 1 ? index - 1 : index + 1,
             opposite = index % 3 === 1 ? index - 2 : index + 2;
+          if (e.anchorModes?.[anchor] === 'corner') return;
           if (e.points[opposite]) {
             const a = e.points[anchor],
-              length = Math.hypot(e.points[opposite][0] - a[0], e.points[opposite][1] - a[1]),
-              dist = Math.hypot(point[0] - a[0], point[1] - a[1]);
+              dist = Math.hypot(point[0] - a[0], point[1] - a[1]),
+              length =
+                e.anchorModes?.[anchor] === 'symmetric'
+                  ? dist
+                  : Math.hypot(e.points[opposite][0] - a[0], e.points[opposite][1] - a[1]);
             if (dist > 0)
               e.points[opposite] = [
                 a[0] - ((point[0] - a[0]) * length) / dist,

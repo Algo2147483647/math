@@ -83,7 +83,7 @@ export function SelectField({
     <label className="select-field">
       <span>{label}</span>
       <select aria-label={label} value={value} onChange={(e) => onChange(e.target.value)}>
-        {value === '' && (
+        {value === '' && !options.some((o) => (typeof o === 'string' ? o : o[0]) === '') && (
           <option value="" disabled>
             Mixed
           </option>

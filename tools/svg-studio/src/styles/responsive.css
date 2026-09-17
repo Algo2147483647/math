@@ -1,6 +1,6 @@
 @media (max-width: 1150px) {
-  .library {
-    width: 226px;
+  :root {
+    --library-width: 226px;
   }
   .topbar {
     gap: 12px;
@@ -28,16 +28,12 @@
     max-width: 45%;
     overflow: hidden;
   }
-  .view-controls {
-    bottom: 28px;
-  }
-  .view-controls > .icon-button:first-child,
-  .view-controls > .icon-button:nth-child(2),
-  .view-controls > .divider {
-    display: none;
-  }
   .tool-dock {
-    left: 52%;
+    gap: 0;
+    padding: 6px;
+  }
+  .tool-button {
+    width: 36px;
   }
 }
 @media (max-width: 900px) {
@@ -53,29 +49,19 @@
   .top-actions .button svg {
     display: none;
   }
-  .library {
-    width: 200px;
-  }
-  .inspector {
-    width: 270px;
+  :root {
+    --library-width: 200px;
+    --inspector-width: 270px;
   }
   .tool-dock {
-    left: 50%;
     gap: 0;
-    padding: 6px;
+    padding: 5px;
   }
   .tool-button {
-    width: 35px;
-  }
-  .view-controls {
-    bottom: 94px;
-    left: 18px;
+    width: 29px;
   }
   .canvas-hint {
     display: none;
-  }
-  .panel {
-    bottom: 145px;
   }
   .field-grid {
     gap: 10px 7px;

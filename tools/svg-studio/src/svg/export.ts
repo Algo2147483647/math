@@ -1,6 +1,7 @@
 import { SVG_NS, safeFilename } from '../model/utils';
 import type { StudioDocument } from '../model/types';
 import { buildSvgElement } from './render';
+import { fontCss } from '../model/fonts';
 
 export function serializeSvg(doc: StudioDocument): string {
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -12,6 +13,11 @@ export function serializeSvg(doc: StudioDocument): string {
     const defs = document.createElementNS(SVG_NS, 'defs');
     defs.innerHTML = doc.sharedDefs;
     svg.append(defs);
+  }
+  if (doc.fonts?.length) {
+    const style = document.createElementNS(SVG_NS, 'style');
+    style.textContent = fontCss(doc.fonts);
+    svg.append(style);
   }
   if (doc.canvas.background !== 'transparent') {
     const bg = document.createElementNS(SVG_NS, 'rect');

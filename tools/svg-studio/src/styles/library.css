@@ -1,9 +1,9 @@
 .panel {
   position: absolute;
-  top: 100px;
-  bottom: 91px;
+  top: var(--topbar-height);
+  bottom: 0;
   z-index: 20;
-  border-radius: 23px;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -12,12 +12,12 @@
     opacity 0.22s;
 }
 .library {
-  left: 16px;
-  width: 254px;
+  left: 0;
+  width: var(--library-width);
 }
 .inspector {
-  right: 16px;
-  width: 306px;
+  right: 0;
+  width: var(--inspector-width);
 }
 .library.collapsed {
   transform: translateX(-285px);

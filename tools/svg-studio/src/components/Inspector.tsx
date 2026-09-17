@@ -3,6 +3,8 @@ import { isNodeEditable, selectionBounds } from '../model/geometry';
 import type { StudioElement } from '../model/types';
 import { NumberField, SelectField } from './Fields';
 import { Icon } from './Icon';
+import { FontPicker } from './FontPicker';
+import { PathControls } from './PathControls';
 import { Layers } from './Layers';
 import { Paint } from './PaintControl';
 import { Section } from './InspectorSection';
@@ -153,6 +155,23 @@ export function Inspector() {
                       onCommit={() => store.commit()}
                     />
                   </div>
+                  <label className="toggle-row">
+                    <span>Keep aspect ratio</span>
+                    <input
+                      type="checkbox"
+                      role="switch"
+                      checked={view.keepRatio}
+                      onChange={(e) => store.setView({ keepRatio: e.target.checked })}
+                    />
+                  </label>
+                  <div className="button-pair">
+                    <button className="button secondary" onClick={() => store.flip('horizontal')}>
+                      Flip horizontal
+                    </button>
+                    <button className="button secondary" onClick={() => store.flip('vertical')}>
+                      Flip vertical
+                    </button>
+                  </div>
                 </Section>
               ) : (
                 <Section title="Selection">
@@ -215,41 +234,7 @@ export function Inspector() {
                     </span>
                   }
                 >
-                  <button
-                    className={`button full ${view.tool === 'node' ? 'primary' : 'secondary'}`}
-                    onClick={() => store.enterNodes()}
-                  >
-                    <Icon name="node" size={17} />
-                    {view.tool === 'node' ? 'Done editing nodes' : 'Edit nodes'}
-                    <kbd>Enter</kbd>
-                  </button>
-                  {view.tool === 'node' && (
-                    <>
-                      <p className="field-help">
-                        Drag nodes freely. Double-click a segment to insert a node.
-                        {active.type === 'bezier'
-                          ? ' Hold Alt to adjust one handle independently.'
-                          : ''}
-                      </p>
-                      <div className="button-pair">
-                        <button className="button secondary" onClick={() => store.insertNode()}>
-                          Add node
-                        </button>
-                        <button
-                          className="button secondary"
-                          onClick={() => store.removeNode()}
-                          disabled={
-                            view.nodeIndex === null ||
-                            (active.type === 'bezier'
-                              ? active.points!.length <= 4 || view.nodeIndex % 3 !== 0
-                              : active.points!.length <= 2)
-                          }
-                        >
-                          Delete node
-                        </button>
-                      </div>
-                    </>
-                  )}
+                  <PathControls />
                 </Section>
               )}
               {single && active.type === 'rect' && (
@@ -295,11 +280,7 @@ export function Inspector() {
                       onBlur={() => store.commit()}
                     />
                   </label>
-                  {selector('Font family', 'fontFamily', [
-                    ['Manrope, Arial, sans-serif', 'Sans serif'],
-                    ['Georgia, serif', 'Serif'],
-                    ['monospace', 'Monospace'],
-                  ])}
+                  <FontPicker />
                   <div className="field-grid">
                     {number('Font size', 'fontSize', 1, undefined, 'px')}
                     {selector('Weight', 'fontWeight', [

@@ -83,12 +83,33 @@ export function intersects(a: Bounds, b: Bounds): boolean {
     a.x <= b.x + b.width && a.x + a.width >= b.x && a.y <= b.y + b.height && a.y + a.height >= b.y
   );
 }
+export function contains(a: Bounds, b: Bounds): boolean {
+  const epsilon = 0.00001;
+  return (
+    b.x >= a.x - epsilon &&
+    b.y >= a.y - epsilon &&
+    b.x + b.width <= a.x + a.width + epsilon &&
+    b.y + b.height <= a.y + a.height + epsilon
+  );
+}
+/** Keep the complete affine transform when applying an operation in world coordinates. */
+export function transformElement(e: StudioElement, matrix: Matrix): void {
+  const m = multiply(matrix, elementMatrix(e));
+  e.x = m[4];
+  e.y = m[5];
+  e.rotation = 0;
+  e.affine = [m[0], m[1], m[2], m[3], 0, 0];
+}
 export const isNodeEditable = (e?: StudioElement): boolean =>
   !!e && ['polyline', 'path', 'bezier', 'line'].includes(e.type) && !!e.points?.length;
 export function resizeElement(e: StudioElement, width: number, height: number): void {
   const sx = width / Math.max(0.001, e.width),
     sy = height / Math.max(0.001, e.height);
   if (e.points) e.points = e.points.map(([x, y]) => [x * sx, y * sy]);
+  if (e.type === 'text') {
+    e.fontSize = (e.fontSize || 36) * sy;
+    e.letterSpacing = (e.letterSpacing || 0) * sx;
+  }
   e.width = width;
   e.height = height;
 }

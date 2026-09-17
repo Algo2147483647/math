@@ -12,9 +12,7 @@ import { useEditor } from '../model/context';
 import {
   apply,
   clamp,
-  elementBounds,
   elementMatrix,
-  intersects,
   inverse,
   isNodeEditable,
   marqueeBounds,
@@ -23,6 +21,8 @@ import {
   resizeElement,
   round,
 } from '../model/geometry';
+import { marqueeHit } from '../model/hitTest';
+import { startManipulation, moveManipulation, type Manipulation } from './manipulation';
 import { makeElement } from '../model/elements';
 import { clone } from '../model/utils';
 import type { Bounds, Point, StudioDocument, StudioElement } from '../model/types';
@@ -35,6 +35,7 @@ interface Anchor {
   outgoing: Point;
 }
 type Gesture =
+  | Manipulation
   | { type: 'pan'; start: Point; pan: Point }
   | { type: 'marquee'; start: Point; current: Point; initial: string[] }
   | { type: 'move'; start: Point; elements: StudioElement[]; before: StudioDocument }
@@ -74,7 +75,8 @@ export function useCanvas() {
     draft.current = value;
     setAnchors(value);
   };
-  const snap = (p: Point): Point => p.map((n) => round(n, store.view.snap ? 8 : 0.1)) as Point;
+  const snap = (p: Point): Point =>
+    p.map((n) => round(n, store.view.snap ? store.view.gridSize : 0.1)) as Point;
   const toWorld = (clientX: number, clientY: number): Point => {
     const matrix = svg.current?.getScreenCTM();
     if (!matrix) return [0, 0];
@@ -84,13 +86,14 @@ export function useCanvas() {
   const fit = useCallback(() => {
     const rect = viewport.current?.getBoundingClientRect();
     if (!rect) return;
-    const compact = rect.width < 1150,
-      left = store.view.leftPanel ? (compact ? 226 : 254) + 34 : 32,
-      right = store.view.rightPanel ? 306 + 34 : 32;
+    const leftPanel = document.querySelector('.library')?.getBoundingClientRect(),
+      rightPanel = document.querySelector('.inspector')?.getBoundingClientRect();
+    const left = store.view.leftPanel ? (leftPanel?.width || 254) + 24 : 24,
+      right = store.view.rightPanel ? (rightPanel?.width || 306) + 24 : 24;
     const zoom = clamp(
       Math.min(
         (rect.width - left - right - 56) / store.document.canvas.width,
-        (rect.height - 240) / store.document.canvas.height,
+        (rect.height - 210) / store.document.canvas.height,
       ),
       0.08,
       1.4,
@@ -234,6 +237,11 @@ export function useCanvas() {
       setPanning(true);
       return;
     }
+    const direct = startManipulation(target, p, store);
+    if (direct) {
+      gesture.current = direct;
+      return;
+    }
     const node = target.closest('[data-node-index]'),
       handle = target.closest('[data-handle]');
     if (node && active && !active.locked) {
@@ -267,6 +275,7 @@ export function useCanvas() {
           store.toggleSelection(element.id);
           if (!store.view.selectedIds.includes(element.id)) return;
         } else if (!store.view.selectedIds.includes(element.id)) store.select([element.id]);
+        store.setView({ nodeIndex: null });
         gesture.current = {
           type: 'move',
           start: p,
@@ -295,12 +304,13 @@ export function useCanvas() {
       return;
     }
     if (tool === 'text') {
-      store.add('text', { x: snap(p)[0], y: snap(p)[1], text: 'Your text', name: 'Text' });
-      setTimeout(() => {
-        const input = document.querySelector<HTMLTextAreaElement>('[aria-label="Text content"]');
-        input?.focus();
-        input?.select();
-      }, 0);
+      const id = store.add('text', {
+        x: snap(p)[0],
+        y: snap(p)[1],
+        text: 'Your text',
+        name: 'Text',
+      });
+      store.setView({ editingTextId: id });
       return;
     }
     if (tool === 'rect' || tool === 'ellipse' || tool === 'line') {
@@ -332,6 +342,10 @@ export function useCanvas() {
       if (draft.current.length) setHover(snap(p));
       return;
     }
+    if (g.type === 'manipulate') {
+      moveManipulation(g, p, event.shiftKey, store);
+      return;
+    }
     if (g.type === 'pan') {
       store.setView({
         pan: [g.pan[0] + event.clientX - g.start[0], g.pan[1] + event.clientY - g.start[1]],
@@ -357,7 +371,7 @@ export function useCanvas() {
         ...new Set([
           ...g.initial,
           ...store.document.elements
-            .filter((e) => !e.hidden && !e.locked && intersects(b, elementBounds(e)))
+            .filter((e) => !e.hidden && !e.locked && marqueeHit(b, e, store.view.marqueeMode))
             .map((e) => e.id),
         ]),
       ]);
@@ -419,13 +433,16 @@ export function useCanvas() {
       if (g.handle.includes('s')) height = Math.max(1, before.height + dy);
       if (g.handle.includes('w')) width = Math.max(1, before.width - dx);
       if (g.handle.includes('n')) height = Math.max(1, before.height - dy);
-      if ((event.shiftKey || before.type === 'circle') && g.handle.length === 2) {
+      if (
+        (event.shiftKey || store.view.keepRatio || before.type === 'circle') &&
+        g.handle.length === 2
+      ) {
         const ratio = before.width / before.height;
         if (width / height > ratio) height = width / ratio;
         else width = height * ratio;
       }
-      width = Math.max(1, round(width, store.view.snap ? 8 : 0.1));
-      height = Math.max(1, round(height, store.view.snap ? 8 : 0.1));
+      width = Math.max(1, round(width, store.view.snap ? store.view.gridSize : 0.1));
+      height = Math.max(1, round(height, store.view.snap ? store.view.gridSize : 0.1));
       if (g.handle.includes('w')) x = before.width - width;
       if (g.handle.includes('n')) y = before.height - height;
       store.preview((d) => {
@@ -456,7 +473,7 @@ export function useCanvas() {
         });
       store.setView({ tool: 'select' });
     }
-    if (g && ['node', 'move', 'shape', 'resize'].includes(g.type)) store.commit();
+    if (g && ['node', 'move', 'shape', 'resize', 'manipulate'].includes(g.type)) store.commit();
     if (
       g?.type === 'marquee' &&
       Math.hypot(g.current[0] - g.start[0], g.current[1] - g.start[1]) * view.zoom < 3
@@ -490,24 +507,23 @@ export function useCanvas() {
       finishPath();
       return;
     }
-    const target = event.target as Element,
+    // Pointer capture retargets the synthesized click to the workspace in Chromium.
+    // Resolve the actual SVG under the pointer after the drag capture has ended.
+    const target =
+        document.elementFromPoint(event.clientX, event.clientY) || (event.target as Element),
       id = target.closest('[data-element-id]')?.getAttribute('data-element-id'),
       e = doc.elements.find((x) => x.id === id);
     if (!e || e.locked) return;
     if (isNodeEditable(e)) {
       store.select([e.id]);
-      if (view.tool === 'node' && !target.closest('[data-node-index]')) {
+      if (!target.closest('[data-node-index]')) {
         const local = apply(inverse(elementMatrix(e)), toWorld(event.clientX, event.clientY)),
           near = nearestSegment(e, local);
         store.insertNode(near.index, near.t);
       } else store.setView({ tool: 'node' });
     } else if (e.type === 'text') {
       store.select([e.id]);
-      store.setView({ inspectorTab: 'design' });
-      setTimeout(
-        () => document.querySelector<HTMLTextAreaElement>('[aria-label="Text content"]')?.focus(),
-        0,
-      );
+      store.setView({ inspectorTab: 'design', editingTextId: e.id });
     }
   };
   const drop = async (e: ReactDragEvent<HTMLDivElement>) => {

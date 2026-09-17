@@ -13,6 +13,9 @@
   --muted: #778397;
   --line: rgba(92, 119, 150, 0.14);
   --input: rgba(255, 255, 255, 0.65);
+  --library-width: 254px;
+  --inspector-width: 306px;
+  --topbar-height: 68px;
 }
 * {
   box-sizing: border-box;
@@ -156,15 +159,15 @@ small {
 }
 .topbar {
   position: absolute;
-  left: 16px;
-  right: 16px;
-  top: 14px;
-  height: 68px;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--topbar-height);
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 0 18px;
-  border-radius: 23px;
+  border-radius: 0;
   z-index: 30;
   background: linear-gradient(
     116deg,

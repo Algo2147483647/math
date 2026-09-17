@@ -3,9 +3,10 @@ import { normalizeColor } from '../model/utils';
 import { NumberField } from './Fields';
 import { Icon } from './Icon';
 import { Section } from './InspectorSection';
+import { WorkspaceControls } from './WorkspaceSettings';
 
 export function CanvasSettings() {
-  const { store, view, document: doc } = useEditor();
+  const { store, document: doc } = useEditor();
   return (
     <>
       <div className="canvas-intro">
@@ -76,26 +77,7 @@ export function CanvasSettings() {
         )}
       </Section>
       <Section title="Workspace">
-        <label className="toggle-row">
-          <span>Show grid</span>
-          <input
-            type="checkbox"
-            role="switch"
-            checked={view.grid}
-            onChange={(e) => store.setView({ grid: e.target.checked })}
-          />
-        </label>
-        <label className="toggle-row">
-          <span>
-            Snap to grid <small>8 px</small>
-          </span>
-          <input
-            type="checkbox"
-            role="switch"
-            checked={view.snap}
-            onChange={(e) => store.setView({ snap: e.target.checked })}
-          />
-        </label>
+        <WorkspaceControls />
       </Section>
       <div className="inspector-tip">
         <Icon name="select" size={16} />

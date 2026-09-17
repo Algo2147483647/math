@@ -37,6 +37,15 @@ export function Toolbar() {
       </div>
       <div className="view-controls glass">
         <button
+          className="icon-button"
+          aria-label="Workspace settings"
+          title="Grid and selection settings"
+          aria-expanded={view.workspaceOpen}
+          onClick={() => store.setView({ workspaceOpen: !view.workspaceOpen })}
+        >
+          <Icon name="settings" size={16} />
+        </button>
+        <button
           className={`icon-button ${view.grid ? 'active-subtle' : ''}`}
           title="Toggle grid"
           aria-label="Toggle grid"

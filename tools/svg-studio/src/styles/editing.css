@@ -1,0 +1,219 @@
+.paint-editor > .select-field {
+  margin-bottom: 12px;
+}
+.gradient-editor {
+  margin-top: 18px;
+}
+.gradient-ramp {
+  height: 24px;
+  margin: 0 7px 12px;
+  border-radius: 6px;
+  position: relative;
+  border: 1px solid #ffffffd9;
+  box-shadow: 0 1px 4px #243e6915;
+}
+.gradient-stop {
+  position: absolute;
+  top: 15px;
+  width: 13px;
+  height: 17px;
+  border: 2px solid white;
+  border-radius: 4px;
+  transform: translateX(-50%);
+  box-shadow: 0 1px 4px #243e6960;
+}
+.gradient-stop.active {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.gradient-stop:not(:disabled):active {
+  transform: translateX(-50%);
+}
+.stop-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #657892;
+}
+.stop-heading > div {
+  display: flex;
+}
+.stop-heading .icon-button {
+  height: 28px;
+  width: 28px;
+}
+.stop-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0 14px;
+  padding: 5px 8px;
+  background: var(--input);
+  border: 1px solid white;
+  border-radius: 9px;
+}
+.stop-color-row input[type='color'] {
+  width: 25px;
+  height: 27px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.stop-color-row input:not([type='color']) {
+  width: 75px;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.gradient-editor .number-field > span:first-child,
+.gradient-editor .select-field > span {
+  text-transform: capitalize;
+}
+.gradient-presets {
+  display: flex;
+  gap: 9px;
+  margin: 15px 0;
+}
+.gradient-presets button {
+  flex: 1;
+  height: 23px;
+  border: 2px solid #ffffffcf;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px #243e6918;
+}
+.workspace-popover {
+  position: absolute;
+  z-index: 35;
+  top: calc(var(--topbar-height) + 59px);
+  left: calc(var(--left-visible) + 12px);
+  width: 276px;
+  border-radius: 18px;
+  padding: 13px 17px;
+  background-color: #f5f9ffd9;
+}
+.workspace-popover .section-title {
+  margin: 0 0 9px;
+}
+.workspace-controls > .field-grid {
+  margin: 10px 0 15px;
+}
+.workspace-controls .field-help {
+  margin-bottom: 0;
+}
+.font-picker {
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.font-picker .text-field input {
+  height: 35px;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 8px;
+  background: var(--input);
+  padding: 0 8px;
+  font-size: 11px;
+}
+.font-preview {
+  font-size: 27px;
+  line-height: 1.5;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ffffffcf;
+  background: linear-gradient(120deg, #ffffff94, #edf4ff4f);
+  border-radius: 9px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.font-picker .field-help {
+  margin: 0;
+}
+.node-modes {
+  display: flex;
+  padding: 3px;
+  gap: 2px;
+  background: #6c90bd13;
+  border-radius: 9px;
+  margin: 13px 0;
+}
+.node-modes button {
+  flex: 1;
+  height: 30px;
+  border-radius: 7px;
+  background: transparent;
+  font-size: 10px;
+}
+.node-modes button.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 4px #315b9818;
+}
+.path-controls > .button-pair {
+  margin: 12px 0;
+}
+.rotation-guide,
+.gradient-guide {
+  stroke: #176be8;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.rotation-guide {
+  stroke-dasharray: 3 2;
+}
+.rotation-handle,
+.gradient-endpoint {
+  fill: white;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  cursor: grab;
+}
+.shape-handle {
+  fill: #ffd483;
+  stroke: #ce8420;
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+  cursor: ew-resize;
+}
+.gradient-guide {
+  stroke-width: 2;
+  paint-order: stroke;
+  filter: drop-shadow(0 1px 1px white);
+}
+.gradient-stop-handle {
+  stroke: white;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  cursor: move;
+  filter: drop-shadow(0 1px 2px #274e82aa);
+}
+.resize-handle[data-multi-handle='nw'],
+.resize-handle[data-multi-handle='se'] {
+  cursor: nwse-resize;
+}
+.resize-handle[data-multi-handle='ne'],
+.resize-handle[data-multi-handle='sw'] {
+  cursor: nesw-resize;
+}
+.inline-text-editor {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  background: #fffffff0;
+  resize: none;
+  overflow: auto;
+  user-select: text;
+}

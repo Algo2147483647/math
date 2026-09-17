@@ -106,7 +106,6 @@ test('polyline nodes move outside the original box, insert, delete and undo', as
   });
   await open(page, [e]);
   await page.mouse.click(...(await world(page, [200, 200])));
-  await page.keyboard.press('Enter');
   await expect(page.locator('[data-node-index]')).toHaveCount(3);
   const handle = page.locator('[data-node-index="1"]'),
     box = await handle.boundingBox();
@@ -219,7 +218,6 @@ test('imported polylines and cubic paths retain editable nodes, including viewBo
   await page.getByRole('button', { name: 'Layers 2' }).click();
   await page.locator('.layer-name').filter({ hasText: 'route' }).click();
   await page.getByRole('button', { name: 'Design', exact: true }).click();
-  await page.getByRole('button', { name: 'Edit nodes Enter' }).click();
   await expect(page.locator('[data-node-index]')).toHaveCount(3);
 });
 
