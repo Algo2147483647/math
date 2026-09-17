@@ -1,23 +1,5 @@
 (function (root) {
   "use strict";
-  const palettes = {
-    glacier: [
-      [0.34, 0.54, 0.77],
-      [0.6, 0.85, 0.88],
-    ],
-    iris: [
-      [0.48, 0.42, 0.72],
-      [0.77, 0.72, 0.92],
-    ],
-    jade: [
-      [0.29, 0.57, 0.53],
-      [0.65, 0.85, 0.73],
-    ],
-    rose: [
-      [0.65, 0.4, 0.53],
-      [0.92, 0.72, 0.76],
-    ],
-  };
   const multiply = (a, b) => {
     const out = new Float32Array(16);
     for (let col = 0; col < 4; col++)
@@ -50,16 +32,21 @@
       derivatives = !!gl.getExtension("OES_standard_derivatives");
     const vertexSource = `attribute vec3 aPosition; attribute vec3 aNormal; attribute vec3 aBary;
       uniform mat4 uMatrix; varying vec3 vNormal; varying vec3 vPosition; varying vec3 vBary;
-      void main(){vNormal=aNormal;vPosition=aPosition;vBary=aBary;gl_Position=uMatrix*vec4(aPosition,1.);}`;
+      uniform vec3 uColorScale; uniform vec3 uColorOffset; varying mediump vec3 vDomainPosition;
+      void main(){vNormal=aNormal;vPosition=aPosition;vBary=aBary;vDomainPosition=aPosition*uColorScale+uColorOffset;gl_Position=uMatrix*vec4(aPosition,1.);}`;
     const fragmentSource = `${derivatives ? "#extension GL_OES_standard_derivatives : enable" : ""}
       precision mediump float; varying vec3 vNormal; varying vec3 vPosition; varying vec3 vBary;
-      uniform vec3 uLow; uniform vec3 uHigh; uniform vec3 uEye; uniform float uMesh;
+      uniform vec3 uLow; uniform vec3 uMiddle; uniform vec3 uHigh; uniform vec3 uEye; uniform float uMesh;
+      varying mediump vec3 vDomainPosition; uniform vec3 uColorAxis; uniform float uRadial;
       void main(){
         vec3 n=normalize(vNormal); vec3 view=normalize(uEye-vPosition); if(dot(n,view)<0.) n=-n;
         vec3 light=normalize(vec3(-.5,-.7,1.7)); float diffuse=max(dot(n,light),0.);
         float fill=max(dot(n,normalize(vec3(1.,.4,.3))),0.);
-        float height=clamp(vPosition.z*.52+.5,0.,1.);
-        vec3 color=mix(uLow,uHigh,height); color*=.68+.32*diffuse+.12*fill;
+        vec3 domainPosition=clamp(vDomainPosition,0.,1.);
+        float amount=mix(dot(domainPosition,uColorAxis),length((domainPosition-.5)*2.)/sqrt(3.),uRadial);
+        amount=clamp(amount,0.,1.);
+        vec3 color=amount<.5?mix(uLow,uMiddle,amount*2.):mix(uMiddle,uHigh,(amount-.5)*2.);
+        color*=.68+.32*diffuse+.12*fill;
         float spec=pow(max(dot(n,normalize(light+view)),0.),48.);
         float rim=pow(1.-max(dot(n,view),0.),3.);
         color+=vec3(1.,1.,1.)*(spec*.23+rim*.12);
@@ -103,7 +90,12 @@
     const uniforms = locations(surfaceProgram, [
       "uMatrix",
       "uLow",
+      "uMiddle",
       "uHigh",
+      "uColorScale",
+      "uColorOffset",
+      "uColorAxis",
+      "uRadial",
       "uEye",
       "uMesh",
     ]);
@@ -139,7 +131,9 @@
       elevation = 0.5,
       distance = 4.3,
       pan = [0, 0],
-      color = "glacier",
+      material = root.SurfaceColors.material(
+        root.SurfaceColors.fromPalette("glacier"),
+      ),
       mesh = false,
       guides = true,
       box = false,
@@ -331,8 +325,19 @@
       if (vertexCount) {
         gl.useProgram(surfaceProgram);
         gl.uniformMatrix4fv(uniforms.uMatrix, false, matrix);
-        gl.uniform3fv(uniforms.uLow, palettes[color][0]);
-        gl.uniform3fv(uniforms.uHigh, palettes[color][1]);
+        gl.uniform3fv(uniforms.uLow, material.low);
+        gl.uniform3fv(uniforms.uMiddle, material.middle);
+        gl.uniform3fv(uniforms.uHigh, material.high);
+        gl.uniform3fv(
+          uniforms.uColorScale,
+          bounds.map(([min, max]) => 1 / (max - min)),
+        );
+        gl.uniform3fv(
+          uniforms.uColorOffset,
+          bounds.map(([min, max]) => -min / (max - min)),
+        );
+        gl.uniform3fv(uniforms.uColorAxis, material.axis);
+        gl.uniform1f(uniforms.uRadial, material.radial);
         gl.uniform3fv(uniforms.uEye, eye);
         gl.uniform1f(uniforms.uMesh, mesh ? 1 : 0);
         gl.bindBuffer(gl.ARRAY_BUFFER, meshBuffer);
@@ -492,11 +497,9 @@
         rebuildGuides();
         requestDraw();
       },
-      setColor(value) {
-        if (palettes[value]) {
-          color = value;
-          requestDraw();
-        }
+      setAppearance(settings) {
+        material = root.SurfaceColors.material(settings);
+        requestDraw();
       },
       setMeshVisible(value) {
         mesh = value;

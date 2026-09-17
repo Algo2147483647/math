@@ -2,6 +2,7 @@
   "use strict";
   const $ = (id) => document.getElementById(id);
   const presets = SurfacePresets;
+  let appearance = SurfaceColors.fromPalette("glacier");
   const normalize = (text) => text.replace(/\s/g, "").toLowerCase();
   let renderer,
     worker = null,
@@ -237,16 +238,86 @@
     ["show-box", "setBox"],
   ])
     $(id).addEventListener("change", () => renderer?.[method]($(id).checked));
-  document.querySelectorAll("[data-color]").forEach((button) =>
+  function updateAppearance() {
+    const gradient = appearance.mode === "gradient";
+    $("solid-mode").setAttribute("aria-pressed", String(!gradient));
+    $("gradient-mode").setAttribute("aria-pressed", String(gradient));
+    $("gradient-controls").hidden = !gradient;
+    $("color-end-control").hidden = !gradient;
+    $("color-middle-control").hidden = !appearance.useMiddle;
+    $("color-stops").classList.toggle("single", !gradient);
+    $("color-start-label").textContent = gradient ? "From" : "Color";
+    $("color-start").setAttribute(
+      "aria-label",
+      gradient ? "Start color" : "Surface color",
+    );
+    $("reverse-colors").hidden = !gradient;
+    $("use-middle").checked = appearance.useMiddle;
+    $("gradient-direction").value = appearance.direction;
+    for (const stop of ["start", "middle", "end"]) {
+      $(`color-${stop}`).value = appearance[stop];
+      $(`color-${stop}-value`).value = appearance[stop].toUpperCase();
+    }
+    $("color-preview").style.background = SurfaceColors.preview(appearance);
+    let selectedName = "Custom";
+    document.querySelectorAll("[data-color]").forEach((button) => {
+      const palette = SurfaceColors.fromPalette(button.dataset.color);
+      const matches =
+        palette.start === appearance.start &&
+        (!gradient ||
+          (palette.end === appearance.end &&
+            palette.useMiddle === appearance.useMiddle &&
+            (!palette.useMiddle || palette.middle === appearance.middle)));
+      button.setAttribute("aria-pressed", String(matches));
+      if (matches)
+        selectedName = SurfaceColors.palettes[button.dataset.color].name;
+    });
+    $("palette-name").textContent = selectedName;
+    renderer?.setAppearance(appearance);
+  }
+  for (const [id, palette] of Object.entries(SurfaceColors.palettes)) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "swatch";
+    button.dataset.color = id;
+    button.title = palette.name;
+    button.setAttribute("aria-label", `${palette.name} palette`);
+    button.style.background = SurfaceColors.preview(
+      SurfaceColors.fromPalette(id),
+    );
     button.addEventListener("click", () => {
-      document
-        .querySelectorAll("[data-color]")
-        .forEach((item) =>
-          item.setAttribute("aria-pressed", String(item === button)),
-        );
-      renderer?.setColor(button.dataset.color);
-    }),
-  );
+      appearance = {
+        ...SurfaceColors.fromPalette(id),
+        mode: appearance.mode,
+        direction: appearance.direction,
+      };
+      updateAppearance();
+    });
+    $("color-palettes").append(button);
+  }
+  for (const mode of ["solid", "gradient"])
+    $(mode + "-mode").addEventListener("click", () => {
+      appearance.mode = mode;
+      updateAppearance();
+    });
+  for (const stop of ["start", "middle", "end"])
+    $(`color-${stop}`).addEventListener("input", (event) => {
+      appearance[stop] = event.target.value;
+      updateAppearance();
+    });
+  $("use-middle").addEventListener("change", (event) => {
+    appearance.useMiddle = event.target.checked;
+    updateAppearance();
+  });
+  $("gradient-direction").addEventListener("change", (event) => {
+    appearance.direction = event.target.value;
+    updateAppearance();
+  });
+  $("reverse-colors").addEventListener("click", () => {
+    [appearance.start, appearance.end] = [appearance.end, appearance.start];
+    updateAppearance();
+  });
+  updateAppearance();
   $("zoom-in").addEventListener("click", () => renderer?.zoom(1 / 1.2));
   $("zoom-out").addEventListener("click", () => renderer?.zoom(1.2));
   $("reset-view").addEventListener("click", () => renderer?.reset());
@@ -285,9 +356,12 @@
     const preset = presets.find((p) => p.id === id);
     if (!preset) return;
     $("expression").value = preset.expression;
-    axisInputs.forEach((pair) => {
-      pair[0].value = -preset.span;
-      pair[1].value = preset.span;
+    const domain =
+      preset.domain ||
+      Array.from({ length: 3 }, () => [-preset.span, preset.span]);
+    axisInputs.forEach((pair, axis) => {
+      pair[0].value = domain[axis][0];
+      pair[1].value = domain[axis][1];
     });
     $("preset-dialog").close();
     renderer?.reset();
@@ -298,6 +372,7 @@
     button.type = "button";
     button.className = "preset-card";
     button.dataset.preset = preset.id;
+    button.setAttribute("aria-label", `${preset.name} · ${preset.group}`);
     const title = document.createElement("strong"),
       subtitle = document.createElement("span"),
       equation = document.createElement("code");
@@ -307,6 +382,60 @@
     button.append(title, subtitle, equation);
     $("preset-list").append(button);
   }
+  let selectedGroup = "All";
+  const libraryCards = Array.from(
+    $("preset-list").querySelectorAll("[data-preset]"),
+  );
+  const searchText = new Map(
+    presets.map((preset) => [
+      preset.id,
+      normalize(
+        `${preset.name} ${preset.type} ${preset.group} ${preset.keywords || ""} ${preset.expression}`,
+      ),
+    ]),
+  );
+  const groupById = new Map(presets.map((preset) => [preset.id, preset.group]));
+  function filterPresets() {
+    const query = normalize($("preset-search").value);
+    let count = 0;
+    for (const card of libraryCards) {
+      const visible =
+        (selectedGroup === "All" ||
+          selectedGroup === groupById.get(card.dataset.preset)) &&
+        searchText.get(card.dataset.preset).includes(query);
+      card.hidden = !visible;
+      if (visible) count++;
+    }
+    $("preset-count").textContent =
+      count === presets.length
+        ? `${count} surfaces · ${new Set(presets.map((p) => p.group)).size} collections`
+        : `${count} of ${presets.length} surfaces`;
+    $("preset-empty").hidden = count > 0;
+    $("preset-filters")
+      .querySelectorAll("button")
+      .forEach((button) =>
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.group === selectedGroup),
+        ),
+      );
+  }
+  for (const group of [
+    "All",
+    ...new Set(presets.map((preset) => preset.group)),
+  ]) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = group;
+    button.dataset.group = group;
+    button.addEventListener("click", () => {
+      selectedGroup = group;
+      filterPresets();
+    });
+    $("preset-filters").append(button);
+  }
+  $("preset-search").addEventListener("input", filterPresets);
+  filterPresets();
   document
     .querySelectorAll("[data-preset]")
     .forEach((button) =>

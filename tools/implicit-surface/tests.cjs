@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const math = require("./math.js");
 const mesher = require("./mesh.js").createMesher(math);
 const presets = require("./presets.js");
+const colors = require("./colors.js");
 const close = (actual, expected, tolerance = 1e-10) =>
   assert.ok(
     Math.abs(actual - expected) <= tolerance,
@@ -10,6 +11,59 @@ const close = (actual, expected, tolerance = 1e-10) =>
   );
 const evaluate = (text, x = 0, y = 0, z = 0) => math.compile(text)(x, y, z);
 async function main() {
+  assert.deepEqual(colors.rgb("#ff8000"), [1, 128 / 255, 0]);
+  assert.equal(colors.midpoint("#000000", "#ffffff"), "#808080");
+  const colorSettings = {
+    ...colors.fromPalette("glacier"),
+    start: "#000000",
+    end: "#ffffff",
+    middle: "#ff0000",
+    direction: "x",
+  };
+  const twoStop = colors.material(colorSettings);
+  assert.deepEqual(twoStop.middle, [0.5, 0.5, 0.5]);
+  assert.deepEqual(twoStop.axis, [1, 0, 0]);
+  assert.deepEqual(
+    colors.material({ ...colorSettings, useMiddle: true }).middle,
+    [1, 0, 0],
+  );
+  assert.equal(
+    colors.material({ ...colorSettings, direction: "radius" }).radial,
+    1,
+  );
+  const solid = colors.material({ ...colorSettings, mode: "solid" });
+  assert.deepEqual(solid.low, solid.middle);
+  assert.deepEqual(solid.low, solid.high);
+  assert.equal(colors.preview({ ...colorSettings, mode: "solid" }), "#000000");
+  assert.equal(
+    colors.preview({ ...colorSettings, useMiddle: true }),
+    "linear-gradient(90deg, #000000, #ff0000, #ffffff)",
+  );
+  const reversed = colors.material({
+    ...colorSettings,
+    start: colorSettings.end,
+    end: colorSettings.start,
+    useMiddle: true,
+  });
+  assert.deepEqual(reversed.low, [1, 1, 1]);
+  assert.deepEqual(reversed.high, [0, 0, 0]);
+  assert.deepEqual(reversed.middle, [1, 0, 0]);
+  for (const id of Object.keys(colors.palettes)) {
+    const material = colors.material(colors.fromPalette(id));
+    assert.ok(
+      [...material.low, ...material.middle, ...material.high].every(
+        (v) => v >= 0 && v <= 1,
+      ),
+    );
+  }
+  assert.throws(() => colors.rgb("#xyzxyz"));
+  assert.throws(() => colors.fromPalette("constructor"));
+  assert.throws(() =>
+    colors.material({ ...colorSettings, direction: "unknown" }),
+  );
+  console.log(
+    "PASS: solid colors, two/three-stop gradients, radial/axis modes, reversal, and all palettes",
+  );
   close(evaluate("x^2 + y^2 + z^2 = 4", 2), 0);
   close(evaluate("z = sin(pi/2)cos(0)", 0, 0, 1), 0);
   close(evaluate("2xy + 3z", 2, 4, 5), 31);
@@ -163,11 +217,14 @@ async function main() {
   console.log(
     "PASS: poles, empty/undefined/volume fields, coefficient scaling, partial domains, gyroid, cancellation",
   );
+  assert.equal(new Set(presets.map((p) => p.id)).size, presets.length);
+  assert.equal(new Set(presets.map((p) => p.group)).size, 5);
   for (const preset of presets) {
-    const result = await build(
-      preset.expression,
-      Array.from({ length: 3 }, () => [-preset.span, preset.span]),
-    );
+    const presetDomain =
+      preset.domain ||
+      Array.from({ length: 3 }, () => [-preset.span, preset.span]);
+    math.validateDomain(presetDomain);
+    const result = await build(preset.expression, presetDomain);
     assert.ok(result.triangles > 0, preset.name);
     assert.ok(result.data.every(Number.isFinite), preset.name);
   }

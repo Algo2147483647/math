@@ -14,9 +14,20 @@ viewport fills the entire window; controls float above it.
 - Set independent minimum and maximum values for **x**, **y**, and **z**, then
   choose **Apply domain**. The shape is clipped at the domain boundary.
 - Select **Draft**, **Balanced**, or **Fine** detail (32, 52, or 76 cells per axis).
-- Choose a color, show the triangle mesh, or toggle coordinate guides/domain box.
-- Open **Surfaces** for 12 examples, including a sphere, torus, gyroid, saddle,
-  heart, disconnected spheres, and Schwarz P surface. Presets also set a useful domain.
+- Use **Surface color** to choose **Solid** or **Gradient**. Click a color chip
+  to open the native color picker. Gradients support two endpoints, an optional
+  middle color at 50%, X/Y/Z directions, distance from the domain center, and
+  reversal. Six palettes provide starting points, including Sunset and Aurora.
+  Changes update immediately without rebuilding the mesh; lighting still shades
+  solid colors. Gradient coordinates span the configured domain, with radial
+  distance normalized from its center (0) to its corners (1).
+- Show the triangle mesh, or toggle coordinate guides/domain box.
+- Open **Surfaces** for 36 examples across quadrics, sculpted forms, waves,
+  periodic surfaces, and combinations. Filter by collection or search names,
+  equations, and Chinese keywords. Examples include a wavy torus, monkey saddle,
+  Gaussian hill, gyroid shell, and sphere union/intersection/difference.
+  Presets also set a useful domain, including independent axis ranges for landscapes.
+  The periodic examples use trigonometric level sets; they are not exact minimal-surface solutions.
 - Drag to orbit; Shift-drag, right-drag, or middle-drag to pan; scroll to zoom.
   On touchscreens, drag with one finger or pan/pinch with two fingers.
 - Focus the canvas and use arrow keys to orbit, Shift + arrows to pan,
@@ -82,6 +93,7 @@ thread. Rendering runs on demand; continuous frames are used only during rotatio
 - `math.js`: restricted expression parser and numerical domain validation.
 - `mesh.js`: cancellable mesh generation and root refinement.
 - `renderer.js`: WebGL shading, coordinate guides, orbit/pan/zoom and touch controls.
+- `colors.js`: palettes, custom colors, and gradient material settings.
 - `presets.js`: the shared library of example equations and domains.
 - `app.js`: worker lifecycle, validation, and accessible UI state.
 - `tests.cjs`: parser and geometric regression checks; no dependencies required.

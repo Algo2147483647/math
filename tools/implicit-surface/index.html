@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer src="math.js"></script>
     <script defer src="mesh.js"></script>
+    <script defer src="colors.js"></script>
     <script defer src="renderer.js"></script>
     <script defer src="presets.js"></script>
     <script defer src="app.js"></script>
@@ -225,39 +226,6 @@
                 <option value="76">Fine</option>
               </select>
             </div>
-            <div class="control-row color-row">
-              <span>Surface color</span>
-              <div class="swatches" role="group" aria-label="Surface color">
-                <button
-                  type="button"
-                  data-color="glacier"
-                  class="swatch glacier"
-                  aria-label="Glacier blue"
-                  aria-pressed="true"
-                ></button
-                ><button
-                  type="button"
-                  data-color="iris"
-                  class="swatch iris"
-                  aria-label="Iris purple"
-                  aria-pressed="false"
-                ></button
-                ><button
-                  type="button"
-                  data-color="jade"
-                  class="swatch jade"
-                  aria-label="Jade green"
-                  aria-pressed="false"
-                ></button
-                ><button
-                  type="button"
-                  data-color="rose"
-                  class="swatch rose"
-                  aria-label="Rose pink"
-                  aria-pressed="false"
-                ></button>
-              </div>
-            </div>
             <label class="control-row switch-row" for="wireframe"
               ><span>Surface mesh</span
               ><input class="switch" id="wireframe" type="checkbox"
@@ -270,6 +238,99 @@
               ><span>Domain box</span
               ><input class="switch" id="show-box" type="checkbox"
             /></label>
+          </section>
+          <section
+            class="control-section appearance-section"
+            aria-labelledby="appearance-title"
+          >
+            <div class="section-heading">
+              <h2 id="appearance-title">Surface color</h2>
+              <span id="palette-name" class="quiet">Glacier</span>
+            </div>
+            <div class="segmented" role="group" aria-label="Color mode">
+              <button id="solid-mode" type="button" aria-pressed="false">
+                Solid
+              </button>
+              <button id="gradient-mode" type="button" aria-pressed="true">
+                Gradient
+              </button>
+            </div>
+            <div
+              id="color-palettes"
+              class="swatches"
+              role="group"
+              aria-label="Color palettes"
+            ></div>
+            <div id="color-stops" class="color-stops">
+              <label class="color-stop" for="color-start"
+                ><input
+                  id="color-start"
+                  type="color"
+                  value="#578ac4"
+                  aria-label="Start color"
+                /><span id="color-start-label">From</span
+                ><output id="color-start-value" for="color-start"
+                  >#578AC4</output
+                ></label
+              >
+              <label id="color-end-control" class="color-stop" for="color-end"
+                ><input
+                  id="color-end"
+                  type="color"
+                  value="#99d9e0"
+                  aria-label="End color"
+                /><span>To</span
+                ><output id="color-end-value" for="color-end"
+                  >#99D9E0</output
+                ></label
+              >
+            </div>
+            <div id="gradient-controls">
+              <label class="control-row switch-row" for="use-middle"
+                ><span>Middle color</span
+                ><input class="switch" id="use-middle" type="checkbox"
+              /></label>
+              <label
+                id="color-middle-control"
+                class="color-stop middle-color"
+                for="color-middle"
+                hidden
+                ><input
+                  id="color-middle"
+                  type="color"
+                  value="#78b2d2"
+                  aria-label="Middle color"
+                /><span>At 50%</span
+                ><output id="color-middle-value" for="color-middle"
+                  >#78B2D2</output
+                ></label
+              >
+              <div class="control-row gradient-direction">
+                <label for="gradient-direction">Direction</label
+                ><select id="gradient-direction">
+                  <option value="z">Z · height</option>
+                  <option value="x">X axis</option>
+                  <option value="y">Y axis</option>
+                  <option value="radius">From center</option>
+                </select>
+              </div>
+            </div>
+            <div class="color-preview-row">
+              <span
+                id="color-preview"
+                class="color-preview"
+                aria-hidden="true"
+              ></span
+              ><button
+                id="reverse-colors"
+                class="text-button"
+                type="button"
+                aria-label="Reverse gradient colors"
+                title="Reverse gradient colors"
+              >
+                ⇄
+              </button>
+            </div>
           </section>
           <section class="control-section">
             <div class="section-heading">
@@ -378,7 +439,33 @@
             <svg class="icon"><use href="#close" /></svg>
           </button>
         </div>
+        <div class="library-tools">
+          <label class="preset-search" for="preset-search"
+            ><span class="sr-only">Search surface presets</span
+            ><input
+              id="preset-search"
+              type="search"
+              placeholder="Search shapes or equations…"
+              autocomplete="off"
+              spellcheck="false"
+          /></label>
+          <div
+            id="preset-filters"
+            class="preset-filters"
+            role="group"
+            aria-label="Surface categories"
+          ></div>
+          <p
+            id="preset-count"
+            class="quiet"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
         <div id="preset-list" class="preset-list"></div>
+        <p id="preset-empty" class="preset-empty" hidden>
+          No matching surfaces. Try another name or equation.
+        </p>
       </dialog>
       <dialog
         id="help-dialog"

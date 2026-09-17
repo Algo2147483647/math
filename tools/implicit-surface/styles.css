@@ -428,17 +428,17 @@ canvas {
   color: #6580a8;
   font-size: 10px;
 }
-.color-row {
-  margin: 17px 0;
-}
 .swatches {
   display: flex;
-  gap: 9px;
+  justify-content: space-between;
+  gap: 10px;
   align-items: center;
+  margin: 15px 3px;
 }
 .swatch {
-  width: 17px;
-  height: 17px;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
   border: 2px solid #ffffffb0;
   border-radius: 50%;
   box-shadow: 0 1px 3px #64758c16;
@@ -447,17 +447,101 @@ canvas {
   outline: 1px solid #8ea4c5;
   outline-offset: 3px;
 }
-.swatch.glacier {
-  background: #81b9d5;
+.segmented {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #ffffffb0;
+  border-radius: 10px;
+  background: #dfe8f435;
 }
-.swatch.iris {
-  background: #a39bd4;
+.segmented button {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 7px;
+  font-size: 10px;
+  color: #8b9bb1;
 }
-.swatch.jade {
-  background: #7dbaab;
+.segmented button[aria-pressed="true"] {
+  color: #6485be;
+  background: #ffffffa0;
+  box-shadow: 0 1px 4px #6682ac0a;
 }
-.swatch.rose {
-  background: #d8a0b2;
+.color-stops {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.color-stops.single {
+  grid-template-columns: 1fr;
+}
+.color-stop {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 7px;
+  align-items: center;
+  padding: 8px 7px;
+  border: 1px solid #ffffffc0;
+  border-radius: 10px;
+  background: #ffffff50;
+  cursor: pointer;
+  min-width: 0;
+}
+.color-stop span {
+  font-size: 10px;
+  color: #7b8fa9;
+}
+.color-stop output {
+  font: 8px/1.7 var(--mono);
+  color: #97a5b7;
+}
+input[type="color"] {
+  grid-row: 1/3;
+  appearance: none;
+  width: 25px;
+  height: 28px;
+  border: 1px solid #ffffffc0;
+  border-radius: 7px;
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: 5px;
+}
+input[type="color"]::-moz-color-swatch {
+  border: 0;
+  border-radius: 5px;
+}
+.middle-color {
+  margin-top: 10px;
+}
+.gradient-direction {
+  margin-top: 13px;
+}
+.color-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;
+}
+.color-preview {
+  height: 10px;
+  flex: 1;
+  border: 1px solid #ffffffb0;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #578ac4, #99d9e0);
+}
+#reverse-colors {
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 3px;
 }
 .switch-row {
   margin-top: 13px;
@@ -637,6 +721,66 @@ canvas {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+#preset-dialog {
+  width: min(660px, calc(100vw - 36px));
+}
+.library-tools {
+  margin-bottom: 15px;
+}
+.preset-search input {
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  background: #ffffff80;
+  padding: 11px 13px;
+  font-size: 12px;
+  color: #6c819e;
+}
+.preset-search input::placeholder {
+  color: #99a8bc;
+}
+.preset-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.preset-filters button {
+  padding: 6px 10px;
+  border: 1px solid #ffffff9c;
+  border-radius: 8px;
+  color: #8a9bb2;
+  font-size: 10px;
+  background: #ffffff30;
+}
+.preset-filters button[aria-pressed="true"] {
+  background: #dbe7fc90;
+  color: #5e83bf;
+  border-color: #c0d1ed70;
+}
+#preset-count {
+  margin: 12px 0 0;
+}
+.preset-empty {
+  color: #889cb8;
+  padding: 30px 10px;
+  text-align: center;
+}
+.preset-card[aria-pressed="true"] {
+  background: #e6edff80;
+  border-color: #b8cbed90;
 }
 .preset-card {
   display: block;
@@ -848,6 +992,16 @@ dd code {
   }
   .preset-list {
     grid-template-columns: 1fr;
+  }
+  .color-stop {
+    column-gap: 5px;
+    padding: 7px 5px;
+  }
+  .color-stop output {
+    font-size: 7px;
+  }
+  .swatches {
+    gap: 7px;
   }
   .dialog-heading h2 {
     font-size: 20px;
