@@ -12,9 +12,10 @@
   const escapeXml = value => String(value).replace(/[<>&'\"]/g, char => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[char]);
 
   const typeNames = {
-    rect: ['矩形', 'RECTANGLE'], ellipse: ['椭圆', 'ELLIPSE'], triangle: ['三角形', 'POLYGON'],
-    star: ['星形', 'STAR'], line: ['直线', 'LINE'], text: ['文本', 'TEXT'], path: ['路径', 'PATH'],
-    icon: ['图标', 'ICON'], raw: ['导入图稿', 'IMPORTED SVG']
+    rect: ['矩形', 'RECTANGLE'], circle: ['圆形', 'CIRCLE'], ellipse: ['椭圆', 'ELLIPSE'], triangle: ['三角形', 'POLYGON'],
+    diamond: ['菱形', 'POLYGON'], polygon: ['多边形', 'POLYGON'], star: ['星形', 'STAR'],
+    line: ['直线', 'LINE'], arrow: ['箭头', 'ARROW'], arc: ['圆弧', 'ARC'], polyline: ['折线', 'POLYLINE'],
+    text: ['文本', 'TEXT'], path: ['路径', 'PATH'], image: ['图片', 'IMAGE'], icon: ['图标', 'ICON'], group: ['组合', 'GROUP'], raw: ['导入图稿', 'IMPORTED SVG']
   };
 
   const palettes = [
@@ -47,22 +48,29 @@
   ];
 
   function makeElement(type, overrides = {}) {
+    const strokeOnly = ['line', 'path', 'arrow', 'arc', 'polyline'].includes(type);
     const defaults = {
       id: uid(), type, name: typeNames[type]?.[0] || '图形', x: 320, y: 220, width: 180, height: 120,
-      rotation: 0, fill: type === 'line' || type === 'path' ? 'none' : '#7656EE', stroke: type === 'line' || type === 'path' ? '#1C1A21' : 'none',
-      strokeWidth: type === 'line' ? 3 : type === 'path' ? 4 : 0, opacity: 1, radius: 0, hidden: false, locked: false
+      rotation: 0, fill: strokeOnly ? 'none' : '#7656EE', stroke: strokeOnly ? '#1C1A21' : 'none',
+      strokeWidth: strokeOnly ? 3 : 0, strokeLinecap: 'round', strokeLinejoin: 'round', strokeDasharray: '',
+      fillOpacity: 1, strokeOpacity: 1, opacity: 1, blendMode: 'normal', radius: 0, hidden: false, locked: false
     };
-    if (type === 'ellipse') Object.assign(defaults, { width: 150, height: 150 });
-    if (type === 'triangle' || type === 'star') Object.assign(defaults, { width: 150, height: 150 });
-    if (type === 'line') Object.assign(defaults, { width: 180, height: 80 });
-    if (type === 'text') Object.assign(defaults, { width: 220, height: 50, text: '双击编辑文本', fontSize: 36, fontWeight: 700, letterSpacing: 0 });
+    if (type === 'circle' || type === 'ellipse') Object.assign(defaults, { width: 150, height: 150 });
+    if (['triangle', 'diamond', 'polygon', 'star'].includes(type)) Object.assign(defaults, { width: 150, height: 150 });
+    if (type === 'polygon') Object.assign(defaults, { sides: 6 });
+    if (type === 'star') Object.assign(defaults, { pointsCount: 5, innerRatio: .43 });
+    if (['line', 'arrow', 'polyline'].includes(type)) Object.assign(defaults, { width: 180, height: 80 });
+    if (type === 'arc') Object.assign(defaults, { width: 160, height: 160, arcStart: 200, arcEnd: 340 });
+    if (type === 'text') Object.assign(defaults, { width: 220, height: 50, text: '双击编辑文本', fontSize: 36, fontWeight: 700, fontFamily: 'Manrope, Arial, sans-serif', textAlign: 'start', letterSpacing: 0, lineHeight: 1.2 });
+    if (type === 'image') Object.assign(defaults, { width: 240, height: 160, fill: 'none', stroke: 'none', href: '', preserveAspectRatio: 'xMidYMid meet' });
     if (type === 'icon') Object.assign(defaults, { width: 100, height: 100, fill: 'none', stroke: '#7656EE', strokeWidth: 1.8, icon: 'heart' });
     if (type === 'path') Object.assign(defaults, { points: [], smooth: false });
+    if (type === 'group') Object.assign(defaults, { children: [], sourceWidth: 180, sourceHeight: 120, fill: 'mixed', stroke: 'mixed' });
     return Object.assign(defaults, overrides);
   }
 
   const state = {
-    canvas: { width: 960, height: 640, background: '#FFFFFF' },
+    canvas: { width: 960, height: 640, background: 'transparent' },
     elements: [], selectedId: null, selectedIds: [], tool: 'select', zoom: .84, panX: 0, panY: 0,
     grid: true, snap: true, history: [], historyIndex: -1, drawing: null, interaction: null,
     penPoints: [], penHover: null, exportFormat: 'svg', spaceDown: false, dirty: false, clipboard: [], sharedDefs: ''
@@ -90,7 +98,7 @@
   function loadDocument() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (saved?.elements?.length && saved.canvas) {
+      if (Array.isArray(saved?.elements) && saved.canvas) {
         state.canvas = saved.canvas;
         state.elements = saved.elements;
         state.sharedDefs = saved.sharedDefs || '';
@@ -136,8 +144,14 @@
     $('#fitBtn').addEventListener('click', fitCanvas);
     $('#undoBtn').addEventListener('click', undo);
     $('#redoBtn').addEventListener('click', redo);
+    $('#toggleLeftPanel').addEventListener('click', () => togglePanel('left'));
+    $('#toggleRightPanel').addEventListener('click', () => togglePanel('right'));
 
     $('#duplicateBtn').addEventListener('click', duplicateSelected);
+    $('#groupBtn').addEventListener('click', groupSelected);
+    $('#ungroupBtn').addEventListener('click', ungroupSelected);
+    $('#inspectorGroupBtn').addEventListener('click', groupSelected);
+    $('#inspectorUngroupBtn').addEventListener('click', ungroupSelected);
     $('#resetTransform').addEventListener('click', () => updateSelected({ rotation: 0 }, true));
     $('#swapColors').addEventListener('click', swapColors);
     $('#bringFront').addEventListener('click', () => reorderSelected('front'));
@@ -146,6 +160,18 @@
     $('#sendBack').addEventListener('click', () => reorderSelected('back'));
     $('#selectAllBtn').addEventListener('click', selectAll);
     $('#newShapeBtn').addEventListener('click', () => addCenteredElement('rect'));
+    $('#imageImportBtn').addEventListener('click', () => $('#imageFileInput').click());
+    $('#imageFileInput').addEventListener('change', importRasterImage);
+    $('#canvasBackground').addEventListener('input', event => {
+      $('#canvasTransparent').checked = false;
+      state.canvas.background = event.target.value.toUpperCase();
+      renderCanvas(); renderInspector(); scheduleSave();
+    });
+    $('#canvasBackground').addEventListener('change', () => commitChange('修改画布背景'));
+    $('#canvasTransparent').addEventListener('change', event => {
+      state.canvas.background = event.target.checked ? 'transparent' : $('#canvasBackground').value.toUpperCase();
+      commitChange(event.target.checked ? '画布设为透明' : '设置画布背景');
+    });
     bindPropertyInputs();
 
     dom.artboard.addEventListener('pointerdown', onCanvasPointerDown);
@@ -168,18 +194,25 @@
     const numberBindings = {
       propX: ['x', Number], propY: ['y', Number], propW: ['width', value => Math.max(1, Number(value))],
       propH: ['height', value => Math.max(1, Number(value))], propRotation: ['rotation', Number],
-      propStrokeWidth: ['strokeWidth', value => Math.max(0, Number(value))], propRadius: ['radius', value => Math.max(0, Number(value))]
+      propStrokeWidth: ['strokeWidth', value => Math.max(0, Number(value))], propRadius: ['radius', value => Math.max(0, Number(value))],
+      propSides: ['sides', value => clamp(Math.round(Number(value)), 3, 24)],
+      propInnerRatio: ['innerRatio', value => clamp(Number(value) / 100, .05, .95)],
+      propArcStart: ['arcStart', Number], propArcEnd: ['arcEnd', Number],
+      propFontSize: ['fontSize', value => Math.max(1, Number(value))], propLetterSpacing: ['letterSpacing', Number],
+      propFillOpacity: ['fillOpacity', value => clamp(Number(value) / 100, 0, 1)],
+      propStrokeOpacity: ['strokeOpacity', value => clamp(Number(value) / 100, 0, 1)]
     };
     Object.entries(numberBindings).forEach(([id, [property, parser]]) => {
       const input = document.getElementById(id);
-      input.addEventListener('input', () => updateSelected({ [property]: parser(input.value) }, false));
-      input.addEventListener('change', () => commitChange(`修改${property}`));
+      input.addEventListener('input', () => { const targetProperty = id === 'propSides' ? input.dataset.property || property : property; updateSelected({ [targetProperty]: parser(input.value) }, false); });
+      input.addEventListener('change', () => commitChange(`修改${id === 'propSides' ? input.dataset.property || property : property}`));
     });
     const connectColor = (colorId, textId, property) => {
       const color = document.getElementById(colorId), text = document.getElementById(textId);
       color.addEventListener('input', () => { text.value = color.value.toUpperCase(); updateSelected({ [property]: color.value }, false); });
       color.addEventListener('change', () => commitChange('修改颜色'));
       text.addEventListener('change', () => {
+        if (text.value.trim().toLowerCase() === 'none') { updateSelected({ [property]: 'none' }, true); return; }
         const normalized = normalizeColor(text.value);
         if (!normalized) return renderInspector();
         color.value = normalized; updateSelected({ [property]: normalized }, true);
@@ -189,6 +222,7 @@
     connectColor('propStroke', 'propStrokeText', 'stroke');
     ['propFillText', 'propStrokeText'].forEach(id => {
       document.getElementById(id).addEventListener('input', event => {
+        if (event.target.value.trim().toLowerCase() === 'none') { updateSelected({ [id === 'propFillText' ? 'fill' : 'stroke']: 'none' }, false); return; }
         const color = normalizeColor(event.target.value);
         if (color) updateSelected({ [id === 'propFillText' ? 'fill' : 'stroke']: color }, false);
       });
@@ -199,6 +233,17 @@
     $('#opacityRange').addEventListener('change', () => commitChange('修改透明度'));
     $('#propRadiusRange').addEventListener('input', event => updateSelected({ radius: Number(event.target.value) }, false));
     $('#propRadiusRange').addEventListener('change', () => commitChange('修改圆角'));
+    const propertyBindings = {
+      propFontFamily: 'fontFamily', propFontWeight: 'fontWeight', propTextAlign: 'textAlign',
+      propLineCap: 'strokeLinecap', propLineJoin: 'strokeLinejoin', propDash: 'strokeDasharray', propBlendMode: 'blendMode'
+    };
+    Object.entries(propertyBindings).forEach(([id, property]) => {
+      const input = document.getElementById(id);
+      input.addEventListener('input', () => updateSelected({ [property]: input.value }, false));
+      input.addEventListener('change', () => commitChange(`修改${property}`));
+    });
+    $('#propText').addEventListener('input', event => updateSelected({ text: event.target.value }, false));
+    $('#propText').addEventListener('change', () => commitChange('修改文本'));
   }
 
   function renderAll() {
@@ -215,7 +260,10 @@
     dom.artboard.setAttribute('viewBox', `0 0 ${state.canvas.width} ${state.canvas.height}`);
     dom.artboard.setAttribute('width', state.canvas.width);
     dom.artboard.setAttribute('height', state.canvas.height);
-    dom.artboard.style.background = state.canvas.background || '#fff';
+    const canvasBackground = state.canvas.background || 'transparent';
+    dom.artboard.style.background = canvasBackground === 'transparent' ? 'transparent' : canvasBackground;
+    dom.canvasStage.classList.toggle('solid-background', canvasBackground !== 'transparent');
+    dom.canvasStage.style.backgroundColor = canvasBackground === 'transparent' ? 'transparent' : canvasBackground;
     dom.canvasStage.style.width = `${state.canvas.width}px`;
     dom.canvasStage.style.height = `${state.canvas.height}px`;
     dom.artworkLayer.replaceChildren();
@@ -232,11 +280,12 @@
     dom.artboardLabel.textContent = `画板 1 · ${state.canvas.width} × ${state.canvas.height}`;
   }
 
-  function buildSvgElement(element, forExport = false) {
+  function buildSvgElement(element, forExport = false, interactive = true) {
     const group = document.createElementNS(SVG_NS, 'g');
-    group.dataset.elementId = element.id;
+    if (interactive) group.dataset.elementId = element.id;
     group.setAttribute('transform', elementTransform(element));
     group.setAttribute('opacity', element.opacity ?? 1);
+    if (element.blendMode && element.blendMode !== 'normal') group.style.mixBlendMode = element.blendMode;
     if (element.hidden) group.setAttribute('display', 'none');
     if (element.locked && !forExport) group.classList.add('locked');
     let shape;
@@ -244,8 +293,11 @@
       node.setAttribute('fill', element.fill || 'none');
       node.setAttribute('stroke', element.stroke || 'none');
       node.setAttribute('stroke-width', element.strokeWidth || 0);
-      node.setAttribute('stroke-linecap', 'round');
-      node.setAttribute('stroke-linejoin', 'round');
+      node.setAttribute('fill-opacity', element.fillOpacity ?? 1);
+      node.setAttribute('stroke-opacity', element.strokeOpacity ?? 1);
+      node.setAttribute('stroke-linecap', element.strokeLinecap || 'round');
+      node.setAttribute('stroke-linejoin', element.strokeLinejoin || 'round');
+      if (element.strokeDasharray) node.setAttribute('stroke-dasharray', element.strokeDasharray);
       node.setAttribute('vector-effect', 'non-scaling-stroke');
       return node;
     };
@@ -254,6 +306,9 @@
       shape = common(document.createElementNS(SVG_NS, 'rect'));
       shape.setAttribute('width', element.width); shape.setAttribute('height', element.height);
       shape.setAttribute('rx', Math.min(element.radius || 0, element.width / 2, element.height / 2));
+    } else if (element.type === 'circle') {
+      shape = common(document.createElementNS(SVG_NS, 'circle'));
+      shape.setAttribute('cx', element.width / 2); shape.setAttribute('cy', element.height / 2); shape.setAttribute('r', Math.min(element.width, element.height) / 2);
     } else if (element.type === 'ellipse') {
       shape = common(document.createElementNS(SVG_NS, 'ellipse'));
       shape.setAttribute('cx', element.width / 2); shape.setAttribute('cy', element.height / 2);
@@ -261,18 +316,45 @@
     } else if (element.type === 'triangle') {
       shape = common(document.createElementNS(SVG_NS, 'polygon'));
       shape.setAttribute('points', `${element.width / 2},0 ${element.width},${element.height} 0,${element.height}`);
+    } else if (element.type === 'diamond') {
+      shape = common(document.createElementNS(SVG_NS, 'polygon'));
+      shape.setAttribute('points', `${element.width / 2},0 ${element.width},${element.height / 2} ${element.width / 2},${element.height} 0,${element.height / 2}`);
+    } else if (element.type === 'polygon') {
+      shape = common(document.createElementNS(SVG_NS, 'polygon'));
+      shape.setAttribute('points', regularPolygonPoints(element.width, element.height, element.sides || 6));
     } else if (element.type === 'star') {
       shape = common(document.createElementNS(SVG_NS, 'polygon'));
-      shape.setAttribute('points', starPoints(element.width, element.height));
+      shape.setAttribute('points', starPoints(element.width, element.height, element.pointsCount || 5, element.innerRatio ?? .43));
     } else if (element.type === 'line') {
       shape = common(document.createElementNS(SVG_NS, 'line'));
       shape.setAttribute('x1', 0); shape.setAttribute('y1', element.height); shape.setAttribute('x2', element.width); shape.setAttribute('y2', 0);
+    } else if (element.type === 'arrow') {
+      shape = common(document.createElementNS(SVG_NS, 'path'));
+      const head = Math.min(24, Math.max(10, Math.min(element.width, element.height) * .32));
+      shape.setAttribute('d', `M 0 ${element.height / 2} H ${element.width} M ${element.width - head} ${element.height / 2 - head * .65} L ${element.width} ${element.height / 2} L ${element.width - head} ${element.height / 2 + head * .65}`);
+    } else if (element.type === 'arc') {
+      shape = common(document.createElementNS(SVG_NS, 'path'));
+      shape.setAttribute('d', arcPath(element.width, element.height, element.arcStart ?? 200, element.arcEnd ?? 340));
+    } else if (element.type === 'polyline') {
+      shape = common(document.createElementNS(SVG_NS, 'polyline'));
+      shape.setAttribute('points', `0,${element.height * .72} ${element.width * .28},${element.height * .18} ${element.width * .58},${element.height * .82} ${element.width},${element.height * .22}`);
     } else if (element.type === 'text') {
       shape = common(document.createElementNS(SVG_NS, 'text'));
-      shape.textContent = element.text || '文本'; shape.setAttribute('x', 0); shape.setAttribute('y', element.fontSize || 36);
-      shape.setAttribute('font-family', 'Manrope, Arial, sans-serif'); shape.setAttribute('font-size', element.fontSize || 36);
+      const anchor = element.textAlign || 'start';
+      const textX = anchor === 'middle' ? element.width / 2 : anchor === 'end' ? element.width : 0;
+      shape.setAttribute('x', textX); shape.setAttribute('y', element.fontSize || 36); shape.setAttribute('text-anchor', anchor);
+      shape.setAttribute('font-family', element.fontFamily || 'Manrope, Arial, sans-serif'); shape.setAttribute('font-size', element.fontSize || 36);
       shape.setAttribute('font-weight', element.fontWeight || 500); shape.setAttribute('letter-spacing', element.letterSpacing || 0);
       shape.setAttribute('dominant-baseline', 'auto');
+      const lines = String(element.text || '文本').split('\n');
+      lines.forEach((line, index) => {
+        const tspan = document.createElementNS(SVG_NS, 'tspan'); tspan.textContent = line || ' ';
+        tspan.setAttribute('x', textX); if (index) tspan.setAttribute('dy', `${element.lineHeight || 1.2}em`);
+        shape.appendChild(tspan);
+      });
+    } else if (element.type === 'image') {
+      shape = document.createElementNS(SVG_NS, 'image'); shape.setAttribute('href', element.href || '');
+      shape.setAttribute('width', element.width); shape.setAttribute('height', element.height); shape.setAttribute('preserveAspectRatio', element.preserveAspectRatio || 'xMidYMid meet');
     } else if (element.type === 'path') {
       shape = common(document.createElementNS(SVG_NS, 'path'));
       shape.setAttribute('d', pointsToPath(element.points || [], element.smooth));
@@ -281,7 +363,16 @@
       inner.innerHTML = iconPaths[element.icon] || iconPaths.heart;
       inner.setAttribute('transform', `scale(${element.width / 24} ${element.height / 24})`);
       inner.setAttribute('fill', element.fill || 'none'); inner.setAttribute('stroke', element.stroke || '#7656EE');
-      inner.setAttribute('stroke-width', element.strokeWidth || 1.8); inner.setAttribute('stroke-linecap', 'round'); inner.setAttribute('stroke-linejoin', 'round');
+      inner.setAttribute('stroke-width', element.strokeWidth || 1.8); inner.setAttribute('stroke-linecap', element.strokeLinecap || 'round'); inner.setAttribute('stroke-linejoin', element.strokeLinejoin || 'round');
+      shape = inner;
+    } else if (element.type === 'group') {
+      const inner = document.createElementNS(SVG_NS, 'g');
+      const sx = element.width / Math.max(1, element.sourceWidth || element.width), sy = element.height / Math.max(1, element.sourceHeight || element.height);
+      inner.setAttribute('transform', `scale(${sx} ${sy})`);
+      (element.children || []).forEach(child => {
+        const childNode = buildSvgElement(child, forExport, false);
+        if (childNode) inner.appendChild(childNode);
+      });
       shape = inner;
     } else if (element.type === 'raw') {
       const inner = document.createElementNS(SVG_NS, 'g');
@@ -297,12 +388,19 @@
   }
 
   function applyRawOverrides(container, element) {
-    if (!element.overrideFill && !element.overrideStroke && !element.overrideStrokeWidth) return;
+    if (!element.overrideFill && !element.overrideStroke && !element.overrideStrokeWidth && !element.overrideStrokeStyle && !element.overrideFillOpacity && !element.overrideStrokeOpacity) return;
     const targets = container.querySelectorAll('path,rect,circle,ellipse,line,polyline,polygon,text,use,image');
     targets.forEach(target => {
       if (element.overrideFill) target.style.setProperty('fill', element.fill || 'none', 'important');
       if (element.overrideStroke) target.style.setProperty('stroke', element.stroke || 'none', 'important');
       if (element.overrideStrokeWidth) target.style.setProperty('stroke-width', String(element.strokeWidth || 0), 'important');
+      if (element.overrideStrokeStyle) {
+        target.style.setProperty('stroke-linecap', element.strokeLinecap || 'round', 'important');
+        target.style.setProperty('stroke-linejoin', element.strokeLinejoin || 'round', 'important');
+        target.style.setProperty('stroke-dasharray', element.strokeDasharray || 'none', 'important');
+      }
+      if (element.overrideFillOpacity) target.style.setProperty('fill-opacity', String(element.fillOpacity ?? 1), 'important');
+      if (element.overrideStrokeOpacity) target.style.setProperty('stroke-opacity', String(element.strokeOpacity ?? 1), 'important');
     });
   }
 
@@ -311,12 +409,28 @@
     return `translate(${element.x} ${element.y}) rotate(${element.rotation || 0} ${cx} ${cy})`;
   }
 
-  function starPoints(width, height, points = 5) {
-    const cx = width / 2, cy = height / 2, outer = Math.min(width, height) / 2, inner = outer * .43;
+  function starPoints(width, height, points = 5, innerRatio = .43) {
+    const cx = width / 2, cy = height / 2, outer = Math.min(width, height) / 2, inner = outer * innerRatio;
     return Array.from({ length: points * 2 }, (_, index) => {
       const angle = -Math.PI / 2 + index * Math.PI / points, radius = index % 2 ? inner : outer;
       return `${cx + Math.cos(angle) * radius},${cy + Math.sin(angle) * radius}`;
     }).join(' ');
+  }
+
+  function regularPolygonPoints(width, height, sides = 6) {
+    const cx = width / 2, cy = height / 2, radiusX = width / 2, radiusY = height / 2;
+    return Array.from({ length: sides }, (_, index) => {
+      const angle = -Math.PI / 2 + index * Math.PI * 2 / sides;
+      return `${cx + Math.cos(angle) * radiusX},${cy + Math.sin(angle) * radiusY}`;
+    }).join(' ');
+  }
+
+  function arcPath(width, height, startDegrees, endDegrees) {
+    const cx = width / 2, cy = height / 2, rx = width / 2, ry = height / 2;
+    const pointAt = degrees => { const angle = (degrees - 90) * Math.PI / 180; return [cx + rx * Math.cos(angle), cy + ry * Math.sin(angle)]; };
+    const start = pointAt(startDegrees), end = pointAt(endDegrees);
+    let sweep = ((endDegrees - startDegrees) % 360 + 360) % 360; if (!sweep) sweep = 359.999;
+    return `M ${start[0]} ${start[1]} A ${rx} ${ry} 0 ${sweep > 180 ? 1 : 0} 1 ${end[0]} ${end[1]}`;
   }
 
   function pointsToPath(points, smooth = false) {
@@ -334,17 +448,25 @@
 
   function renderSelection() {
     dom.selectionLayer.replaceChildren();
-    const element = getSelected();
-    if (!element || element.hidden) return;
-    const group = document.createElementNS(SVG_NS, 'g');
-    group.setAttribute('transform', elementTransform(element));
-    const outline = document.createElementNS(SVG_NS, 'rect');
-    outline.classList.add('selection-outline'); outline.setAttribute('x', 0); outline.setAttribute('y', 0);
-    outline.setAttribute('width', Math.max(1, element.width)); outline.setAttribute('height', Math.max(1, element.height));
-    group.appendChild(outline);
+    const elements = getSelectedElements().filter(element => !element.hidden);
+    if (!elements.length) return;
+    elements.forEach(element => {
+      const group = document.createElementNS(SVG_NS, 'g'); group.setAttribute('transform', elementTransform(element));
+      const outline = document.createElementNS(SVG_NS, 'rect'); outline.classList.add('selection-outline');
+      if (elements.length > 1) outline.classList.add('secondary');
+      outline.setAttribute('x', 0); outline.setAttribute('y', 0); outline.setAttribute('width', Math.max(1, element.width)); outline.setAttribute('height', Math.max(1, element.height));
+      group.appendChild(outline); dom.selectionLayer.appendChild(group);
+    });
+    if (elements.length > 1) {
+      const bounds = selectionBounds(elements), collective = document.createElementNS(SVG_NS, 'rect');
+      collective.classList.add('selection-outline', 'collective'); collective.setAttribute('x', bounds.x); collective.setAttribute('y', bounds.y);
+      collective.setAttribute('width', Math.max(1, bounds.width)); collective.setAttribute('height', Math.max(1, bounds.height)); dom.selectionLayer.appendChild(collective);
+      return;
+    }
+    const element = elements[0], group = dom.selectionLayer.lastElementChild;
     if (!element.locked) {
       const positions = { nw: [0, 0], n: [element.width / 2, 0], ne: [element.width, 0], e: [element.width, element.height / 2], se: [element.width, element.height], s: [element.width / 2, element.height], sw: [0, element.height], w: [0, element.height / 2] };
-      Object.entries(positions).forEach(([name, [x, y]]) => {
+      Object.entries(positions).filter(([name]) => element.type !== 'circle' || ['nw', 'ne', 'se', 'sw'].includes(name)).forEach(([name, [x, y]]) => {
         const handle = document.createElementNS(SVG_NS, 'rect');
         handle.classList.add('selection-handle'); handle.dataset.handle = name;
         const size = 8 / state.zoom; handle.setAttribute('x', x - size / 2); handle.setAttribute('y', y - size / 2);
@@ -352,13 +474,12 @@
         group.appendChild(handle);
       });
     }
-    dom.selectionLayer.appendChild(group);
   }
 
   function renderLayers() {
     dom.layersList.replaceChildren();
     [...state.elements].reverse().forEach(element => {
-      const row = document.createElement('div'); row.className = `layer-row${element.id === state.selectedId ? ' active' : ''}`;
+      const row = document.createElement('div'); row.className = `layer-row${state.selectedIds.includes(element.id) ? ' selected' : ''}${element.id === state.selectedId ? ' active' : ''}`;
       row.dataset.id = element.id; row.draggable = true;
       row.innerHTML = `
         <button class="layer-visibility ${element.hidden ? 'off' : ''}" title="${element.hidden ? '显示' : '隐藏'}图层" aria-label="切换图层可见性">
@@ -369,7 +490,7 @@
         <button class="layer-lock ${element.locked ? 'locked' : ''}" title="${element.locked ? '解锁' : '锁定'}图层" aria-label="切换图层锁定">
           <svg viewBox="0 0 24 24">${element.locked ? '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>' : '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.6-1.7"/>'}</svg>
         </button>`;
-      row.addEventListener('click', event => { if (!event.target.closest('button')) selectElement(element.id); });
+      row.addEventListener('click', event => { if (!event.target.closest('button')) selectElement(element.id, event.shiftKey || event.metaKey || event.ctrlKey); });
       $('.layer-visibility', row).addEventListener('click', event => { event.stopPropagation(); element.hidden = !element.hidden; commitChange(element.hidden ? '隐藏图层' : '显示图层'); });
       $('.layer-lock', row).addEventListener('click', event => { event.stopPropagation(); element.locked = !element.locked; commitChange(element.locked ? '锁定图层' : '解锁图层'); });
       $('.layer-name', row).addEventListener('dblclick', event => { event.stopPropagation(); renameLayer(element); });
@@ -384,7 +505,7 @@
 
   function layerThumbnail(element) {
     const fill = element.fill === 'none' ? 'transparent' : element.fill;
-    const stroke = element.stroke === 'none' ? '#77727f' : element.stroke;
+    const stroke = element.stroke === 'none' || element.stroke === 'mixed' ? '#77727f' : element.stroke;
     const visualType = element.type === 'raw' ? element.rawTag : element.type;
     if (visualType === 'ellipse' || visualType === 'circle') return `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="8" ry="7" fill="${fill}" stroke="${stroke}"/></svg>`;
     if (visualType === 'text') return `<svg viewBox="0 0 24 24"><text x="6" y="18" font-family="Georgia" font-size="17" fill="${fill || stroke}">T</text></svg>`;
@@ -392,28 +513,56 @@
     if (element.type === 'star') return `<svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.7L21 9.5l-4.6 4.4 1.2 6.2-5.6-3-5.6 3 1.2-6.2L3 9.5l6.3-.8Z" fill="${fill}" stroke="${stroke}"/></svg>`;
     if (visualType === 'line' || visualType === 'path' || visualType === 'polyline') return `<svg viewBox="0 0 24 24"><path d="m4 17 5-8 5 7 6-10" fill="none" stroke="${stroke}" stroke-width="2"/></svg>`;
     if (element.type === 'icon') return `<svg viewBox="0 0 24 24" fill="${fill}" stroke="${stroke}" stroke-width="1.5">${iconPaths[element.icon]}</svg>`;
+    if (element.type === 'image') return `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="#77727f"/><circle cx="9" cy="10" r="2" fill="none" stroke="#77727f"/><path d="m4 18 5-5 4 4 3-3 4 4" fill="none" stroke="#77727f"/></svg>`;
+    if (element.type === 'group') return `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="12" height="11" rx="1" fill="none" stroke="${stroke}"/><rect x="9" y="9" width="12" height="11" rx="1" fill="${fill === 'mixed' ? 'none' : fill}" stroke="${stroke}"/></svg>`;
     return `<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2" fill="${fill}" stroke="${stroke}"/></svg>`;
   }
 
   function renderInspector() {
-    const element = getSelected();
+    const elements = getSelectedElements(), element = getSelected();
     dom.emptyInspector.classList.toggle('hidden', Boolean(element));
     dom.propertiesPanel.classList.toggle('hidden', !element);
-    if (!element) return;
-    dom.selectedName.textContent = element.name;
-    dom.selectedType.textContent = element.type === 'raw' && element.rawTag ? `SVG ${element.rawTag.toUpperCase()}` : typeNames[element.type]?.[1] || element.type.toUpperCase();
-    dom.selectedTypeIcon.className = `layer-type-icon ${element.type === 'raw' ? element.rawTag || 'raw' : element.type}`;
-    const values = { propX: element.x, propY: element.y, propW: element.width, propH: element.height, propRotation: element.rotation || 0, propStrokeWidth: element.strokeWidth || 0, propRadius: element.radius || 0 };
-    Object.entries(values).forEach(([id, value]) => document.getElementById(id).value = round(value, .1));
-    const fill = normalizeColor(element.fill) || '#FFFFFF', stroke = normalizeColor(element.stroke) || '#1C1A21';
-    $('#propFill').value = fill; $('#propFillText').value = element.fill === 'none' ? 'NONE' : normalizeColor(element.fill) ? fill.toUpperCase() : element.fill || 'MIXED';
-    $('#fillPreview').style.background = element.fill === 'none' ? 'linear-gradient(135deg,white 44%,#ec5371 45%,#ec5371 55%,white 56%)' : normalizeColor(element.fill) ? fill : 'linear-gradient(135deg,#7656ee,#ff7b72,#ffca68)';
-    $('#propStroke').value = stroke; $('#propStrokeText').value = element.stroke === 'none' ? 'NONE' : normalizeColor(element.stroke) ? stroke.toUpperCase() : element.stroke || 'MIXED';
-    $('#strokePreview').style.borderColor = element.stroke === 'none' ? '#d6d3dc' : stroke;
-    const opacity = Math.round((element.opacity ?? 1) * 100);
+    const background = normalizeColor(state.canvas.background) || '#FFFFFF';
+    $('#canvasBackground').value = background; $('#canvasBackgroundPreview').style.background = background; $('#canvasTransparent').checked = state.canvas.background === 'transparent';
+    if (!element) {
+      $('#groupBtn').disabled = true; $('#inspectorGroupBtn').disabled = true; $('#ungroupBtn').disabled = true; $('#inspectorUngroupBtn').disabled = true;
+      return;
+    }
+    const multi = elements.length > 1;
+    dom.selectedName.textContent = multi ? `${elements.length} 个对象` : element.name;
+    dom.selectedType.textContent = multi ? 'MULTI SELECTION' : element.type === 'raw' && element.rawTag ? `SVG ${element.rawTag.toUpperCase()}` : typeNames[element.type]?.[1] || element.type.toUpperCase();
+    dom.selectedTypeIcon.className = `layer-type-icon ${multi ? 'group' : element.type === 'raw' ? element.rawTag || 'raw' : element.type}`;
+    const commonValue = (property, fallback = '') => elements.every(item => (item[property] ?? fallback) === (elements[0][property] ?? fallback)) ? elements[0][property] ?? fallback : '';
+    const values = { propX: commonValue('x'), propY: commonValue('y'), propW: commonValue('width'), propH: commonValue('height'), propRotation: commonValue('rotation', 0), propStrokeWidth: commonValue('strokeWidth', 0), propRadius: commonValue('radius', 0), propFillOpacity: commonValue('fillOpacity', 1), propStrokeOpacity: commonValue('strokeOpacity', 1) };
+    Object.entries(values).forEach(([id, value]) => { const input = document.getElementById(id); input.value = value === '' ? '' : round(value, .1); input.placeholder = value === '' ? '混合' : ''; });
+    if (values.propFillOpacity !== '') $('#propFillOpacity').value = Math.round(values.propFillOpacity * 100);
+    if (values.propStrokeOpacity !== '') $('#propStrokeOpacity').value = Math.round(values.propStrokeOpacity * 100);
+    const fillValue = commonValue('fill', 'none'), strokeValue = commonValue('stroke', 'none');
+    const fill = normalizeColor(fillValue) || '#FFFFFF', stroke = normalizeColor(strokeValue) || '#1C1A21';
+    $('#propFill').value = fill; $('#propFillText').value = fillValue === '' ? 'MIXED' : fillValue === 'none' ? 'NONE' : normalizeColor(fillValue) ? fill.toUpperCase() : fillValue || 'MIXED';
+    $('#fillPreview').style.background = fillValue === 'none' ? 'linear-gradient(135deg,white 44%,#ec5371 45%,#ec5371 55%,white 56%)' : normalizeColor(fillValue) ? fill : 'linear-gradient(135deg,#7656ee,#ff7b72,#ffca68)';
+    $('#propStroke').value = stroke; $('#propStrokeText').value = strokeValue === '' ? 'MIXED' : strokeValue === 'none' ? 'NONE' : normalizeColor(strokeValue) ? stroke.toUpperCase() : strokeValue || 'MIXED';
+    $('#strokePreview').style.borderColor = strokeValue === 'none' ? '#d6d3dc' : stroke;
+    const opacityValue = commonValue('opacity', 1), opacity = opacityValue === '' ? 100 : Math.round(opacityValue * 100);
     $('#propOpacity').value = opacity; $('#opacityRange').value = opacity; $('#opacityOutput').value = `${opacity}%`; setRangeFill($('#opacityRange'), opacity);
-    $('#propRadiusRange').value = element.radius || 0; setRangeFill($('#propRadiusRange'), element.radius || 0);
-    dom.cornerSection.classList.toggle('hidden', element.type !== 'rect');
+    const radius = commonValue('radius', 0); $('#propRadiusRange').value = radius === '' ? 0 : radius; setRangeFill($('#propRadiusRange'), radius === '' ? 0 : radius);
+    dom.cornerSection.classList.toggle('hidden', multi || element.type !== 'rect');
+    const isPolygon = !multi && element.type === 'polygon', isStar = !multi && element.type === 'star', isArc = !multi && element.type === 'arc';
+    $('#geometrySection').classList.toggle('hidden', !isPolygon && !isStar && !isArc);
+    $('#sidesProperty').classList.toggle('hidden', !isPolygon && !isStar); $('#innerRatioProperty').classList.toggle('hidden', !isStar);
+    $('#arcStartProperty').classList.toggle('hidden', !isArc); $('#arcEndProperty').classList.toggle('hidden', !isArc);
+    $('#propSides').value = isStar ? element.pointsCount || 5 : element.sides || 6; $('#propSides').dataset.property = isStar ? 'pointsCount' : 'sides';
+    $('#propInnerRatio').value = Math.round((element.innerRatio ?? .43) * 100); $('#propArcStart').value = element.arcStart ?? 200; $('#propArcEnd').value = element.arcEnd ?? 340;
+    $('#textSection').classList.toggle('hidden', multi || element.type !== 'text');
+    if (!multi && element.type === 'text') {
+      $('#propText').value = element.text || ''; $('#propFontFamily').value = element.fontFamily || 'Manrope, Arial, sans-serif';
+      $('#propFontSize').value = element.fontSize || 36; $('#propFontWeight').value = String(element.fontWeight || 500);
+      $('#propLetterSpacing').value = element.letterSpacing || 0; $('#propTextAlign').value = element.textAlign || 'start';
+    }
+    $('#propLineCap').value = commonValue('strokeLinecap', 'round') || 'round'; $('#propLineJoin').value = commonValue('strokeLinejoin', 'round') || 'round'; $('#propDash').value = commonValue('strokeDasharray', '');
+    $('#propBlendMode').value = commonValue('blendMode', 'normal') || 'normal';
+    const canGroup = elements.length > 1 && elements.some(item => !item.locked), canUngroup = elements.some(item => item.type === 'group' && !item.locked);
+    $('#groupBtn').disabled = !canGroup; $('#inspectorGroupBtn').disabled = !canGroup; $('#ungroupBtn').disabled = !canUngroup; $('#inspectorUngroupBtn').disabled = !canUngroup;
   }
 
   function renderStatus() {
@@ -456,6 +605,7 @@
 
   function addCenteredElement(type, overrides = {}) {
     const point = viewportCenterInCanvas();
+    if (type === 'ellipse-wide') { type = 'ellipse'; overrides = { width: 190, height: 120, name: '椭圆', ...overrides }; }
     const element = makeElement(type, overrides);
     element.x = clamp(point.x - element.width / 2, 0, state.canvas.width - element.width);
     element.y = clamp(point.y - element.height / 2, 0, state.canvas.height - element.height);
@@ -490,6 +640,59 @@
 
   function getSelected() { return state.elements.find(item => item.id === state.selectedId) || null; }
 
+  function getSelectedElements() {
+    const ids = new Set(state.selectedIds.length ? state.selectedIds : state.selectedId ? [state.selectedId] : []);
+    return state.elements.filter(item => ids.has(item.id));
+  }
+
+  function elementBounds(element) {
+    const angle = (element.rotation || 0) * Math.PI / 180, cx = element.x + element.width / 2, cy = element.y + element.height / 2;
+    const corners = [[element.x, element.y], [element.x + element.width, element.y], [element.x + element.width, element.y + element.height], [element.x, element.y + element.height]].map(([x, y]) => ({
+      x: cx + (x - cx) * Math.cos(angle) - (y - cy) * Math.sin(angle),
+      y: cy + (x - cx) * Math.sin(angle) + (y - cy) * Math.cos(angle)
+    }));
+    const xs = corners.map(point => point.x), ys = corners.map(point => point.y);
+    return { x: Math.min(...xs), y: Math.min(...ys), width: Math.max(...xs) - Math.min(...xs), height: Math.max(...ys) - Math.min(...ys) };
+  }
+
+  function selectionBounds(elements = getSelectedElements()) {
+    const boxes = elements.map(elementBounds), left = Math.min(...boxes.map(box => box.x)), top = Math.min(...boxes.map(box => box.y));
+    const right = Math.max(...boxes.map(box => box.x + box.width)), bottom = Math.max(...boxes.map(box => box.y + box.height));
+    return { x: left, y: top, width: Math.max(1, right - left), height: Math.max(1, bottom - top) };
+  }
+
+  function groupSelected() {
+    const elements = getSelectedElements().filter(element => !element.locked);
+    if (elements.length < 2) return showToast('请至少选择两个未锁定对象', '!');
+    const ids = new Set(elements.map(element => element.id)), bounds = selectionBounds(elements);
+    const children = elements.map(element => { const child = deepCopy(element); child.x -= bounds.x; child.y -= bounds.y; return child; });
+    const group = makeElement('group', { name: `组合 ${elements.length}`, x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height, sourceWidth: bounds.width, sourceHeight: bounds.height, children });
+    const insertIndex = Math.min(...elements.map(element => state.elements.indexOf(element)));
+    state.elements = state.elements.filter(element => !ids.has(element.id)); state.elements.splice(insertIndex, 0, group);
+    state.selectedIds = [group.id]; state.selectedId = group.id; commitChange('组合对象'); showToast(`已组合 ${elements.length} 个对象`, '⌘');
+  }
+
+  function ungroupSelected() {
+    const groups = getSelectedElements().filter(element => element.type === 'group' && !element.locked);
+    if (!groups.length) return showToast('所选对象中没有可取消的组合', '!');
+    const newSelection = [];
+    groups.forEach(group => {
+      const index = state.elements.findIndex(element => element.id === group.id); if (index < 0) return;
+      const sx = group.width / Math.max(1, group.sourceWidth || group.width), sy = group.height / Math.max(1, group.sourceHeight || group.height);
+      const angle = (group.rotation || 0) * Math.PI / 180, gcx = group.width / 2, gcy = group.height / 2;
+      const children = (group.children || []).map(source => {
+        const child = deepCopy(source), width = child.width * sx, height = child.height * sy;
+        const localX = (child.x + child.width / 2) * sx, localY = (child.y + child.height / 2) * sy;
+        const rotatedX = gcx + (localX - gcx) * Math.cos(angle) - (localY - gcy) * Math.sin(angle);
+        const rotatedY = gcy + (localX - gcx) * Math.sin(angle) + (localY - gcy) * Math.cos(angle);
+        child.x = group.x + rotatedX - width / 2; child.y = group.y + rotatedY - height / 2; child.width = width; child.height = height;
+        child.rotation = (child.rotation || 0) + (group.rotation || 0); return child;
+      });
+      state.elements.splice(index, 1, ...children); newSelection.push(...children.map(child => child.id));
+    });
+    state.selectedIds = newSelection; state.selectedId = newSelection.at(-1) || null; commitChange('取消组合'); showToast(`已释放 ${newSelection.length} 个对象`, '↗');
+  }
+
   function onCanvasPointerDown(event) {
     if (event.button !== 0 && event.button !== 1) return;
     const point = screenToSvg(event.clientX, event.clientY);
@@ -509,7 +712,7 @@
         const element = state.elements.find(item => item.id === targetGroup.dataset.elementId);
         if (!element) return;
         selectElement(element.id, event.shiftKey);
-        if (!element.locked) {
+        if (!element.locked && state.selectedIds.includes(element.id)) {
           state.interaction = { type: 'move', start: point, before: state.selectedIds.map(id => deepCopy(state.elements.find(item => item.id === id))).filter(Boolean) };
           dom.artboard.setPointerCapture(event.pointerId);
         }
@@ -588,7 +791,7 @@
     if (handle.includes('s')) height = Math.max(4, before.height + dy);
     if (handle.includes('w')) { width = Math.max(4, before.width - dx); x = before.x + before.width - width; }
     if (handle.includes('n')) { height = Math.max(4, before.height - dy); y = before.y + before.height - height; }
-    if (keepRatio && ['nw','ne','se','sw'].includes(handle)) {
+    if ((keepRatio || element.type === 'circle') && ['nw','ne','se','sw'].includes(handle)) {
       const ratio = before.width / Math.max(1, before.height);
       if (width / height > ratio) height = width / ratio; else width = height * ratio;
       if (handle.includes('w')) x = before.x + before.width - width;
@@ -652,8 +855,18 @@
 
   function fitCanvas() {
     const rect = dom.canvasViewport.getBoundingClientRect();
-    state.zoom = clamp(Math.min((rect.width - 110) / state.canvas.width, (rect.height - 105) / state.canvas.height), .1, 1.25);
-    state.panX = 0; state.panY = 12; updateTransform(); renderSelection(); renderStatus();
+    const leftInset = $('.app-shell').classList.contains('left-collapsed') ? 50 : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--left-w')) + 56;
+    const rightInset = $('.app-shell').classList.contains('right-collapsed') ? 50 : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--right-w')) + 56;
+    state.zoom = clamp(Math.min((rect.width - leftInset - rightInset) / state.canvas.width, (rect.height - 185) / state.canvas.height), .1, 1.25);
+    state.panX = (leftInset - rightInset) / 2; state.panY = 36; updateTransform(); renderSelection(); renderStatus();
+  }
+
+  function togglePanel(side) {
+    const shell = $('.app-shell'), className = `${side}-collapsed`, collapsed = shell.classList.toggle(className);
+    const button = document.getElementById(side === 'left' ? 'toggleLeftPanel' : 'toggleRightPanel');
+    button.classList.toggle('active', collapsed); button.setAttribute('aria-pressed', String(collapsed));
+    button.title = collapsed ? `展开${side === 'left' ? '素材' : '属性'}栏` : `折叠${side === 'left' ? '素材' : '属性'}栏`;
+    requestAnimationFrame(fitCanvas);
   }
 
   function updateTransform() {
@@ -661,19 +874,36 @@
   }
 
   function updateSelected(changes, commit = false) {
-    const element = getSelected(); if (!element || element.locked) return;
-    if (element.type === 'raw') {
-      if (Object.hasOwn(changes, 'fill')) changes.overrideFill = true;
-      if (Object.hasOwn(changes, 'stroke')) changes.overrideStroke = true;
-      if (Object.hasOwn(changes, 'strokeWidth')) changes.overrideStrokeWidth = true;
-    }
-    Object.assign(element, changes); renderCanvas(); renderSelection(); renderLayers(); renderInspector(); renderStatus();
+    const elements = getSelectedElements().filter(element => !element.locked); if (!elements.length) return;
+    elements.forEach(element => {
+      const elementChanges = { ...changes };
+      if (element.type === 'circle' && (Object.hasOwn(elementChanges, 'width') || Object.hasOwn(elementChanges, 'height'))) {
+        const size = Object.hasOwn(elementChanges, 'width') ? elementChanges.width : elementChanges.height; elementChanges.width = size; elementChanges.height = size;
+      }
+      if (element.type === 'raw') {
+        if (Object.hasOwn(elementChanges, 'fill')) elementChanges.overrideFill = true;
+        if (Object.hasOwn(elementChanges, 'stroke')) elementChanges.overrideStroke = true;
+        if (Object.hasOwn(elementChanges, 'strokeWidth')) elementChanges.overrideStrokeWidth = true;
+        if (['strokeLinecap', 'strokeLinejoin', 'strokeDasharray'].some(property => Object.hasOwn(elementChanges, property))) elementChanges.overrideStrokeStyle = true;
+        if (Object.hasOwn(elementChanges, 'fillOpacity')) elementChanges.overrideFillOpacity = true;
+        if (Object.hasOwn(elementChanges, 'strokeOpacity')) elementChanges.overrideStrokeOpacity = true;
+      }
+      if (element.type === 'group' && ['fill', 'stroke', 'strokeWidth', 'strokeLinecap', 'strokeLinejoin', 'strokeDasharray'].some(property => Object.hasOwn(elementChanges, property))) applyChangesToChildren(element.children || [], elementChanges);
+      Object.assign(element, elementChanges);
+    });
+    renderCanvas(); renderSelection(); renderLayers(); renderInspector(); renderStatus();
     if (commit) commitChange('修改属性'); else scheduleSave();
+  }
+
+  function applyChangesToChildren(children, changes) {
+    children.forEach(child => { Object.assign(child, changes); if (child.type === 'group') applyChangesToChildren(child.children || [], changes); });
   }
 
   function duplicateSelected() {
     const selected = state.selectedIds.length ? state.selectedIds : [state.selectedId];
-    const copies = selected.map(id => state.elements.find(item => item.id === id)).filter(Boolean).map(element => ({ ...deepCopy(element), id: uid(), name: `${element.name} 副本`, x: element.x + 20, y: element.y + 20, locked: false }));
+    const copies = selected.map(id => state.elements.find(item => item.id === id)).filter(Boolean).map(element => {
+      const copy = { ...deepCopy(element), name: `${element.name} 副本`, x: element.x + 20, y: element.y + 20, locked: false }; regenerateElementIds(copy); return copy;
+    });
     if (!copies.length) return;
     state.elements.push(...copies); state.selectedIds = copies.map(item => item.id); state.selectedId = copies.at(-1).id;
     commitChange('复制对象'); showToast(`已创建 ${copies.length} 个副本`, '⧉');
@@ -689,10 +919,14 @@
 
   function pasteClipboard() {
     if (!state.clipboard.length) return;
-    const copies = state.clipboard.map(item => ({ ...deepCopy(item), id: uid(), name: `${item.name} 副本`, x: item.x + 24, y: item.y + 24, locked: false }));
+    const copies = state.clipboard.map(item => { const copy = { ...deepCopy(item), name: `${item.name} 副本`, x: item.x + 24, y: item.y + 24, locked: false }; regenerateElementIds(copy); return copy; });
     state.clipboard = copies.map(deepCopy);
     state.elements.push(...copies); state.selectedIds = copies.map(item => item.id); state.selectedId = copies.at(-1).id;
     commitChange('粘贴对象'); showToast(`已粘贴 ${copies.length} 个对象`, '＋');
+  }
+
+  function regenerateElementIds(element) {
+    element.id = uid(); (element.children || []).forEach(regenerateElementIds); return element;
   }
 
   function deleteSelected() {
@@ -705,9 +939,11 @@
   }
 
   function swapColors() {
-    const element = getSelected(); if (!element) return;
-    const fill = element.fill, stroke = element.stroke; element.fill = stroke; element.stroke = fill;
-    if (element.stroke !== 'none' && !element.strokeWidth) element.strokeWidth = 2;
+    const elements = getSelectedElements().filter(element => !element.locked); if (!elements.length) return;
+    elements.forEach(element => {
+      const fill = element.fill, stroke = element.stroke; element.fill = stroke; element.stroke = fill;
+      if (element.stroke !== 'none' && !element.strokeWidth) element.strokeWidth = 2;
+    });
     commitChange('交换填充与描边');
   }
 
@@ -797,7 +1033,7 @@
 
   function newDocument() {
     if (state.elements.length && !window.confirm('创建新文档？当前作品已自动保存，之后仍可从浏览器本地恢复。')) return;
-    state.canvas = { width: 960, height: 640, background: '#FFFFFF' }; state.elements = []; state.sharedDefs = ''; state.selectedId = null; state.selectedIds = [];
+    state.canvas = { width: 960, height: 640, background: 'transparent' }; state.elements = []; state.sharedDefs = ''; state.selectedId = null; state.selectedIds = [];
     dom.documentTitle.value = 'Untitled artwork'; commitChange('新建文档'); fitCanvas(); showToast('已创建空白文档', '＋');
   }
 
@@ -822,7 +1058,7 @@
       ]}
     };
     const template = templates[name]; if (!template) return;
-    state.canvas = { width: template.width, height: template.height, background: '#FFFFFF' }; state.elements = template.elements; state.sharedDefs = '';
+    state.canvas = { width: template.width, height: template.height, background: 'transparent' }; state.elements = template.elements; state.sharedDefs = '';
     state.selectedId = null; state.selectedIds = []; dom.documentTitle.value = name === 'social' ? 'Social launch' : name === 'poster' ? 'Edition 04' : 'Vectora mark';
     commitChange('应用模板'); fitCanvas(); showToast('模板已应用', '✦');
   }
@@ -883,6 +1119,19 @@
   async function importSvgFile(event) {
     const file = event.target.files?.[0]; event.target.value = ''; if (!file) return;
     await importSvgText(await file.text(), file.name.replace(/\.svg$/i, ''), { replaceDocument: true });
+  }
+
+  function importRasterImage(event) {
+    const file = event.target.files?.[0]; event.target.value = ''; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const image = new Image(); image.onload = () => {
+        const max = 420, scale = Math.min(1, max / Math.max(image.naturalWidth || max, image.naturalHeight || max));
+        addCenteredElement('image', { name: file.name.replace(/\.[^.]+$/, '').slice(0, 50) || '图片', href: reader.result, width: Math.max(1, (image.naturalWidth || 240) * scale), height: Math.max(1, (image.naturalHeight || 160) * scale) });
+      };
+      image.onerror = () => showToast('图片无法读取', '!'); image.src = reader.result;
+    };
+    reader.onerror = () => showToast('图片无法读取', '!'); reader.readAsDataURL(file);
   }
 
   async function handleDrop(event) {
@@ -1077,6 +1326,7 @@
     if (modifier && event.key.toLowerCase() === 'x') { event.preventDefault(); copySelected(true); return; }
     if (modifier && event.key.toLowerCase() === 'v') { event.preventDefault(); pasteClipboard(); return; }
     if (modifier && event.key.toLowerCase() === 'a') { event.preventDefault(); selectAll(); return; }
+    if (modifier && event.key.toLowerCase() === 'g') { event.preventDefault(); event.shiftKey ? ungroupSelected() : groupSelected(); return; }
     if (modifier && event.key.toLowerCase() === 's') { event.preventDefault(); showExportModal(); return; }
     if (modifier && event.key === '/') { event.preventDefault(); openModal('shortcutModal'); return; }
     if (event.key === 'Escape') { $$('.modal-backdrop:not(.hidden)').forEach(modal => closeModal(modal.id)); if (state.penPoints.length) { state.penPoints = []; renderPenPreview(); } else deselect(); return; }
@@ -1087,11 +1337,13 @@
     if (event.key === '-') { setZoom(state.zoom - .1); return; }
     const toolKeys = { v: 'select', r: 'rect', o: 'ellipse', l: 'line', p: 'pen', t: 'text', h: 'hand' };
     if (toolKeys[event.key.toLowerCase()]) setTool(toolKeys[event.key.toLowerCase()]);
-    const element = getSelected();
-    if (element && !element.locked && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) {
+    const elements = getSelectedElements().filter(element => !element.locked);
+    if (elements.length && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) {
       event.preventDefault(); const amount = event.shiftKey ? 10 : 1;
-      if (event.key === 'ArrowLeft') element.x -= amount; if (event.key === 'ArrowRight') element.x += amount;
-      if (event.key === 'ArrowUp') element.y -= amount; if (event.key === 'ArrowDown') element.y += amount;
+      elements.forEach(element => {
+        if (event.key === 'ArrowLeft') element.x -= amount; if (event.key === 'ArrowRight') element.x += amount;
+        if (event.key === 'ArrowUp') element.y -= amount; if (event.key === 'ArrowDown') element.y += amount;
+      });
       renderAll(); debounceCommitNudge();
     }
   }

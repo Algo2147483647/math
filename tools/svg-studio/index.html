@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="app-shell">
-    <header class="topbar">
+    <header class="topbar glass-surface">
       <div class="brand" aria-label="Vectora SVG 编辑器">
         <div class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 28 28"><path d="M5.5 20.2 12.3 5.8a1.9 1.9 0 0 1 3.4 0l6.8 14.4a1.9 1.9 0 0 1-2.1 2.7l-5.6-1.2a3.8 3.8 0 0 0-1.6 0l-5.6 1.2a1.9 1.9 0 0 1-2.1-2.7Z"/><circle cx="14" cy="16" r="2.5"/></svg>
@@ -21,12 +21,30 @@
       </div>
 
       <div class="document-title-wrap">
+        <button class="icon-btn ghost panel-toggle-btn" id="toggleLeftPanel" title="折叠素材栏" aria-label="折叠素材栏" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg>
+        </button>
         <button class="icon-btn ghost" id="homeBtn" title="回到开始页" aria-label="回到开始页">
           <svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
         </button>
         <span class="title-divider"></span>
         <input id="documentTitle" class="document-title" value="Untitled artwork" aria-label="文档名称" />
         <span class="save-state" id="saveState"><span class="save-dot"></span>已自动保存</span>
+      </div>
+
+      <div class="top-utilities" aria-label="视图与历史控制">
+        <button class="icon-btn ghost" id="undoBtn" title="撤销 (Ctrl+Z)"><svg viewBox="0 0 24 24"><path d="m9 7-5 5 5 5"/><path d="M20 17a8 8 0 0 0-8-8H4"/></svg></button>
+        <button class="icon-btn ghost" id="redoBtn" title="重做 (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M4 17a8 8 0 0 1 8-8h8"/></svg></button>
+        <span class="toolbar-divider"></span>
+        <button class="status-btn active" id="gridToggle" title="显示网格"><span class="grid-icon"></span>网格</button>
+        <button class="status-btn active" id="snapToggle" title="吸附到网格"><svg viewBox="0 0 24 24"><path d="M6 4v10a4 4 0 0 0 8 0V4"/><path d="M6 8h3M14 8h4"/></svg>吸附</button>
+        <span class="toolbar-divider"></span>
+        <button class="icon-btn ghost zoom-step" id="zoomOut" aria-label="缩小">−</button>
+        <button class="zoom-value" id="zoomValue">84%</button>
+        <button class="icon-btn ghost zoom-step" id="zoomIn" aria-label="放大">＋</button>
+        <button class="fit-btn" id="fitBtn">适应</button>
+        <span class="top-meta" id="objectCount">0 个图层</span>
+        <span class="top-meta cursor-meta" id="cursorPosition">X 0&nbsp;&nbsp;Y 0</span>
       </div>
 
       <div class="top-actions">
@@ -38,12 +56,15 @@
           <svg viewBox="0 0 24 24"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
           导出
         </button>
+        <button class="icon-btn ghost panel-toggle-btn" id="toggleRightPanel" title="折叠属性栏" aria-label="折叠属性栏" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg>
+        </button>
         <input id="fileInput" type="file" accept="image/svg+xml,.svg" hidden />
       </div>
     </header>
 
     <main class="workspace">
-      <aside class="left-panel panel">
+      <aside class="left-panel panel glass-surface">
         <nav class="panel-tabs" aria-label="素材面板">
           <button class="panel-tab active" data-panel-tab="assets">素材</button>
           <button class="panel-tab" data-panel-tab="templates">模板</button>
@@ -65,11 +86,20 @@
               <button class="asset-card" data-add-shape="rect" title="矩形">
                 <span class="shape-preview shape-rect"></span><span>矩形</span>
               </button>
-              <button class="asset-card" data-add-shape="ellipse" title="圆形">
+              <button class="asset-card" data-add-shape="circle" title="圆形">
                 <span class="shape-preview shape-circle"></span><span>圆形</span>
+              </button>
+              <button class="asset-card" data-add-shape="ellipse-wide" title="椭圆">
+                <span class="shape-preview shape-ellipse"></span><span>椭圆</span>
               </button>
               <button class="asset-card" data-add-shape="triangle" title="三角形">
                 <span class="shape-preview shape-triangle"></span><span>三角</span>
+              </button>
+              <button class="asset-card" data-add-shape="diamond" title="菱形">
+                <span class="shape-preview shape-diamond"></span><span>菱形</span>
+              </button>
+              <button class="asset-card" data-add-shape="polygon" title="多边形">
+                <span class="shape-preview shape-polygon"></span><span>多边形</span>
               </button>
               <button class="asset-card" data-add-shape="star" title="星形">
                 <span class="shape-preview shape-star">★</span><span>星形</span>
@@ -77,10 +107,23 @@
               <button class="asset-card" data-add-shape="line" title="直线">
                 <span class="shape-preview shape-line"></span><span>直线</span>
               </button>
+              <button class="asset-card" data-add-shape="arrow" title="箭头">
+                <span class="shape-preview shape-arrow">→</span><span>箭头</span>
+              </button>
+              <button class="asset-card" data-add-shape="arc" title="圆弧">
+                <span class="shape-preview shape-arc"></span><span>圆弧</span>
+              </button>
+              <button class="asset-card" data-add-shape="polyline" title="折线">
+                <span class="shape-preview shape-polyline"></span><span>折线</span>
+              </button>
               <button class="asset-card" data-add-shape="text" title="文本">
                 <span class="shape-preview shape-text">T</span><span>文本</span>
               </button>
+              <button class="asset-card" id="imageImportBtn" title="图片">
+                <span class="shape-preview shape-image"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg></span><span>图片</span>
+              </button>
             </div>
+            <input id="imageFileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
           </div>
 
           <div class="panel-section">
@@ -144,6 +187,9 @@
           <button class="tool-btn" data-tool="pen" title="钢笔 (P)"><svg viewBox="0 0 24 24"><path d="m12 3 4 4-7 12-5 1 1-5Z"/><path d="M12 3v6l4-2"/></svg></button>
           <button class="tool-btn" data-tool="text" title="文本 (T)"><svg viewBox="0 0 24 24"><path d="M5 5h14"/><path d="M12 5v14"/><path d="M8 19h8"/></svg></button>
           <span class="toolbar-divider"></span>
+          <button class="tool-btn selection-command" id="groupBtn" title="组合 (Ctrl+G)" disabled><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M14 7h3v3M10 17H7v-3"/></svg></button>
+          <button class="tool-btn selection-command" id="ungroupBtn" title="取消组合 (Ctrl+Shift+G)" disabled><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M17 10V7h-3M7 14v3h3"/></svg></button>
+          <span class="toolbar-divider"></span>
           <button class="tool-btn" data-tool="hand" title="抓手 (H / Space)"><svg viewBox="0 0 24 24"><path d="M6.5 11V7a1.5 1.5 0 0 1 3 0v3-5a1.5 1.5 0 0 1 3 0v5-4a1.5 1.5 0 0 1 3 0v4-2a1.5 1.5 0 0 1 3 0v5c0 5-3 8-7 8h-1c-2.5 0-4-1.5-5.5-3.5L3 14.8a1.6 1.6 0 0 1 2.3-2.2l1.2 1Z"/></svg></button>
         </div>
 
@@ -162,23 +208,9 @@
           </div>
         </div>
 
-        <div class="statusbar">
-          <div class="status-left">
-            <button class="status-btn active" id="gridToggle" title="显示网格"><span class="grid-icon"></span>网格</button>
-            <button class="status-btn active" id="snapToggle" title="吸附到网格"><svg viewBox="0 0 24 24"><path d="M6 4v10a4 4 0 0 0 8 0V4"/><path d="M6 8h3M14 8h4"/></svg>吸附</button>
-          </div>
-          <div class="zoom-controls">
-            <button class="icon-btn" id="zoomOut" aria-label="缩小">−</button>
-            <button class="zoom-value" id="zoomValue">84%</button>
-            <button class="icon-btn" id="zoomIn" aria-label="放大">＋</button>
-            <span class="toolbar-divider"></span>
-            <button class="fit-btn" id="fitBtn">适应画布</button>
-          </div>
-          <div class="status-right"><span id="objectCount">0 个图层</span><span class="status-separator"></span><span id="cursorPosition">X 0&nbsp;&nbsp;Y 0</span></div>
-        </div>
       </section>
 
-      <aside class="right-panel panel">
+      <aside class="right-panel panel glass-surface">
         <nav class="panel-tabs inspector-tabs" aria-label="属性面板">
           <button class="panel-tab active" data-inspector-tab="design">设计</button>
           <button class="panel-tab" data-inspector-tab="layers">图层 <span class="layer-count" id="layerCount">0</span></button>
@@ -189,6 +221,11 @@
             <div class="empty-illustration"><svg viewBox="0 0 80 80"><rect x="17" y="17" width="46" height="46" rx="5"/><path d="m28 48 9-11 7 8 5-5 6 8"/><circle cx="49" cy="31" r="4"/></svg></div>
             <strong>选择一个对象</strong>
             <p>在画布或图层中选择元素，即可编辑它的属性。</p>
+            <div class="canvas-settings">
+              <span>画布背景</span>
+              <span class="color-swatch-wrap"><input type="color" id="canvasBackground" value="#FFFFFF"/><span id="canvasBackgroundPreview"></span></span>
+              <label class="check-label"><input type="checkbox" id="canvasTransparent" checked/>透明</label>
+            </div>
           </div>
 
           <div id="propertiesPanel" class="properties-panel hidden">
@@ -197,6 +234,10 @@
                 <span class="layer-type-icon" id="selectedTypeIcon"></span>
                 <div><strong id="selectedName">矩形</strong><small id="selectedType">RECTANGLE</small></div>
                 <button class="icon-btn ghost" id="duplicateBtn" title="创建副本"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button>
+              </div>
+              <div class="selection-actions">
+                <button id="inspectorGroupBtn">组合</button>
+                <button id="inspectorUngroupBtn">取消组合</button>
               </div>
             </section>
 
@@ -225,12 +266,48 @@
                 <input type="text" id="propStrokeText" value="#16151A" />
                 <label class="stroke-width-input"><input type="number" id="propStrokeWidth" min="0" max="100" step="1"/><span>px</span></label>
               </div>
+              <div class="property-grid two-col compact-top">
+                <label><span>填充 α</span><input type="number" id="propFillOpacity" min="0" max="100" step="1" /><em>%</em></label>
+                <label><span>描边 α</span><input type="number" id="propStrokeOpacity" min="0" max="100" step="1" /><em>%</em></label>
+                <label class="wide"><span>混合</span><select id="propBlendMode"><option value="normal">正常</option><option value="multiply">正片叠底</option><option value="screen">滤色</option><option value="overlay">叠加</option><option value="darken">变暗</option><option value="lighten">变亮</option></select></label>
+              </div>
               <label class="range-row"><span>整体透明度</span><input type="range" id="opacityRange" min="0" max="100"/><output id="opacityOutput">100%</output></label>
             </section>
 
             <section class="inspector-section" id="cornerSection">
               <div class="property-title"><span>圆角</span></div>
               <label class="range-row"><span class="corner-icon">⌜</span><input type="range" id="propRadiusRange" min="0" max="100" value="0"/><input type="number" id="propRadius" min="0" max="100" value="0"/></label>
+            </section>
+
+            <section class="inspector-section" id="geometrySection">
+              <div class="property-title"><span>图形参数</span></div>
+              <div class="property-grid two-col">
+                <label id="sidesProperty"><span>边</span><input type="number" id="propSides" min="3" max="24" step="1" /></label>
+                <label id="innerRatioProperty"><span>内径</span><input type="number" id="propInnerRatio" min="5" max="95" step="1" /><em>%</em></label>
+                <label id="arcStartProperty"><span>起点</span><input type="number" id="propArcStart" min="-360" max="360" step="1" /><em>°</em></label>
+                <label id="arcEndProperty"><span>终点</span><input type="number" id="propArcEnd" min="-360" max="360" step="1" /><em>°</em></label>
+              </div>
+            </section>
+
+            <section class="inspector-section hidden" id="textSection">
+              <div class="property-title"><span>文本</span></div>
+              <textarea id="propText" class="property-textarea" rows="3" aria-label="文本内容"></textarea>
+              <div class="property-grid two-col compact-top">
+                <label class="wide"><span>字体</span><select id="propFontFamily"><option value="Manrope, Arial, sans-serif">Manrope</option><option value="Inter, Arial, sans-serif">Inter</option><option value="Georgia, serif">Georgia</option><option value="monospace">Monospace</option></select></label>
+                <label><span>字号</span><input type="number" id="propFontSize" min="1" max="600" /></label>
+                <label><span>字重</span><select id="propFontWeight"><option value="300">300</option><option value="400">400</option><option value="500">500</option><option value="600">600</option><option value="700">700</option><option value="800">800</option><option value="900">900</option></select></label>
+                <label><span>字距</span><input type="number" id="propLetterSpacing" step=".1" /></label>
+                <label><span>对齐</span><select id="propTextAlign"><option value="start">左</option><option value="middle">中</option><option value="end">右</option></select></label>
+              </div>
+            </section>
+
+            <section class="inspector-section">
+              <div class="property-title"><span>描边细节</span></div>
+              <div class="property-grid two-col">
+                <label><span>端点</span><select id="propLineCap"><option value="butt">平直</option><option value="round">圆形</option><option value="square">方形</option></select></label>
+                <label><span>连接</span><select id="propLineJoin"><option value="miter">尖角</option><option value="round">圆角</option><option value="bevel">斜角</option></select></label>
+                <label class="wide"><span>虚线</span><input type="text" id="propDash" placeholder="例如 8 4" /></label>
+              </div>
             </section>
 
             <section class="inspector-section">
@@ -254,10 +331,6 @@
           <button class="add-layer-button" id="newShapeBtn"><span>＋</span>添加新图形</button>
         </div>
 
-        <div class="history-strip">
-          <button class="history-btn" id="undoBtn" title="撤销 (Ctrl+Z)"><svg viewBox="0 0 24 24"><path d="m9 7-5 5 5 5"/><path d="M20 17a8 8 0 0 0-8-8H4"/></svg><span>撤销</span></button>
-          <button class="history-btn" id="redoBtn" title="重做 (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M4 17a8 8 0 0 1 8-8h8"/></svg><span>重做</span></button>
-        </div>
       </aside>
     </main>
   </div>
@@ -282,6 +355,7 @@
         <span>选择工具</span><kbd>V</kbd><span>矩形 / 椭圆</span><span><kbd>R</kbd> <kbd>O</kbd></span>
         <span>钢笔 / 文本</span><span><kbd>P</kbd> <kbd>T</kbd></span><span>抓手工具</span><kbd>H</kbd>
         <span>撤销 / 重做</span><span><kbd>Ctrl</kbd> <kbd>Z</kbd></span><span>复制对象</span><span><kbd>Ctrl</kbd> <kbd>D</kbd></span>
+        <span>组合 / 取消组合</span><span><kbd>Ctrl</kbd> <kbd>G</kbd></span><span>多选对象</span><span><kbd>Shift</kbd> 点击</span>
         <span>删除对象</span><kbd>Del</kbd><span>适应画布</span><kbd>1</kbd>
         <span>放大 / 缩小</span><span><kbd>+</kbd> <kbd>−</kbd></span><span>临时抓手</span><kbd>Space</kbd>
       </div>
