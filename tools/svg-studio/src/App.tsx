@@ -9,7 +9,6 @@ import { ContextMenu } from './components/ContextMenu';
 import { Dialogs } from './components/Dialogs';
 import { Canvas } from './canvas/Canvas';
 import { Icon } from './components/Icon';
-import { WorkspaceSettings } from './components/WorkspaceSettings';
 import { useDocumentFonts } from './model/fonts';
 export function App() {
   const { store, view, document: doc } = useEditor();
@@ -23,6 +22,8 @@ export function App() {
   }, [store]);
   useEffect(() => {
     const close = (e: PointerEvent) => {
+      if (store.view.workspaceOpen && !(e.target as Element).closest('.view-controls'))
+        store.setView({ workspaceOpen: false });
       if (store.view.contextMenu && !(e.target as Element).closest('.context-menu'))
         store.setView({ contextMenu: null });
     };
@@ -54,7 +55,6 @@ export function App() {
       <Library />
       <Inspector />
       <Toolbar />
-      <WorkspaceSettings />
       <ContextMenu />
       <Dialogs />
       <div className={`toast ${view.toast ? 'visible' : ''}`} role="status" aria-live="polite">

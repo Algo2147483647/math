@@ -81,6 +81,7 @@ test('grid spacing, visible style, snapping and preferences survive reload', asy
   await open(page, []);
   await page.getByRole('button', { name: 'Workspace settings', exact: true }).click();
   const settings = page.getByRole('region', { name: 'Workspace settings' });
+  await settings.getByRole('switch', { name: 'Show grid' }).check();
   const input = settings.getByLabel('Grid size', { exact: true });
   await input.fill('32');
   await input.press('Enter');

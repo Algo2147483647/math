@@ -34,8 +34,9 @@ export class EditorStore {
     nodeIndex: null,
     zoom: 0.7,
     pan: [0, 0],
-    grid: true,
+    grid: false,
     snap: false,
+    snapElements: false,
     gridSize: 8,
     gridStyle: 'dots',
     marqueeMode: 'touch',
@@ -418,7 +419,7 @@ export class EditorStore {
   }
   insertNode(index?: number, t = 0.5) {
     const active = this.active;
-    if (!active || !isNodeEditable(active) || active.locked) return;
+    if (!active || !isNodeEditable(active) || active.locked || active.type === 'arrow') return;
     let next = 0;
     this.change((d) => {
       const e = d.elements.find((x) => x.id === active.id)!,

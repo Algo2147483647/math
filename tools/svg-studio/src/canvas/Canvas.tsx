@@ -1,6 +1,7 @@
 import { InlineTextEditor } from './InlineTextEditor';
 import { useCanvas } from './useCanvas';
 import { SelectionOverlay } from './SelectionOverlay';
+import { SnapOverlay } from './SnapOverlay';
 
 export function Canvas() {
   const {
@@ -11,6 +12,7 @@ export function Canvas() {
     view,
     selected,
     marquee,
+    snapGuides,
     anchors,
     panning,
     previewD,
@@ -70,7 +72,7 @@ export function Canvas() {
           viewBox={`0 0 ${doc.canvas.width} ${doc.canvas.height}`}
           aria-label="SVG canvas"
           style={{
-            background: doc.canvas.background === 'transparent' ? undefined : doc.canvas.background,
+            background: doc.canvas.background === 'transparent' ? '#ffffff' : doc.canvas.background,
           }}
         >
           <defs dangerouslySetInnerHTML={{ __html: doc.sharedDefs }} />
@@ -106,6 +108,7 @@ export function Canvas() {
           )}
           <g ref={artwork} id="artworkLayer" />
           <SelectionOverlay elements={selected} view={view} marquee={marquee} />
+          <SnapOverlay guides={snapGuides} zoom={view.zoom} />
           {anchors.length > 0 && (
             <g className="path-draft">
               <path d={previewD} />

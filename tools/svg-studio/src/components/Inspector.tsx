@@ -5,6 +5,7 @@ import { NumberField, SelectField } from './Fields';
 import { Icon } from './Icon';
 import { FontPicker } from './FontPicker';
 import { PathControls } from './PathControls';
+import { ArrowControls } from './ArrowControls';
 import { Layers } from './Layers';
 import { Paint } from './PaintControl';
 import { Section } from './InspectorSection';
@@ -222,7 +223,12 @@ export function Inspector() {
                   </div>
                 </Section>
               )}
-              {single && isNodeEditable(active) && (
+              {single && active.type === 'arrow' && (
+                <Section title="Arrow endpoints & heads">
+                  <ArrowControls />
+                </Section>
+              )}
+              {single && isNodeEditable(active) && active.type !== 'arrow' && (
                 <Section
                   title="Path editing"
                   extra={
@@ -301,9 +307,11 @@ export function Inspector() {
               )}
               {(!single || active.type !== 'image') && (
                 <>
-                  <Section title="Fill">
-                    <Paint key={`fill-${view.selectedIds.join()}`} kind="fill" />
-                  </Section>
+                  {(!single || active.type !== 'arrow') && (
+                    <Section title="Fill">
+                      <Paint key={`fill-${view.selectedIds.join()}`} kind="fill" />
+                    </Section>
+                  )}
                   <Section title="Stroke">
                     <Paint key={`stroke-${view.selectedIds.join()}`} kind="stroke" />
                     <div className="field-grid stroke-options">

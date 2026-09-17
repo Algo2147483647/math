@@ -88,8 +88,8 @@
 .workspace-popover {
   position: absolute;
   z-index: 35;
-  top: calc(var(--topbar-height) + 59px);
-  left: calc(var(--left-visible) + 12px);
+  top: calc(100% + 13px);
+  left: 0;
   width: 276px;
   border-radius: 18px;
   padding: 13px 17px;
@@ -216,4 +216,33 @@
   resize: none;
   overflow: auto;
   user-select: text;
+}
+
+.arrow-controls > .field-grid {
+  margin: 14px 0;
+}
+.snap-guides {
+  color: #db4386;
+}
+.snap-guides line,
+.snap-guides path {
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.snap-guides line {
+  stroke-dasharray: 4 3;
+}
+.snap-guides circle {
+  fill: #fff;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.snap-guides text {
+  fill: currentColor;
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 3;
+  stroke-linejoin: round;
 }

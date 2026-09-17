@@ -84,6 +84,19 @@ export function makeElement(
         [180, 0],
       ],
     });
+  if (type === 'arrow')
+    Object.assign(defaults, {
+      height: 1,
+      points: [
+        [0, 0],
+        [180, 0],
+      ],
+      arrowStart: 'none',
+      arrowEnd: 'arrow',
+      arrowSize: 24,
+      arrowAngle: 66,
+      arrowFill: 1,
+    });
   if (type === 'polyline')
     Object.assign(defaults, {
       points: [
@@ -143,7 +156,13 @@ export function makeElement(
       fill: 'mixed',
       stroke: 'mixed',
     });
-  return Object.assign(defaults, overrides);
+  const result = Object.assign(defaults, overrides);
+  if (type === 'arrow' && !overrides.points)
+    result.points = [
+      [0, result.height === 1 ? 0 : result.height / 2],
+      [result.width, result.height === 1 ? 0 : result.height / 2],
+    ];
+  return result;
 }
 
 export const defaultElements = () => [

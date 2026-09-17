@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { apply, clamp, elementMatrix, inverse, normalizePoints } from './geometry';
+import { apply, elementMatrix, inverse, normalizePoints } from './geometry';
+import { requestZoom, stepZoom } from './zoom';
 import { clone } from './utils';
 import type { EditorStore } from './store';
 import type { Tool } from './types';
@@ -108,6 +109,7 @@ export function useKeyboard(store: EditorStore) {
         r: 'rect',
         o: 'ellipse',
         l: 'line',
+        a: 'arrow',
         p: 'polyline',
         b: 'bezier',
         t: 'text',
@@ -115,9 +117,8 @@ export function useKeyboard(store: EditorStore) {
       };
       if (keys[key]) store.setView({ tool: keys[key], nodeIndex: null });
       if (key === '1') window.dispatchEvent(new Event('vectora:fit'));
-      if (key === '+' || key === '=')
-        store.setView({ zoom: clamp(store.view.zoom * 1.2, 0.08, 8) });
-      if (key === '-') store.setView({ zoom: clamp(store.view.zoom / 1.2, 0.08, 8) });
+      if (key === '+' || key === '=') requestZoom(stepZoom(store.view.zoom, 1));
+      if (key === '-') requestZoom(stepZoom(store.view.zoom, -1));
       if (key === '[') store.reorder('back');
       if (key === ']') store.reorder('front');
       if (key === '?') store.setView({ modal: 'shortcuts' });

@@ -5,12 +5,20 @@ export const STORAGE_KEY = 'vectora-svg-studio-v3';
 export const blankDocument = (): StudioDocument => ({
   version: 3,
   title: 'Untitled artwork',
-  canvas: { width: 960, height: 640, background: 'transparent' },
+  canvas: { width: 960, height: 640, background: '#ffffff' },
   elements: [],
   sharedDefs: '',
 });
 export function hydrateElement(e: StudioElement): StudioElement {
   const result = { ...makeElement(e.type), ...e };
+  if (e.type === 'arrow' && !e.points) {
+    result.points = [
+      [0, e.height / 2],
+      [e.width, e.height / 2],
+    ];
+    result.arrowSize =
+      e.arrowSize ?? Math.min(24, Math.max(10, Math.min(e.width, e.height) * 0.32));
+  }
   if (result.children) result.children = result.children.map(hydrateElement);
   return result;
 }

@@ -139,7 +139,8 @@ export function Dialogs() {
             <div className="shortcuts-list">
               {[
                 ['Select / Edit nodes', 'V / N'],
-                ['Rectangle / Ellipse / Line', 'R / O / L'],
+                ['Rectangle / Ellipse', 'R / O'],
+                ['Line / Arrow', 'L / A'],
                 ['Polyline / Bézier / Text', 'P / B / T'],
                 ['Pan', 'Space + drag'],
                 ['Add to selection', 'Shift + click / drag'],

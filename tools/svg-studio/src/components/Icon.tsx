@@ -40,6 +40,7 @@ const paths: Record<string, string> = {
   grid: 'M4 4h16v16H4ZM4 12h16M12 4v16',
   settings: 'M4 6h4m4 0h8M4 12h10m4 0h2M4 18h2m4 0h10M8 3v6m6 0v6M6 15v6',
   snap: 'M5 4v10a7 7 0 0 0 14 0V4h-4v10a3 3 0 0 1-6 0V4Z',
+  anchorSnap: 'M5 5h14v14H5ZM3 3h4v4H3Zm14 14h4v4h-4ZM12 8v8M8 12h8',
   fit: 'M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6',
   check: 'm5 12 4 4L19 6',
   help: 'M9 8a3 3 0 1 1 4 3l-1 3m0 4v.1',

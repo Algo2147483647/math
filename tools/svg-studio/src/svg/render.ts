@@ -3,6 +3,7 @@ import { iconPaths } from '../model/elements';
 import { elementTransform } from '../model/geometry';
 import type { Point, StudioElement } from '../model/types';
 import { paintDefinitions, paintValue } from './gradients';
+import { arrowGeometry } from '../model/arrows';
 
 export function buildSvgElement(element: StudioElement, forExport = false, interactive = true) {
   const group = document.createElementNS(SVG_NS, 'g');
@@ -92,14 +93,22 @@ export function buildSvgElement(element: StudioElement, forExport = false, inter
     shape.setAttribute('x2', String(pts[1][0]));
     shape.setAttribute('y2', String(pts[1][1]));
   } else if (element.type === 'arrow') {
-    shape = common(document.createElementNS(SVG_NS, 'path'));
-    const head = Math.min(24, Math.max(10, Math.min(element.width, element.height) * 0.32));
-    shape.setAttribute(
-      'd',
-      String(
-        `M 0 ${element.height / 2} H ${element.width} M ${element.width - head} ${element.height / 2 - head * 0.65} L ${element.width} ${element.height / 2} L ${element.width - head} ${element.height / 2 + head * 0.65}`,
-      ),
-    );
+    const inner = document.createElementNS(SVG_NS, 'g');
+    for (const part of arrowGeometry(element).parts) {
+      const node = common(document.createElementNS(SVG_NS, 'path'));
+      node.setAttribute('d', part.d);
+      node.setAttribute('fill', part.head && part.closed ? paintValue(element, 'stroke') : 'none');
+      node.setAttribute(
+        'fill-opacity',
+        String((element.arrowFill ?? 1) * (element.strokeOpacity ?? 1)),
+      );
+      if (part.head) {
+        node.removeAttribute('stroke-dasharray');
+        if (!forExport) node.setAttribute('data-arrow-head', 'true');
+      }
+      inner.append(node);
+    }
+    shape = inner;
   } else if (element.type === 'arc') {
     shape = common(document.createElementNS(SVG_NS, 'path'));
     shape.setAttribute(
@@ -194,10 +203,13 @@ export function buildSvgElement(element: StudioElement, forExport = false, inter
     ['line', 'polyline', 'path', 'bezier', 'arc', 'arrow'].includes(element.type)
   ) {
     const hit = shape.cloneNode(true) as SVGElement;
-    hit.setAttribute('fill', 'none');
-    hit.setAttribute('stroke', 'transparent');
-    hit.setAttribute('stroke-width', String(Math.max(12, element.strokeWidth)));
-    hit.setAttribute('pointer-events', 'stroke');
+    for (const target of [hit, ...hit.querySelectorAll('*')]) {
+      target.setAttribute('fill', 'none');
+      target.setAttribute('stroke', 'transparent');
+      target.setAttribute('stroke-width', String(Math.max(12, element.strokeWidth)));
+      target.setAttribute('pointer-events', 'stroke');
+      target.removeAttribute('data-arrow-head');
+    }
     hit.setAttribute('data-hit-area', 'true');
     group.appendChild(hit);
   }

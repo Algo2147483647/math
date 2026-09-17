@@ -39,6 +39,19 @@ export function WorkspaceControls() {
           onChange={(gridStyle) => store.setView({ gridStyle: gridStyle as 'dots' | 'lines' })}
         />
       </div>
+      <label className="toggle-row">
+        <span>Snap to elements</span>
+        <input
+          type="checkbox"
+          role="switch"
+          checked={view.snapElements}
+          onChange={(e) => store.setView({ snapElements: e.target.checked })}
+        />
+      </label>
+      <p className="field-help">
+        Align to corners, edge midpoints, centers and path anchors. Pink guides show the matching
+        position. Grid snapping is independent.
+      </p>
       <SelectField
         label="Marquee selection"
         value={view.marqueeMode}

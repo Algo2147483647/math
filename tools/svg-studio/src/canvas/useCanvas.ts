@@ -28,6 +28,8 @@ import { clone } from '../model/utils';
 import type { Bounds, Point, StudioDocument, StudioElement } from '../model/types';
 import { buildSvgElement, bezierPath } from '../svg/render';
 import { parseSvg } from '../svg/import';
+import { wheelZoom, zoomAround } from '../model/zoom';
+import { collectSnapTargets, snapPoint, snapTranslation, type SnapGuide } from '../model/snapping';
 
 interface Anchor {
   p: Point;
@@ -71,12 +73,22 @@ export function useCanvas() {
     [anchors, setAnchors] = useState<Anchor[]>([]),
     [hover, setHover] = useState<Point | null>(null),
     [panning, setPanning] = useState(false);
+  const [snapGuides, setSnapGuides] = useState<SnapGuide[]>([]);
   const updateAnchors = (value: Anchor[]) => {
     draft.current = value;
     setAnchors(value);
   };
-  const snap = (p: Point): Point =>
-    p.map((n) => round(n, store.view.snap ? store.view.gridSize : 0.1)) as Point;
+  const snap = (p: Point, exclude: string[] = [], elements = true): Point => {
+    const v = store.view,
+      result = snapPoint(
+        p,
+        v.snapElements && elements ? collectSnapTargets(store.document.elements, exclude) : [],
+        v.zoom,
+        v.snap ? v.gridSize : undefined,
+      );
+    setSnapGuides(result.guides);
+    return result.point;
+  };
   const toWorld = (clientX: number, clientY: number): Point => {
     const matrix = svg.current?.getScreenCTM();
     if (!matrix) return [0, 0];
@@ -100,6 +112,23 @@ export function useCanvas() {
     );
     store.setView({ zoom, pan: [(left - right) / 2, 18] });
   }, [store]);
+  const setZoom = useCallback(
+    (next: number, client?: Point) => {
+      const r = viewport.current?.getBoundingClientRect();
+      if (!r) return;
+      const left = store.view.leftPanel
+          ? document.querySelector('.library')?.getBoundingClientRect().width || 0
+          : 0,
+        right = store.view.rightPanel
+          ? document.querySelector('.inspector')?.getBoundingClientRect().width || 0
+          : 0;
+      const anchor: Point = client
+        ? [client[0] - r.left - r.width / 2, client[1] - r.top - r.height / 2]
+        : [(left - right) / 2, 18];
+      store.setView(zoomAround(store.view.zoom, store.view.pan, next, anchor));
+    },
+    [store],
+  );
   useEffect(() => {
     fit();
   }, [fit, doc.canvas.width, doc.canvas.height, view.leftPanel, view.rightPanel]);
@@ -111,6 +140,14 @@ export function useCanvas() {
       window.removeEventListener('vectora:fit', fit);
     };
   }, [fit]);
+  useEffect(() => {
+    const change = (event: Event) => {
+      const value = (event as CustomEvent<number>).detail;
+      if (Number.isFinite(value) && value > 0) setZoom(value);
+    };
+    window.addEventListener('vectora:zoom', change);
+    return () => window.removeEventListener('vectora:zoom', change);
+  }, [setZoom]);
   useLayoutEffect(() => {
     if (!artwork.current) return;
     artwork.current.replaceChildren();
@@ -177,6 +214,7 @@ export function useCanvas() {
         setAnchors([]);
         setHover(null);
         setMarquee(null);
+        setSnapGuides([]);
         setPanning(false);
       }
     };
@@ -206,22 +244,12 @@ export function useCanvas() {
       event.preventDefault();
       const v = store.view;
       if (event.ctrlKey || event.metaKey) {
-        const next = clamp(v.zoom * Math.exp(-event.deltaY * 0.008), 0.08, 8),
-          r = el.getBoundingClientRect();
-        const point: Point = [
-            event.clientX - r.left - r.width / 2,
-            event.clientY - r.top - r.height / 2,
-          ],
-          ratio = next / v.zoom;
-        store.setView({
-          zoom: next,
-          pan: [point[0] - (point[0] - v.pan[0]) * ratio, point[1] - (point[1] - v.pan[1]) * ratio],
-        });
+        setZoom(wheelZoom(v.zoom, event.deltaY, event.deltaMode), [event.clientX, event.clientY]);
       } else store.setView({ pan: [v.pan[0] - event.deltaX, v.pan[1] - event.deltaY] });
     };
     el.addEventListener('wheel', wheel, { passive: false });
     return () => el.removeEventListener('wheel', wheel);
-  }, [store]);
+  }, [store, setZoom]);
 
   const pointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.button !== 0 && event.button !== 1) return;
@@ -237,14 +265,15 @@ export function useCanvas() {
       setPanning(true);
       return;
     }
-    const direct = startManipulation(target, p, store);
+    const editing = tool === 'select' || tool === 'node';
+    const direct = editing ? startManipulation(target, p, store) : null;
     if (direct) {
       gesture.current = direct;
       return;
     }
     const node = target.closest('[data-node-index]'),
       handle = target.closest('[data-handle]');
-    if (node && active && !active.locked) {
+    if (editing && node && active && !active.locked) {
       const index = Number(node.getAttribute('data-node-index'));
       store.setView({ nodeIndex: index });
       gesture.current = {
@@ -256,7 +285,7 @@ export function useCanvas() {
       };
       return;
     }
-    if (handle && active && !active.locked) {
+    if (editing && handle && active && !active.locked) {
       gesture.current = {
         type: 'resize',
         id: active.id,
@@ -313,7 +342,7 @@ export function useCanvas() {
       store.setView({ editingTextId: id });
       return;
     }
-    if (tool === 'rect' || tool === 'ellipse' || tool === 'line') {
+    if (tool === 'rect' || tool === 'ellipse' || tool === 'line' || tool === 'arrow') {
       const before = clone(doc),
         point = snap(p),
         e = makeElement(tool, {
@@ -321,7 +350,7 @@ export function useCanvas() {
           y: point[1],
           width: 1,
           height: 1,
-          ...(tool === 'line'
+          ...(tool === 'line' || tool === 'arrow'
             ? {
                 points: [
                   [0, 0],
@@ -378,7 +407,21 @@ export function useCanvas() {
       return;
     }
     if (g.type === 'move') {
-      const delta = snap([p[0] - g.start[0], p[1] - g.start[1]]);
+      const v = store.view,
+        result = snapTranslation(
+          g.elements,
+          [p[0] - g.start[0], p[1] - g.start[1]],
+          v.snapElements
+            ? collectSnapTargets(
+                store.document.elements,
+                g.elements.map((e) => e.id),
+              )
+            : [],
+          v.zoom,
+          v.snap ? v.gridSize : undefined,
+        );
+      const delta = result.point;
+      setSnapGuides(result.guides);
       store.preview((d) =>
         g.elements.forEach((before) => {
           const e = d.elements.find((e) => e.id === before.id)!;
@@ -392,14 +435,14 @@ export function useCanvas() {
       store.moveNode(
         g.id,
         g.index,
-        snap(apply(inverse(elementMatrix(g.element)), p)),
+        apply(inverse(elementMatrix(g.element)), snap(p, [g.id])),
         g.element,
         event.altKey,
       );
       return;
     }
     if (g.type === 'shape') {
-      let end = snap(p);
+      let end = snap(p, [g.id], !event.shiftKey);
       if (event.shiftKey) {
         const dx = end[0] - g.start[0],
           dy = end[1] - g.start[1];
@@ -410,7 +453,7 @@ export function useCanvas() {
       store.preview((d) => {
         const e = d.elements.find((e) => e.id === g.id)!;
         Object.assign(e, { ...b, width: Math.max(1, b.width), height: Math.max(1, b.height) });
-        if (e.type === 'line')
+        if (e.type === 'line' || e.type === 'arrow')
           e.points = [
             [g.start[0] - b.x, g.start[1] - b.y],
             [end[0] - b.x, end[1] - b.y],
@@ -422,7 +465,10 @@ export function useCanvas() {
       const before = g.element,
         m = elementMatrix(before),
         start = apply(inverse(m), g.start),
-        local = apply(inverse(m), p),
+        local = apply(
+          inverse(m),
+          snap(p, [g.id], !event.shiftKey && !store.view.keepRatio && before.type !== 'circle'),
+        ),
         dx = local[0] - start[0],
         dy = local[1] - start[1];
       let width = before.width,
@@ -441,8 +487,11 @@ export function useCanvas() {
         if (width / height > ratio) height = width / ratio;
         else width = height * ratio;
       }
-      width = Math.max(1, round(width, store.view.snap ? store.view.gridSize : 0.1));
-      height = Math.max(1, round(height, store.view.snap ? store.view.gridSize : 0.1));
+      // The dragged position is already snapped in world space. Rounding local dimensions
+      // again would move the corner away from a key point (especially on rotated objects).
+      const snapped = store.view.snap || store.view.snapElements;
+      width = Math.max(1, snapped ? width : round(width, 0.1));
+      height = Math.max(1, snapped ? height : round(height, 0.1));
       if (g.handle.includes('w')) x = before.width - width;
       if (g.handle.includes('n')) y = before.height - height;
       store.preview((d) => {
@@ -462,6 +511,7 @@ export function useCanvas() {
     gesture.current = null;
     setPanning(false);
     setMarquee(null);
+    setSnapGuides([]);
     if (g?.type === 'node')
       store.preview((d) => normalizePoints(d.elements.find((e) => e.id === g.id)!));
     if (g?.type === 'shape') {
@@ -469,7 +519,7 @@ export function useCanvas() {
       if (e.width < 3 && e.height < 3)
         store.preview((d) => {
           const item = d.elements.find((e) => e.id === g.id)!;
-          resizeElement(item, 120, item.type === 'line' ? 1 : 100);
+          resizeElement(item, 120, item.type === 'line' || item.type === 'arrow' ? 1 : 100);
         });
       store.setView({ tool: 'select' });
     }
@@ -491,6 +541,7 @@ export function useCanvas() {
     }
     gesture.current = null;
     setMarquee(null);
+    setSnapGuides([]);
     setPanning(false);
   };
   const previewAnchors =
@@ -514,6 +565,10 @@ export function useCanvas() {
       id = target.closest('[data-element-id]')?.getAttribute('data-element-id'),
       e = doc.elements.find((x) => x.id === id);
     if (!e || e.locked) return;
+    if (e.type === 'arrow') {
+      store.select([e.id]);
+      return;
+    }
     if (isNodeEditable(e)) {
       store.select([e.id]);
       if (!target.closest('[data-node-index]')) {
@@ -560,6 +615,7 @@ export function useCanvas() {
     selected,
     active,
     marquee,
+    snapGuides,
     anchors,
     panning,
     previewD,

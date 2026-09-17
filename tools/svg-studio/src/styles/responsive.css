@@ -3,7 +3,7 @@
     --library-width: 226px;
   }
   .topbar {
-    gap: 12px;
+    gap: 10px;
   }
   .brand-caption {
     display: none;
@@ -41,7 +41,8 @@
     display: none;
   }
   .topbar {
-    gap: 10px;
+    gap: 8px;
+    padding: 0 10px;
   }
   .top-actions .button {
     padding: 0 9px;
@@ -58,7 +59,7 @@
     padding: 5px;
   }
   .tool-button {
-    width: 29px;
+    width: 27px;
   }
   .canvas-hint {
     display: none;
@@ -69,6 +70,18 @@
   .paint-control {
     grid-template-columns: 1fr 70px;
     gap: 7px;
+  }
+  .brand > span:last-child {
+    display: none;
+  }
+  .topbar > .divider {
+    display: none;
+  }
+  .view-controls {
+    padding: 3px;
+  }
+  .view-controls .icon-button {
+    width: 25px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

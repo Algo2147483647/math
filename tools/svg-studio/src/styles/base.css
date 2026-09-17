@@ -6,7 +6,7 @@
     'Segoe UI',
     sans-serif;
   color: #283345;
-  background: #edf1f6;
+  background: #fff;
   font-synthesis: none;
   font-size: 13px;
   --accent: #176be8;
@@ -134,10 +134,7 @@ small {
   height: 100%;
   min-width: 780px;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 5% 0%, #c8e1fb 0, transparent 38%),
-    radial-gradient(ellipse at 94% 70%, #d3d9f4 0, transparent 34%),
-    radial-gradient(ellipse at 35% 110%, #d6ede5 0, transparent 37%), #edf1f6;
+  background: #fff;
 }
 /* A translucent body, specular edge, and a soft interior reflection form the glass. */
 .glass {

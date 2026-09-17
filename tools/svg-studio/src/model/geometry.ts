@@ -1,4 +1,5 @@
 import type { Bounds, Matrix, Point, StudioElement } from './types';
+import { arrowGeometry } from './arrows';
 
 export const identity = (): Matrix => [1, 0, 0, 1, 0, 0];
 export const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
@@ -57,6 +58,7 @@ export function pointBounds(points: Point[]): Bounds {
   };
 }
 export function localBounds(e: StudioElement): Bounds {
+  if (e.type === 'arrow') return arrowGeometry(e).bounds;
   return e.points?.length
     ? pointBounds(e.points)
     : { x: 0, y: 0, width: e.width, height: e.height };
@@ -101,7 +103,7 @@ export function transformElement(e: StudioElement, matrix: Matrix): void {
   e.affine = [m[0], m[1], m[2], m[3], 0, 0];
 }
 export const isNodeEditable = (e?: StudioElement): boolean =>
-  !!e && ['polyline', 'path', 'bezier', 'line'].includes(e.type) && !!e.points?.length;
+  !!e && ['polyline', 'path', 'bezier', 'line', 'arrow'].includes(e.type) && !!e.points?.length;
 export function resizeElement(e: StudioElement, width: number, height: number): void {
   const sx = width / Math.max(0.001, e.width),
     sy = height / Math.max(0.001, e.height);

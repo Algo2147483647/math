@@ -11,6 +11,7 @@ import {
 } from './geometry';
 import type { Bounds, Matrix, Point, StudioElement } from './types';
 import { smoothCubics } from './nodes';
+import { arrowGeometry } from './arrows';
 const pointIn = (p: Point, b: Bounds) =>
   p[0] >= b.x && p[0] <= b.x + b.width && p[1] >= b.y && p[1] <= b.y + b.height;
 function segmentHits(a: Point, b: Point, r: Bounds): boolean {
@@ -55,6 +56,24 @@ export function marqueeHit(
   parent: Matrix = identity(),
 ): boolean {
   const matrix = multiply(parent, elementMatrix(e));
+  if (e.type === 'arrow') {
+    const parts = arrowGeometry(e).parts;
+    const hit = (part: (typeof parts)[number]) =>
+      marqueeHit(
+        box,
+        {
+          ...e,
+          type: 'polyline',
+          points: part.points,
+          closed: part.closed,
+          fill: part.closed && (e.arrowFill ?? 1) > 0 ? e.stroke : 'none',
+          fillGradient: part.closed && (e.arrowFill ?? 1) > 0 ? e.strokeGradient : undefined,
+        },
+        mode,
+        parent,
+      );
+    return mode === 'touch' ? parts.some(hit) : parts.every(hit);
+  }
   if (e.type === 'group') {
     const transform = multiply(
         matrix,

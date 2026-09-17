@@ -1,12 +1,13 @@
 import type { EditorView } from './types';
 const key = 'vectora-workspace-v1';
-const keys = ['grid', 'snap', 'gridSize', 'gridStyle', 'marqueeMode'] as const;
+const keys = ['grid', 'snap', 'snapElements', 'gridSize', 'gridStyle', 'marqueeMode'] as const;
 export function loadPreferences(): Partial<EditorView> {
   try {
     const value = JSON.parse(localStorage.getItem(key) || '{}');
     return {
-      grid: typeof value.grid === 'boolean' ? value.grid : true,
+      grid: typeof value.grid === 'boolean' ? value.grid : false,
       snap: typeof value.snap === 'boolean' ? value.snap : false,
+      snapElements: typeof value.snapElements === 'boolean' ? value.snapElements : false,
       gridSize: Number.isFinite(value.gridSize) ? Math.max(2, Math.min(256, value.gridSize)) : 8,
       gridStyle: value.gridStyle === 'lines' ? 'lines' : 'dots',
       marqueeMode: value.marqueeMode === 'contain' ? 'contain' : 'touch',

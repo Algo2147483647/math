@@ -23,6 +23,7 @@ export function SelectionOverlay({
   marquee: Bounds | null;
 }) {
   const size = 8 / view.zoom;
+  const editing = view.tool === 'select' || view.tool === 'node';
   return (
     <g id="selectionLayer">
       {elements
@@ -33,7 +34,8 @@ export function SelectionOverlay({
               {...localBounds(e)}
               className={`selection-outline ${elements.length > 1 ? 'secondary' : ''}`}
             />
-            {elements.length === 1 &&
+            {editing &&
+              elements.length === 1 &&
               !e.locked &&
               (isNodeEditable(e) && !view.gradientEdit ? (
                 <>
@@ -80,7 +82,7 @@ export function SelectionOverlay({
                   )}
                 </>
               ) : null)}
-            {elements.length === 1 && !e.locked && (
+            {editing && elements.length === 1 && !e.locked && e.type !== 'arrow' && (
               <>
                 <ShapeHandles element={e} zoom={view.zoom} />
                 <line
@@ -119,9 +121,16 @@ export function SelectionOverlay({
                 )}
               </>
             )}
+            {editing &&
+              elements.length === 1 &&
+              !e.locked &&
+              e.type === 'arrow' &&
+              view.gradientEdit && (
+                <GradientOverlay element={e} kind={view.gradientEdit} zoom={view.zoom} />
+              )}
           </g>
         ))}
-      {elements.length > 1 && (
+      {editing && elements.length > 1 && (
         <g>
           <rect {...selectionBounds(elements)} className="selection-outline collective" />
           {Object.entries(handles)

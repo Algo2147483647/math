@@ -15,6 +15,8 @@ export interface GradientPaint {
   spread: 'pad' | 'reflect' | 'repeat';
 }
 export type AnchorMode = 'corner' | 'smooth' | 'symmetric';
+export type ArrowHeadStyle =
+  'none' | 'arrow' | 'triangle' | 'circle' | 'square' | 'diamond' | 'bar';
 export interface EmbeddedFont {
   id: string;
   name: string;
@@ -41,7 +43,16 @@ export type ElementType =
   | 'group'
   | 'raw';
 export type Tool =
-  'select' | 'node' | 'rect' | 'ellipse' | 'line' | 'polyline' | 'bezier' | 'text' | 'hand';
+  | 'select'
+  | 'node'
+  | 'rect'
+  | 'ellipse'
+  | 'line'
+  | 'arrow'
+  | 'polyline'
+  | 'bezier'
+  | 'text'
+  | 'hand';
 export interface StudioElement extends Bounds {
   id: string;
   type: ElementType;
@@ -73,6 +84,11 @@ export interface StudioElement extends Bounds {
   arcStart?: number;
   arcEnd?: number;
   closed?: boolean;
+  arrowStart?: ArrowHeadStyle;
+  arrowEnd?: ArrowHeadStyle;
+  arrowSize?: number;
+  arrowAngle?: number;
+  arrowFill?: number;
   text?: string;
   fontSize?: number;
   fontWeight?: number | string;
@@ -112,6 +128,7 @@ export interface EditorView {
   pan: Point;
   grid: boolean;
   snap: boolean;
+  snapElements: boolean;
   gridSize: number;
   gridStyle: 'dots' | 'lines';
   marqueeMode: 'touch' | 'contain';

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useEditor } from '../model/context';
 import { parseSvg } from '../svg/import';
 import { Icon } from './Icon';
+import { ViewControls } from './ViewControls';
 export function Topbar() {
   const { store, document: doc, view, canUndo, canRedo } = useEditor(),
     file = useRef<HTMLInputElement>(null);
@@ -43,6 +44,7 @@ export function Topbar() {
               : 'Storage full · export a copy'}
         </span>
       </div>
+      <ViewControls />
       <div className="history-actions">
         <button
           className="icon-button"
