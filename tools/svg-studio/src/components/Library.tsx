@@ -93,7 +93,7 @@ export function Library() {
                     title={`Add ${typeNames[type][0]}`}
                     aria-label={`Add ${typeNames[type][0]}`}
                   >
-                    <Icon name={type} size={28} />
+                    <Icon name={type} size={24} />
                     <span>
                       {type === 'rect'
                         ? 'Rectangle'

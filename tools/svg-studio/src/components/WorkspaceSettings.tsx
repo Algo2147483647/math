@@ -48,10 +48,6 @@ export function WorkspaceControls() {
           onChange={(e) => store.setView({ snapElements: e.target.checked })}
         />
       </label>
-      <p className="field-help">
-        Align to corners, edge midpoints, centers and path anchors. Pink guides show the matching
-        position. Grid snapping is independent.
-      </p>
       <SelectField
         label="Marquee selection"
         value={view.marqueeMode}
@@ -63,12 +59,6 @@ export function WorkspaceControls() {
           store.setView({ marqueeMode: marqueeMode as 'touch' | 'contain' })
         }
       />
-      <p className="field-help">
-        {view.marqueeMode === 'touch'
-          ? 'Objects intersecting the selection box are selected.'
-          : 'Only objects entirely inside the selection box are selected.'}{' '}
-        Hold Shift to add to a selection.
-      </p>
     </div>
   );
 }

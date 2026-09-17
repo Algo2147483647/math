@@ -20,9 +20,6 @@
   .panel-scroll:not(.inspector-scroll) {
     padding: 0 12px 14px;
   }
-  .shape-card {
-    height: 62px;
-  }
   .canvas-hint {
     font-size: 9px;
     max-width: 45%;
@@ -37,6 +34,9 @@
   }
 }
 @media (max-width: 900px) {
+  .shape-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .topbar .top-actions > .icon-button {
     display: none;
   }

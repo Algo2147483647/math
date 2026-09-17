@@ -245,6 +245,8 @@ export function useCanvas() {
       const v = store.view;
       if (event.ctrlKey || event.metaKey) {
         setZoom(wheelZoom(v.zoom, event.deltaY, event.deltaMode), [event.clientX, event.clientY]);
+      } else if (event.shiftKey) {
+        store.setView({ pan: [v.pan[0] - (event.deltaY || event.deltaX), v.pan[1]] });
       } else store.setView({ pan: [v.pan[0] - event.deltaX, v.pan[1] - event.deltaY] });
     };
     el.addEventListener('wheel', wheel, { passive: false });

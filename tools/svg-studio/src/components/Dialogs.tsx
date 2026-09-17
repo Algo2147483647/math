@@ -143,6 +143,7 @@ export function Dialogs() {
                 ['Line / Arrow', 'L / A'],
                 ['Polyline / Bézier / Text', 'P / B / T'],
                 ['Pan', 'Space + drag'],
+                ['Horizontal pan', 'Shift + scroll'],
                 ['Add to selection', 'Shift + click / drag'],
                 ['Finish path / Edit nodes', 'Enter'],
                 ['Cancel / Clear active handle', 'Esc'],

@@ -36,6 +36,9 @@
   padding: 20px 18px 15px;
   flex-shrink: 0;
 }
+.library .panel-header {
+  padding: 14px 14px 10px;
+}
 .panel-header h2 {
   font-size: 18px;
   letter-spacing: -0.5px;
@@ -55,7 +58,7 @@
   font-variant-numeric: tabular-nums;
 }
 .segmented {
-  margin: 0 14px 14px;
+  margin: 0 10px 10px;
   display: flex;
   padding: 4px;
   border-radius: 12px;
@@ -95,6 +98,9 @@
 .panel-scroll::-webkit-scrollbar {
   width: 4px;
 }
+.library .panel-scroll {
+  padding: 0 12px 14px;
+}
 .panel-scroll::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: #b8c5d566;
@@ -104,7 +110,7 @@
   align-items: center;
   gap: 8px;
   padding: 0 10px;
-  height: 36px;
+  height: 32px;
   border: 1px solid #fff9;
   border-radius: 10px;
   background: #ffffff6b;
@@ -133,21 +139,25 @@
   color: #96a3b4;
   font-size: 10px;
 }
+.library .section-title {
+  margin: 14px 0 8px;
+}
 .shape-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
 }
 .shape-card {
-  height: 69px;
-  border-radius: 11px;
+  height: 54px;
+  padding: 0;
+  border-radius: 9px;
   border: 1px solid #ffffffb0;
   background: rgba(255, 255, 255, 0.32);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   color: #788ba4;
   box-shadow: 0 1px 2px #26446403;
 }
@@ -191,7 +201,7 @@
 .palettes {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 4px;
 }
 .palette {
   height: 27px;
