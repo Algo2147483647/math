@@ -1,0 +1,326 @@
+:root {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  color: #283345;
+  background: #edf1f6;
+  font-synthesis: none;
+  font-size: 13px;
+  --accent: #176be8;
+  --muted: #778397;
+  --line: rgba(92, 119, 150, 0.14);
+  --input: rgba(255, 255, 255, 0.65);
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+body {
+  overflow: hidden;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+button,
+input,
+select,
+textarea,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  border: 0;
+}
+input,
+textarea {
+  min-width: 0;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #176be870;
+  outline-offset: 1px;
+}
+svg {
+  display: block;
+  flex-shrink: 0;
+}
+button {
+  transition:
+    background 0.15s,
+    box-shadow 0.15s,
+    transform 0.15s;
+}
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+button svg {
+  pointer-events: none;
+}
+h2,
+h3,
+p {
+  margin: 0;
+}
+h3 {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.1px;
+}
+kbd {
+  font:
+    10px 'Cascadia Code',
+    Consolas,
+    monospace;
+  color: #8190a3;
+  white-space: nowrap;
+}
+small {
+  font-size: 11px;
+}
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.divider {
+  height: 25px;
+  width: 1px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  font-weight: 650;
+  color: #8492a6;
+}
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 780px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 5% 0%, #c8e1fb 0, transparent 38%),
+    radial-gradient(ellipse at 94% 70%, #d3d9f4 0, transparent 34%),
+    radial-gradient(ellipse at 35% 110%, #d6ede5 0, transparent 37%), #edf1f6;
+}
+/* A translucent body, specular edge, and a soft interior reflection form the glass. */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.64),
+    rgba(250, 253, 255, 0.27) 48%,
+    rgba(241, 246, 255, 0.4)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.87);
+  box-shadow:
+    inset 0 1px 1px #fff,
+    inset 1px 0 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(121, 146, 180, 0.16),
+    0 8px 32px rgba(41, 65, 105, 0.085),
+    0 1px 5px rgba(41, 65, 105, 0.045);
+  backdrop-filter: blur(24px) saturate(1.75);
+  -webkit-backdrop-filter: blur(24px) saturate(1.75);
+}
+.topbar {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 14px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 18px;
+  border-radius: 23px;
+  z-index: 30;
+  background: linear-gradient(
+    116deg,
+    rgba(255, 255, 255, 0.76),
+    rgba(255, 255, 255, 0.26) 48%,
+    rgba(242, 248, 255, 0.48)
+  );
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #1c2e48;
+  font-size: 23px;
+  letter-spacing: -1px;
+  font-weight: 740;
+}
+.brand-mark {
+  width: 35px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: white;
+  border-radius: 11px;
+  background: linear-gradient(150deg, #4693ff, #0961dd);
+  box-shadow:
+    inset 0 1px 1px #ffffff80,
+    0 4px 12px #276dde24;
+}
+.brand-mark svg {
+  width: 28px;
+}
+.brand-caption {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #8291a5;
+  margin-top: 1px;
+}
+.document-heading {
+  flex: 1;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.document-heading input {
+  border: 0;
+  background: transparent;
+  width: min(250px, 100%);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 1px 0;
+}
+.save-status {
+  font-size: 10px;
+  color: #8a98aa;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.save-status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #56ad8d;
+}
+.save-status.saving i {
+  background: #ecad57;
+}
+.save-status.error {
+  color: #b54259;
+}
+.history-actions,
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.history-actions {
+  gap: 2px;
+}
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #758397;
+  flex-shrink: 0;
+}
+.icon-button:hover:not(:disabled) {
+  background: #fff9;
+  color: #276bdd;
+}
+.icon-button.active-subtle {
+  background: #e7effb9c;
+  color: #396cbd;
+}
+.button {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.button.primary {
+  background: linear-gradient(180deg, #3484f5, #1468e8);
+  color: white;
+  box-shadow:
+    inset 0 1px 0 #ffffff70,
+    0 3px 8px #1168e52b;
+  border: 1px solid #1264dd;
+}
+.button.primary:hover {
+  background: #1262d6;
+}
+.button.quiet {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid #ffffffb0;
+  color: #66778c;
+}
+.button.secondary {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #ffffffcf;
+  box-shadow: 0 1px 3px #243e6908;
+  color: #4e647e;
+}
+.button.secondary:hover,
+.button.quiet:hover {
+  background: #fff;
+}
+.button.full {
+  width: 100%;
+}
+.button kbd {
+  margin-left: auto;
+  font-size: 9px;
+  color: inherit;
+  opacity: 0.6;
+}
+.text-button {
+  background: transparent;
+  color: #5d80b0;
+  padding: 0;
+  font-size: 10px;
+}
+.text-button:hover {
+  color: var(--accent);
+}

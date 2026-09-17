@@ -1,0 +1,100 @@
+@media (max-width: 1150px) {
+  .library {
+    width: 226px;
+  }
+  .topbar {
+    gap: 12px;
+  }
+  .brand-caption {
+    display: none;
+  }
+  .brand {
+    font-size: 21px;
+  }
+  .history-actions {
+    display: none;
+  }
+  .panel-header {
+    padding: 17px 15px 13px;
+  }
+  .panel-scroll:not(.inspector-scroll) {
+    padding: 0 12px 14px;
+  }
+  .shape-card {
+    height: 62px;
+  }
+  .canvas-hint {
+    font-size: 9px;
+    max-width: 45%;
+    overflow: hidden;
+  }
+  .view-controls {
+    bottom: 28px;
+  }
+  .view-controls > .icon-button:first-child,
+  .view-controls > .icon-button:nth-child(2),
+  .view-controls > .divider {
+    display: none;
+  }
+  .tool-dock {
+    left: 52%;
+  }
+}
+@media (max-width: 900px) {
+  .topbar .top-actions > .icon-button {
+    display: none;
+  }
+  .topbar {
+    gap: 10px;
+  }
+  .top-actions .button {
+    padding: 0 9px;
+  }
+  .top-actions .button svg {
+    display: none;
+  }
+  .library {
+    width: 200px;
+  }
+  .inspector {
+    width: 270px;
+  }
+  .tool-dock {
+    left: 50%;
+    gap: 0;
+    padding: 6px;
+  }
+  .tool-button {
+    width: 35px;
+  }
+  .view-controls {
+    bottom: 94px;
+    left: 18px;
+  }
+  .canvas-hint {
+    display: none;
+  }
+  .panel {
+    bottom: 145px;
+  }
+  .field-grid {
+    gap: 10px 7px;
+  }
+  .paint-control {
+    grid-template-columns: 1fr 70px;
+    gap: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: #f1f5faf2;
+  }
+}
