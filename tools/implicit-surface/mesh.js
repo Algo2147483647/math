@@ -11,38 +11,34 @@
       [0, 4, 5, 6],
     ];
     async function build(
-      { expression, domain, resolution },
+      { expression, domain, resolution, step },
       progress = () => {},
       cancelled = () => false,
     ) {
-      if (![32, 52, 76].includes(resolution))
-        throw new Error("Choose Draft, Balanced, or Fine detail.");
-      const { center, scale } = math.validateDomain(domain, resolution);
+      const sampling = math.samplingGrid(domain,{resolution,step});
+      const { center, scale, counts, steps } = sampling;
       const evaluate = math.compile(expression);
-      const n = resolution,
-        side = n + 1,
-        plane = side * side;
-      const values = new Float64Array(side * plane);
-      const coords = domain.map(([a, b]) =>
-        Float64Array.from({ length: side }, (_, i) => a + ((b - a) * i) / n),
+      const [nx,ny,nz] = counts, sx=nx+1, sy=ny+1, plane=sx*sy;
+      const values = new Float64Array(sampling.points);
+      const coords = domain.map(([a, b],axis) =>
+        Float64Array.from({ length: counts[axis]+1 }, (_, i) => a + ((b - a) * i) / counts[axis]),
       );
-      const steps = domain.map(([a, b]) => (b - a) / n);
       let finite = 0,
         nonzero = 0;
       const pause = () => new Promise((resolve) => setTimeout(resolve, 0));
-      for (let z = 0; z <= n; z++) {
+      for (let z = 0; z <= nz; z++) {
         if (cancelled()) return null;
-        for (let y = 0; y <= n; y++)
-          for (let x = 0; x <= n; x++) {
+        for (let y = 0; y <= ny; y++)
+          for (let x = 0; x <= nx; x++) {
             const v = evaluate(coords[0][x], coords[1][y], coords[2][z]);
-            values[x + side * y + plane * z] = v;
+            values[x + sx * y + plane * z] = v;
             if (Number.isFinite(v)) {
               finite++;
               if (v !== 0) nonzero++;
             }
           }
         if (z % 5 === 0) {
-          progress(Math.round((z / n) * 32));
+          progress(Math.round((z / nz) * 32));
           await pause();
         }
       }
@@ -53,6 +49,7 @@
           reason: "undefined",
           invalid: values.length,
           domain,
+          sampling,
         };
       if (!nonzero && finite === values.length)
         return {
@@ -61,6 +58,7 @@
           reason: "volume",
           invalid: 0,
           domain,
+          sampling,
         };
       const vertices = [],
         edgeCache = new Map(),
@@ -68,22 +66,22 @@
       let rejected = 0;
       function point(id) {
         return [
-          coords[0][id % side],
-          coords[1][Math.floor(id / side) % side],
+          coords[0][id % sx],
+          coords[1][Math.floor(id / sx) % sy],
           coords[2][Math.floor(id / plane)],
         ];
       }
       function gradient(id) {
         if (gradientCache.has(id)) return gradientCache.get(id);
         const indices = [
-          id % side,
-          Math.floor(id / side) % side,
+          id % sx,
+          Math.floor(id / sx) % sy,
           Math.floor(id / plane),
         ];
-        const strides = [1, side, plane];
+        const strides = [1, sx, plane];
         const g = strides.map((stride, axis) => {
           const before = indices[axis] > 0 ? values[id - stride] : NaN;
-          const after = indices[axis] < n ? values[id + stride] : NaN;
+          const after = indices[axis] < counts[axis] ? values[id + stride] : NaN;
           if (Number.isFinite(before) && Number.isFinite(after))
             return (after - before) / (2 * steps[axis]);
           if (Number.isFinite(after)) return (after - values[id]) / steps[axis];
@@ -177,28 +175,34 @@
           );
         if (vertices.length > 420000 * 18)
           throw new Error(
-            "This surface is too complex at this detail. Choose Draft or narrow the domain.",
+            "This surface is too complex at this detail. Use fewer cells, a larger step, or a smaller domain.",
           );
       }
-      for (let z = 0; z < n; z++) {
+      let lastYield=Date.now();
+      for (let z = 0; z < nz; z++) {
         if (cancelled()) return null;
         // Only neighboring z slices can share edges; bound the cache size.
         if (z % 4 === 0) {
           edgeCache.clear();
           gradientCache.clear();
         }
-        for (let y = 0; y < n; y++)
-          for (let x = 0; x < n; x++) {
-            const a = x + side * y + plane * z;
+        for (let y = 0; y < ny; y++) {
+          if(y%8===0 && Date.now()-lastYield>24) {
+            if(cancelled())return null;
+            progress(Math.round(32+((z+y/ny)/nz)*68));
+            await pause();lastYield=Date.now();
+          }
+          for (let x = 0; x < nx; x++) {
+            const a = x + sx * y + plane * z;
             const cube = [
               a,
               a + 1,
-              a + side + 1,
-              a + side,
+              a + sx + 1,
+              a + sx,
               a + plane,
               a + plane + 1,
-              a + plane + side + 1,
-              a + plane + side,
+              a + plane + sx + 1,
+              a + plane + sx,
             ];
             for (const tet of tetrahedra) {
               const ids = tet.map((i) => cube[i]);
@@ -220,8 +224,9 @@
               }
             }
           }
+        }
         if (z % 3 === 0) {
-          progress(Math.round(32 + ((z + 1) / n) * 68));
+          progress(Math.round(32 + ((z + 1) / nz) * 68));
           await pause();
         }
       }
@@ -232,6 +237,7 @@
         invalid: values.length - finite,
         rejected,
         domain,
+        sampling,
       };
     }
     return { build };

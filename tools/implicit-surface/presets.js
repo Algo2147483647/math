@@ -355,6 +355,8 @@
       span: 1.6,
     },
   ];
+  const benchmarkPresets=typeof module!=="undefined" && module.exports?require("./benchmark-presets.js"):root.SurfaceBenchmarkPresets;
+  presets.push(...benchmarkPresets);
   root.SurfacePresets = presets;
   if (typeof module !== "undefined" && module.exports) module.exports = presets;
 })(typeof globalThis !== "undefined" ? globalThis : this);

@@ -31,8 +31,8 @@
     function compile(input) {
       if (typeof input !== "string" || !input.trim())
         throw new Error("Enter an equation in x, y, and z.");
-      if (input.length > 512)
-        throw new Error("Keep equations under 512 characters.");
+      if (input.length > 8192)
+        throw new Error("Keep equations under 8192 characters.");
       const source = input
         .toLowerCase()
         .replace(/π/g, "pi")
@@ -78,9 +78,9 @@
               `Unexpected character “${source[i]}”. Open equation help for supported syntax.`,
             );
         }
-        if (tokens.length > 256)
+        if (tokens.length > 4096)
           throw new Error(
-            "This equation is too complex. Use at most 256 tokens.",
+            "This equation is too complex. Use at most 4096 tokens.",
           );
       }
       tokens.push({ type: "end" });
@@ -196,6 +196,8 @@
       if (!Array.isArray(domain) || domain.length !== 3)
         throw new Error("Provide a minimum and maximum for each axis.");
       for (let axis = 0; axis < 3; axis++) {
+        const count = Array.isArray(resolution) ? resolution[axis] : resolution;
+        if (!Number.isInteger(count) || count < 1) throw new Error("Sampling counts must be positive integers.");
         const pair = domain[axis];
         const label = "XYZ"[axis];
         if (
@@ -211,9 +213,9 @@
         if (
           !Number.isFinite(span) ||
           !Number.isFinite(span * 2) ||
-          span / resolution === 0 ||
-          min + span / resolution === min ||
-          max - span / resolution === max
+          span / count === 0 ||
+          min + span / count === min ||
+          max - span / count === max
         )
           throw new Error(
             `${label}: this range is too large or too small to sample accurately.`,
@@ -226,7 +228,22 @@
         );
       return { center: domain.map(([a, b]) => a + (b - a) / 2), scale };
     }
-    return { compile, validateDomain };
+    function samplingGrid(domain, {resolution = 52, step} = {}) {
+      validateDomain(domain,1);
+      let counts;
+      if (step !== undefined) {
+        if (!Number.isFinite(step) || step <= 0) throw new Error("Step size must be a positive finite number.");
+        counts=domain.map(([a,b])=>Math.max(1,Math.ceil((b-a)/step)));
+      } else {
+        if (!Number.isInteger(resolution) || resolution < 8 || resolution > 128) throw new Error("Use an integer from 8 to 128 cells per axis.");
+        counts=[resolution,resolution,resolution];
+      }
+      const cells=counts.reduce((total,n)=>total*n,1);
+      if (counts.some(n=>n>256) || cells>2097152) throw new Error("This step is too small for the domain. Use at most 256 cells per axis and 2,097,152 cells total; increase the step or narrow the domain.");
+      const transform=validateDomain(domain,counts);
+      return {...transform,counts,steps:domain.map(([a,b],axis)=>(b-a)/counts[axis]),cells,points:counts.reduce((total,n)=>total*(n+1),1)};
+    }
+    return { compile, validateDomain, samplingGrid };
   }
   root.SurfaceMath = { ...createMath(), createMath };
   if (typeof module !== "undefined" && module.exports)

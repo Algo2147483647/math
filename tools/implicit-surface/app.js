@@ -15,6 +15,27 @@
     $(`${axis}-min`),
     $(`${axis}-max`),
   ]);
+  const readDomain=()=>axisInputs.map(pair=>pair.map(input=>input.value.trim()===""?NaN:Number(input.value)));
+  function samplingOptions() {
+    const mode=$("quality").value;
+    return mode==="step"?{step:Number($("sample-step").value)}:{resolution:Number(mode==="custom"?$("sample-resolution").value:mode)};
+  }
+  function updateSamplingPreview() {
+    const mode=$("quality").value;
+    $("resolution-control").hidden=mode!=="custom";
+    $("step-control").hidden=mode!=="step";
+    $("sampling-hint").textContent=mode==="step"?"Domain units · smaller steps give finer detail.":"8–128 cells per axis · more cells give finer detail.";
+    try {
+      const grid=SurfaceMath.samplingGrid(readDomain(),samplingOptions());
+      $("sampling-grid").value=`${grid.counts.join(" × ")} cells`;
+      $("sampling-grid").title=`${grid.points.toLocaleString()} grid points to sample`;
+      grid.steps.forEach((step,i)=>$("step-"+"xyz"[i]).value=Number(step.toPrecision(4)).toString());
+    } catch {
+      $("sampling-grid").value="Enter a valid domain and precision.";
+      $("sampling-grid").title="";
+      for(const axis of "xyz")$("step-"+axis).value="—";
+    }
+  }
   function setError(id, message) {
     const el = $(id);
     el.textContent = message;
@@ -82,10 +103,11 @@
   }
   async function render() {
     if (!renderer) return;
-    const expression = $("expression").value.trim(),
-      resolution = Number($("quality").value);
+    const expression = $("expression").value.trim(), sampling=samplingOptions();
     setError("expression-error", "");
     setError("domain-error", "");
+    setError("sampling-error", "");
+    for(const id of ["sample-step","sample-resolution"])$(id).removeAttribute("aria-invalid");
     $("expression").removeAttribute("aria-invalid");
     axisInputs.flat().forEach((input) => input.removeAttribute("aria-invalid"));
     try {
@@ -95,13 +117,9 @@
       $("expression").setAttribute("aria-invalid", "true");
       return;
     }
-    const domain = axisInputs.map((pair) =>
-      pair.map((input) =>
-        input.value.trim() === "" ? NaN : Number(input.value),
-      ),
-    );
+    const domain = readDomain();
     try {
-      SurfaceMath.validateDomain(domain, resolution);
+      SurfaceMath.validateDomain(domain, 1);
     } catch (error) {
       setError("domain-error", error.message);
       const axis = "XYZ".indexOf(error.message[0]);
@@ -112,6 +130,13 @@
       $("config-toggle").setAttribute("aria-expanded", "true");
       return;
     }
+    try { SurfaceMath.samplingGrid(domain,sampling); }
+    catch(error) {
+      setError("sampling-error",error.message);
+      $($("quality").value==="step"?"sample-step":"sample-resolution").setAttribute("aria-invalid","true");
+      $("config-body").hidden=false;$("config-toggle").setAttribute("aria-expanded","true");return;
+    }
+    updateSamplingPreview();
     const job = ++generation;
     worker?.terminate();
     worker = null;
@@ -174,7 +199,7 @@
       worker?.terminate();
       worker = null;
     }
-    const options = { expression, domain, resolution };
+    const options = { expression, domain, ...sampling };
     // Blob workers also run when index.html is opened directly from the filesystem.
     // A chunked main-thread path keeps the app usable if workers are unavailable.
     async function fallback() {
@@ -216,12 +241,14 @@
       await fallback();
     }
   }
-  for (const id of ["equation-form", "domain-form"])
+  for (const id of ["equation-form", "domain-form", "sampling-form"])
     $(id).addEventListener("submit", (event) => {
       event.preventDefault();
       render();
     });
-  $("quality").addEventListener("change", render);
+  $("quality").addEventListener("change",()=>{updateSamplingPreview();render();});
+  for(const input of [...axisInputs.flat(),$("sample-resolution"),$("sample-step")])input.addEventListener("input",updateSamplingPreview);
+  updateSamplingPreview();
   $("config-toggle").addEventListener("click", () => {
     const expanded =
       $("config-toggle").getAttribute("aria-expanded") === "true";
@@ -379,7 +406,11 @@
     title.textContent = preset.name;
     subtitle.textContent = preset.type;
     equation.textContent = preset.expression;
+    equation.title = preset.expression;
     button.append(title, subtitle, equation);
+    if(preset.source) {
+      const source=document.createElement("span");source.className="preset-source";source.textContent=`Ray · ${preset.source.cells.join(", ")}`;button.append(source);
+    }
     $("preset-list").append(button);
   }
   let selectedGroup = "All";
@@ -390,7 +421,7 @@
     presets.map((preset) => [
       preset.id,
       normalize(
-        `${preset.name} ${preset.type} ${preset.group} ${preset.keywords || ""} ${preset.expression}`,
+        `${preset.name} ${preset.type} ${preset.group} ${preset.keywords || ""} ${preset.expression} ${preset.source ? "Ray benchmark "+preset.source.cells.join(" ") : ""}`,
       ),
     ]),
   );

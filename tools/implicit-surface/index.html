@@ -15,6 +15,7 @@
     <script defer src="mesh.js"></script>
     <script defer src="colors.js"></script>
     <script defer src="renderer.js"></script>
+    <script defer src="benchmark-presets.js"></script>
     <script defer src="presets.js"></script>
     <script defer src="app.js"></script>
   </head>
@@ -89,7 +90,7 @@
             name="expression"
             value="x^2 + y^2 + z^2 = 4"
             placeholder="Enter an equation…"
-            maxlength="512"
+            maxlength="8192"
             spellcheck="false"
             autocomplete="off"
             autocapitalize="off"
@@ -218,14 +219,28 @@
             <p class="panel-hint">The surface is clipped to this region.</p>
           </section>
           <section class="control-section">
-            <div class="control-row">
-              <label for="quality">Detail</label
+            <div class="section-heading"><h2>Sampling</h2><span class="quiet">Marching tetrahedra</span></div>
+            <form id="sampling-form" novalidate>
+              <div class="control-row">
+              <label for="quality">Precision</label
               ><select id="quality">
-                <option value="32">Draft</option>
-                <option value="52" selected>Balanced</option>
-                <option value="76">Fine</option>
+                <option value="32">Draft · 32</option>
+                <option value="52" selected>Balanced · 52</option>
+                <option value="76">Fine · 76</option>
+                <option value="custom">Custom cells</option>
+                <option value="step">Step size</option>
               </select>
-            </div>
+              </div>
+              <div id="resolution-control" class="control-row sampling-entry" hidden><label for="sample-resolution">Cells per axis</label><input id="sample-resolution" type="number" min="8" max="128" step="1" value="52" aria-describedby="sampling-error sampling-hint"/></div>
+              <div id="step-control" class="control-row sampling-entry" hidden><label for="sample-step">Step size</label><input id="sample-step" type="number" min="0" step="any" value="0.1" aria-describedby="sampling-error sampling-hint"/></div>
+              <p id="sampling-hint" class="panel-hint">More cells give finer surface detail.</p>
+              <output id="sampling-grid" class="sampling-grid">52 × 52 × 52 cells</output>
+              <div class="sampling-steps" aria-label="Actual sampling step in each dimension"><span>Δx <output id="step-x">0.1154</output></span><span>Δy <output id="step-y">0.1154</output></span><span>Δz <output id="step-z">0.1154</output></span></div>
+              <p id="sampling-error" class="field-error" role="alert" hidden></p>
+              <button class="apply-button" type="submit">Apply sampling<svg class="icon"><use href="#arrow"/></svg></button>
+            </form>
+          </section>
+          <section class="control-section">
             <label class="control-row switch-row" for="wireframe"
               ><span>Surface mesh</span
               ><input class="switch" id="wireframe" type="checkbox"
