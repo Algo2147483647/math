@@ -26,7 +26,13 @@ installation, or network connection is required.
   previous view and show an inline error.
 - Choose **Pan**, Shift-drag, or middle-drag to move the input view. Scroll to zoom
   around the pointer. The displayed center follows the input view.
-- Cartesian and polar grids continue across the entire visible input region and
+- Choose **Infinite** or **Finite** under **Grid extent** in the left panel.
+  Infinite is the default. Finite uses a fixed square `[-R, R]²` for Cartesian
+  grids or a disk of radius `R` for polar grids, centered at zero. Here `R` is the
+  entered domain half-span. Panning and zooming only change the camera in Finite
+  mode; editing the domain recenters the view and updates the mapped region.
+  The unit-circle overlay is shown when it fits within the finite domain.
+- In Infinite mode, grids continue across the entire visible input region and
   regenerate as you pan, zoom, or resize. Density adapts to the scale so distant
   views do not create unbounded amounts of work. The output maps this sampled
   input region; it does not claim to render all preimages of an arbitrary function
@@ -37,7 +43,7 @@ installation, or network connection is required.
 - Scrub the transformation slider or press play to show `(1-t)z + t f(z)`.
   Animation is started explicitly and pauses when the page is hidden.
 - **Reset view** restores the domain to ±2, the complete transformation, and the
-  fitted output. The expression, selected grid, and probe remain available.
+  fitted output. The expression, selected grid, extent mode, and probe remain available.
 
 Keyboard: focus the input canvas and use the arrow keys to move the point or pan,
 depending on the selected tool (Shift for larger steps). Both canvases accept
@@ -83,7 +89,7 @@ not a symbolic algebra or proof system.
 
 - `index.html`, `styles.css`: accessible controls and responsive layout.
 - `math.js`: complex arithmetic and the expression parser.
-- `geometry.js`: viewport grids, numerical view validation, adaptive curve sampling,
+- `geometry.js`: finite and viewport grids, numerical view validation, adaptive curve sampling,
   and fitting across small and large scales.
 - `app.js`: canvas rendering, point inspection, and interactions.
 - `presets.js`: grouped function presets, shared with the numerical checks.

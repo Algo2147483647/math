@@ -2,19 +2,28 @@
 (() => {
   "use strict";
   const { compile, C, finite } = window.ComplexMath;
-  const { sampleCurve, fitBounds, niceStep, ticks, viewBounds, createGrid } =
-    window.ComplexGeometry;
+  const {
+    sampleCurve,
+    fitBounds,
+    niceStep,
+    ticks,
+    viewBounds,
+    createGrid,
+    createFiniteGrid,
+  } = window.ComplexGeometry;
   const $ = (id) => document.getElementById(id);
   const colors = {
-    teal: "#559cbd",
-    rose: "#a17bc2",
-    circle: "#c4a165",
-    ink: "#5779b5",
+    teal: "#368f8b",
+    rose: "#b76b88",
+    circle: "#ba9151",
+    ink: "#286451",
   };
   const state = {
     expression: "z^2",
     fn: compile("z^2"),
     sourceView: { re: 0, im: 0, span: 2 },
+    extentMode: "infinite",
+    finiteExtent: 2,
     tool: "probe",
     gridDirty: true,
     fitPending: true,
@@ -73,14 +82,23 @@
     requestDraw(true);
   }
   function rebuildGrid() {
-    state.curves = createGrid(
-      state.sourceView,
-      source.width,
-      source.height,
-      state.divisions,
-      state.grid,
-      state.circle,
-    ).map((line) => ({ ...line, color: colors[line.color] }));
+    const grid =
+      state.extentMode === "finite"
+        ? createFiniteGrid(
+            state.finiteExtent,
+            state.divisions,
+            state.grid,
+            state.circle,
+          )
+        : createGrid(
+            state.sourceView,
+            source.width,
+            source.height,
+            state.divisions,
+            state.grid,
+            state.circle,
+          );
+    state.curves = grid.map((line) => ({ ...line, color: colors[line.color] }));
     gridGeneration++;
     state.gridDirty = false;
     state.geometryDirty = true;
@@ -126,9 +144,9 @@
     const min = world(plot, 0, height),
       max = world(plot, width, 0);
     ctx.lineWidth = 0.7;
-    ctx.strokeStyle = "#b9c9dd3b";
+    ctx.strokeStyle = "#b9cbbb3b";
     ctx.font = "10px Consolas, monospace";
-    ctx.fillStyle = "#96a7be";
+    ctx.fillStyle = "#98aa9d";
     for (const value of ticks(min.re, max.re, step)) {
       const x = pixel(plot, C(value)).x;
       ctx.beginPath();
@@ -159,7 +177,7 @@
         );
       }
     }
-    ctx.strokeStyle = "#a6b8cd88";
+    ctx.strokeStyle = "#a6bdad88";
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(origin.x, 0);
@@ -167,7 +185,7 @@
     ctx.moveTo(0, origin.y);
     ctx.lineTo(width, origin.y);
     ctx.stroke();
-    ctx.fillStyle = "#8196b3";
+    ctx.fillStyle = "#788b78";
     ctx.font = "italic 12px Georgia, serif";
     ctx.textAlign = "right";
     ctx.fillText(
@@ -184,7 +202,7 @@
       origin.y < height - 25
     ) {
       ctx.font = "10px Consolas, monospace";
-      ctx.fillStyle = "#96a7be";
+      ctx.fillStyle = "#98aa9d";
       ctx.fillText("0", origin.x + 6, origin.y + 14);
     }
   }
@@ -222,7 +240,7 @@
       return false;
     ctx.beginPath();
     ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
-    ctx.fillStyle = "#7292c51f";
+    ctx.fillStyle = "#2864511f";
     ctx.fill();
     ctx.beginPath();
     ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
@@ -423,7 +441,25 @@
     $("domain-error").hidden = !message;
     $("domain").setAttribute("aria-invalid", String(Boolean(message)));
   }
-  function setSourceView(view) {
+  function syncExtentControls() {
+    const bounded = state.extentMode === "finite";
+    $("infinite-mode").setAttribute("aria-pressed", String(!bounded));
+    $("finite-mode").setAttribute("aria-pressed", String(bounded));
+    $("extent-badge").textContent = bounded ? "□" : "∞";
+    $("extent-badge").title = bounded
+      ? "The domain stays fixed while the view moves"
+      : "The grid extends with the input view";
+    $("extent-hint").textContent = bounded
+      ? `Fixed at ±${format(state.finiteExtent)} around 0.`
+      : "Extends with the input view.";
+    $("domain").value = String(
+      bounded ? state.finiteExtent : state.sourceView.span,
+    );
+    $("domain-center").textContent = formatComplex(
+      C(state.sourceView.re, state.sourceView.im),
+    );
+  }
+  function validSourceView(view) {
     resize(source);
     if (!viewBounds(view, source.width, source.height, 0.04)) {
       domainError(
@@ -431,17 +467,22 @@
       );
       return false;
     }
+    return true;
+  }
+  function setSourceView(view) {
+    if (!validSourceView(view)) return false;
     const changed =
       view.re !== state.sourceView.re ||
       view.im !== state.sourceView.im ||
       view.span !== state.sourceView.span;
     state.sourceView = view;
-    $("domain").value = String(view.span);
-    $("domain-center").textContent = formatComplex(C(view.re, view.im));
+    syncExtentControls();
     domainError("");
     if (!changed) return true;
-    buildCurves();
-    fitView();
+    if (state.extentMode === "infinite") {
+      buildCurves();
+      fitView();
+    } else requestDraw();
     return true;
   }
   function setDomain(value) {
@@ -449,7 +490,49 @@
       domainError("Enter a positive finite number, for example 20 or 1e-4.");
       return;
     }
-    setSourceView({ ...state.sourceView, span: value });
+    if (state.extentMode === "infinite") {
+      setSourceView({ ...state.sourceView, span: value });
+      return;
+    }
+    // A finite domain is independent of the camera. Editing its size recenters
+    // the camera; merely panning or zooming never changes the mapped region.
+    if (value === state.finiteExtent) {
+      domainError("");
+      return;
+    }
+    const view = { re: 0, im: 0, span: value * 1.2 };
+    if (!validSourceView(view)) return;
+    state.finiteExtent = value;
+    setSourceView(view);
+    buildCurves();
+    fitView();
+  }
+  function setExtentMode(mode) {
+    if (mode === state.extentMode) return;
+    const extent =
+      mode === "finite" ? state.sourceView.span : state.finiteExtent;
+    const view =
+      mode === "finite"
+        ? { re: 0, im: 0, span: extent * 1.2 }
+        : { ...state.sourceView, span: extent };
+    if (!validSourceView(view)) return;
+    state.extentMode = mode;
+    state.finiteExtent = extent;
+    setSourceView(view);
+    buildCurves();
+    fitView();
+  }
+  for (const mode of ["infinite", "finite"])
+    $(mode + "-mode").addEventListener("click", () => setExtentMode(mode));
+  function resetInputView() {
+    state.finiteExtent = 2;
+    setSourceView({
+      re: 0,
+      im: 0,
+      span: state.extentMode === "finite" ? 2.4 : 2,
+    });
+    buildCurves();
+    fitView();
   }
   $("domain-form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -462,7 +545,7 @@
   $("reset").addEventListener("click", () => {
     stopAnimation();
     setMorph(1);
-    setSourceView({ re: 0, im: 0, span: 2 });
+    resetInputView();
   });
   for (const id of ["probe-real", "probe-imag"])
     $(id).addEventListener("input", () => {
@@ -611,7 +694,7 @@
       }
     } else if (["+", "=", "-", "0"].includes(event.key)) {
       event.preventDefault();
-      if (event.key === "0") setSourceView({ re: 0, im: 0, span: 2 });
+      if (event.key === "0") resetInputView();
       else zoomSource(event.key === "-" ? 1.25 : 1 / 1.25);
     }
   });

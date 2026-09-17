@@ -138,6 +138,63 @@
     return Array.from({ length: count }, (_, index) => (first + index) * step);
   }
 
+  function createFiniteGrid(extent, divisions, type, unitCircle) {
+    if (
+      !(extent > 0) ||
+      !Number.isFinite(extent) ||
+      !Number.isInteger(divisions) ||
+      divisions < 2 ||
+      divisions > 200
+    )
+      return [];
+    const curves = [];
+    const coordinate = (t) => (1 - t) * -extent + t * extent;
+    if (type === "cartesian") {
+      for (let j = 0; j <= divisions; j++) {
+        const value = coordinate(j / divisions);
+        curves.push({
+          color: "teal",
+          curve: (t) => ({ re: coordinate(t), im: value }),
+        });
+        curves.push({
+          color: "rose",
+          curve: (t) => ({ re: value, im: coordinate(t) }),
+        });
+      }
+    } else {
+      for (let j = 1; j <= divisions / 2; j++) {
+        const radius = extent * ((2 * j) / divisions);
+        curves.push({
+          color: "teal",
+          curve: (t) => ({
+            re: radius * Math.cos(t * 2 * Math.PI),
+            im: radius * Math.sin(t * 2 * Math.PI),
+          }),
+        });
+      }
+      for (let j = 0; j < divisions * 2; j++) {
+        const angle = (j * Math.PI) / divisions;
+        curves.push({
+          color: "rose",
+          curve: (t) => ({
+            re: extent * t * Math.cos(angle),
+            im: extent * t * Math.sin(angle),
+          }),
+        });
+      }
+    }
+    if (unitCircle && extent >= 1)
+      curves.push({
+        color: "circle",
+        circle: true,
+        curve: (t) => ({
+          re: Math.cos(t * 2 * Math.PI),
+          im: Math.sin(t * 2 * Math.PI),
+        }),
+      });
+    return curves;
+  }
+
   function createGrid(view, width, height, divisions, type, unitCircle) {
     const bounds = viewBounds(view, width, height, 0.04);
     if (!bounds) return [];
@@ -217,6 +274,7 @@
     ticks,
     viewBounds,
     createGrid,
+    createFiniteGrid,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.ComplexGeometry = api;

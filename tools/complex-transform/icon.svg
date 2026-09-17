@@ -15,8 +15,8 @@
       gradientUnits="userSpaceOnUse"
     >
       <stop stop-color="#fff" stop-opacity=".96" />
-      <stop offset=".48" stop-color="#e2edff" stop-opacity=".88" />
-      <stop offset="1" stop-color="#f4eefe" stop-opacity=".95" />
+      <stop offset=".48" stop-color="#e3efdf" stop-opacity=".88" />
+      <stop offset="1" stop-color="#eef2df" stop-opacity=".95" />
     </linearGradient>
     <linearGradient
       id="orbit"
@@ -26,10 +26,10 @@
       y2="51"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stop-color="#a6e9ee" />
-      <stop offset=".35" stop-color="#6aafeb" />
-      <stop offset=".7" stop-color="#929de5" />
-      <stop offset="1" stop-color="#bdade8" />
+      <stop stop-color="#bbdec6" />
+      <stop offset=".35" stop-color="#7db79b" />
+      <stop offset=".7" stop-color="#5a9478" />
+      <stop offset="1" stop-color="#a4bf8e" />
     </linearGradient>
     <linearGradient
       id="shine"
@@ -40,7 +40,7 @@
       gradientUnits="userSpaceOnUse"
     >
       <stop stop-color="#fff" />
-      <stop offset=".5" stop-color="#d5f4ff" stop-opacity=".9" />
+      <stop offset=".5" stop-color="#e2f6df" stop-opacity=".9" />
       <stop offset="1" stop-color="#fff" stop-opacity=".2" />
     </linearGradient>
     <filter
@@ -71,7 +71,7 @@
     rx="13"
     ry="19"
     transform="rotate(38 33 36)"
-    stroke="#798ab7"
+    stroke="#79947c"
     stroke-opacity=".2"
     stroke-width="6"
     filter="url(#shadow)"
@@ -95,5 +95,5 @@
     stroke-width="1.8"
   />
   <circle cx="35.5" cy="29" r="4" fill="#fff" fill-opacity=".91" />
-  <circle cx="35.5" cy="29" r="2.5" fill="#86bce8" />
+  <circle cx="35.5" cy="29" r="2.5" fill="#86b898" />
 </svg>

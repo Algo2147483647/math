@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#eef2f7" />
+    <meta name="theme-color" content="#f6f7f3" />
     <meta
       name="description"
       content="Explore complex transformations on two full-screen planes."
@@ -167,10 +167,37 @@
         </button>
         <div id="source-controls" class="panel-body">
           <section class="control-section">
+            <div class="control-row"><span>Grid extent</span></div>
+            <div
+              class="segmented extent-mode"
+              role="group"
+              aria-label="Grid extent"
+            >
+              <button
+                id="infinite-mode"
+                type="button"
+                aria-pressed="true"
+                aria-describedby="extent-hint"
+              >
+                Infinite
+              </button>
+              <button
+                id="finite-mode"
+                type="button"
+                aria-pressed="false"
+                aria-describedby="extent-hint"
+              >
+                Finite
+              </button>
+            </div>
+            <p id="extent-hint" class="extent-hint">
+              Extends with the input view.
+            </p>
             <div class="control-row">
               <label for="domain">Domain half-span</label
               ><span
                 class="infinite-badge"
+                id="extent-badge"
                 title="The grid extends with the input view"
                 >∞</span
               >
@@ -195,7 +222,7 @@
             </form>
             <p id="domain-error" class="field-error" role="alert" hidden></p>
             <div class="domain-meta">
-              <span>Center</span><output id="domain-center">0</output>
+              <span>View center</span><output id="domain-center">0</output>
             </div>
             <div
               class="segmented navigation-mode"
@@ -470,16 +497,19 @@
             >
           </p>
           <p><code>pow(z, 2)</code> · <code>complex(1, 2)</code></p>
-          <h3>Domain &amp; infinite grid</h3>
+          <h3>Domain &amp; grid extent</h3>
           <p>
             Enter any positive finite domain half-span, including scientific
-            notation. The grid continues as you pan and zoom the input plane.
-            The output maps the currently sampled input region, not every point
-            of the infinite plane.
+            notation. Choose Infinite to extend the grid as you pan and zoom.
+            Choose Finite to keep a fixed domain around zero: a square for
+            Cartesian grids or a disk for polar grids. Panning and zooming in
+            Finite mode only change the view; edit the half-span to resize the
+            domain.
           </p>
           <p>
-            Grid spacing adapts to the view. Floating-point precision and
-            function overflow still apply at extreme scales.
+            Infinite grid spacing adapts to the view. The output maps the
+            sampled input region. Floating-point precision and function overflow
+            still apply at extreme scales.
           </p>
           <h3>Numerical conventions</h3>
           <p>

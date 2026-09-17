@@ -6,6 +6,7 @@ const {
   fitBounds,
   viewBounds,
   createGrid,
+  createFiniteGrid,
   ticks,
 } = require("./geometry.js");
 let checks = 0;
@@ -179,6 +180,45 @@ const farGrid = createGrid(
 );
 assert.ok(farGrid.some((line) => Math.abs(line.curve(0.5).re - 10000) < 1));
 checks++;
+// Finite grids retain their boundary at arbitrary domain sizes. The polar grid
+// stays inside its disk and the Cartesian grid reaches all four square edges.
+for (const extent of [1e-12, 2, 20, 1e100]) {
+  for (const type of ["cartesian", "polar"]) {
+    const grid = createFiniteGrid(extent, 12, type, true);
+    assert.ok(grid.length > 0 && grid.length < 100);
+    assert.equal(
+      grid.some((line) => line.circle),
+      extent >= 1,
+    );
+    let boundaryReached = false;
+    for (const line of grid) {
+      for (let i = 0; i <= 128; i++) {
+        const point = line.curve(i / 128);
+        assert.ok(finite(point));
+        const radius =
+          type === "cartesian"
+            ? Math.max(Math.abs(point.re / extent), Math.abs(point.im / extent))
+            : Math.hypot(point.re / extent, point.im / extent);
+        assert.ok(radius <= 1 + 1e-14, `${type} respects its finite domain`);
+        boundaryReached ||= Math.abs(radius - 1) < 1e-14;
+      }
+    }
+    assert.ok(boundaryReached);
+    if (type === "cartesian") {
+      for (const color of ["teal", "rose"]) {
+        const axis = color === "teal" ? "re" : "im";
+        const lines = grid.filter((line) => line.color === color);
+        assert.ok(lines.every((line) => line.curve(0)[axis] === -extent));
+        assert.ok(lines.every((line) => line.curve(1)[axis] === extent));
+      }
+    }
+    checks++;
+  }
+}
+for (const extent of [0, -1, NaN, Infinity]) {
+  assert.deepEqual(createFiniteGrid(extent, 12, "cartesian", true), []);
+  checks++;
+}
 // Every library card must produce a usable map at representative regular points.
 const presets = require("./presets.js").flatMap((group) => group.presets);
 for (const preset of presets) {
@@ -189,5 +229,5 @@ for (const preset of presets) {
   }
 }
 console.log(
-  `Passed ${checks} checks: complex arithmetic, parser, principal values, invalid inputs, curve discontinuities, viewport grids, view fitting, and ${presets.length} presets.`,
+  `Passed ${checks} checks: complex arithmetic, parser, principal values, invalid inputs, curve discontinuities, finite and viewport grids, view fitting, and ${presets.length} presets.`,
 );
