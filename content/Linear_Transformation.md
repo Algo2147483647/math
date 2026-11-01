@@ -44,7 +44,7 @@ $$
 
 Matrix is the representation of Linear transformation. A matrix is a two-dimensional array of numbers, symbols, or expressions, arranged in rows and columns.
 
-##### Operations
+#### Operations
 
 - Addition:
 
@@ -77,11 +77,15 @@ $$
 c_{ij} = a_{ij} b_{ij}
 $$
 
-#### Matrix Decomposition
+#### Matrix Multiplication
+
+The asymptotic complexity of known matrix multiplication algorithm has a upper bound of $O(n^{2.25+\varepsilon})$.
+
+### Matrix Decomposition
 
 Matrix decompositions rewrite a matrix representation of a linear transformation as a product of simpler matrices. They are coordinate-dependent computational tools for solving systems, finding invariant directions, and understanding rank or geometry.
 
-##### LU Decomposition
+#### LU Decomposition
 
 $$
 A = LU
@@ -89,7 +93,7 @@ $$
 
 The matrix $A$ is decomposed into the product of a lower triangular matrix $L$ and an upper triangular matrix $U$.
 
-##### LDL Decomposition
+#### LDL Decomposition
 
 $$
 A = L D L^T
@@ -97,7 +101,7 @@ $$
 
 For suitable symmetric matrices, $A$ can be decomposed into a lower triangular matrix $L$, a diagonal matrix $D$, and $L^T$.
 
-##### Cholesky Decomposition
+#### Cholesky Decomposition
 
 $$
 A = G G^T
@@ -105,7 +109,7 @@ $$
 
 If $A$ is symmetric positive definite, then $A$ can be decomposed into the product of a lower triangular matrix $G$ and its transpose.
 
-##### QR Decomposition
+#### QR Decomposition
 
 $$
 A = QR
@@ -113,7 +117,7 @@ $$
 
 The matrix $A$ is decomposed into the product of an orthogonal matrix $Q$ and an upper triangular matrix $R$.
 
-##### Full Rank Decomposition
+#### Full Rank Decomposition
 
 $$
 A = FG
@@ -121,7 +125,7 @@ $$
 
 If $\operatorname{rank}(A)=r$, then $A$ can be written as the product of an $m\times r$ matrix $F$ and an $r\times n$ matrix $G$.
 
-##### Eigenvalue Decomposition
+#### Eigenvalue Decomposition
 
 For a square matrix $A\in F^{n\times n}$,
 $$
@@ -130,7 +134,7 @@ $$
 
 If $A$ is diagonalizable, $Q$ is formed from eigenvectors and $\Lambda$ is the diagonal matrix of eigenvalues.
 
-##### Singular Value Decomposition
+#### Singular Value Decomposition
 
 For a real or complex matrix $A\in F^{m\times n}$,
 $$

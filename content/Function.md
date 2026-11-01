@@ -76,14 +76,14 @@ $$
 | $f*g$                    | $h$                      | $f*(g*h)$                                      |
 | $f$                      | $g+h$                    | $f*g+f*h$                                      |
 
-### Hilbert Transform
+## Hilbert Transform
 
 For a suitable function $u$, the Hilbert transform is the principal-value singular integral
 $$
 H(u)(t) = \operatorname{p.v.}\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{u(\tau)}{t-\tau}\, d\tau.
 $$
 
-### Laplace Transform
+## Laplace Transform
 
 For a suitable function $f$, the Laplace transform is
 $$
@@ -91,3 +91,39 @@ $$
 $$
 
 These transforms are standard operations on functions, so they are stored here instead of as standalone nodes.
+
+## Fourier Transform
+
+$$
+\mathcal F f(s) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t}\, dt.
+$$
+
+### Important Fourier Transform Properties
+
+| Property           | Time Domain                           | Frequency Domain                                             |
+| ------------------ | ------------------------------------- | ------------------------------------------------------------ |
+| Linearity          | $ax_1(t)+bx_2(t)$                     | $aX_1(\omega)+bX_2(\omega)$                                  |
+| Time shifting      | $x(t-t_0)$                            | $e^{-j\omega t_0}X(\omega)$                                  |
+| Frequency shifting | $e^{j\omega_0t}x(t)$                  | $X(\omega-\omega_0)$                                         |
+| Time scaling       | $x(at)$                               | $\frac{1}{\|a\|}X(\omega/a)$                                 |
+| Time reversal      | $x(-t)$                               | $X(-\omega)$                                                 |
+| Differentiation    | $\frac{dx(t)}{dt}$                    | $j\omega X(\omega)$                                          |
+| Convolution        | $x(t)*h(t)$                           | $X(\omega)H(\omega)$                                         |
+| Multiplication     | $x(t)h(t)$                            | $\frac{1}{2\pi}[X*H](\omega)$                                |
+| Parseval's theorem | $\int_{-\infty}^{\infty}\|x(t)\|^2dt$ | $\frac{1}{2\pi}\int_{-\infty}^{\infty}\|X(\omega)\|^2d\omega$ |
+
+### Discrete Fourier Transform
+
+The DFT converts a finite sequence of $N$ samples into $N$ frequency-domain coefficients.
+$$
+X[k]=\sum_{n=0}^{N-1}x[n]e^{\frac{-j2\pi kn}{N}}
+$$
+
+### Fast Fourier Transform
+
+FFT is a computational algorithm that calculates the same DFT result with fewer arithmetic operations. FFT uses the principle of divide and conquer.  Computational complexity is $O(N\log_2 N)$.
+$$
+X[k]=E[k]+W_N^kO[k] \\
+
+X[k+N/2]=E[k]-W_N^kO[k]
+$$
