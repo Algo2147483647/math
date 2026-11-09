@@ -1,101 +1,105 @@
 {
-  "Differential Equations": {
-    "parents": {},
-    "children": {
-      "Partial Differential Equation Problems": "related_to",
-      "Ordinary Differential Equation Problems": "related_to"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Differential Equations": {},
+    "Partial Differential Equation Problems": {},
+    "Ordinary Differential Equation Problems": {},
+    "First-order Linear ODE": {},
+    "Bernoulli Equation": {},
+    "First Order PDE Problems": {
+      "type": "problem"
+    },
+    "Second Order PDE Problems": {
+      "type": "problem"
+    },
+    "Poisson Equation": {
+      "type": "problem"
+    },
+    "Heat Equation": {
+      "type": "problem"
+    },
+    "Wave Equation": {
+      "type": "problem"
+    },
+    "Laplace Equation": {
+      "type": "problem"
+    },
+    "Second-Order Linear ODE": {},
+    "Euler-Cauchy ODE": {}
+  },
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Differential Equations",
+      "target": "Partial Differential Equation Problems",
+      "value": "related_to"
+    },
+    {
+      "id": "e002",
+      "source": "Differential Equations",
+      "target": "Ordinary Differential Equation Problems",
+      "value": "related_to"
+    },
+    {
+      "id": "e003",
+      "source": "Partial Differential Equation Problems",
+      "target": "First Order PDE Problems",
+      "value": "related_to"
+    },
+    {
+      "id": "e004",
+      "source": "Partial Differential Equation Problems",
+      "target": "Second Order PDE Problems",
+      "value": "related_to"
+    },
+    {
+      "id": "e005",
+      "source": "Ordinary Differential Equation Problems",
+      "target": "First-order Linear ODE",
+      "value": "related_to"
+    },
+    {
+      "id": "e006",
+      "source": "Ordinary Differential Equation Problems",
+      "target": "Bernoulli Equation",
+      "value": "related_to"
+    },
+    {
+      "id": "e007",
+      "source": "Ordinary Differential Equation Problems",
+      "target": "Second-Order Linear ODE",
+      "value": "related_to"
+    },
+    {
+      "id": "e008",
+      "source": "Second Order PDE Problems",
+      "target": "Poisson Equation",
+      "value": "related_to"
+    },
+    {
+      "id": "e009",
+      "source": "Second Order PDE Problems",
+      "target": "Heat Equation",
+      "value": "related_to"
+    },
+    {
+      "id": "e010",
+      "source": "Second Order PDE Problems",
+      "target": "Wave Equation",
+      "value": "related_to"
+    },
+    {
+      "id": "e011",
+      "source": "Second Order PDE Problems",
+      "target": "Laplace Equation",
+      "value": "related_to"
+    },
+    {
+      "id": "e012",
+      "source": "Second-Order Linear ODE",
+      "target": "Euler-Cauchy ODE",
+      "value": "related_to"
     }
-  },
-  "Partial Differential Equation Problems": {
-    "parents": {
-      "Differential Equations": "related_to"
-    },
-    "children": {
-      "First Order PDE Problems": "related_to",
-      "Second Order PDE Problems": "related_to"
-    }
-  },
-  "Ordinary Differential Equation Problems": {
-    "parents": {
-      "Differential Equations": "related_to"
-    },
-    "children": {
-      "First-order Linear ODE": "related_to",
-      "Bernoulli Equation": "related_to",
-      "Second-Order Linear ODE": "related_to"
-    }
-  },
-  "First-order Linear ODE": {
-    "parents": {
-      "Ordinary Differential Equation Problems": "related_to"
-    },
-    "children": {}
-  },
-  "Bernoulli Equation": {
-    "parents": {
-      "Ordinary Differential Equation Problems": "related_to"
-    },
-    "children": {}
-  },
-  "First Order PDE Problems": {
-    "parents": {
-      "Partial Differential Equation Problems": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Second Order PDE Problems": {
-    "parents": {
-      "Partial Differential Equation Problems": "related_to"
-    },
-    "children": {
-      "Poisson Equation": "related_to",
-      "Heat Equation": "related_to",
-      "Wave Equation": "related_to",
-      "Laplace Equation": "related_to"
-    },
-    "type": "problem"
-  },
-  "Poisson Equation": {
-    "parents": {
-      "Second Order PDE Problems": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Heat Equation": {
-    "parents": {
-      "Second Order PDE Problems": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Wave Equation": {
-    "parents": {
-      "Second Order PDE Problems": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Laplace Equation": {
-    "parents": {
-      "Second Order PDE Problems": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Second-Order Linear ODE": {
-    "parents": {
-      "Ordinary Differential Equation Problems": "related_to"
-    },
-    "children": {
-      "Euler-Cauchy ODE": "related_to"
-    }
-  },
-  "Euler-Cauchy ODE": {
-    "parents": {
-      "Second-Order Linear ODE": "related_to"
-    },
-    "children": {}
-  }
+  ]
 }

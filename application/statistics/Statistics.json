@@ -1,404 +1,563 @@
 {
-  "Statistics": {
-    "type": "problem",
-    "parents": {},
-    "children": {
-      "Regression": "subtype_of",
-      "Classification": "subtype_of",
-      "Interpolation": "subtype_of",
-      "Time Series Analysis": "subtype_of",
-      "Hypothesis Testing": "subtype_of",
-      "Gaussian Process Modeling": "subtype_of",
-      "Stochastic Differential Equation Modeling": "subtype_of"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Statistics": {
+      "type": "problem"
+    },
+    "Regression": {
+      "type": "problem"
+    },
+    "Linear Regression": {
+      "type": "problem"
+    },
+    "Generalized Linear Model": {
+      "type": "problem"
+    },
+    "Classification": {
+      "type": "problem"
+    },
+    "Binary Classification": {
+      "type": "problem"
+    },
+    "Multiclass Classification": {
+      "type": "problem"
+    },
+    "Interpolation": {
+      "type": "problem"
+    },
+    "Time Series Analysis": {
+      "type": "problem"
+    },
+    "Forecasting": {
+      "type": "problem"
+    },
+    "Unit Root Testing": {
+      "type": "problem"
+    },
+    "Hypothesis Testing": {
+      "type": "problem"
+    },
+    "Gaussian Process Modeling": {
+      "type": "problem"
+    },
+    "Gaussian Process Regression": {
+      "type": "problem"
+    },
+    "Gaussian Process Classification": {
+      "type": "problem"
+    },
+    "Stochastic Differential Equation Modeling": {
+      "type": "problem"
+    },
+    "Empirical Risk Minimization": {
+      "type": "idea"
+    },
+    "Likelihood-Based Inference": {
+      "type": "idea"
+    },
+    "Bayesian Inference": {
+      "type": "idea"
+    },
+    "Regularization": {
+      "type": "idea"
+    },
+    "State Space Modeling": {
+      "type": "idea"
+    },
+    "Stationarity Analysis": {
+      "type": "idea"
+    },
+    "Gaussian Process Prior": {
+      "type": "idea"
+    },
+    "Least Squares Estimation": {
+      "type": "solution"
+    },
+    "Maximum Likelihood Estimation": {
+      "type": "solution"
+    },
+    "Ridge Regression": {
+      "type": "solution"
+    },
+    "Logistic Regression Fitting": {
+      "type": "solution"
+    },
+    "Support Vector Machine": {
+      "type": "solution"
+    },
+    "Spline Interpolation": {
+      "type": "solution"
+    },
+    "Gaussian Process Posterior Inference": {
+      "type": "solution"
+    },
+    "Sparse Gaussian Process": {
+      "type": "solution"
+    },
+    "ARIMA Modeling": {
+      "type": "solution"
+    },
+    "Kalman Filter": {
+      "type": "solution"
+    },
+    "Augmented Dickey-Fuller Test": {
+      "type": "solution"
+    },
+    "KPSS Test": {
+      "type": "solution"
+    },
+    "Likelihood Ratio Test": {
+      "type": "solution"
+    },
+    "Bootstrap Test": {
+      "type": "solution"
+    },
+    "Euler-Maruyama Method": {
+      "type": "solution"
+    },
+    "Milstein Method": {
+      "type": "solution"
     }
   },
-  "Regression": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Statistics",
+      "target": "Regression",
+      "value": "subtype_of"
     },
-    "children": {
-      "Linear Regression": "subtype_of",
-      "Generalized Linear Model": "subtype_of",
-      "Gaussian Process Regression": "subtype_of",
-      "Empirical Risk Minimization": "analyzed_by",
-      "Least Squares Estimation": "solved_by",
-      "Maximum Likelihood Estimation": "solved_by"
+    {
+      "id": "e002",
+      "source": "Statistics",
+      "target": "Classification",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e003",
+      "source": "Statistics",
+      "target": "Interpolation",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e004",
+      "source": "Statistics",
+      "target": "Time Series Analysis",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e005",
+      "source": "Statistics",
+      "target": "Hypothesis Testing",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e006",
+      "source": "Statistics",
+      "target": "Gaussian Process Modeling",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e007",
+      "source": "Statistics",
+      "target": "Stochastic Differential Equation Modeling",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e008",
+      "source": "Regression",
+      "target": "Linear Regression",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e009",
+      "source": "Regression",
+      "target": "Generalized Linear Model",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e010",
+      "source": "Regression",
+      "target": "Gaussian Process Regression",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e011",
+      "source": "Regression",
+      "target": "Empirical Risk Minimization",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e012",
+      "source": "Regression",
+      "target": "Least Squares Estimation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e013",
+      "source": "Regression",
+      "target": "Maximum Likelihood Estimation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e014",
+      "source": "Linear Regression",
+      "target": "Regularization",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e015",
+      "source": "Linear Regression",
+      "target": "Least Squares Estimation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e016",
+      "source": "Linear Regression",
+      "target": "Ridge Regression",
+      "value": "solved_by"
+    },
+    {
+      "id": "e017",
+      "source": "Generalized Linear Model",
+      "target": "Logistic Regression Fitting",
+      "value": "solved_by"
+    },
+    {
+      "id": "e018",
+      "source": "Generalized Linear Model",
+      "target": "Maximum Likelihood Estimation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e019",
+      "source": "Classification",
+      "target": "Binary Classification",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e020",
+      "source": "Classification",
+      "target": "Multiclass Classification",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e021",
+      "source": "Classification",
+      "target": "Gaussian Process Classification",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e022",
+      "source": "Classification",
+      "target": "Empirical Risk Minimization",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e023",
+      "source": "Classification",
+      "target": "Regularization",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e024",
+      "source": "Classification",
+      "target": "Logistic Regression Fitting",
+      "value": "solved_by"
+    },
+    {
+      "id": "e025",
+      "source": "Classification",
+      "target": "Support Vector Machine",
+      "value": "solved_by"
+    },
+    {
+      "id": "e026",
+      "source": "Binary Classification",
+      "target": "Logistic Regression Fitting",
+      "value": "solved_by"
+    },
+    {
+      "id": "e027",
+      "source": "Binary Classification",
+      "target": "Support Vector Machine",
+      "value": "solved_by"
+    },
+    {
+      "id": "e028",
+      "source": "Multiclass Classification",
+      "target": "Support Vector Machine",
+      "value": "solved_by"
+    },
+    {
+      "id": "e029",
+      "source": "Interpolation",
+      "target": "Bayesian Inference",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e030",
+      "source": "Interpolation",
+      "target": "Spline Interpolation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e031",
+      "source": "Interpolation",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "solved_by"
+    },
+    {
+      "id": "e032",
+      "source": "Time Series Analysis",
+      "target": "Forecasting",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e033",
+      "source": "Time Series Analysis",
+      "target": "Unit Root Testing",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e034",
+      "source": "Time Series Analysis",
+      "target": "State Space Modeling",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e035",
+      "source": "Time Series Analysis",
+      "target": "ARIMA Modeling",
+      "value": "solved_by"
+    },
+    {
+      "id": "e036",
+      "source": "Time Series Analysis",
+      "target": "Kalman Filter",
+      "value": "solved_by"
+    },
+    {
+      "id": "e037",
+      "source": "Forecasting",
+      "target": "State Space Modeling",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e038",
+      "source": "Forecasting",
+      "target": "ARIMA Modeling",
+      "value": "solved_by"
+    },
+    {
+      "id": "e039",
+      "source": "Forecasting",
+      "target": "Kalman Filter",
+      "value": "solved_by"
+    },
+    {
+      "id": "e040",
+      "source": "Hypothesis Testing",
+      "target": "Unit Root Testing",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e041",
+      "source": "Unit Root Testing",
+      "target": "Stationarity Analysis",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e042",
+      "source": "Unit Root Testing",
+      "target": "Augmented Dickey-Fuller Test",
+      "value": "solved_by"
+    },
+    {
+      "id": "e043",
+      "source": "Unit Root Testing",
+      "target": "KPSS Test",
+      "value": "solved_by"
+    },
+    {
+      "id": "e044",
+      "source": "Hypothesis Testing",
+      "target": "Likelihood-Based Inference",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e045",
+      "source": "Hypothesis Testing",
+      "target": "Likelihood Ratio Test",
+      "value": "solved_by"
+    },
+    {
+      "id": "e046",
+      "source": "Hypothesis Testing",
+      "target": "Bootstrap Test",
+      "value": "solved_by"
+    },
+    {
+      "id": "e047",
+      "source": "Gaussian Process Modeling",
+      "target": "Gaussian Process Regression",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e048",
+      "source": "Gaussian Process Modeling",
+      "target": "Gaussian Process Classification",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e049",
+      "source": "Gaussian Process Modeling",
+      "target": "Bayesian Inference",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e050",
+      "source": "Gaussian Process Modeling",
+      "target": "Gaussian Process Prior",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e051",
+      "source": "Gaussian Process Modeling",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "solved_by"
+    },
+    {
+      "id": "e052",
+      "source": "Gaussian Process Modeling",
+      "target": "Sparse Gaussian Process",
+      "value": "solved_by"
+    },
+    {
+      "id": "e053",
+      "source": "Gaussian Process Regression",
+      "target": "Gaussian Process Prior",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e054",
+      "source": "Gaussian Process Regression",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "solved_by"
+    },
+    {
+      "id": "e055",
+      "source": "Gaussian Process Regression",
+      "target": "Sparse Gaussian Process",
+      "value": "solved_by"
+    },
+    {
+      "id": "e056",
+      "source": "Gaussian Process Classification",
+      "target": "Gaussian Process Prior",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e057",
+      "source": "Gaussian Process Classification",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "solved_by"
+    },
+    {
+      "id": "e058",
+      "source": "Gaussian Process Classification",
+      "target": "Sparse Gaussian Process",
+      "value": "solved_by"
+    },
+    {
+      "id": "e059",
+      "source": "Stochastic Differential Equation Modeling",
+      "target": "Euler-Maruyama Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e060",
+      "source": "Stochastic Differential Equation Modeling",
+      "target": "Milstein Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e061",
+      "source": "Empirical Risk Minimization",
+      "target": "Ridge Regression",
+      "value": "realized_by"
+    },
+    {
+      "id": "e062",
+      "source": "Empirical Risk Minimization",
+      "target": "Logistic Regression Fitting",
+      "value": "realized_by"
+    },
+    {
+      "id": "e063",
+      "source": "Empirical Risk Minimization",
+      "target": "Support Vector Machine",
+      "value": "realized_by"
+    },
+    {
+      "id": "e064",
+      "source": "Likelihood-Based Inference",
+      "target": "Maximum Likelihood Estimation",
+      "value": "realized_by"
+    },
+    {
+      "id": "e065",
+      "source": "Likelihood-Based Inference",
+      "target": "Likelihood Ratio Test",
+      "value": "realized_by"
+    },
+    {
+      "id": "e066",
+      "source": "Bayesian Inference",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "realized_by"
+    },
+    {
+      "id": "e067",
+      "source": "Regularization",
+      "target": "Ridge Regression",
+      "value": "realized_by"
+    },
+    {
+      "id": "e068",
+      "source": "Regularization",
+      "target": "Support Vector Machine",
+      "value": "realized_by"
+    },
+    {
+      "id": "e069",
+      "source": "State Space Modeling",
+      "target": "Kalman Filter",
+      "value": "realized_by"
+    },
+    {
+      "id": "e070",
+      "source": "Stationarity Analysis",
+      "target": "Augmented Dickey-Fuller Test",
+      "value": "realized_by"
+    },
+    {
+      "id": "e071",
+      "source": "Stationarity Analysis",
+      "target": "KPSS Test",
+      "value": "realized_by"
+    },
+    {
+      "id": "e072",
+      "source": "Gaussian Process Prior",
+      "target": "Gaussian Process Posterior Inference",
+      "value": "realized_by"
+    },
+    {
+      "id": "e073",
+      "source": "Gaussian Process Prior",
+      "target": "Sparse Gaussian Process",
+      "value": "realized_by"
     }
-  },
-  "Linear Regression": {
-    "type": "problem",
-    "parents": {
-      "Regression": "subtype_of"
-    },
-    "children": {
-      "Regularization": "analyzed_by",
-      "Least Squares Estimation": "solved_by",
-      "Ridge Regression": "solved_by"
-    }
-  },
-  "Generalized Linear Model": {
-    "type": "problem",
-    "parents": {
-      "Regression": "subtype_of"
-    },
-    "children": {
-      "Logistic Regression Fitting": "solved_by",
-      "Maximum Likelihood Estimation": "solved_by"
-    }
-  },
-  "Classification": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Binary Classification": "subtype_of",
-      "Multiclass Classification": "subtype_of",
-      "Gaussian Process Classification": "subtype_of",
-      "Empirical Risk Minimization": "analyzed_by",
-      "Regularization": "analyzed_by",
-      "Logistic Regression Fitting": "solved_by",
-      "Support Vector Machine": "solved_by"
-    }
-  },
-  "Binary Classification": {
-    "type": "problem",
-    "parents": {
-      "Classification": "subtype_of"
-    },
-    "children": {
-      "Logistic Regression Fitting": "solved_by",
-      "Support Vector Machine": "solved_by"
-    }
-  },
-  "Multiclass Classification": {
-    "type": "problem",
-    "parents": {
-      "Classification": "subtype_of"
-    },
-    "children": {
-      "Support Vector Machine": "solved_by"
-    }
-  },
-  "Interpolation": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Bayesian Inference": "analyzed_by",
-      "Spline Interpolation": "solved_by",
-      "Gaussian Process Posterior Inference": "solved_by"
-    }
-  },
-  "Time Series Analysis": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Forecasting": "subtype_of",
-      "Unit Root Testing": "subtype_of",
-      "State Space Modeling": "analyzed_by",
-      "ARIMA Modeling": "solved_by",
-      "Kalman Filter": "solved_by"
-    }
-  },
-  "Forecasting": {
-    "type": "problem",
-    "parents": {
-      "Time Series Analysis": "subtype_of"
-    },
-    "children": {
-      "State Space Modeling": "analyzed_by",
-      "ARIMA Modeling": "solved_by",
-      "Kalman Filter": "solved_by"
-    }
-  },
-  "Unit Root Testing": {
-    "type": "problem",
-    "parents": {
-      "Time Series Analysis": "subtype_of",
-      "Hypothesis Testing": "subtype_of"
-    },
-    "children": {
-      "Stationarity Analysis": "analyzed_by",
-      "Augmented Dickey-Fuller Test": "solved_by",
-      "KPSS Test": "solved_by"
-    }
-  },
-  "Hypothesis Testing": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Unit Root Testing": "subtype_of",
-      "Likelihood-Based Inference": "analyzed_by",
-      "Likelihood Ratio Test": "solved_by",
-      "Bootstrap Test": "solved_by"
-    }
-  },
-  "Gaussian Process Modeling": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Gaussian Process Regression": "subtype_of",
-      "Gaussian Process Classification": "subtype_of",
-      "Bayesian Inference": "analyzed_by",
-      "Gaussian Process Prior": "analyzed_by",
-      "Gaussian Process Posterior Inference": "solved_by",
-      "Sparse Gaussian Process": "solved_by"
-    }
-  },
-  "Gaussian Process Regression": {
-    "type": "problem",
-    "parents": {
-      "Regression": "subtype_of",
-      "Gaussian Process Modeling": "subtype_of"
-    },
-    "children": {
-      "Gaussian Process Prior": "analyzed_by",
-      "Gaussian Process Posterior Inference": "solved_by",
-      "Sparse Gaussian Process": "solved_by"
-    }
-  },
-  "Gaussian Process Classification": {
-    "type": "problem",
-    "parents": {
-      "Classification": "subtype_of",
-      "Gaussian Process Modeling": "subtype_of"
-    },
-    "children": {
-      "Gaussian Process Prior": "analyzed_by",
-      "Gaussian Process Posterior Inference": "solved_by",
-      "Sparse Gaussian Process": "solved_by"
-    }
-  },
-  "Stochastic Differential Equation Modeling": {
-    "type": "problem",
-    "parents": {
-      "Statistics": "subtype_of"
-    },
-    "children": {
-      "Euler-Maruyama Method": "solved_by",
-      "Milstein Method": "solved_by"
-    }
-  },
-  "Empirical Risk Minimization": {
-    "type": "idea",
-    "parents": {
-      "Regression": "analyzed_by",
-      "Classification": "analyzed_by"
-    },
-    "children": {
-      "Ridge Regression": "realized_by",
-      "Logistic Regression Fitting": "realized_by",
-      "Support Vector Machine": "realized_by"
-    }
-  },
-  "Likelihood-Based Inference": {
-    "type": "idea",
-    "parents": {
-      "Hypothesis Testing": "analyzed_by"
-    },
-    "children": {
-      "Maximum Likelihood Estimation": "realized_by",
-      "Likelihood Ratio Test": "realized_by"
-    }
-  },
-  "Bayesian Inference": {
-    "type": "idea",
-    "parents": {
-      "Interpolation": "analyzed_by",
-      "Gaussian Process Modeling": "analyzed_by"
-    },
-    "children": {
-      "Gaussian Process Posterior Inference": "realized_by"
-    }
-  },
-  "Regularization": {
-    "type": "idea",
-    "parents": {
-      "Linear Regression": "analyzed_by",
-      "Classification": "analyzed_by"
-    },
-    "children": {
-      "Ridge Regression": "realized_by",
-      "Support Vector Machine": "realized_by"
-    }
-  },
-  "State Space Modeling": {
-    "type": "idea",
-    "parents": {
-      "Time Series Analysis": "analyzed_by",
-      "Forecasting": "analyzed_by"
-    },
-    "children": {
-      "Kalman Filter": "realized_by"
-    }
-  },
-  "Stationarity Analysis": {
-    "type": "idea",
-    "parents": {
-      "Unit Root Testing": "analyzed_by"
-    },
-    "children": {
-      "Augmented Dickey-Fuller Test": "realized_by",
-      "KPSS Test": "realized_by"
-    }
-  },
-  "Gaussian Process Prior": {
-    "type": "idea",
-    "parents": {
-      "Gaussian Process Modeling": "analyzed_by",
-      "Gaussian Process Regression": "analyzed_by",
-      "Gaussian Process Classification": "analyzed_by"
-    },
-    "children": {
-      "Gaussian Process Posterior Inference": "realized_by",
-      "Sparse Gaussian Process": "realized_by"
-    }
-  },
-  "Least Squares Estimation": {
-    "type": "solution",
-    "parents": {
-      "Regression": "solved_by",
-      "Linear Regression": "solved_by"
-    },
-    "children": {}
-  },
-  "Maximum Likelihood Estimation": {
-    "type": "solution",
-    "parents": {
-      "Regression": "solved_by",
-      "Generalized Linear Model": "solved_by",
-      "Likelihood-Based Inference": "realized_by"
-    },
-    "children": {}
-  },
-  "Ridge Regression": {
-    "type": "solution",
-    "parents": {
-      "Linear Regression": "solved_by",
-      "Empirical Risk Minimization": "realized_by",
-      "Regularization": "realized_by"
-    },
-    "children": {}
-  },
-  "Logistic Regression Fitting": {
-    "type": "solution",
-    "parents": {
-      "Generalized Linear Model": "solved_by",
-      "Classification": "solved_by",
-      "Binary Classification": "solved_by",
-      "Empirical Risk Minimization": "realized_by"
-    },
-    "children": {}
-  },
-  "Support Vector Machine": {
-    "type": "solution",
-    "parents": {
-      "Classification": "solved_by",
-      "Binary Classification": "solved_by",
-      "Multiclass Classification": "solved_by",
-      "Empirical Risk Minimization": "realized_by",
-      "Regularization": "realized_by"
-    },
-    "children": {}
-  },
-  "Spline Interpolation": {
-    "type": "solution",
-    "parents": {
-      "Interpolation": "solved_by"
-    },
-    "children": {}
-  },
-  "Gaussian Process Posterior Inference": {
-    "type": "solution",
-    "parents": {
-      "Interpolation": "solved_by",
-      "Gaussian Process Modeling": "solved_by",
-      "Gaussian Process Regression": "solved_by",
-      "Gaussian Process Classification": "solved_by",
-      "Bayesian Inference": "realized_by",
-      "Gaussian Process Prior": "realized_by"
-    },
-    "children": {}
-  },
-  "Sparse Gaussian Process": {
-    "type": "solution",
-    "parents": {
-      "Gaussian Process Modeling": "solved_by",
-      "Gaussian Process Regression": "solved_by",
-      "Gaussian Process Classification": "solved_by",
-      "Gaussian Process Prior": "realized_by"
-    },
-    "children": {}
-  },
-  "ARIMA Modeling": {
-    "type": "solution",
-    "parents": {
-      "Time Series Analysis": "solved_by",
-      "Forecasting": "solved_by"
-    },
-    "children": {}
-  },
-  "Kalman Filter": {
-    "type": "solution",
-    "parents": {
-      "Time Series Analysis": "solved_by",
-      "Forecasting": "solved_by",
-      "State Space Modeling": "realized_by"
-    },
-    "children": {}
-  },
-  "Augmented Dickey-Fuller Test": {
-    "type": "solution",
-    "parents": {
-      "Unit Root Testing": "solved_by",
-      "Stationarity Analysis": "realized_by"
-    },
-    "children": {}
-  },
-  "KPSS Test": {
-    "type": "solution",
-    "parents": {
-      "Unit Root Testing": "solved_by",
-      "Stationarity Analysis": "realized_by"
-    },
-    "children": {}
-  },
-  "Likelihood Ratio Test": {
-    "type": "solution",
-    "parents": {
-      "Hypothesis Testing": "solved_by",
-      "Likelihood-Based Inference": "realized_by"
-    },
-    "children": {}
-  },
-  "Bootstrap Test": {
-    "type": "solution",
-    "parents": {
-      "Hypothesis Testing": "solved_by"
-    },
-    "children": {}
-  },
-  "Euler-Maruyama Method": {
-    "type": "solution",
-    "parents": {
-      "Stochastic Differential Equation Modeling": "solved_by"
-    },
-    "children": {}
-  },
-  "Milstein Method": {
-    "type": "solution",
-    "parents": {
-      "Stochastic Differential Equation Modeling": "solved_by"
-    },
-    "children": {}
-  }
+  ]
 }

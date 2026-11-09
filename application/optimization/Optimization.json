@@ -1,393 +1,485 @@
 {
-  "Optimization Problem": {
-    "children": {
-      "Mixed-Integer Optimization": "related_to",
-      "Continuous Optimization": "related_to",
-      "Discrete Optimization": "related_to"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Optimization Problem": {
+      "type": "problem"
     },
-    "parents": {},
-    "type": "problem"
+    "Continuous Optimization": {
+      "type": "problem"
+    },
+    "Discrete Optimization": {
+      "type": "problem"
+    },
+    "Mixed-Integer Optimization": {
+      "type": "problem"
+    },
+    "Unconstrained Optimization": {
+      "type": "problem"
+    },
+    "Constrained Optimization": {
+      "type": "problem"
+    },
+    "Convex Optimization": {
+      "type": "problem"
+    },
+    "Nonconvex Optimization": {
+      "type": "problem"
+    },
+    "Nonsmooth Optimization": {
+      "type": "problem"
+    },
+    "Linear Optimization": {
+      "type": "problem"
+    },
+    "Quadratic Optimization": {
+      "type": "problem"
+    },
+    "Conic Optimization": {
+      "type": "problem"
+    },
+    "Semidefinite Optimization": {
+      "type": "problem"
+    },
+    "Convex Nonlinear Programming": {
+      "type": "problem"
+    },
+    "Linear Fractional Programming": {
+      "type": "problem"
+    },
+    "Quadratic Programming": {
+      "type": "problem"
+    },
+    "Quadratically Constrained Quadratic Programming": {
+      "type": "problem"
+    },
+    "Second-Order Cone Programming": {
+      "type": "problem"
+    },
+    "Semidefinite Programming": {
+      "type": "problem"
+    },
+    "Integer Programming": {
+      "type": "problem"
+    },
+    "Mixed-Integer Linear Programming": {
+      "type": "problem"
+    },
+    "Mixed-Integer Quadratic Programming": {
+      "type": "problem"
+    },
+    "Mixed-Integer Nonlinear Programming": {
+      "type": "problem"
+    },
+    "Least Squares Optimization": {
+      "type": "problem"
+    },
+    "LP Relaxation Problem": {
+      "type": "problem"
+    },
+    "Semidefinite Relaxation Problem": {
+      "type": "problem"
+    },
+    "Node Relaxation Problem": {
+      "type": "problem"
+    },
+    "Lagrangian Duality": {
+      "type": "solution"
+    },
+    "Convex Relaxation": {
+      "type": "solution"
+    },
+    "Semidefinite Relaxation": {
+      "type": "solution"
+    },
+    "Charnes-Cooper Transform": {
+      "type": "solution"
+    },
+    "LP Relaxation": {
+      "type": "solution"
+    },
+    "Branch-and-Bound": {
+      "type": "solution"
+    },
+    "Simplex Method": {
+      "type": "solution"
+    },
+    "Gradient Descent": {
+      "type": "solution"
+    },
+    "Projected Gradient Method": {
+      "type": "solution"
+    },
+    "Subgradient Method": {
+      "type": "solution"
+    },
+    "Proximal Gradient Method": {
+      "type": "solution"
+    },
+    "Newton's Method": {
+      "type": "solution"
+    },
+    "Alternating Direction Method of Multipliers": {
+      "type": "solution"
+    },
+    "Dynamic Programming": {
+      "type": "solution"
+    }
   },
-  "Continuous Optimization": {
-    "children": {
-      "Unconstrained Optimization": "subtype_of",
-      "Constrained Optimization": "subtype_of",
-      "Convex Optimization": "subtype_of",
-      "Nonconvex Optimization": "subtype_of",
-      "Nonsmooth Optimization": "subtype_of",
-      "Quadratic Optimization": "subtype_of",
-      "Linear Fractional Programming": "subtype_of"
-    },
-    "parents": {
-      "Optimization Problem": "related_to"
-    },
-    "type": "problem"
-  },
-  "Discrete Optimization": {
-    "children": {
-      "Integer Programming": "subtype_of"
-    },
-    "parents": {
-      "Optimization Problem": "related_to"
-    },
-    "type": "problem"
-  },
-  "Mixed-Integer Optimization": {
-    "children": {
-      "Mixed-Integer Linear Programming": "subtype_of",
-      "Mixed-Integer Quadratic Programming": "subtype_of",
-      "Mixed-Integer Nonlinear Programming": "subtype_of"
-    },
-    "parents": {
-      "Optimization Problem": "related_to"
-    },
-    "type": "problem"
-  },
-  "Unconstrained Optimization": {
-    "children": {
-      "Least Squares Optimization": "subtype_of",
-      "Gradient Descent": "solved_by",
-      "Newton's Method": "solved_by"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Constrained Optimization": {
-    "children": {
-      "Linear Fractional Programming": "subtype_of",
-      "Quadratic Programming": "subtype_of",
-      "Lagrangian Duality": "analyzed_by",
-      "Projected Gradient Method": "solved_by"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Convex Optimization": {
-    "children": {
-      "Linear Optimization": "subtype_of",
-      "Conic Optimization": "subtype_of",
-      "Subgradient Method": "solved_by",
-      "Proximal Gradient Method": "solved_by",
-      "Convex Nonlinear Programming": "related_to"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of",
-      "Lagrangian Duality": "related_to"
-    },
-    "type": "problem"
-  },
-  "Nonconvex Optimization": {
-    "children": {
-      "Convex Relaxation": "relaxed_by"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Nonsmooth Optimization": {
-    "children": {
-      "Subgradient Method": "solved_by",
-      "Proximal Gradient Method": "solved_by"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Linear Optimization": {
-    "children": {
-      "Mixed-Integer Linear Programming": "subtype_of",
-      "LP Relaxation Problem": "related_to",
-      "Simplex Method": "related_to"
-    },
-    "parents": {
-      "Convex Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Quadratic Optimization": {
-    "children": {
-      "Quadratic Programming": "subtype_of",
-      "Quadratically Constrained Quadratic Programming": "subtype_of",
-      "Mixed-Integer Quadratic Programming": "subtype_of"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Conic Optimization": {
-    "children": {
-      "Semidefinite Optimization": "subtype_of",
-      "Second-Order Cone Programming": "subtype_of"
-    },
-    "parents": {
-      "Convex Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Semidefinite Optimization": {
-    "children": {
-      "Semidefinite Programming": "subtype_of"
-    },
-    "parents": {
-      "Conic Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Convex Nonlinear Programming": {
-    "children": {},
-    "parents": {
-      "Convex Optimization": "related_to"
-    },
-    "type": "problem"
-  },
-  "Linear Fractional Programming": {
-    "children": {
-      "Charnes-Cooper Transform": "reformulated_by"
-    },
-    "parents": {
-      "Continuous Optimization": "subtype_of",
-      "Constrained Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Quadratic Programming": {
-    "children": {
-      "Least Squares Optimization": "subtype_of"
-    },
-    "parents": {
-      "Constrained Optimization": "subtype_of",
-      "Quadratic Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Quadratically Constrained Quadratic Programming": {
-    "children": {
-      "Semidefinite Relaxation": "relaxed_by"
-    },
-    "parents": {
-      "Quadratic Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Second-Order Cone Programming": {
-    "children": {},
-    "parents": {
-      "Conic Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Semidefinite Programming": {
-    "children": {
-      "Semidefinite Relaxation Problem": "subtype_of"
-    },
-    "parents": {
-      "Semidefinite Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Integer Programming": {
-    "children": {
-      "Branch-and-Bound": "solved_by"
-    },
-    "parents": {
-      "Discrete Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Mixed-Integer Linear Programming": {
-    "children": {
-      "LP Relaxation": "relaxed_by",
-      "Branch-and-Bound": "solved_by"
-    },
-    "parents": {
-      "Mixed-Integer Optimization": "subtype_of",
-      "Linear Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Mixed-Integer Quadratic Programming": {
-    "children": {
-      "Branch-and-Bound": "solved_by"
-    },
-    "parents": {
-      "Mixed-Integer Optimization": "subtype_of",
-      "Quadratic Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Mixed-Integer Nonlinear Programming": {
-    "children": {
-      "Branch-and-Bound": "solved_by"
-    },
-    "parents": {
-      "Mixed-Integer Optimization": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "Least Squares Optimization": {
-    "children": {
-      "Gradient Descent": "solved_by",
-      "Newton's Method": "solved_by"
-    },
-    "parents": {
-      "Unconstrained Optimization": "subtype_of",
-      "Quadratic Programming": "subtype_of"
-    },
-    "type": "problem"
-  },
-  "LP Relaxation Problem": {
-    "children": {
-      "Simplex Method": "solved_by"
-    },
-    "parents": {
-      "Linear Optimization": "related_to",
-      "LP Relaxation": "produces"
-    },
-    "type": "problem"
-  },
-  "Semidefinite Relaxation Problem": {
-    "children": {},
-    "parents": {
-      "Semidefinite Programming": "subtype_of",
-      "Semidefinite Relaxation": "produces"
-    },
-    "type": "problem"
-  },
-  "Node Relaxation Problem": {
-    "children": {
-      "Simplex Method": "solved_by"
-    },
-    "parents": {
-      "Branch-and-Bound": "produces"
-    },
-    "type": "problem"
-  },
-  "Lagrangian Duality": {
-    "children": {
-      "Convex Optimization": "related_to"
-    },
-    "parents": {
-      "Constrained Optimization": "analyzed_by"
-    },
-    "type": "solution"
-  },
-  "Convex Relaxation": {
-    "children": {
-      "LP Relaxation": "specializes",
-      "Semidefinite Relaxation": "specializes"
-    },
-    "parents": {
-      "Nonconvex Optimization": "relaxed_by"
-    },
-    "type": "solution"
-  },
-  "Semidefinite Relaxation": {
-    "children": {
-      "Semidefinite Relaxation Problem": "produces"
-    },
-    "parents": {
-      "Quadratically Constrained Quadratic Programming": "relaxed_by",
-      "Convex Relaxation": "specializes"
-    },
-    "type": "solution"
-  },
-  "Charnes-Cooper Transform": {
-    "children": {},
-    "parents": {
-      "Linear Fractional Programming": "reformulated_by"
-    },
-    "type": "solution"
-  },
-  "LP Relaxation": {
-    "children": {
-      "LP Relaxation Problem": "produces"
-    },
-    "parents": {
-      "Mixed-Integer Linear Programming": "relaxed_by",
-      "Convex Relaxation": "specializes"
-    },
-    "type": "solution"
-  },
-  "Branch-and-Bound": {
-    "children": {
-      "Node Relaxation Problem": "produces"
-    },
-    "parents": {
-      "Integer Programming": "solved_by",
-      "Mixed-Integer Linear Programming": "solved_by",
-      "Mixed-Integer Quadratic Programming": "solved_by",
-      "Mixed-Integer Nonlinear Programming": "solved_by"
-    },
-    "type": "solution"
-  },
-  "Simplex Method": {
-    "children": {},
-    "parents": {
-      "Linear Optimization": "related_to",
-      "LP Relaxation Problem": "solved_by",
-      "Node Relaxation Problem": "solved_by"
-    },
-    "type": "solution"
-  },
-  "Gradient Descent": {
-    "children": {
-      "Projected Gradient Method": "specializes",
-      "Proximal Gradient Method": "specializes"
-    },
-    "parents": {
-      "Unconstrained Optimization": "solved_by",
-      "Least Squares Optimization": "solved_by"
-    },
-    "type": "solution"
-  },
-  "Projected Gradient Method": {
-    "children": {},
-    "parents": {
-      "Constrained Optimization": "solved_by",
-      "Gradient Descent": "specializes"
-    },
-    "type": "solution"
-  },
-  "Subgradient Method": {
-    "children": {},
-    "parents": {
-      "Convex Optimization": "solved_by",
-      "Nonsmooth Optimization": "solved_by"
-    },
-    "type": "solution"
-  },
-  "Proximal Gradient Method": {
-    "children": {},
-    "parents": {
-      "Convex Optimization": "solved_by",
-      "Nonsmooth Optimization": "solved_by",
-      "Gradient Descent": "specializes"
-    },
-    "type": "solution"
-  },
-  "Newton's Method": {
-    "children": {},
-    "parents": {
-      "Unconstrained Optimization": "solved_by",
-      "Least Squares Optimization": "solved_by"
-    },
-    "type": "solution"
-  },
-  "Alternating Direction Method of Multipliers": {
-    "children": {},
-    "parents": {},
-    "type": "solution"
-  },
-  "Dynamic Programming": {
-    "children": {},
-    "parents": {},
-    "type": "solution"
-  }
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Optimization Problem",
+      "target": "Mixed-Integer Optimization",
+      "value": "related_to"
+    },
+    {
+      "id": "e002",
+      "source": "Optimization Problem",
+      "target": "Continuous Optimization",
+      "value": "related_to"
+    },
+    {
+      "id": "e003",
+      "source": "Optimization Problem",
+      "target": "Discrete Optimization",
+      "value": "related_to"
+    },
+    {
+      "id": "e004",
+      "source": "Continuous Optimization",
+      "target": "Unconstrained Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e005",
+      "source": "Continuous Optimization",
+      "target": "Constrained Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e006",
+      "source": "Continuous Optimization",
+      "target": "Convex Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e007",
+      "source": "Continuous Optimization",
+      "target": "Nonconvex Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e008",
+      "source": "Continuous Optimization",
+      "target": "Nonsmooth Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e009",
+      "source": "Continuous Optimization",
+      "target": "Quadratic Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e010",
+      "source": "Continuous Optimization",
+      "target": "Linear Fractional Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e011",
+      "source": "Discrete Optimization",
+      "target": "Integer Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e012",
+      "source": "Mixed-Integer Optimization",
+      "target": "Mixed-Integer Linear Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e013",
+      "source": "Mixed-Integer Optimization",
+      "target": "Mixed-Integer Quadratic Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e014",
+      "source": "Mixed-Integer Optimization",
+      "target": "Mixed-Integer Nonlinear Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e015",
+      "source": "Unconstrained Optimization",
+      "target": "Least Squares Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e016",
+      "source": "Unconstrained Optimization",
+      "target": "Gradient Descent",
+      "value": "solved_by"
+    },
+    {
+      "id": "e017",
+      "source": "Unconstrained Optimization",
+      "target": "Newton's Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e018",
+      "source": "Constrained Optimization",
+      "target": "Linear Fractional Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e019",
+      "source": "Constrained Optimization",
+      "target": "Quadratic Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e020",
+      "source": "Constrained Optimization",
+      "target": "Lagrangian Duality",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e021",
+      "source": "Constrained Optimization",
+      "target": "Projected Gradient Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e022",
+      "source": "Lagrangian Duality",
+      "target": "Convex Optimization",
+      "value": "related_to"
+    },
+    {
+      "id": "e023",
+      "source": "Convex Optimization",
+      "target": "Linear Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e024",
+      "source": "Convex Optimization",
+      "target": "Conic Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e025",
+      "source": "Convex Optimization",
+      "target": "Subgradient Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e026",
+      "source": "Convex Optimization",
+      "target": "Proximal Gradient Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e027",
+      "source": "Convex Optimization",
+      "target": "Convex Nonlinear Programming",
+      "value": "related_to"
+    },
+    {
+      "id": "e028",
+      "source": "Nonconvex Optimization",
+      "target": "Convex Relaxation",
+      "value": "relaxed_by"
+    },
+    {
+      "id": "e029",
+      "source": "Nonsmooth Optimization",
+      "target": "Subgradient Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e030",
+      "source": "Nonsmooth Optimization",
+      "target": "Proximal Gradient Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e031",
+      "source": "Linear Optimization",
+      "target": "Mixed-Integer Linear Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e032",
+      "source": "Linear Optimization",
+      "target": "LP Relaxation Problem",
+      "value": "related_to"
+    },
+    {
+      "id": "e033",
+      "source": "Linear Optimization",
+      "target": "Simplex Method",
+      "value": "related_to"
+    },
+    {
+      "id": "e034",
+      "source": "Quadratic Optimization",
+      "target": "Quadratic Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e035",
+      "source": "Quadratic Optimization",
+      "target": "Quadratically Constrained Quadratic Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e036",
+      "source": "Quadratic Optimization",
+      "target": "Mixed-Integer Quadratic Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e037",
+      "source": "Conic Optimization",
+      "target": "Semidefinite Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e038",
+      "source": "Conic Optimization",
+      "target": "Second-Order Cone Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e039",
+      "source": "Semidefinite Optimization",
+      "target": "Semidefinite Programming",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e040",
+      "source": "Linear Fractional Programming",
+      "target": "Charnes-Cooper Transform",
+      "value": "reformulated_by"
+    },
+    {
+      "id": "e041",
+      "source": "Quadratic Programming",
+      "target": "Least Squares Optimization",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e042",
+      "source": "Quadratically Constrained Quadratic Programming",
+      "target": "Semidefinite Relaxation",
+      "value": "relaxed_by"
+    },
+    {
+      "id": "e043",
+      "source": "Semidefinite Programming",
+      "target": "Semidefinite Relaxation Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e044",
+      "source": "Integer Programming",
+      "target": "Branch-and-Bound",
+      "value": "solved_by"
+    },
+    {
+      "id": "e045",
+      "source": "Mixed-Integer Linear Programming",
+      "target": "LP Relaxation",
+      "value": "relaxed_by"
+    },
+    {
+      "id": "e046",
+      "source": "Mixed-Integer Linear Programming",
+      "target": "Branch-and-Bound",
+      "value": "solved_by"
+    },
+    {
+      "id": "e047",
+      "source": "Mixed-Integer Quadratic Programming",
+      "target": "Branch-and-Bound",
+      "value": "solved_by"
+    },
+    {
+      "id": "e048",
+      "source": "Mixed-Integer Nonlinear Programming",
+      "target": "Branch-and-Bound",
+      "value": "solved_by"
+    },
+    {
+      "id": "e049",
+      "source": "Least Squares Optimization",
+      "target": "Gradient Descent",
+      "value": "solved_by"
+    },
+    {
+      "id": "e050",
+      "source": "Least Squares Optimization",
+      "target": "Newton's Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e051",
+      "source": "LP Relaxation",
+      "target": "LP Relaxation Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e052",
+      "source": "LP Relaxation Problem",
+      "target": "Simplex Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e053",
+      "source": "Semidefinite Relaxation",
+      "target": "Semidefinite Relaxation Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e054",
+      "source": "Branch-and-Bound",
+      "target": "Node Relaxation Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e055",
+      "source": "Node Relaxation Problem",
+      "target": "Simplex Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e056",
+      "source": "Convex Relaxation",
+      "target": "LP Relaxation",
+      "value": "specializes"
+    },
+    {
+      "id": "e057",
+      "source": "Convex Relaxation",
+      "target": "Semidefinite Relaxation",
+      "value": "specializes"
+    },
+    {
+      "id": "e058",
+      "source": "Gradient Descent",
+      "target": "Projected Gradient Method",
+      "value": "specializes"
+    },
+    {
+      "id": "e059",
+      "source": "Gradient Descent",
+      "target": "Proximal Gradient Method",
+      "value": "specializes"
+    }
+  ]
 }

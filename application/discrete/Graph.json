@@ -1,668 +1,830 @@
 {
-  "Graph Problem": {
-    "type": "problem",
-    "parents": {},
-    "children": {
-      "Directed Graph Problem": "subtype_of",
-      "Undirected Graph Problem": "subtype_of",
-      "Weighted Graph Problem": "subtype_of",
-      "Unweighted Graph Problem": "subtype_of",
-      "Matching Problem": "subtype_of",
-      "Flow Network Problem": "subtype_of",
-      "Reachability Problem": "subtype_of",
-      "Cycle Detection Problem": "subtype_of",
-      "Shortest Path Problem": "subtype_of",
-      "Eulerian Path Problem": "subtype_of",
-      "Hamiltonian Path Problem": "subtype_of",
-      "Graph Coloring Problem": "subtype_of",
-      "Transitive Closure Problem": "subtype_of",
-      "Graph Traversal": "analyzed_by"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Graph Problem": {
+      "type": "problem"
+    },
+    "Directed Graph Problem": {
+      "type": "problem"
+    },
+    "Undirected Graph Problem": {
+      "type": "problem"
+    },
+    "Weighted Graph Problem": {
+      "type": "problem"
+    },
+    "Unweighted Graph Problem": {
+      "type": "problem"
+    },
+    "Directed Acyclic Graph Problem": {
+      "type": "problem"
+    },
+    "Bipartite Graph Problem": {
+      "type": "problem"
+    },
+    "Flow Network Problem": {
+      "type": "problem"
+    },
+    "Matching Problem": {
+      "type": "problem"
+    },
+    "Connectivity Problem": {
+      "type": "problem"
+    },
+    "Reachability Problem": {
+      "type": "problem"
+    },
+    "Cycle Detection Problem": {
+      "type": "problem"
+    },
+    "Topological Ordering Problem": {
+      "type": "problem"
+    },
+    "Strongly Connected Components Problem": {
+      "type": "problem"
+    },
+    "Bridge and Articulation Point Problem": {
+      "type": "problem"
+    },
+    "Shortest Path Problem": {
+      "type": "problem"
+    },
+    "Single-Source Shortest Path Problem": {
+      "type": "problem"
+    },
+    "All-Pairs Shortest Path Problem": {
+      "type": "problem"
+    },
+    "Unweighted Shortest Path Problem": {
+      "type": "problem"
+    },
+    "DAG Shortest Path Problem": {
+      "type": "problem"
+    },
+    "Negative-Weight Shortest Path Problem": {
+      "type": "problem"
+    },
+    "Minimum Spanning Tree Problem": {
+      "type": "problem"
+    },
+    "Bipartite Recognition Problem": {
+      "type": "problem"
+    },
+    "Bipartite Matching Problem": {
+      "type": "problem"
+    },
+    "Maximum Flow Problem": {
+      "type": "problem"
+    },
+    "Minimum Cut Problem": {
+      "type": "problem"
+    },
+    "Eulerian Path Problem": {
+      "type": "problem"
+    },
+    "Hamiltonian Path Problem": {
+      "type": "problem"
+    },
+    "Graph Coloring Problem": {
+      "type": "problem"
+    },
+    "Transitive Closure Problem": {
+      "type": "problem"
+    },
+    "Residual Network Problem": {
+      "type": "problem"
+    },
+    "Level Graph Problem": {
+      "type": "problem"
+    },
+    "Condensation DAG Problem": {
+      "type": "problem"
+    },
+    "Graph Traversal": {
+      "type": "problem"
+    },
+    "Breadth-First Search": {
+      "type": "solution"
+    },
+    "Depth-First Search": {
+      "type": "solution"
+    },
+    "Shortest Path Method": {
+      "type": "solution"
+    },
+    "Relaxation Procedure": {
+      "type": "solution"
+    },
+    "Topological Sort": {
+      "type": "solution"
+    },
+    "Kahn's Algorithm": {
+      "type": "solution"
+    },
+    "Dijkstra's Algorithm": {
+      "type": "solution"
+    },
+    "Bellman-Ford Algorithm": {
+      "type": "solution"
+    },
+    "Floyd-Warshall Algorithm": {
+      "type": "solution"
+    },
+    "Dynamic Programming on DAG": {
+      "type": "solution"
+    },
+    "Minimum Spanning Tree Method": {
+      "type": "solution"
+    },
+    "Kruskal's Algorithm": {
+      "type": "solution"
+    },
+    "Prim's Algorithm": {
+      "type": "solution"
+    },
+    "Disjoint Set Union": {
+      "type": "solution"
+    },
+    "Union-Find Forest": {
+      "type": "solution"
+    },
+    "Strong Component Decomposition": {
+      "type": "solution"
+    },
+    "Kosaraju's Algorithm": {
+      "type": "solution"
+    },
+    "Tarjan's Algorithm": {
+      "type": "solution"
+    },
+    "Low-Link Analysis": {
+      "type": "solution"
+    },
+    "Matching Method": {
+      "type": "solution"
+    },
+    "Network Flow Method": {
+      "type": "solution"
+    },
+    "Augmenting Path Method": {
+      "type": "solution"
+    },
+    "Residual Graph Construction": {
+      "type": "solution"
+    },
+    "Ford-Fulkerson Method": {
+      "type": "solution"
+    },
+    "Edmonds-Karp Algorithm": {
+      "type": "solution"
+    },
+    "Dinic's Algorithm": {
+      "type": "solution"
+    },
+    "Bipartite BFS Coloring": {
+      "type": "solution"
+    },
+    "Hopcroft-Karp Algorithm": {
+      "type": "solution"
+    },
+    "Hierholzer's Algorithm": {
+      "type": "solution"
+    },
+    "Backtracking Search": {
+      "type": "solution"
+    },
+    "Branch and Bound": {
+      "type": "solution"
+    },
+    "Priority Queue": {
+      "type": "solution"
+    },
+    "Minimum-Cut Maximum-Flow Theorem": {
+      "type": "solution"
+    },
+    "Level Graph Construction": {
+      "type": "solution"
     }
   },
-  "Directed Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Graph Problem",
+      "target": "Directed Graph Problem",
+      "value": "subtype_of"
     },
-    "children": {
-      "Directed Acyclic Graph Problem": "subtype_of",
-      "Strongly Connected Components Problem": "subtype_of",
-      "Topological Ordering Problem": "subtype_of",
-      "Residual Network Problem": "subtype_of"
+    {
+      "id": "e002",
+      "source": "Graph Problem",
+      "target": "Undirected Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e003",
+      "source": "Graph Problem",
+      "target": "Weighted Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e004",
+      "source": "Graph Problem",
+      "target": "Unweighted Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e005",
+      "source": "Graph Problem",
+      "target": "Matching Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e006",
+      "source": "Graph Problem",
+      "target": "Flow Network Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e007",
+      "source": "Graph Problem",
+      "target": "Reachability Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e008",
+      "source": "Graph Problem",
+      "target": "Cycle Detection Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e009",
+      "source": "Graph Problem",
+      "target": "Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e010",
+      "source": "Graph Problem",
+      "target": "Eulerian Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e011",
+      "source": "Graph Problem",
+      "target": "Hamiltonian Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e012",
+      "source": "Graph Problem",
+      "target": "Graph Coloring Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e013",
+      "source": "Graph Problem",
+      "target": "Transitive Closure Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e014",
+      "source": "Graph Problem",
+      "target": "Graph Traversal",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e015",
+      "source": "Directed Graph Problem",
+      "target": "Directed Acyclic Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e016",
+      "source": "Directed Graph Problem",
+      "target": "Strongly Connected Components Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e017",
+      "source": "Directed Graph Problem",
+      "target": "Topological Ordering Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e018",
+      "source": "Directed Graph Problem",
+      "target": "Residual Network Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e019",
+      "source": "Undirected Graph Problem",
+      "target": "Connectivity Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e020",
+      "source": "Undirected Graph Problem",
+      "target": "Bridge and Articulation Point Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e021",
+      "source": "Undirected Graph Problem",
+      "target": "Bipartite Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e022",
+      "source": "Undirected Graph Problem",
+      "target": "Minimum Spanning Tree Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e023",
+      "source": "Unweighted Graph Problem",
+      "target": "Unweighted Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e024",
+      "source": "Directed Acyclic Graph Problem",
+      "target": "Topological Ordering Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e025",
+      "source": "Directed Acyclic Graph Problem",
+      "target": "DAG Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e026",
+      "source": "Directed Acyclic Graph Problem",
+      "target": "Level Graph Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e027",
+      "source": "Directed Acyclic Graph Problem",
+      "target": "Condensation DAG Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e028",
+      "source": "Bipartite Graph Problem",
+      "target": "Bipartite Recognition Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e029",
+      "source": "Bipartite Graph Problem",
+      "target": "Bipartite Matching Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e030",
+      "source": "Flow Network Problem",
+      "target": "Maximum Flow Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e031",
+      "source": "Flow Network Problem",
+      "target": "Minimum Cut Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e032",
+      "source": "Flow Network Problem",
+      "target": "Residual Network Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e033",
+      "source": "Matching Problem",
+      "target": "Bipartite Matching Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e034",
+      "source": "Connectivity Problem",
+      "target": "Depth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e035",
+      "source": "Connectivity Problem",
+      "target": "Disjoint Set Union",
+      "value": "solved_by"
+    },
+    {
+      "id": "e036",
+      "source": "Reachability Problem",
+      "target": "Breadth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e037",
+      "source": "Reachability Problem",
+      "target": "Depth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e038",
+      "source": "Cycle Detection Problem",
+      "target": "Depth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e039",
+      "source": "Cycle Detection Problem",
+      "target": "Disjoint Set Union",
+      "value": "solved_by"
+    },
+    {
+      "id": "e040",
+      "source": "Topological Ordering Problem",
+      "target": "Topological Sort",
+      "value": "solved_by"
+    },
+    {
+      "id": "e041",
+      "source": "Strongly Connected Components Problem",
+      "target": "Strong Component Decomposition",
+      "value": "solved_by"
+    },
+    {
+      "id": "e042",
+      "source": "Bridge and Articulation Point Problem",
+      "target": "Low-Link Analysis",
+      "value": "solved_by"
+    },
+    {
+      "id": "e043",
+      "source": "Shortest Path Problem",
+      "target": "Single-Source Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e044",
+      "source": "Shortest Path Problem",
+      "target": "All-Pairs Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e045",
+      "source": "Shortest Path Problem",
+      "target": "Negative-Weight Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e046",
+      "source": "Shortest Path Problem",
+      "target": "Shortest Path Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e047",
+      "source": "Single-Source Shortest Path Problem",
+      "target": "Unweighted Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e048",
+      "source": "Single-Source Shortest Path Problem",
+      "target": "DAG Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e049",
+      "source": "Single-Source Shortest Path Problem",
+      "target": "Negative-Weight Shortest Path Problem",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e050",
+      "source": "Single-Source Shortest Path Problem",
+      "target": "Dijkstra's Algorithm",
+      "value": "solved_by"
+    },
+    {
+      "id": "e051",
+      "source": "All-Pairs Shortest Path Problem",
+      "target": "Floyd-Warshall Algorithm",
+      "value": "solved_by"
+    },
+    {
+      "id": "e052",
+      "source": "Unweighted Shortest Path Problem",
+      "target": "Breadth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e053",
+      "source": "DAG Shortest Path Problem",
+      "target": "Dynamic Programming on DAG",
+      "value": "solved_by"
+    },
+    {
+      "id": "e054",
+      "source": "Negative-Weight Shortest Path Problem",
+      "target": "Bellman-Ford Algorithm",
+      "value": "solved_by"
+    },
+    {
+      "id": "e055",
+      "source": "Minimum Spanning Tree Problem",
+      "target": "Minimum Spanning Tree Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e056",
+      "source": "Bipartite Recognition Problem",
+      "target": "Bipartite BFS Coloring",
+      "value": "solved_by"
+    },
+    {
+      "id": "e057",
+      "source": "Bipartite Matching Problem",
+      "target": "Matching Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e058",
+      "source": "Maximum Flow Problem",
+      "target": "Minimum-Cut Maximum-Flow Theorem",
+      "value": "analyzed_by"
+    },
+    {
+      "id": "e059",
+      "source": "Maximum Flow Problem",
+      "target": "Network Flow Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e060",
+      "source": "Minimum Cut Problem",
+      "target": "Network Flow Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e061",
+      "source": "Eulerian Path Problem",
+      "target": "Hierholzer's Algorithm",
+      "value": "solved_by"
+    },
+    {
+      "id": "e062",
+      "source": "Hamiltonian Path Problem",
+      "target": "Backtracking Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e063",
+      "source": "Hamiltonian Path Problem",
+      "target": "Branch and Bound",
+      "value": "solved_by"
+    },
+    {
+      "id": "e064",
+      "source": "Graph Coloring Problem",
+      "target": "Backtracking Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e065",
+      "source": "Transitive Closure Problem",
+      "target": "Floyd-Warshall Algorithm",
+      "value": "solved_by"
+    },
+    {
+      "id": "e066",
+      "source": "Residual Graph Construction",
+      "target": "Residual Network Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e067",
+      "source": "Residual Network Problem",
+      "target": "Augmenting Path Method",
+      "value": "solved_by"
+    },
+    {
+      "id": "e068",
+      "source": "Level Graph Construction",
+      "target": "Level Graph Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e069",
+      "source": "Level Graph Problem",
+      "target": "Breadth-First Search",
+      "value": "solved_by"
+    },
+    {
+      "id": "e070",
+      "source": "Strong Component Decomposition",
+      "target": "Condensation DAG Problem",
+      "value": "produces"
+    },
+    {
+      "id": "e071",
+      "source": "Condensation DAG Problem",
+      "target": "Topological Sort",
+      "value": "solved_by"
+    },
+    {
+      "id": "e072",
+      "source": "Graph Traversal",
+      "target": "Breadth-First Search",
+      "value": "specializes"
+    },
+    {
+      "id": "e073",
+      "source": "Graph Traversal",
+      "target": "Depth-First Search",
+      "value": "specializes"
+    },
+    {
+      "id": "e074",
+      "source": "Bipartite BFS Coloring",
+      "target": "Breadth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e075",
+      "source": "Hopcroft-Karp Algorithm",
+      "target": "Breadth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e076",
+      "source": "Kosaraju's Algorithm",
+      "target": "Depth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e077",
+      "source": "Tarjan's Algorithm",
+      "target": "Depth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e078",
+      "source": "Low-Link Analysis",
+      "target": "Depth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e079",
+      "source": "Hopcroft-Karp Algorithm",
+      "target": "Depth-First Search",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e080",
+      "source": "Shortest Path Method",
+      "target": "Relaxation Procedure",
+      "value": "decomposed_by"
+    },
+    {
+      "id": "e081",
+      "source": "Shortest Path Method",
+      "target": "Dijkstra's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e082",
+      "source": "Shortest Path Method",
+      "target": "Bellman-Ford Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e083",
+      "source": "Shortest Path Method",
+      "target": "Floyd-Warshall Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e084",
+      "source": "Shortest Path Method",
+      "target": "Dynamic Programming on DAG",
+      "value": "specializes"
+    },
+    {
+      "id": "e085",
+      "source": "Dijkstra's Algorithm",
+      "target": "Relaxation Procedure",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e086",
+      "source": "Bellman-Ford Algorithm",
+      "target": "Relaxation Procedure",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e087",
+      "source": "Dynamic Programming on DAG",
+      "target": "Topological Sort",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e088",
+      "source": "Topological Sort",
+      "target": "Kahn's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e089",
+      "source": "Dijkstra's Algorithm",
+      "target": "Priority Queue",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e090",
+      "source": "Minimum Spanning Tree Method",
+      "target": "Kruskal's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e091",
+      "source": "Minimum Spanning Tree Method",
+      "target": "Prim's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e092",
+      "source": "Kruskal's Algorithm",
+      "target": "Disjoint Set Union",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e093",
+      "source": "Prim's Algorithm",
+      "target": "Priority Queue",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e094",
+      "source": "Disjoint Set Union",
+      "target": "Union-Find Forest",
+      "value": "implemented_by"
+    },
+    {
+      "id": "e095",
+      "source": "Strong Component Decomposition",
+      "target": "Kosaraju's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e096",
+      "source": "Strong Component Decomposition",
+      "target": "Tarjan's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e097",
+      "source": "Matching Method",
+      "target": "Hopcroft-Karp Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e098",
+      "source": "Network Flow Method",
+      "target": "Residual Graph Construction",
+      "value": "decomposed_by"
+    },
+    {
+      "id": "e099",
+      "source": "Network Flow Method",
+      "target": "Augmenting Path Method",
+      "value": "decomposed_by"
+    },
+    {
+      "id": "e100",
+      "source": "Network Flow Method",
+      "target": "Ford-Fulkerson Method",
+      "value": "specializes"
+    },
+    {
+      "id": "e101",
+      "source": "Network Flow Method",
+      "target": "Edmonds-Karp Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e102",
+      "source": "Network Flow Method",
+      "target": "Dinic's Algorithm",
+      "value": "specializes"
+    },
+    {
+      "id": "e103",
+      "source": "Dinic's Algorithm",
+      "target": "Level Graph Construction",
+      "value": "decomposed_by"
     }
-  },
-  "Undirected Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Connectivity Problem": "subtype_of",
-      "Bridge and Articulation Point Problem": "subtype_of",
-      "Bipartite Graph Problem": "subtype_of",
-      "Minimum Spanning Tree Problem": "subtype_of"
-    }
-  },
-  "Weighted Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {}
-  },
-  "Unweighted Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Unweighted Shortest Path Problem": "subtype_of"
-    }
-  },
-  "Directed Acyclic Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Topological Ordering Problem": "subtype_of",
-      "DAG Shortest Path Problem": "subtype_of",
-      "Level Graph Problem": "subtype_of",
-      "Condensation DAG Problem": "subtype_of"
-    }
-  },
-  "Bipartite Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Undirected Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Bipartite Recognition Problem": "subtype_of",
-      "Bipartite Matching Problem": "subtype_of"
-    }
-  },
-  "Flow Network Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Maximum Flow Problem": "subtype_of",
-      "Minimum Cut Problem": "subtype_of",
-      "Residual Network Problem": "subtype_of"
-    }
-  },
-  "Matching Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Bipartite Matching Problem": "subtype_of"
-    }
-  },
-  "Connectivity Problem": {
-    "type": "problem",
-    "parents": {
-      "Undirected Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Depth-First Search": "solved_by",
-      "Disjoint Set Union": "solved_by"
-    }
-  },
-  "Reachability Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Breadth-First Search": "solved_by",
-      "Depth-First Search": "solved_by"
-    }
-  },
-  "Cycle Detection Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Depth-First Search": "solved_by",
-      "Disjoint Set Union": "solved_by"
-    }
-  },
-  "Topological Ordering Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Graph Problem": "subtype_of",
-      "Directed Acyclic Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Topological Sort": "solved_by"
-    }
-  },
-  "Strongly Connected Components Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Strong Component Decomposition": "solved_by"
-    }
-  },
-  "Bridge and Articulation Point Problem": {
-    "type": "problem",
-    "parents": {
-      "Undirected Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Low-Link Analysis": "solved_by"
-    }
-  },
-  "Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Single-Source Shortest Path Problem": "subtype_of",
-      "All-Pairs Shortest Path Problem": "subtype_of",
-      "Negative-Weight Shortest Path Problem": "subtype_of",
-      "Shortest Path Method": "solved_by"
-    }
-  },
-  "Single-Source Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Shortest Path Problem": "subtype_of"
-    },
-    "children": {
-      "Unweighted Shortest Path Problem": "subtype_of",
-      "DAG Shortest Path Problem": "subtype_of",
-      "Negative-Weight Shortest Path Problem": "subtype_of",
-      "Dijkstra's Algorithm": "solved_by"
-    }
-  },
-  "All-Pairs Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Shortest Path Problem": "subtype_of"
-    },
-    "children": {
-      "Floyd-Warshall Algorithm": "solved_by"
-    }
-  },
-  "Unweighted Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Unweighted Graph Problem": "subtype_of",
-      "Single-Source Shortest Path Problem": "subtype_of"
-    },
-    "children": {
-      "Breadth-First Search": "solved_by"
-    }
-  },
-  "DAG Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Acyclic Graph Problem": "subtype_of",
-      "Single-Source Shortest Path Problem": "subtype_of"
-    },
-    "children": {
-      "Dynamic Programming on DAG": "solved_by"
-    }
-  },
-  "Negative-Weight Shortest Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Shortest Path Problem": "subtype_of",
-      "Single-Source Shortest Path Problem": "subtype_of"
-    },
-    "children": {
-      "Bellman-Ford Algorithm": "solved_by"
-    }
-  },
-  "Minimum Spanning Tree Problem": {
-    "type": "problem",
-    "parents": {
-      "Undirected Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Minimum Spanning Tree Method": "solved_by"
-    }
-  },
-  "Bipartite Recognition Problem": {
-    "type": "problem",
-    "parents": {
-      "Bipartite Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Bipartite BFS Coloring": "solved_by"
-    }
-  },
-  "Bipartite Matching Problem": {
-    "type": "problem",
-    "parents": {
-      "Bipartite Graph Problem": "subtype_of",
-      "Matching Problem": "subtype_of"
-    },
-    "children": {
-      "Matching Method": "solved_by"
-    }
-  },
-  "Maximum Flow Problem": {
-    "type": "problem",
-    "parents": {
-      "Flow Network Problem": "subtype_of"
-    },
-    "children": {
-      "Minimum-Cut Maximum-Flow Theorem": "analyzed_by",
-      "Network Flow Method": "solved_by"
-    }
-  },
-  "Minimum Cut Problem": {
-    "type": "problem",
-    "parents": {
-      "Flow Network Problem": "subtype_of"
-    },
-    "children": {
-      "Network Flow Method": "solved_by"
-    }
-  },
-  "Eulerian Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Hierholzer's Algorithm": "solved_by"
-    }
-  },
-  "Hamiltonian Path Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Backtracking Search": "solved_by",
-      "Branch and Bound": "solved_by"
-    }
-  },
-  "Graph Coloring Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Backtracking Search": "solved_by"
-    }
-  },
-  "Transitive Closure Problem": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "subtype_of"
-    },
-    "children": {
-      "Floyd-Warshall Algorithm": "solved_by"
-    }
-  },
-  "Residual Network Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Graph Problem": "subtype_of",
-      "Flow Network Problem": "subtype_of",
-      "Residual Graph Construction": "produces"
-    },
-    "children": {
-      "Augmenting Path Method": "solved_by"
-    }
-  },
-  "Level Graph Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Acyclic Graph Problem": "subtype_of",
-      "Level Graph Construction": "produces"
-    },
-    "children": {
-      "Breadth-First Search": "solved_by"
-    }
-  },
-  "Condensation DAG Problem": {
-    "type": "problem",
-    "parents": {
-      "Directed Acyclic Graph Problem": "subtype_of",
-      "Strong Component Decomposition": "produces"
-    },
-    "children": {
-      "Topological Sort": "solved_by"
-    }
-  },
-  "Graph Traversal": {
-    "type": "problem",
-    "parents": {
-      "Graph Problem": "analyzed_by"
-    },
-    "children": {
-      "Breadth-First Search": "specializes",
-      "Depth-First Search": "specializes"
-    }
-  },
-  "Breadth-First Search": {
-    "type": "solution",
-    "parents": {
-      "Reachability Problem": "solved_by",
-      "Unweighted Shortest Path Problem": "solved_by",
-      "Level Graph Problem": "solved_by",
-      "Graph Traversal": "specializes",
-      "Bipartite BFS Coloring": "implemented_by",
-      "Hopcroft-Karp Algorithm": "implemented_by"
-    },
-    "children": {}
-  },
-  "Depth-First Search": {
-    "type": "solution",
-    "parents": {
-      "Reachability Problem": "solved_by",
-      "Connectivity Problem": "solved_by",
-      "Cycle Detection Problem": "solved_by",
-      "Graph Traversal": "specializes",
-      "Kosaraju's Algorithm": "implemented_by",
-      "Tarjan's Algorithm": "implemented_by",
-      "Low-Link Analysis": "implemented_by",
-      "Hopcroft-Karp Algorithm": "implemented_by"
-    },
-    "children": {}
-  },
-  "Shortest Path Method": {
-    "type": "solution",
-    "parents": {
-      "Shortest Path Problem": "solved_by"
-    },
-    "children": {
-      "Relaxation Procedure": "decomposed_by",
-      "Dijkstra's Algorithm": "specializes",
-      "Bellman-Ford Algorithm": "specializes",
-      "Floyd-Warshall Algorithm": "specializes",
-      "Dynamic Programming on DAG": "specializes"
-    }
-  },
-  "Relaxation Procedure": {
-    "type": "solution",
-    "parents": {
-      "Shortest Path Method": "decomposed_by",
-      "Dijkstra's Algorithm": "implemented_by",
-      "Bellman-Ford Algorithm": "implemented_by"
-    },
-    "children": {}
-  },
-  "Topological Sort": {
-    "type": "solution",
-    "parents": {
-      "Topological Ordering Problem": "solved_by",
-      "Condensation DAG Problem": "solved_by",
-      "Dynamic Programming on DAG": "implemented_by"
-    },
-    "children": {
-      "Kahn's Algorithm": "specializes"
-    }
-  },
-  "Kahn's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Topological Sort": "specializes"
-    },
-    "children": {}
-  },
-  "Dijkstra's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Single-Source Shortest Path Problem": "solved_by",
-      "Shortest Path Method": "specializes"
-    },
-    "children": {
-      "Relaxation Procedure": "implemented_by",
-      "Priority Queue": "implemented_by"
-    }
-  },
-  "Bellman-Ford Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Negative-Weight Shortest Path Problem": "solved_by",
-      "Shortest Path Method": "specializes"
-    },
-    "children": {
-      "Relaxation Procedure": "implemented_by"
-    }
-  },
-  "Floyd-Warshall Algorithm": {
-    "type": "solution",
-    "parents": {
-      "All-Pairs Shortest Path Problem": "solved_by",
-      "Transitive Closure Problem": "solved_by",
-      "Shortest Path Method": "specializes"
-    },
-    "children": {}
-  },
-  "Dynamic Programming on DAG": {
-    "type": "solution",
-    "parents": {
-      "DAG Shortest Path Problem": "solved_by",
-      "Shortest Path Method": "specializes"
-    },
-    "children": {
-      "Topological Sort": "implemented_by"
-    }
-  },
-  "Minimum Spanning Tree Method": {
-    "type": "solution",
-    "parents": {
-      "Minimum Spanning Tree Problem": "solved_by"
-    },
-    "children": {
-      "Kruskal's Algorithm": "specializes",
-      "Prim's Algorithm": "specializes"
-    }
-  },
-  "Kruskal's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Minimum Spanning Tree Method": "specializes"
-    },
-    "children": {
-      "Disjoint Set Union": "implemented_by"
-    }
-  },
-  "Prim's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Minimum Spanning Tree Method": "specializes"
-    },
-    "children": {
-      "Priority Queue": "implemented_by"
-    }
-  },
-  "Disjoint Set Union": {
-    "type": "solution",
-    "parents": {
-      "Connectivity Problem": "solved_by",
-      "Cycle Detection Problem": "solved_by",
-      "Kruskal's Algorithm": "implemented_by"
-    },
-    "children": {
-      "Union-Find Forest": "implemented_by"
-    }
-  },
-  "Union-Find Forest": {
-    "type": "solution",
-    "parents": {
-      "Disjoint Set Union": "implemented_by"
-    },
-    "children": {}
-  },
-  "Strong Component Decomposition": {
-    "type": "solution",
-    "parents": {
-      "Strongly Connected Components Problem": "solved_by"
-    },
-    "children": {
-      "Kosaraju's Algorithm": "specializes",
-      "Tarjan's Algorithm": "specializes",
-      "Condensation DAG Problem": "produces"
-    }
-  },
-  "Kosaraju's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Strong Component Decomposition": "specializes"
-    },
-    "children": {
-      "Depth-First Search": "implemented_by"
-    }
-  },
-  "Tarjan's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Strong Component Decomposition": "specializes"
-    },
-    "children": {
-      "Depth-First Search": "implemented_by"
-    }
-  },
-  "Low-Link Analysis": {
-    "type": "solution",
-    "parents": {
-      "Bridge and Articulation Point Problem": "solved_by"
-    },
-    "children": {
-      "Depth-First Search": "implemented_by"
-    }
-  },
-  "Matching Method": {
-    "type": "solution",
-    "parents": {
-      "Bipartite Matching Problem": "solved_by"
-    },
-    "children": {
-      "Hopcroft-Karp Algorithm": "specializes"
-    }
-  },
-  "Network Flow Method": {
-    "type": "solution",
-    "parents": {
-      "Maximum Flow Problem": "solved_by",
-      "Minimum Cut Problem": "solved_by"
-    },
-    "children": {
-      "Residual Graph Construction": "decomposed_by",
-      "Augmenting Path Method": "decomposed_by",
-      "Ford-Fulkerson Method": "specializes",
-      "Edmonds-Karp Algorithm": "specializes",
-      "Dinic's Algorithm": "specializes"
-    }
-  },
-  "Augmenting Path Method": {
-    "type": "solution",
-    "parents": {
-      "Residual Network Problem": "solved_by",
-      "Network Flow Method": "decomposed_by"
-    },
-    "children": {}
-  },
-  "Residual Graph Construction": {
-    "type": "solution",
-    "parents": {
-      "Network Flow Method": "decomposed_by"
-    },
-    "children": {
-      "Residual Network Problem": "produces"
-    }
-  },
-  "Ford-Fulkerson Method": {
-    "type": "solution",
-    "parents": {
-      "Network Flow Method": "specializes"
-    },
-    "children": {}
-  },
-  "Edmonds-Karp Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Network Flow Method": "specializes"
-    },
-    "children": {}
-  },
-  "Dinic's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Network Flow Method": "specializes"
-    },
-    "children": {
-      "Level Graph Construction": "decomposed_by"
-    }
-  },
-  "Bipartite BFS Coloring": {
-    "type": "solution",
-    "parents": {
-      "Bipartite Recognition Problem": "solved_by"
-    },
-    "children": {
-      "Breadth-First Search": "implemented_by"
-    }
-  },
-  "Hopcroft-Karp Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Matching Method": "specializes"
-    },
-    "children": {
-      "Breadth-First Search": "implemented_by",
-      "Depth-First Search": "implemented_by"
-    }
-  },
-  "Hierholzer's Algorithm": {
-    "type": "solution",
-    "parents": {
-      "Eulerian Path Problem": "solved_by"
-    },
-    "children": {}
-  },
-  "Backtracking Search": {
-    "type": "solution",
-    "parents": {
-      "Hamiltonian Path Problem": "solved_by",
-      "Graph Coloring Problem": "solved_by"
-    },
-    "children": {}
-  },
-  "Branch and Bound": {
-    "type": "solution",
-    "parents": {
-      "Hamiltonian Path Problem": "solved_by"
-    },
-    "children": {}
-  },
-  "Priority Queue": {
-    "type": "solution",
-    "parents": {
-      "Dijkstra's Algorithm": "implemented_by",
-      "Prim's Algorithm": "implemented_by"
-    },
-    "children": {}
-  },
-  "Minimum-Cut Maximum-Flow Theorem": {
-    "type": "solution",
-    "parents": {
-      "Maximum Flow Problem": "analyzed_by"
-    },
-    "children": {}
-  },
-  "Level Graph Construction": {
-    "type": "solution",
-    "parents": {
-      "Dinic's Algorithm": "decomposed_by"
-    },
-    "children": {
-      "Level Graph Problem": "produces"
-    }
-  }
+  ]
 }

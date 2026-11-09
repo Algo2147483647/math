@@ -1,83 +1,92 @@
 {
-  "Cryptography": {
-    "type": "problem",
-    "parents": {},
-    "children": {
-      "Symmetric Encryption": "related_to",
-      "Asymmetric Encryption": "related_to",
-      "Hash": "related_to"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Cryptography": {
+      "type": "problem"
+    },
+    "Symmetric Encryption": {
+      "type": "problem"
+    },
+    "Asymmetric Encryption": {
+      "type": "problem"
+    },
+    "Advanced Encryption Standard (AES)": {
+      "type": "solution"
+    },
+    "Data Encryption Standard (DES)": {
+      "type": "solution"
+    },
+    "Elliptic Curve Cryptography": {
+      "type": "solution"
+    },
+    "Hash": {
+      "type": "solution"
+    },
+    "Rivest Shamir Adleman (RSA)": {
+      "type": "solution"
+    },
+    "Secure Hash Algorithms (SHA)": {
+      "type": "solution"
+    },
+    "Message Digest 5 (MD5)": {
+      "type": "solution"
     }
   },
-  "Symmetric Encryption": {
-    "type": "problem",
-    "parents": {
-      "Cryptography": "related_to"
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Cryptography",
+      "target": "Symmetric Encryption",
+      "value": "related_to"
     },
-    "children": {
-      "Advanced Encryption Standard (AES)": "related_to",
-      "Data Encryption Standard (DES)": "related_to"
+    {
+      "id": "e002",
+      "source": "Cryptography",
+      "target": "Asymmetric Encryption",
+      "value": "related_to"
+    },
+    {
+      "id": "e003",
+      "source": "Cryptography",
+      "target": "Hash",
+      "value": "related_to"
+    },
+    {
+      "id": "e004",
+      "source": "Symmetric Encryption",
+      "target": "Advanced Encryption Standard (AES)",
+      "value": "related_to"
+    },
+    {
+      "id": "e005",
+      "source": "Symmetric Encryption",
+      "target": "Data Encryption Standard (DES)",
+      "value": "related_to"
+    },
+    {
+      "id": "e006",
+      "source": "Asymmetric Encryption",
+      "target": "Elliptic Curve Cryptography",
+      "value": "related_to"
+    },
+    {
+      "id": "e007",
+      "source": "Asymmetric Encryption",
+      "target": "Rivest Shamir Adleman (RSA)",
+      "value": "related_to"
+    },
+    {
+      "id": "e008",
+      "source": "Hash",
+      "target": "Secure Hash Algorithms (SHA)",
+      "value": "related_to"
+    },
+    {
+      "id": "e009",
+      "source": "Hash",
+      "target": "Message Digest 5 (MD5)",
+      "value": "related_to"
     }
-  },
-  "Asymmetric Encryption": {
-    "type": "problem",
-    "parents": {
-      "Cryptography": "related_to"
-    },
-    "children": {
-      "Elliptic Curve Cryptography": "related_to",
-      "Rivest Shamir Adleman (RSA)": "related_to"
-    }
-  },
-  "Advanced Encryption Standard (AES)": {
-    "type": "solution",
-    "parents": {
-      "Symmetric Encryption": "related_to"
-    },
-    "children": {}
-  },
-  "Data Encryption Standard (DES)": {
-    "type": "solution",
-    "parents": {
-      "Symmetric Encryption": "related_to"
-    },
-    "children": {}
-  },
-  "Elliptic Curve Cryptography": {
-    "type": "solution",
-    "parents": {
-      "Asymmetric Encryption": "related_to"
-    },
-    "children": {}
-  },
-  "Hash": {
-    "type": "solution",
-    "parents": {
-      "Cryptography": "related_to"
-    },
-    "children": {
-      "Secure Hash Algorithms (SHA)": "related_to",
-      "Message Digest 5 (MD5)": "related_to"
-    }
-  },
-  "Rivest Shamir Adleman (RSA)": {
-    "type": "solution",
-    "parents": {
-      "Asymmetric Encryption": "related_to"
-    },
-    "children": {}
-  },
-  "Secure Hash Algorithms (SHA)": {
-    "type": "solution",
-    "parents": {
-      "Hash": "related_to"
-    },
-    "children": {}
-  },
-  "Message Digest 5 (MD5)": {
-    "type": "solution",
-    "parents": {
-      "Hash": "related_to"
-    },
-    "children": {}
-  }
+  ]
 }

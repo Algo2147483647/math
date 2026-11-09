@@ -1,279 +1,309 @@
 {
-    "Geometric Problem": {
-    "parents": {},
-    "children": {
-      "Intersection": "related_to"
+  "format": "graph-studio",
+  "version": 3,
+  "nodes": {
+    "Geometric Problem": {},
+    "Intersection": {},
+    "Intersection of Ray-Surface in Flat Space": {},
+    "Intersection of Ray-Surface in Curvature Space": {},
+    "Geometry Construction": {
+      "type": "problem"
+    },
+    "Smooth Curve Construction": {
+      "type": "problem"
+    },
+    "Bézier Curve": {
+      "type": "solution"
+    },
+    "Geometry Triangulation": {
+      "type": "problem"
+    },
+    "Ear Clipping": {
+      "type": "solution"
+    },
+    "Marching Cubes": {
+      "type": "solution"
+    },
+    "Deformation": {
+      "type": "problem"
+    },
+    "Noise Generation": {
+      "type": "problem"
+    },
+    "Perlin Noise": {
+      "type": "solution"
+    },
+    "B-Spline Curve": {
+      "type": "solution"
+    },
+    "NURBS Curve": {
+      "type": "solution"
+    },
+    "Delaunay Triangulation": {
+      "type": "solution"
+    },
+    "Constrained Delaunay Triangulation": {
+      "type": "solution"
+    },
+    "Mesh Deformation": {
+      "type": "problem"
+    },
+    "Free-Form Deformation": {
+      "type": "solution"
+    },
+    "Skeletal Deformation": {
+      "type": "solution"
+    },
+    "Simplex Noise": {
+      "type": "solution"
+    },
+    "Voronoi Noise": {
+      "type": "solution"
+    },
+    "Point Set Sampling": {
+      "type": "problem"
+    },
+    "Uniform Point Set Sampling On Manifolds": {
+      "type": "problem"
+    },
+    "Bezier Surface": {
+      "type": "solution"
+    },
+    "B-Spline Surface": {
+      "type": "solution"
+    },
+    "NURBS Surface": {
+      "type": "solution"
+    },
+    "Subdivision Surface": {
+      "type": "solution"
+    },
+    "Smooth Surface Construction": {
+      "type": "problem"
+    },
+    "Quad Mesh Generation": {
+      "type": "problem"
+    },
+    "Smooth Solid Construction": {
+      "type": "problem"
+    },
+    "Smooth Geometric Shape Construction": {
+      "type": "problem"
+    },
+    "As-Rigid-As-Possible Deformation": {
+      "type": "solution"
     }
   },
-  "Intersection": {
-    "parents": {
-      "Geometric Problem": "related_to"
+  "edges": [
+    {
+      "id": "e001",
+      "source": "Geometric Problem",
+      "target": "Intersection",
+      "value": "related_to"
     },
-    "children": {
-      "Intersection of Ray-Surface in Flat Space": "related_to",
-      "Intersection of Ray-Surface in Curvature Space": "related_to"
+    {
+      "id": "e002",
+      "source": "Intersection",
+      "target": "Intersection of Ray-Surface in Flat Space",
+      "value": "related_to"
+    },
+    {
+      "id": "e003",
+      "source": "Intersection",
+      "target": "Intersection of Ray-Surface in Curvature Space",
+      "value": "related_to"
+    },
+    {
+      "id": "e004",
+      "source": "Geometry Construction",
+      "target": "Deformation",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e005",
+      "source": "Geometry Construction",
+      "target": "Noise Generation",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e006",
+      "source": "Geometry Construction",
+      "target": "Point Set Sampling",
+      "value": "related_to"
+    },
+    {
+      "id": "e007",
+      "source": "Geometry Construction",
+      "target": "Smooth Geometric Shape Construction",
+      "value": "related_to"
+    },
+    {
+      "id": "e008",
+      "source": "Smooth Geometric Shape Construction",
+      "target": "Smooth Curve Construction",
+      "value": "related_to"
+    },
+    {
+      "id": "e009",
+      "source": "Smooth Curve Construction",
+      "target": "Bézier Curve",
+      "value": "solved_by"
+    },
+    {
+      "id": "e010",
+      "source": "Smooth Curve Construction",
+      "target": "B-Spline Curve",
+      "value": "solved_by"
+    },
+    {
+      "id": "e011",
+      "source": "Bézier Curve",
+      "target": "Bezier Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e012",
+      "source": "Smooth Surface Construction",
+      "target": "Geometry Triangulation",
+      "value": "related_to"
+    },
+    {
+      "id": "e013",
+      "source": "Geometry Triangulation",
+      "target": "Ear Clipping",
+      "value": "solved_by"
+    },
+    {
+      "id": "e014",
+      "source": "Geometry Triangulation",
+      "target": "Marching Cubes",
+      "value": "solved_by"
+    },
+    {
+      "id": "e015",
+      "source": "Geometry Triangulation",
+      "target": "Delaunay Triangulation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e016",
+      "source": "Geometry Triangulation",
+      "target": "Constrained Delaunay Triangulation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e017",
+      "source": "Deformation",
+      "target": "Mesh Deformation",
+      "value": "subtype_of"
+    },
+    {
+      "id": "e018",
+      "source": "Noise Generation",
+      "target": "Perlin Noise",
+      "value": "solved_by"
+    },
+    {
+      "id": "e019",
+      "source": "Noise Generation",
+      "target": "Simplex Noise",
+      "value": "solved_by"
+    },
+    {
+      "id": "e020",
+      "source": "Noise Generation",
+      "target": "Voronoi Noise",
+      "value": "solved_by"
+    },
+    {
+      "id": "e021",
+      "source": "B-Spline Curve",
+      "target": "NURBS Curve",
+      "value": "related_to"
+    },
+    {
+      "id": "e022",
+      "source": "B-Spline Curve",
+      "target": "B-Spline Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e023",
+      "source": "NURBS Curve",
+      "target": "NURBS Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e024",
+      "source": "Delaunay Triangulation",
+      "target": "Constrained Delaunay Triangulation",
+      "value": "generalized_by"
+    },
+    {
+      "id": "e025",
+      "source": "Mesh Deformation",
+      "target": "Free-Form Deformation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e026",
+      "source": "Mesh Deformation",
+      "target": "Skeletal Deformation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e027",
+      "source": "Mesh Deformation",
+      "target": "As-Rigid-As-Possible Deformation",
+      "value": "solved_by"
+    },
+    {
+      "id": "e028",
+      "source": "Point Set Sampling",
+      "target": "Uniform Point Set Sampling On Manifolds",
+      "value": "related_to"
+    },
+    {
+      "id": "e029",
+      "source": "Smooth Surface Construction",
+      "target": "Bezier Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e030",
+      "source": "Smooth Surface Construction",
+      "target": "B-Spline Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e031",
+      "source": "Smooth Surface Construction",
+      "target": "NURBS Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e032",
+      "source": "Smooth Surface Construction",
+      "target": "Subdivision Surface",
+      "value": "related_to"
+    },
+    {
+      "id": "e033",
+      "source": "Smooth Geometric Shape Construction",
+      "target": "Smooth Surface Construction",
+      "value": "related_to"
+    },
+    {
+      "id": "e034",
+      "source": "Smooth Surface Construction",
+      "target": "Quad Mesh Generation",
+      "value": "related_to"
+    },
+    {
+      "id": "e035",
+      "source": "Smooth Geometric Shape Construction",
+      "target": "Smooth Solid Construction",
+      "value": "related_to"
     }
-  },
-  "Intersection of Ray-Surface in Flat Space": {
-    "parents": {
-      "Intersection": "related_to"
-    },
-    "children": {}
-  },
-  "Intersection of Ray-Surface in Curvature Space": {
-    "parents": {
-      "Intersection": "related_to"
-    },
-    "children": {}
-  },
-  "Geometry Construction": {
-    "type": "problem",
-    "parents": {},
-    "children": {
-      "Deformation": "subtype_of",
-      "Noise Generation": "subtype_of",
-      "Point Set Sampling": "related_to",
-      "Smooth Geometric Shape Construction": "related_to"
-    }
-  },
-  "Smooth Curve Construction": {
-    "type": "problem",
-    "parents": {
-      "Smooth Geometric Shape Construction": "related_to"
-    },
-    "children": {
-      "Bézier Curve": "solved_by",
-      "B-Spline Curve": "solved_by"
-    }
-  },
-  "Bézier Curve": {
-    "type": "solution",
-    "parents": {
-      "Smooth Curve Construction": "solved_by"
-    },
-    "children": {
-      "Bezier Surface": "related_to"
-    }
-  },
-  "Geometry Triangulation": {
-    "type": "problem",
-    "parents": {
-      "Smooth Surface Construction": "related_to"
-    },
-    "children": {
-      "Ear Clipping": "solved_by",
-      "Marching Cubes": "solved_by",
-      "Delaunay Triangulation": "solved_by",
-      "Constrained Delaunay Triangulation": "solved_by"
-    }
-  },
-  "Ear Clipping": {
-    "type": "solution",
-    "parents": {
-      "Geometry Triangulation": "solved_by"
-    },
-    "children": {}
-  },
-  "Marching Cubes": {
-    "type": "solution",
-    "parents": {
-      "Geometry Triangulation": "solved_by"
-    },
-    "children": {}
-  },
-  "Deformation": {
-    "type": "problem",
-    "parents": {
-      "Geometry Construction": "subtype_of"
-    },
-    "children": {
-      "Mesh Deformation": "subtype_of"
-    }
-  },
-  "Noise Generation": {
-    "type": "problem",
-    "parents": {
-      "Geometry Construction": "subtype_of"
-    },
-    "children": {
-      "Perlin Noise": "solved_by",
-      "Simplex Noise": "solved_by",
-      "Voronoi Noise": "solved_by"
-    }
-  },
-  "Perlin Noise": {
-    "type": "solution",
-    "parents": {
-      "Noise Generation": "solved_by"
-    },
-    "children": {}
-  },
-  "B-Spline Curve": {
-    "parents": {
-      "Smooth Curve Construction": "solved_by"
-    },
-    "children": {
-      "NURBS Curve": "related_to",
-      "B-Spline Surface": "related_to"
-    },
-    "type": "solution"
-  },
-  "NURBS Curve": {
-    "parents": {
-      "B-Spline Curve": "related_to"
-    },
-    "children": {
-      "NURBS Surface": "related_to"
-    },
-    "type": "solution"
-  },
-  "Delaunay Triangulation": {
-    "parents": {
-      "Geometry Triangulation": "solved_by"
-    },
-    "children": {
-      "Constrained Delaunay Triangulation": "generalized_by"
-    },
-    "type": "solution"
-  },
-  "Constrained Delaunay Triangulation": {
-    "parents": {
-      "Geometry Triangulation": "solved_by",
-      "Delaunay Triangulation": "generalized_by"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Mesh Deformation": {
-    "parents": {
-      "Deformation": "subtype_of"
-    },
-    "children": {
-      "Free-Form Deformation": "solved_by",
-      "Skeletal Deformation": "solved_by",
-      "As-Rigid-As-Possible Deformation": "solved_by"
-    },
-    "type": "problem"
-  },
-  "Free-Form Deformation": {
-    "parents": {
-      "Mesh Deformation": "solved_by"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Skeletal Deformation": {
-    "parents": {
-      "Mesh Deformation": "solved_by"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Simplex Noise": {
-    "parents": {
-      "Noise Generation": "solved_by"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Voronoi Noise": {
-    "parents": {
-      "Noise Generation": "solved_by"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Point Set Sampling": {
-    "type": "problem",
-    "parents": {
-      "Geometry Construction": "related_to"
-    },
-    "children": {
-      "Uniform Point Set Sampling On Manifolds": "related_to"
-    }
-  },
-  "Uniform Point Set Sampling On Manifolds": {
-    "type": "problem",
-    "parents": {
-      "Point Set Sampling": "related_to"
-    },
-    "children": {}
-  },
-  "Bezier Surface": {
-    "parents": {
-      "Smooth Surface Construction": "related_to",
-      "Bézier Curve": "related_to"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "B-Spline Surface": {
-    "parents": {
-      "B-Spline Curve": "related_to",
-      "Smooth Surface Construction": "related_to"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "NURBS Surface": {
-    "parents": {
-      "NURBS Curve": "related_to",
-      "Smooth Surface Construction": "related_to"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Subdivision Surface": {
-    "parents": {
-      "Smooth Surface Construction": "related_to"
-    },
-    "children": {},
-    "type": "solution"
-  },
-  "Smooth Surface Construction": {
-    "type": "problem",
-    "parents": {
-      "Smooth Geometric Shape Construction": "related_to"
-    },
-    "children": {
-      "Subdivision Surface": "related_to",
-      "B-Spline Surface": "related_to",
-      "NURBS Surface": "related_to",
-      "Bezier Surface": "related_to",
-      "Geometry Triangulation": "related_to",
-      "Quad Mesh Generation": "related_to"
-    }
-  },
-  "Quad Mesh Generation": {
-    "parents": {
-      "Smooth Surface Construction": "related_to"
-    },
-    "children": {},
-    "type": "problem"
-  },
-  "Smooth Solid Construction": {
-    "type": "problem",
-    "parents": {
-      "Smooth Geometric Shape Construction": "related_to"
-    },
-    "children": {}
-  },
-  "Smooth Geometric Shape Construction": {
-    "type": "problem",
-    "parents": {
-      "Geometry Construction": "related_to"
-    },
-    "children": {
-      "Smooth Solid Construction": "related_to",
-      "Smooth Surface Construction": "related_to",
-      "Smooth Curve Construction": "related_to"
-    }
-  },
-  "As-Rigid-As-Possible Deformation": {
-    "parents": {
-      "Mesh Deformation": "solved_by"
-    },
-    "children": {},
-    "type": "solution"
-  }
+  ]
 }
