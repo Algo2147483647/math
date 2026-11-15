@@ -163,3 +163,46 @@ M^*=\arg\max_M |M|.
 $$
 
 **Perfect Matching.** A perfect matching is a matching that covers every vertex of the graph.
+
+## Shortest Path
+
+The shortest-path distance from $s$ to $v$ is defined by
+
+$$
+d(s, v)
+=
+\begin{cases}
+\min \left\{ \sum\limits_{e_i \in P} w(e_i) : P \text{ is a path } s \to v \right\}, & \text{if such a path exists}, \\
++\infty, & \text{otherwise}.
+\end{cases}
+$$
+
+### Properties
+
+The distances satisfy the Bellman optimality conditions
+
+$$
+d(s, s) = 0, \\
+d(s, v) \le d(s, u) + w(u, v)
+\quad \forall (u, v) \in E.
+$$
+
+If $v$ is reachable from $s$ and has a shortest predecessor $u$ such that $d(s, v) > d(s, u) + w(u, v)$, then
+
+$$
+d(s, v) := d(s, u) + w(u, v).
+$$
+
+### Single-Source Shortest Path: Dijkstra
+
+Dijkstra's algorithm is used to find the shortest paths from a starting node to all other nodes in a graph. Its core principle is "greedy":
+
+1. It begins by setting the distance to the starting node at 0 and the distances to all other nodes at infinity.
+2. In each iteration, the algorithm selects the node with the smallest current distance among those for which the shortest path has not yet been determined.
+3. Once this node's shortest distance is finalized, the algorithm attempts to update the distances to its neighbors—a process known as "relaxation" (i.e., if a shorter path to a neighbor is found by passing through the current node, the neighbor's distance is updated).
+4. This process is repeated until all reachable nodes have been processed.
+
+A crucial prerequisite for the algorithm's validity is that edge weights must not be negative; this ensures that a shortest distance, once determined, cannot be further reduced by any subsequent paths. Time consuming is $O(E \log V)$.
+
+![dijkstra-layout](./assets/dijkstra-layout.svg)
+
