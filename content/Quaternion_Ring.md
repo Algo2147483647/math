@@ -14,9 +14,16 @@ Quaternion number system extends the complex numbers. Where $a, b, c, d \in \mat
 $$
 i^2 = j^2 = k^2 = ijk = -1
 $$
-<img src="assets/image-20231026023813592.png" alt="image-20231026023813592" style="zoom:25%;" />
 
-<img src="assets/Cayley_Q8_quaternion_multiplication_graph.svg" alt="Cayley_Q8_quaternion_multiplication_graph" style="width:120px;" />
+
+| ×     | **1**    | **i**    | **j**    | **k**    |
+| :-----: | :----: | :----: | :----: | :----: |
+| **1** | 1    | i    | j    | k    |
+| **i** | i    | −1   | k    | −j   |
+| **j** | j    | −k   | −1   | i    |
+| **k** | k    | j    | −i   | −1   |
+
+<img src="assets/Cayley_Q8_quaternion_multiplication_graph.svg" alt="Cayley_Q8_quaternion_multiplication_graph" style="width: 240px;" />
 
 ## Properties
 

@@ -120,7 +120,7 @@ A graph is acyclic if it has no cycle. For directed graphs, acyclicity means the
 
 An Euler path is a path that passes through every edge exactly once. If such a path starts and ends at the same vertex, it is called an Euler circuit. A graph with an Euler circuit is called Eulerian.
 
-<img src="./assets/48727417-28c3d500-ec58-11e8-9715-33b168a50b7c.png" alt="theory1" style="zoom:20%;" />
+<img src="./assets/48727417-28c3d500-ec58-11e8-9715-33b168a50b7c.svg" alt="theory1" style="zoom:50%;" />
 
 For a connected undirected graph:
 

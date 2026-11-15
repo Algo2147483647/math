@@ -156,7 +156,13 @@ Classification of finite simple groups: Every finite simple group is isomorphic 
   - the derivative of the groups of Lie Type, such as the Tits group
 - one of 26 groups called the "sporadic groups"
 
-<img src="./assets/gn5cimd92mh11.jpg" alt="gn5cimd92mh11"  />
+<iframe 
+  src="./assets/finite-simple-groups.html"
+  width="100%" 
+  height="400" 
+  style="border: none;">
+</iframe>
+
 
 ### Commutative Group, Abelian Group
 $$

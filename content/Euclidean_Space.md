@@ -362,18 +362,18 @@ There are three regular monohedral tilings of the Euclidean plane: equilateral t
 
 There are 17 combinations of regular convex polygons that form 21 types of plane-vertex tilings.
 
-<img src="assets/image-20240209012125223.png" alt="image-20240209012125223" style="zoom: 33%;" />
+<img src="assets/image-20240209012125223.png" alt="image-20240209012125223" style="zoom: 50%;" />
 
 ##### Space-Filling Polyhedron
 
-<img src="assets/SpaceFillingPolyhedra_1000.svg" alt="SpaceFillingPolyhedra" style="zoom: 25%;" />
+<img src="assets/SpaceFillingPolyhedra_1000.svg" alt="SpaceFillingPolyhedra" style="zoom: 50%;" />
 
 ##### Monohedral Pentagonal Tiling
 
-<img src="assets/image-20240209013213739.png" alt="image-20240209013213739" style="zoom:20%;" />
+![pentagonal-tiles](./assets/pentagonal-tiles.svg)
 
 ##### Penrose Tiling
 
 A Penrose tiling is an example of an aperiodic tiling.
 
-<img src="assets/Penrose_Tiling_(Rhombi).svg" alt="Penrose_Tiling_(Rhombi)" style="zoom:25%;" />
+<img src="assets/Penrose_Tiling_(Rhombi).svg" alt="Penrose_Tiling_(Rhombi)" style="zoom: 50%;" />

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="535" viewBox="0 0 520 535"><defs><style>.edge{fill:none;stroke:#1600ff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.vertex{fill:#fff;stroke:#111;stroke-width:2.5}text{font-family:Times New Roman,serif;font-size:36px;font-style:normal;fill:#000}.route{fill:none;stroke:#ff9fa4;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}</style><marker id="pink-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L11 6 L1 11 L3.5 6 Z" fill="#ff9fa4" /></marker><marker id="start-bar" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="5" markerHeight="5" orient="auto"><path d="M6 1 L6 11" fill="none" stroke="#ff9fa4" stroke-width="2" /></marker></defs><rect width="520" height="535" fill="white" />
+<g>
+<g class="route">
+<path d="M275 146 C225 132 232 57 289 57 C341 57 351 128 302 145" marker-start="url(#start-bar)" marker-end="url(#pink-arrow)"><title>B to B</title></path><path d="M272 149 L84 195" marker-end="url(#pink-arrow)"><title>B to A</title></path>
+<path d="M83 213 L306 460" marker-end="url(#pink-arrow)"><title>A to D</title></path>
+<path d="M321 479 C411 450 466 357 454 278" marker-end="url(#pink-arrow)"><title>D to C</title></path>
+<path d="M431 270 C348 295 303 380 318 459" marker-end="url(#pink-arrow)"><title>C to D</title></path>
+<path d="M296 466 L138 466" marker-end="url(#pink-arrow)"><title>D to E</title></path>
+<path d="M138 464 L286 173" marker-end="url(#pink-arrow)"><title>E to B</title></path>
+<path d="M300 154 L438 245" marker-end="url(#pink-arrow)"><title>B to C</title></path>
+</g>
+<g class="edge"><path d="M69 208 L284 155 L445 262 M69 208 L310 475 L123 475 L284 155" /><path d="M284 155 C218 153 222 48 289 48 C356 48 366 151 284 155" /><path d="M445 262 C353 283 296 378 310 475 C407 448 458 360 445 262" /></g>
+<circle class="vertex" cx="69" cy="208" r="6.5" />
+<circle class="vertex" cx="284" cy="155" r="6.5" />
+<circle class="vertex" cx="445" cy="262" r="6.5" />
+<circle class="vertex" cx="310" cy="475" r="6.5" />
+<circle class="vertex" cx="123" cy="475" r="6.5" />
+<text x="44" y="188">A</text>
+<text x="278" y="135">B</text>
+<text x="460" y="255">C</text>
+<text x="352" y="501">D</text>
+<text x="71" y="495">E</text>
+</g>
+</svg>

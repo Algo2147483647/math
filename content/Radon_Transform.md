@@ -19,9 +19,9 @@ $$
 \end{align*}
 $$
 
-<img src="assets/894.png" alt="img" style="zoom:33%;" />
+![radon-projection](./assets/radon-projection.svg)
 
-<img src="assets/Radon_transform_sinogram.gif" alt="Radon_transform_sinogram" style="zoom:33%;" />
+<img src="assets/Radon_transform_sinogram.gif" alt="Radon_transform_sinogram" style="zoom: 50%;" />
 
 ## Properties
 

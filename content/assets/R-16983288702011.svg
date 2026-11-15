@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="610" viewBox="0 0 1440 610" font-family="Times New Roman, Times, serif" role="img" aria-labelledby="title desc">
+<title id="title">Injective, surjective and bijective functions</title>
+<desc id="desc">Three mappings from A to B. The first is injective but not surjective, the second surjective but not injective, and the third bijective. All correspondences reproduce the supplied diagram.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#58697c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="1440" height="610" fill="white"/>
+<g id="injective">
+<text x="110" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#376b9b" font-style="italic">A</text>
+<text x="370" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#a78325" font-style="italic">B</text>
+<line data-from="1" data-to="2" x1="129.35" y1="137.06" x2="348.72" y2="194.43" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="2" data-to="1" x1="129.35" y1="194.94" x2="348.72" y2="137.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="3" data-to="3" x1="130.00" y1="268.00" x2="348.00" y2="268.00" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="4" data-to="4" x1="130.00" y1="336.00" x2="348.00" y2="336.00" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<circle cx="110" cy="132" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="110" cy="200" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="110" cy="268" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="110" cy="336" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="370" cy="132" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="370" cy="200" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="370" cy="268" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="370" cy="336" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="370" cy="404" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<text x="240" y="500" text-anchor="middle" dominant-baseline="central" font-size="32" fill="#253b55">Injective</text>
+<text x="240" y="548" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#697c90">Not surjective</text>
+</g>
+<g id="surjective">
+<text x="590" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#376b9b" font-style="italic">A</text>
+<text x="850" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#a78325" font-style="italic">B</text>
+<line data-from="1" data-to="2" x1="609.35" y1="137.06" x2="828.72" y2="194.43" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="2" data-to="1" x1="609.35" y1="194.94" x2="828.72" y2="137.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="3" data-to="3" x1="610.00" y1="268.00" x2="828.00" y2="268.00" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="4" data-to="3" x1="609.35" y1="330.94" x2="828.72" y2="273.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="5" data-to="4" x1="609.35" y1="398.94" x2="828.72" y2="341.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<circle cx="590" cy="132" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="590" cy="200" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="590" cy="268" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="590" cy="336" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="590" cy="404" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="850" cy="132" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="850" cy="200" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="850" cy="268" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="850" cy="336" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<text x="720" y="500" text-anchor="middle" dominant-baseline="central" font-size="32" fill="#253b55">Surjective</text>
+<text x="720" y="548" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#697c90">Not injective</text>
+</g>
+<g id="bijective">
+<text x="1070" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#376b9b" font-style="italic">A</text>
+<text x="1330" y="58" text-anchor="middle" dominant-baseline="central" font-size="37" fill="#a78325" font-style="italic">B</text>
+<line data-from="1" data-to="2" x1="1089.35" y1="137.06" x2="1308.72" y2="194.43" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="2" data-to="1" x1="1089.35" y1="194.94" x2="1308.72" y2="137.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="3" data-to="5" x1="1087.72" y1="277.27" x2="1310.51" y2="393.80" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="4" data-to="3" x1="1089.35" y1="330.94" x2="1308.72" y2="273.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<line data-from="5" data-to="4" x1="1089.35" y1="398.94" x2="1308.72" y2="341.57" stroke="#58697c" stroke-width="1.7" marker-end="url(#arrow)"/>
+<circle cx="1070" cy="132" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="1070" cy="200" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="1070" cy="268" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="1070" cy="336" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="1070" cy="404" r="11" fill="#c5dbee" stroke="#6587a5" stroke-width="1.5"/>
+<circle cx="1330" cy="132" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="1330" cy="200" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="1330" cy="268" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="1330" cy="336" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<circle cx="1330" cy="404" r="11" fill="#fff0ad" stroke="#c2a44f" stroke-width="1.5"/>
+<text x="1200" y="500" text-anchor="middle" dominant-baseline="central" font-size="32" fill="#253b55">Bijective</text>
+<text x="1200" y="548" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#697c90">Injective and surjective</text>
+</g>
+</svg>

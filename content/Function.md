@@ -35,7 +35,7 @@ $$
 $$
 Bijection, or One-to-One Correspondence, is a map that is both injective and surjective. Each element $y$ in set $Y$ has a unique element $x$ in set $X$ corresponding to it. Meanwhile, each element $x$ in set $X$ has a unique element $y$ in set $Y$ corresponding to it.
 
-<img src="assets/R-16983288702011.png" alt="R" style="zoom: 30%;" />
+<img src="assets/R-16983288702011.svg" alt="R" style="zoom: 50%;" />
 
 ## Properties
 
