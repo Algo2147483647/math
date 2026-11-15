@@ -8,7 +8,7 @@
 
 Complete Graph is a undirected graph in which every pair of vertices is adjacent.
 
-<img src="./assets/11-simplex_graph.svg" alt="11-simplex_graph" style="zoom:30%;" />
+<img src="./assets/11-simplex_graph.svg" alt="11-simplex_graph" style="zoom:50%;" />
 
 ## Properties
 

@@ -1,0 +1,996 @@
+{
+  "format": "graph-studio",
+  "version": 3,
+  "id": "all-encoding",
+  "title": "Encoding: Complete Knowledge Graph",
+  "diagram": "dag",
+  "metadata": {
+    "language": "en",
+    "style": "encoding.style.json",
+    "scope": "Educational concept map; selected foundational concepts, not an exhaustive taxonomy.",
+    "guide": "[Workspace guide](./README.md) | [Concept index](./INDEX.md) | [Study pathways](./STUDY-PATHWAYS.md)"
+  },
+  "nodes": {
+    "encoding": {
+      "title": "Encoding and Information",
+      "type": "Overview",
+      "define": "Represent information, reduce its size, protect it from errors, secure it, and map it to physical signals.",
+      "notes": "These are related operations with different objectives. Cryptography and modulation are included for comparison; neither is simply another character encoding.",
+      "study_note": "[Read the concept note](./notes/encoding.md)"
+    },
+    "representation": {
+      "title": "Representation Encoding",
+      "type": "Representation",
+      "define": "Map values, symbols, or measurements to agreed representations.",
+      "notes": "Preserve meaning through a shared interpretation.",
+      "study_note": "[Read the concept note](./notes/representation.md)"
+    },
+    "compression": {
+      "title": "Compression / Source Coding",
+      "type": "Compression",
+      "define": "Reduce the number of bits needed to represent information.",
+      "notes": "Lossless coding preserves the original exactly; lossy coding trades fidelity for size.",
+      "study_note": "[Read the concept note](./notes/compression.md)"
+    },
+    "error-control": {
+      "title": "Error Control / Channel Coding",
+      "type": "Error Control",
+      "define": "Add structured redundancy to detect or correct transmission and storage errors.",
+      "notes": "Redundancy supports reliability, not secrecy.",
+      "study_note": "[Read the concept note](./notes/error-control.md)"
+    },
+    "cryptography": {
+      "title": "Cryptography",
+      "type": "Cryptography",
+      "define": "Use cryptographic primitives and protocols for confidentiality, integrity, and authentication.",
+      "notes": "Encryption alone does not necessarily provide integrity or authentication.",
+      "study_note": "[Read the concept note](./notes/cryptography.md)"
+    },
+    "physical": {
+      "title": "Physical-Layer Signaling",
+      "type": "Physical Layer",
+      "define": "Map data or messages to signals suitable for a physical medium.",
+      "notes": "Line coding, block transmission coding, and modulation solve different signaling problems.",
+      "study_note": "[Read the concept note](./notes/physical.md)"
+    },
+    "numbers": {
+      "title": "Numerical Representation",
+      "type": "Representation",
+      "define": "Represent integers and real-valued quantities using finite bit patterns.",
+      "study_note": "[Read the concept note](./notes/numbers.md)"
+    },
+    "integers": {
+      "title": "Binary Integers",
+      "type": "Representation",
+      "define": "Unsigned binary represents nonnegative integers; signed formats also represent negative values.",
+      "example": "Unsigned 8-bit 00001101 represents 13.",
+      "study_note": "[Read the concept note](./notes/integers.md)"
+    },
+    "twos-complement": {
+      "title": "Two's Complement",
+      "type": "Representation",
+      "define": "Represent a signed integer with a negative weight on the most significant bit.",
+      "example": "In 8 bits, 11111111 represents -1; the range is -128 to 127.",
+      "study_note": "[Read the concept note](./notes/twos-complement.md)"
+    },
+    "floating-point": {
+      "title": "Floating Point",
+      "type": "Representation",
+      "define": "Represent a value using a sign, significand, and exponent.",
+      "notes": "Finite precision causes rounding. Many decimal fractions, including 0.1, have no exact finite binary representation.",
+      "study_note": "[Read the concept note](./notes/floating-point.md)"
+    },
+    "characters": {
+      "title": "Characters and Text",
+      "type": "Representation",
+      "define": "Distinguish abstract characters, code points, and encoded byte sequences.",
+      "study_note": "[Read the concept note](./notes/characters.md)"
+    },
+    "ascii": {
+      "title": "ASCII",
+      "type": "Representation",
+      "define": "A 7-bit character code with 128 values, including letters, digits, punctuation, and control characters.",
+      "example": "The character A has decimal code 65 (hexadecimal 41).",
+      "study_note": "[Read the concept note](./notes/ascii.md)"
+    },
+    "unicode": {
+      "title": "Unicode",
+      "type": "Representation",
+      "define": "A character standard that assigns code points and defines text properties and encoding forms.",
+      "example": "A is U+0041; the euro sign is U+20AC.",
+      "notes": "Unicode is not synonymous with UTF-8, and one visible character may contain multiple code points.",
+      "study_note": "[Read the concept note](./notes/unicode.md)"
+    },
+    "utf8": {
+      "title": "UTF-8",
+      "type": "Representation",
+      "define": "Encode Unicode scalar values as sequences of one to four bytes.",
+      "example": "U+0041 becomes 41; U+20AC becomes E2 82 AC (hexadecimal).",
+      "notes": "ASCII characters retain their one-byte ASCII values.",
+      "study_note": "[Read the concept note](./notes/utf8.md)"
+    },
+    "utf16": {
+      "title": "UTF-16",
+      "type": "Representation",
+      "define": "Encode Unicode scalar values using one or two 16-bit code units.",
+      "notes": "Supplementary characters use surrogate pairs; byte order matters when code units are serialized.",
+      "study_note": "[Read the concept note](./notes/utf16.md)"
+    },
+    "media": {
+      "title": "Multimedia Representation",
+      "type": "Representation",
+      "define": "Represent sampled audio, images, and video as digital data.",
+      "notes": "A media format may combine representation, compression, and container metadata.",
+      "study_note": "[Read the concept note](./notes/media.md)"
+    },
+    "pcm": {
+      "title": "Pulse-Code Modulation (PCM)",
+      "type": "Representation",
+      "define": "Sample a signal and quantize its amplitude into numerical values.",
+      "example": "Uncompressed mono audio at 48,000 samples/s and 16 bits/sample uses 768,000 bits/s.",
+      "notes": "Despite its name, PCM here concerns digitizing samples, not a radio carrier modulation scheme.",
+      "study_note": "[Read the concept note](./notes/pcm.md)"
+    },
+    "raster": {
+      "title": "Raster Images",
+      "type": "Representation",
+      "define": "Represent an image as a grid of pixels with numerical channel values.",
+      "study_note": "[Read the concept note](./notes/raster.md)"
+    },
+    "video": {
+      "title": "Digital Video",
+      "type": "Representation",
+      "define": "Represent a sequence of frames with timing information.",
+      "notes": "Video codecs often exploit spatial and temporal redundancy.",
+      "study_note": "[Read the concept note](./notes/video.md)"
+    },
+    "spacetime": {
+      "title": "Space, Time, and Geography",
+      "type": "Representation",
+      "define": "Represent positions and times with explicit units, reference systems, and conventions.",
+      "study_note": "[Read the concept note](./notes/spacetime.md)"
+    },
+    "timestamps": {
+      "title": "Timestamps",
+      "type": "Representation",
+      "define": "Represent an instant or local date-time using a documented time convention.",
+      "example": "2026-10-25T12:00:00Z identifies a UTC date-time.",
+      "notes": "A local clock reading without a time zone may be ambiguous; an epoch count requires a unit and epoch definition.",
+      "study_note": "[Read the concept note](./notes/timestamps.md)"
+    },
+    "coordinates": {
+      "title": "Geographic Coordinates",
+      "type": "Representation",
+      "define": "Represent a position using coordinates tied to a coordinate reference system.",
+      "notes": "Latitude/longitude require a datum and axis order; height also requires a reference.",
+      "study_note": "[Read the concept note](./notes/coordinates.md)"
+    },
+    "geohash": {
+      "title": "Geohash",
+      "type": "Representation",
+      "define": "Interleave quantized longitude and latitude bits and commonly encode them in Base32.",
+      "notes": "A geohash identifies a spatial cell, not an exact point. It is not a cryptographic hash.",
+      "study_note": "[Read the concept note](./notes/geohash.md)"
+    },
+    "color": {
+      "title": "Color Representation",
+      "type": "Representation",
+      "define": "Represent colors using numerical components and an interpretation such as a color space.",
+      "study_note": "[Read the concept note](./notes/color.md)"
+    },
+    "rgb": {
+      "title": "RGB",
+      "type": "Representation",
+      "define": "Represent color with red, green, and blue components.",
+      "example": "In 8-bit sRGB notation, #FF0000 represents red.",
+      "notes": "RGB component values alone do not identify a color without a color space and transfer function.",
+      "study_note": "[Read the concept note](./notes/rgb.md)"
+    },
+    "ycbcr": {
+      "title": "YCbCr",
+      "type": "Representation",
+      "define": "Separate a luma component from two chroma components for digital image and video systems.",
+      "notes": "Chroma subsampling can reduce color detail; conversion alone need not imply subsampling.",
+      "study_note": "[Read the concept note](./notes/ycbcr.md)"
+    },
+    "lossless": {
+      "title": "Lossless Compression",
+      "type": "Compression",
+      "define": "Recover the original input exactly from the compressed representation.",
+      "notes": "No lossless compressor can shorten every possible input.",
+      "study_note": "[Read the concept note](./notes/lossless.md)"
+    },
+    "huffman": {
+      "title": "Huffman Coding",
+      "type": "Compression",
+      "define": "Assign prefix-free codewords based on symbol weights; frequent symbols tend to receive shorter codewords.",
+      "notes": "Optimal among binary symbol-by-symbol prefix codes for the given weights; each codeword has an integer bit length.",
+      "study_note": "[Read the concept note](./notes/huffman.md)"
+    },
+    "arithmetic": {
+      "title": "Arithmetic Coding",
+      "type": "Compression",
+      "define": "Represent a symbol sequence by progressively narrowing an interval according to a probability model.",
+      "notes": "Can approach fractional-bit average costs across a sequence; encoder and decoder must agree on the model.",
+      "study_note": "[Read the concept note](./notes/arithmetic.md)"
+    },
+    "dictionary": {
+      "title": "Dictionary Coding",
+      "type": "Compression",
+      "define": "Replace repeated strings with references to previously seen or stored strings.",
+      "example": "LZ77 uses references to earlier text in a sliding window.",
+      "study_note": "[Read the concept note](./notes/dictionary.md)"
+    },
+    "rle": {
+      "title": "Run-Length Encoding",
+      "type": "Compression",
+      "define": "Represent a run of repeated values by the value and a count.",
+      "example": "AAAAABBB can be represented conceptually as (A,5), (B,3).",
+      "study_note": "[Read the concept note](./notes/rle.md)"
+    },
+    "lossy": {
+      "title": "Lossy Compression",
+      "type": "Compression",
+      "define": "Discard selected information to reduce size while meeting a distortion or perceptual target.",
+      "study_note": "[Read the concept note](./notes/lossy.md)"
+    },
+    "quantization": {
+      "title": "Quantization",
+      "type": "Compression",
+      "define": "Map many input values to a smaller set of representative values.",
+      "notes": "Quantization is generally irreversible and also occurs when digitizing physical measurements.",
+      "study_note": "[Read the concept note](./notes/quantization.md)"
+    },
+    "transform": {
+      "title": "Transform Coding",
+      "type": "Compression",
+      "define": "Transform samples into coefficients that can be quantized and coded efficiently.",
+      "notes": "The transform need not itself be lossy; quantization commonly causes the loss.",
+      "study_note": "[Read the concept note](./notes/transform.md)"
+    },
+    "perceptual": {
+      "title": "Perceptual Coding",
+      "type": "Compression",
+      "define": "Use properties of perception to allocate fewer bits to less noticeable information.",
+      "example": "Audio coding can exploit masking; image coding can allocate bits unevenly across frequencies.",
+      "study_note": "[Read the concept note](./notes/perceptual.md)"
+    },
+    "detection": {
+      "title": "Error Detection",
+      "type": "Error Control",
+      "define": "Determine whether received data violates a coding constraint; detection alone does not locate or repair every error.",
+      "study_note": "[Read the concept note](./notes/detection.md)"
+    },
+    "parity": {
+      "title": "Parity Bit",
+      "type": "Error Control",
+      "define": "Add a bit so the total number of one bits has a chosen parity.",
+      "notes": "Detects every odd number of bit flips, but can miss an even number.",
+      "study_note": "[Read the concept note](./notes/parity.md)"
+    },
+    "crc": {
+      "title": "Cyclic Redundancy Check (CRC)",
+      "type": "Error Control",
+      "define": "Compute a polynomial remainder over binary data to detect specified classes of errors.",
+      "notes": "Detection guarantees depend on the generator polynomial and message length. CRC is not protection against intentional tampering.",
+      "study_note": "[Read the concept note](./notes/crc.md)"
+    },
+    "correction": {
+      "title": "Forward Error Correction",
+      "type": "Error Control",
+      "define": "Recover data from some corrupted received words using structured redundancy without requesting retransmission.",
+      "study_note": "[Read the concept note](./notes/correction.md)"
+    },
+    "linear-block": {
+      "title": "Linear Block Codes",
+      "type": "Error Control",
+      "define": "Map fixed-length messages to codewords forming a linear subspace over a finite field.",
+      "notes": "A linear (n,k) code carries k symbols in n transmitted symbols; its rate is k/n.",
+      "study_note": "[Read the concept note](./notes/linear-block.md)"
+    },
+    "hamming": {
+      "title": "Hamming Codes",
+      "type": "Error Control",
+      "define": "A family of binary linear block codes with minimum distance 3 that can correct one bit error.",
+      "example": "Hamming (7,4) encodes 4 data bits into 7 bits.",
+      "notes": "Adding an overall parity bit yields an extended code with distance 4, commonly used for single-error correction and double-error detection.",
+      "study_note": "[Read the concept note](./notes/hamming.md)"
+    },
+    "reed-solomon": {
+      "title": "Reed-Solomon Codes",
+      "type": "Error Control",
+      "define": "Block codes over finite fields that correct symbol errors and erasures.",
+      "notes": "An (n,k) Reed-Solomon code has distance n-k+1; it can correct errors e and erasures s when 2e+s <= n-k.",
+      "study_note": "[Read the concept note](./notes/reed-solomon.md)"
+    },
+    "ldpc": {
+      "title": "LDPC Codes",
+      "type": "Error Control",
+      "define": "Linear codes specified by sparse parity-check matrices and commonly decoded iteratively.",
+      "study_note": "[Read the concept note](./notes/ldpc.md)"
+    },
+    "distance": {
+      "title": "Minimum Hamming Distance",
+      "type": "Error Control",
+      "define": "The smallest number of differing positions between distinct codewords.",
+      "notes": "A code of distance d can detect up to d-1 errors or uniquely correct up to floor((d-1)/2) errors under the corresponding decoding model.",
+      "study_note": "[Read the concept note](./notes/distance.md)"
+    },
+    "arq": {
+      "title": "Retransmission (ARQ)",
+      "type": "Error Control",
+      "define": "Request another transmission when an error or missing acknowledgment is detected.",
+      "notes": "ARQ is a reliability protocol, not a forward error-correcting code.",
+      "study_note": "[Read the concept note](./notes/arq.md)"
+    },
+    "symmetric": {
+      "title": "Symmetric Encryption",
+      "type": "Cryptography",
+      "define": "Use a shared secret key for encryption and decryption.",
+      "example": "AES is a block cipher; ChaCha20 is a stream cipher.",
+      "notes": "A cipher must be used within a suitable construction or mode.",
+      "study_note": "[Read the concept note](./notes/symmetric.md)"
+    },
+    "asymmetric": {
+      "title": "Public-Key Cryptography",
+      "type": "Cryptography",
+      "define": "Use related public and private keys for operations such as encryption, signatures, and key establishment.",
+      "notes": "Not every public-key algorithm supports every operation.",
+      "study_note": "[Read the concept note](./notes/asymmetric.md)"
+    },
+    "public-encryption": {
+      "title": "Public-Key Encryption",
+      "type": "Cryptography",
+      "define": "Encrypt for a recipient using a public key; decrypt using the corresponding private key.",
+      "example": "RSA-OAEP is a public-key encryption scheme.",
+      "study_note": "[Read the concept note](./notes/public-encryption.md)"
+    },
+    "key-agreement": {
+      "title": "Key Agreement",
+      "type": "Cryptography",
+      "define": "Establish shared key material through a cryptographic exchange.",
+      "example": "Diffie-Hellman and elliptic-curve Diffie-Hellman.",
+      "notes": "Key agreement needs authentication to resist an active intermediary.",
+      "study_note": "[Read the concept note](./notes/key-agreement.md)"
+    },
+    "hash": {
+      "title": "Cryptographic Hashing",
+      "type": "Cryptography",
+      "define": "Map arbitrary-length messages to fixed-length digests with security properties such as collision resistance.",
+      "example": "SHA-256 produces a 256-bit digest.",
+      "notes": "Hashing is not encryption and has no decryption key. An unkeyed hash alone does not authenticate the sender.",
+      "study_note": "[Read the concept note](./notes/hash.md)"
+    },
+    "authentication": {
+      "title": "Authentication",
+      "type": "Cryptography",
+      "define": "Verify a claimed identity or the origin of data using a protocol and trusted key bindings.",
+      "study_note": "[Read the concept note](./notes/authentication.md)"
+    },
+    "mac": {
+      "title": "Message Authentication Code",
+      "type": "Cryptography",
+      "define": "Use a shared secret key to produce a tag for message integrity and origin authentication.",
+      "example": "HMAC combines a cryptographic hash with a secret key.",
+      "notes": "Anyone holding the shared key can generate valid tags.",
+      "study_note": "[Read the concept note](./notes/mac.md)"
+    },
+    "signature": {
+      "title": "Digital Signatures",
+      "type": "Cryptography",
+      "define": "Sign with a private key and verify with the associated public key.",
+      "notes": "Verification establishes a key-based claim; identifying the signer requires a trusted binding from identity to public key. Signatures do not encrypt the message.",
+      "study_note": "[Read the concept note](./notes/signature.md)"
+    },
+    "aead": {
+      "title": "Authenticated Encryption",
+      "type": "Cryptography",
+      "define": "Combine confidentiality with integrity and authentication of ciphertext and associated data.",
+      "example": "AES-GCM and ChaCha20-Poly1305.",
+      "notes": "Associated data is authenticated but not encrypted. Nonce requirements depend on the scheme.",
+      "study_note": "[Read the concept note](./notes/aead.md)"
+    },
+    "line-coding": {
+      "title": "Line Coding",
+      "type": "Physical Layer",
+      "define": "Map bits to baseband signal levels or transitions suitable for a link.",
+      "study_note": "[Read the concept note](./notes/line-coding.md)"
+    },
+    "nrz": {
+      "title": "Non-Return-to-Zero (NRZ)",
+      "type": "Physical Layer",
+      "define": "Represent bits using signal levels that need not return to a baseline between bits.",
+      "notes": "Long runs without transitions can complicate clock recovery.",
+      "study_note": "[Read the concept note](./notes/nrz.md)"
+    },
+    "manchester": {
+      "title": "Manchester Coding",
+      "type": "Physical Layer",
+      "define": "Represent each bit with a mid-bit transition; transition direction identifies the bit.",
+      "notes": "Supports clock recovery with a bandwidth tradeoff; polarity conventions differ.",
+      "study_note": "[Read the concept note](./notes/manchester.md)"
+    },
+    "block-transmission": {
+      "title": "Block Transmission Coding",
+      "type": "Physical Layer",
+      "define": "Map data blocks to constrained transmission symbols for properties such as transition density and DC balance.",
+      "study_note": "[Read the concept note](./notes/block-transmission.md)"
+    },
+    "8b10b": {
+      "title": "8b/10b",
+      "type": "Physical Layer",
+      "define": "Map 8-bit data values to 10-bit transmission symbols with running-disparity control.",
+      "notes": "The data-bit/code-bit rate is 0.8. Added bits mainly support signaling constraints; this is not a general error-correction scheme.",
+      "study_note": "[Read the concept note](./notes/8b10b.md)"
+    },
+    "digital-modulation": {
+      "title": "Digital Modulation",
+      "type": "Physical Layer",
+      "define": "Map discrete symbols to carrier waveforms for transmission.",
+      "study_note": "[Read the concept note](./notes/digital-modulation.md)"
+    },
+    "ask": {
+      "title": "Amplitude-Shift Keying (ASK)",
+      "type": "Physical Layer",
+      "define": "Represent discrete symbols by selecting carrier amplitudes.",
+      "study_note": "[Read the concept note](./notes/ask.md)"
+    },
+    "fsk": {
+      "title": "Frequency-Shift Keying (FSK)",
+      "type": "Physical Layer",
+      "define": "Represent discrete symbols by selecting carrier frequencies.",
+      "study_note": "[Read the concept note](./notes/fsk.md)"
+    },
+    "psk": {
+      "title": "Phase-Shift Keying (PSK)",
+      "type": "Physical Layer",
+      "define": "Represent discrete symbols by selecting carrier phases.",
+      "study_note": "[Read the concept note](./notes/psk.md)"
+    },
+    "qam": {
+      "title": "Quadrature Amplitude Modulation",
+      "type": "Physical Layer",
+      "define": "Represent symbols using combinations of in-phase and quadrature amplitudes.",
+      "example": "16-QAM has 16 constellation points and can label each symbol with 4 bits.",
+      "notes": "This is a nominal mapping; net payload rate also depends on coding and protocol overhead.",
+      "study_note": "[Read the concept note](./notes/qam.md)"
+    },
+    "analog-modulation": {
+      "title": "Analog Modulation",
+      "type": "Physical Layer",
+      "define": "Vary a carrier parameter continuously according to an analog message.",
+      "notes": "Analog modulation is included as a neighboring concept; it does not inherently start from bits.",
+      "study_note": "[Read the concept note](./notes/analog-modulation.md)"
+    },
+    "am": {
+      "title": "Amplitude Modulation (AM)",
+      "type": "Physical Layer",
+      "define": "Vary carrier amplitude according to an analog message.",
+      "study_note": "[Read the concept note](./notes/am.md)"
+    },
+    "fm": {
+      "title": "Frequency Modulation (FM)",
+      "type": "Physical Layer",
+      "define": "Vary instantaneous carrier frequency according to an analog message.",
+      "study_note": "[Read the concept note](./notes/fm.md)"
+    },
+    "pm": {
+      "title": "Phase Modulation (PM)",
+      "type": "Physical Layer",
+      "define": "Vary carrier phase according to an analog message.",
+      "study_note": "[Read the concept note](./notes/pm.md)"
+    }
+  },
+  "edges": [
+    {
+      "id": "encoding--representation",
+      "source": "encoding",
+      "target": "representation",
+      "value": "includes"
+    },
+    {
+      "id": "encoding--compression",
+      "source": "encoding",
+      "target": "compression",
+      "value": "includes"
+    },
+    {
+      "id": "encoding--error-control",
+      "source": "encoding",
+      "target": "error-control",
+      "value": "includes"
+    },
+    {
+      "id": "encoding--cryptography",
+      "source": "encoding",
+      "target": "cryptography",
+      "value": "includes"
+    },
+    {
+      "id": "encoding--physical",
+      "source": "encoding",
+      "target": "physical",
+      "value": "includes"
+    },
+    {
+      "id": "representation--numbers",
+      "source": "representation",
+      "target": "numbers",
+      "value": "includes"
+    },
+    {
+      "id": "numbers--integers",
+      "source": "numbers",
+      "target": "integers",
+      "value": "includes"
+    },
+    {
+      "id": "numbers--twos-complement",
+      "source": "numbers",
+      "target": "twos-complement",
+      "value": "includes"
+    },
+    {
+      "id": "numbers--floating-point",
+      "source": "numbers",
+      "target": "floating-point",
+      "value": "includes"
+    },
+    {
+      "id": "representation--characters",
+      "source": "representation",
+      "target": "characters",
+      "value": "includes"
+    },
+    {
+      "id": "characters--ascii",
+      "source": "characters",
+      "target": "ascii",
+      "value": "includes"
+    },
+    {
+      "id": "characters--unicode",
+      "source": "characters",
+      "target": "unicode",
+      "value": "includes"
+    },
+    {
+      "id": "characters--utf8",
+      "source": "characters",
+      "target": "utf8",
+      "value": "includes"
+    },
+    {
+      "id": "characters--utf16",
+      "source": "characters",
+      "target": "utf16",
+      "value": "includes"
+    },
+    {
+      "id": "representation--media",
+      "source": "representation",
+      "target": "media",
+      "value": "includes"
+    },
+    {
+      "id": "media--pcm",
+      "source": "media",
+      "target": "pcm",
+      "value": "includes"
+    },
+    {
+      "id": "media--raster",
+      "source": "media",
+      "target": "raster",
+      "value": "includes"
+    },
+    {
+      "id": "media--video",
+      "source": "media",
+      "target": "video",
+      "value": "includes"
+    },
+    {
+      "id": "representation--spacetime",
+      "source": "representation",
+      "target": "spacetime",
+      "value": "includes"
+    },
+    {
+      "id": "spacetime--timestamps",
+      "source": "spacetime",
+      "target": "timestamps",
+      "value": "includes"
+    },
+    {
+      "id": "spacetime--coordinates",
+      "source": "spacetime",
+      "target": "coordinates",
+      "value": "includes"
+    },
+    {
+      "id": "spacetime--geohash",
+      "source": "spacetime",
+      "target": "geohash",
+      "value": "includes"
+    },
+    {
+      "id": "representation--color",
+      "source": "representation",
+      "target": "color",
+      "value": "includes"
+    },
+    {
+      "id": "color--rgb",
+      "source": "color",
+      "target": "rgb",
+      "value": "includes"
+    },
+    {
+      "id": "color--ycbcr",
+      "source": "color",
+      "target": "ycbcr",
+      "value": "includes"
+    },
+    {
+      "id": "compression--lossless",
+      "source": "compression",
+      "target": "lossless",
+      "value": "includes"
+    },
+    {
+      "id": "lossless--huffman",
+      "source": "lossless",
+      "target": "huffman",
+      "value": "includes"
+    },
+    {
+      "id": "lossless--arithmetic",
+      "source": "lossless",
+      "target": "arithmetic",
+      "value": "includes"
+    },
+    {
+      "id": "lossless--dictionary",
+      "source": "lossless",
+      "target": "dictionary",
+      "value": "includes"
+    },
+    {
+      "id": "lossless--rle",
+      "source": "lossless",
+      "target": "rle",
+      "value": "includes"
+    },
+    {
+      "id": "compression--lossy",
+      "source": "compression",
+      "target": "lossy",
+      "value": "includes"
+    },
+    {
+      "id": "lossy--quantization",
+      "source": "lossy",
+      "target": "quantization",
+      "value": "includes"
+    },
+    {
+      "id": "lossy--transform",
+      "source": "lossy",
+      "target": "transform",
+      "value": "includes"
+    },
+    {
+      "id": "lossy--perceptual",
+      "source": "lossy",
+      "target": "perceptual",
+      "value": "includes"
+    },
+    {
+      "id": "error-control--detection",
+      "source": "error-control",
+      "target": "detection",
+      "value": "includes"
+    },
+    {
+      "id": "detection--parity",
+      "source": "detection",
+      "target": "parity",
+      "value": "includes"
+    },
+    {
+      "id": "detection--crc",
+      "source": "detection",
+      "target": "crc",
+      "value": "includes"
+    },
+    {
+      "id": "error-control--correction",
+      "source": "error-control",
+      "target": "correction",
+      "value": "includes"
+    },
+    {
+      "id": "correction--linear-block",
+      "source": "correction",
+      "target": "linear-block",
+      "value": "includes"
+    },
+    {
+      "id": "linear-block--hamming",
+      "source": "linear-block",
+      "target": "hamming",
+      "value": "includes"
+    },
+    {
+      "id": "linear-block--reed-solomon",
+      "source": "linear-block",
+      "target": "reed-solomon",
+      "value": "includes"
+    },
+    {
+      "id": "linear-block--ldpc",
+      "source": "linear-block",
+      "target": "ldpc",
+      "value": "includes"
+    },
+    {
+      "id": "error-control--distance",
+      "source": "error-control",
+      "target": "distance",
+      "value": "includes"
+    },
+    {
+      "id": "error-control--arq",
+      "source": "error-control",
+      "target": "arq",
+      "value": "includes"
+    },
+    {
+      "id": "cryptography--symmetric",
+      "source": "cryptography",
+      "target": "symmetric",
+      "value": "includes"
+    },
+    {
+      "id": "cryptography--asymmetric",
+      "source": "cryptography",
+      "target": "asymmetric",
+      "value": "includes"
+    },
+    {
+      "id": "asymmetric--public-encryption",
+      "source": "asymmetric",
+      "target": "public-encryption",
+      "value": "includes"
+    },
+    {
+      "id": "asymmetric--key-agreement",
+      "source": "asymmetric",
+      "target": "key-agreement",
+      "value": "includes"
+    },
+    {
+      "id": "cryptography--hash",
+      "source": "cryptography",
+      "target": "hash",
+      "value": "includes"
+    },
+    {
+      "id": "cryptography--authentication",
+      "source": "cryptography",
+      "target": "authentication",
+      "value": "includes"
+    },
+    {
+      "id": "authentication--mac",
+      "source": "authentication",
+      "target": "mac",
+      "value": "includes"
+    },
+    {
+      "id": "authentication--signature",
+      "source": "authentication",
+      "target": "signature",
+      "value": "includes"
+    },
+    {
+      "id": "cryptography--aead",
+      "source": "cryptography",
+      "target": "aead",
+      "value": "includes"
+    },
+    {
+      "id": "physical--line-coding",
+      "source": "physical",
+      "target": "line-coding",
+      "value": "includes"
+    },
+    {
+      "id": "line-coding--nrz",
+      "source": "line-coding",
+      "target": "nrz",
+      "value": "includes"
+    },
+    {
+      "id": "line-coding--manchester",
+      "source": "line-coding",
+      "target": "manchester",
+      "value": "includes"
+    },
+    {
+      "id": "physical--block-transmission",
+      "source": "physical",
+      "target": "block-transmission",
+      "value": "includes"
+    },
+    {
+      "id": "block-transmission--8b10b",
+      "source": "block-transmission",
+      "target": "8b10b",
+      "value": "includes"
+    },
+    {
+      "id": "physical--digital-modulation",
+      "source": "physical",
+      "target": "digital-modulation",
+      "value": "includes"
+    },
+    {
+      "id": "digital-modulation--ask",
+      "source": "digital-modulation",
+      "target": "ask",
+      "value": "includes"
+    },
+    {
+      "id": "digital-modulation--fsk",
+      "source": "digital-modulation",
+      "target": "fsk",
+      "value": "includes"
+    },
+    {
+      "id": "digital-modulation--psk",
+      "source": "digital-modulation",
+      "target": "psk",
+      "value": "includes"
+    },
+    {
+      "id": "digital-modulation--qam",
+      "source": "digital-modulation",
+      "target": "qam",
+      "value": "includes"
+    },
+    {
+      "id": "physical--analog-modulation",
+      "source": "physical",
+      "target": "analog-modulation",
+      "value": "includes"
+    },
+    {
+      "id": "analog-modulation--am",
+      "source": "analog-modulation",
+      "target": "am",
+      "value": "includes"
+    },
+    {
+      "id": "analog-modulation--fm",
+      "source": "analog-modulation",
+      "target": "fm",
+      "value": "includes"
+    },
+    {
+      "id": "analog-modulation--pm",
+      "source": "analog-modulation",
+      "target": "pm",
+      "value": "includes"
+    },
+    {
+      "id": "unicode--utf8",
+      "source": "unicode",
+      "target": "utf8",
+      "value": "encoded by"
+    },
+    {
+      "id": "unicode--utf16",
+      "source": "unicode",
+      "target": "utf16",
+      "value": "encoded by"
+    },
+    {
+      "id": "ascii--utf8",
+      "source": "ascii",
+      "target": "utf8",
+      "value": "byte-compatible subset"
+    },
+    {
+      "id": "raster--rgb",
+      "source": "raster",
+      "target": "rgb",
+      "value": "uses color values"
+    },
+    {
+      "id": "raster--ycbcr",
+      "source": "raster",
+      "target": "ycbcr",
+      "value": "may use"
+    },
+    {
+      "id": "video--compression",
+      "source": "video",
+      "target": "compression",
+      "value": "commonly uses"
+    },
+    {
+      "id": "pcm--quantization",
+      "source": "pcm",
+      "target": "quantization",
+      "value": "requires"
+    },
+    {
+      "id": "transform--quantization",
+      "source": "transform",
+      "target": "quantization",
+      "value": "often followed by"
+    },
+    {
+      "id": "lossy--lossless",
+      "source": "lossy",
+      "target": "lossless",
+      "value": "often uses entropy coding from"
+    },
+    {
+      "id": "distance--hamming",
+      "source": "distance",
+      "target": "hamming",
+      "value": "characterizes"
+    },
+    {
+      "id": "detection--arq",
+      "source": "detection",
+      "target": "arq",
+      "value": "can trigger"
+    },
+    {
+      "id": "hash--mac",
+      "source": "hash",
+      "target": "mac",
+      "value": "can underlie HMAC"
+    },
+    {
+      "id": "asymmetric--signature",
+      "source": "asymmetric",
+      "target": "signature",
+      "value": "supports"
+    },
+    {
+      "id": "symmetric--aead",
+      "source": "symmetric",
+      "target": "aead",
+      "value": "used in"
+    },
+    {
+      "id": "key-agreement--symmetric",
+      "source": "key-agreement",
+      "target": "symmetric",
+      "value": "establishes keys for"
+    },
+    {
+      "id": "compression--error-control",
+      "source": "compression",
+      "target": "error-control",
+      "value": "removes redundancy; contrasted with adding redundancy"
+    },
+    {
+      "id": "error-control--digital-modulation",
+      "source": "error-control",
+      "target": "digital-modulation",
+      "value": "coded bits can feed"
+    },
+    {
+      "id": "block-transmission--line-coding",
+      "source": "block-transmission",
+      "target": "line-coding",
+      "value": "can precede"
+    }
+  ]
+}

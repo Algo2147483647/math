@@ -6,20 +6,14 @@
 
 > A directed acyclic graph is a directed graph with no directed cycles.
 
-A **directed acyclic graph** (DAG) is a directed [graph](./Graph.md)
 $$
 G=(V,E),\quad E\subseteq V\times V,
 $$
-such that there is no directed cycle. That is, there is no finite sequence of vertices
-$$
-v_0,v_1,\cdots,v_k
-$$
-with $k\ge 1$, $v_0=v_k$, and
+
+A **directed acyclic graph** (DAG) is a directed [graph](./Graph.md) such that there is no directed cycle. That is, there is no finite sequence of vertices $v_0,v_1,\cdots,v_k$ with $k\ge 1$, $v_0=v_k$, and
 $$
 (v_i,v_{i+1})\in E,\quad i=0,\cdots,k-1.
 $$
-
-> A DAG can express dependency without circular dependency.
 
 ## Properties
 

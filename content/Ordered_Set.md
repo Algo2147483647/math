@@ -132,3 +132,10 @@ $$
 >
 > Combining these cases, we get $S(n,k) = (k+1)S(n-1,k) + (n-k)S(n-1,k-1)$
 
+### Sort
+
+#### Quick Sort
+
+The core of Quicksort lies a "pivot" element is selected from the range to be sorted, and the range is rearranged such that all elements smaller than the pivot are placed to its left, while all elements greater than the pivot are placed to its right. This positions the pivot in its final, correct location. The same process is then applied recursively to the left and right sub-ranges until each sub-range is either empty or contains only a single element. The efficiency of the algorithm depends heavily on how well the pivot divides the range; while the average time complexity is $O(n \log n)$—and it can degrade to $O(n^2)$ in the worst case—Quicksort is generally highly efficient in practice, as it can be performed in-place and carries a small constant factor.
+
+<img src="./assets/quicksort-layout.svg" alt="quicksort-layout" style="zoom: 50%;" />
