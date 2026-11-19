@@ -1,60 +1,46 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" font-family="Times New Roman, Times, serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="650" viewBox="0 0 1340 650" font-family="Times New Roman, Times, serif">
 <title>Rooted tree</title>
-<desc>Rooted tree with a centered root, blue non-root internal nodes, and green leaves.</desc>
-<rect width="1200" height="650" fill="white" />
-<line data-source="1" data-target="3" x1="351.00" y1="268.00" x2="429.00" y2="372.00" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="1" data-target="2" x1="309.00" y1="268.00" x2="231.00" y2="372.00" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="2" data-target="17" x1="194.35" y1="431.30" x2="145.65" y2="528.70" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="2" data-target="18" x1="225.65" y1="431.30" x2="274.35" y2="528.70" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="3" data-target="31" x1="450.00" y1="435.00" x2="450.00" y2="525.00" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="4" data-target="5" x1="842.16" y1="261.21" x2="687.84" y2="378.79" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="4" data-target="6" x1="897.84" y1="261.21" x2="1052.16" y2="378.79" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="4" data-target="34" x1="855.97" y1="272.07" x2="814.03" y2="367.93" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="4" data-target="50" x1="884.03" y1="272.07" x2="925.97" y2="367.93" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="13" data-target="1" x1="569.89" y1="97.84" x2="360.11" y2="222.16" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="13" data-target="4" x1="630.11" y1="97.84" x2="839.89" y2="222.16" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="50" data-target="52" x1="922.84" y1="430.51" x2="867.16" y2="529.49" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="50" data-target="53" x1="944.34" y1="434.73" x2="955.66" y2="525.27" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<line data-source="50" data-target="54" x1="962.07" y1="427.16" x2="1047.93" y2="532.84" stroke="#9aaabc" stroke-width="1.8" stroke-linecap="round" />
-<g data-node="13"><circle cx="600" cy="80" r="35" fill="#fce5ee" stroke="#dca2b9" stroke-width="1.5" />
-<text x="600" y="80" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#994565">root</text>
+<desc>Rooted tree with black edges, white nodes, and black italic labels.</desc>
+<rect width="1340" height="650" fill="white" />
+<path data-source="1" data-target="3" d="M330,275 V306 Q330,320 344,320 H436 Q450,320 450,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="1" data-target="2" d="M330,275 V306 Q330,320 316,320 H224 Q210,320 210,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="2" data-target="17" d="M210,435 V466 Q210,480 196,480 H144 Q130,480 130,494 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="2" data-target="18" d="M210,435 V466 Q210,480 224,480 H276 Q290,480 290,494 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="3" data-target="31" d="M450,435 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="4" data-target="5" d="M870,275 V306 Q870,320 856,320 H674 Q660,320 660,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="4" data-target="6" d="M870,275 V306 Q870,320 884,320 H1066 Q1080,320 1080,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="4" data-target="34" d="M870,275 V306 Q870,320 856,320 H814 Q800,320 800,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="4" data-target="50" d="M870,275 V306 Q870,320 884,320 H926 Q940,320 940,334 V365" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="13" data-target="1" d="M600,115 V146 Q600,160 586,160 H344 Q330,160 330,174 V205" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="13" data-target="4" d="M600,115 V146 Q600,160 614,160 H856 Q870,160 870,174 V205" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="50" data-target="52" d="M940,435 V466 Q940,480 926,480 H844 Q830,480 830,494 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="50" data-target="53" d="M940,435 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path data-source="50" data-target="54" d="M940,435 V466 Q940,480 954,480 H1036 Q1050,480 1050,494 V525" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><g data-node="13"><circle cx="600" cy="80" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="600" y="80" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">root</text>
 </g>
-<g data-node="1"><circle cx="330" cy="240" r="35" fill="#e5f0fc" stroke="#9bb9d9" stroke-width="1.5" />
+<g data-node="1"><circle cx="330" cy="240" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
 </g>
-<g data-node="4"><circle cx="870" cy="240" r="35" fill="#e5f0fc" stroke="#9bb9d9" stroke-width="1.5" />
+<g data-node="4"><circle cx="870" cy="240" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
 </g>
-<g data-node="2"><circle cx="210" cy="400" r="35" fill="#e5f0fc" stroke="#9bb9d9" stroke-width="1.5" />
+<g data-node="2"><circle cx="210" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
 </g>
-<g data-node="3"><circle cx="450" cy="400" r="35" fill="#e5f0fc" stroke="#9bb9d9" stroke-width="1.5" />
+<g data-node="3"><circle cx="450" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
 </g>
-<g data-node="5"><circle cx="660" cy="400" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="660" y="400" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="5"><circle cx="660" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="660" y="400" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="34"><circle cx="800" cy="400" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="800" y="400" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="34"><circle cx="800" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="800" y="400" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="50"><circle cx="940" cy="400" r="35" fill="#e5f0fc" stroke="#9bb9d9" stroke-width="1.5" />
+<g data-node="50"><circle cx="940" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
 </g>
-<g data-node="6"><circle cx="1080" cy="400" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="1080" y="400" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="6"><circle cx="1080" cy="400" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="1080" y="400" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="17"><circle cx="130" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="130" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="17"><circle cx="130" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="130" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="18"><circle cx="290" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="290" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="18"><circle cx="290" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="290" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="31"><circle cx="450" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="450" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="31"><circle cx="450" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="450" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="52"><circle cx="850" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="850" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="52"><circle cx="830" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="830" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="53"><circle cx="960" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="960" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="53"><circle cx="940" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="940" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-<g data-node="54"><circle cx="1070" cy="560" r="35" fill="#edf5e9" stroke="#a3bd95" stroke-width="1.5" />
-<text x="1070" y="560" text-anchor="middle" dominant-baseline="central" font-size="23" fill="#527446">leaf</text>
+<g data-node="54"><circle cx="1050" cy="560" r="35" fill="#ffffff" stroke="#000000" stroke-width="2.5" />
+<text x="1050" y="560" text-anchor="middle" dominant-baseline="central" font-size="28" fill="#000000" font-style="italic">leaf</text>
 </g>
-</svg>
+<g id="subtree-regions"><rect x="75" y="185" width="430" height="425" fill="none" stroke="#000000" stroke-width="1.6" stroke-dasharray="8 7" /><text x="290.0" y="638" text-anchor="middle" font-family="Times New Roman, Times, serif" font-size="24" font-style="normal" fill="#000000">Left subtree</text><rect x="605" y="185" width="535" height="425" fill="none" stroke="#000000" stroke-width="1.6" stroke-dasharray="8 7" /><text x="872.5" y="638" text-anchor="middle" font-family="Times New Roman, Times, serif" font-size="24" font-style="normal" fill="#000000">Right subtree</text></g><g id="depth-indicator" fill="none" stroke="#000000" stroke-width="1.8"><path d="M1210 80 V560" stroke-dasharray="7 6" /><path d="M1203 240 H1217" /><path d="M1203 400 H1217" /><text x="1252" y="320" transform="rotate(-90 1252 320)" text-anchor="middle" dominant-baseline="central" font-family="Times New Roman, Times, serif" font-size="28" font-style="italic" fill="#000000" stroke="none">Depth</text><path d="M1198 80 H1222 M1198 560 H1222" /></g></svg>

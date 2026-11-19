@@ -24,10 +24,11 @@ Number of nodes in a complete binary tree with depth $h$: $2^{h+1} - 1$
 Number of non leaf nodes: $2^h - 1$
 Number of leaf nodes: $2^h$  
 
-Proof: 
-$$
-\sum\limits_{i=0}^h 2^i = \frac{1 - 2^h}{1 - 2} = 2^h - 1  \tag{geometric sequence summation}
-$$
+> Proof
+> $$
+> \sum\limits_{i=0}^h 2^i = \frac{1 - 2^h}{1 - 2} = 2^h - 1  \tag{geometric sequence summation}
+> $$
+>
 
 ### Complete Binary Tree
 
@@ -38,6 +39,9 @@ Complete Binary Tree refer to all levels are completely filled except possibly t
 Balanced Binary Tree refer to the heights of the left and right subtrees of every node differ by at most 1.
 
 ### Traversal
-Pre-order Traversal: The root node is visited first, then the left subtree, and finally the right subtree.
-In-order Traversal: The left subtree is visited first, then the root node, and finally the right subtree. For a binary search tree, in-order traversal visits the nodes in ascending order.
-Post-order Traversal: The left subtree is visited first, then the right subtree, and finally the root node.
+- Pre-order Traversal: The root node is visited first, then the left subtree, and finally the right subtree.
+- In-order Traversal: The left subtree is visited first, then the root node, and finally the right subtree. For a binary search tree, in-order traversal visits the nodes in ascending order.
+- Post-order Traversal: The left subtree is visited first, then the right subtree, and finally the root node.
+- Layer-order traversal (BFS): list nodes by layer order. 
+
+### Binary Heap, Priority Queue
