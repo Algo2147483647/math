@@ -348,13 +348,13 @@ Symbols:
 - $L$ is the length of a prism.
 - $h_{\text{tri}}$ is the height of the triangular base.
 
-#### Tessellation
+## Tessellation
 
 A tessellation, or tiling, is a covering of a plane or space by geometric shapes with no overlaps and no gaps.
 
 Tessellation is not part of the definition of Euclidean space, but it is a typical topic studied inside Euclidean geometry.
 
-##### Convex Regular Polygon Tiling
+### Convex Regular Polygon Tiling
 
 There are three regular monohedral tilings of the Euclidean plane: equilateral triangle, square, and regular hexagon.
 
@@ -364,15 +364,15 @@ There are 17 combinations of regular convex polygons that form 21 types of plane
 
 ![image-20240209012125223](./assets/image-20240209012125223.svg)
 
-##### Space-Filling Polyhedron
+### Space-Filling Polyhedron
 
 <img src="assets/SpaceFillingPolyhedra_1000.svg" alt="SpaceFillingPolyhedra" style="zoom: 50%;" />
 
-##### Monohedral Pentagonal Tiling
+### Monohedral Pentagonal Tiling
 
 ![pentagonal-tiles](./assets/pentagonal-tiles.svg)
 
-##### Penrose Tiling
+### Penrose Tiling
 
 A Penrose tiling is an example of an aperiodic tiling.
 
