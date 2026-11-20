@@ -358,11 +358,11 @@ Tessellation is not part of the definition of Euclidean space, but it is a typic
 
 There are three regular monohedral tilings of the Euclidean plane: equilateral triangle, square, and regular hexagon.
 
-<img src="assets/1-uniform_n11.svg" alt="1-uniform_n11" style="zoom:8%;" /><img src="assets/1-uniform_n5.svg" alt="1-uniform_n5" style="zoom:20%;" /><img src="assets/1-uniform_n1.svg" alt="1-uniform_n1" style="zoom:8%;" />
+![uniform-tilings](./assets/uniform-tilings.svg)
 
 There are 17 combinations of regular convex polygons that form 21 types of plane-vertex tilings.
 
-<img src="assets/image-20240209012125223.png" alt="image-20240209012125223" style="zoom: 50%;" />
+![image-20240209012125223](./assets/image-20240209012125223.svg)
 
 ##### Space-Filling Polyhedron
 
