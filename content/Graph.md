@@ -206,3 +206,8 @@ A crucial prerequisite for the algorithm's validity is that edge weights must no
 
 ![dijkstra-layout](./assets/dijkstra-layout.svg)
 
+## Max Flow
+
+**Dinic’s algorithm** finds a maximum flow by repeatedly using BFS to build a level graph from the residual network, then using DFS to send flow along level-increasing edges until a blocking flow is reached. It updates the residual capacities and repeats until the sink is unreachable from the source. Its general time complexity is **O(V²E)**.
+
+![dinic](./assets/dinic.svg)

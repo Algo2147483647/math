@@ -1,0 +1,738 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2080" height="2600" viewBox="0 0 2080 2600"><defs>
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#a8afb5" /></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#444444" /></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#c64665" /></marker>
+<marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#327bb5" /></marker>
+<marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#b17a19" /></marker>
+<marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#8053ae" /></marker>
+<marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#d22f35" /></marker>
+</defs><style>text{font-family:Times New Roman,serif;text-anchor:middle;dominant-baseline:central;fill:#000}.w{font-size:20px}.node{font-size:27px}</style><rect width="2080" height="2600" fill="white" />
+<g transform="translate(30 35)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Original graph</text>
+<path d="M55.675235130290446 280.524707868427 C110.67523513029045 212.1913745350937 131.8167272488631 185.92467220595796 186.8167272488631 117.59133887262465" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M65.0 300.0 C120.0 300.0 121.0 300.0 176.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M55.675235130290446 319.475292131573 C110.67523513029045 387.8086254649063 131.8167272488631 414.07532779404204 186.8167272488631 482.40866112737535" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M230.0 95.0 C290.0 95.0 296.0 95.0 356.0 95.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M221.49502933037738 113.78600562626313 C281.4950293303774 182.11933895959646 305.86576597676225 209.87490014020148 365.86576597676225 278.2082334735348" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M221.49502933037738 281.21399437373685 C281.4950293303774 212.88066104040354 305.86576597676225 185.12509985979858 365.86576597676225 116.79176652646524" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M230.0 300.0 C290.0 300.0 296.0 300.0 356.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M221.49502933037738 318.78600562626315 C281.4950293303774 387.11933895959646 305.86576597676225 414.8749001402015 365.86576597676225 483.2082334735348" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M221.49502933037738 486.21399437373685 C281.4950293303774 417.88066104040354 305.86576597676225 390.1250998597985 365.86576597676225 321.7917665264652" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M230.0 505.0 C290.0 505.0 296.0 505.0 356.0 505.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M408.0769230769231 104.61538461538461 C468.0769230769231 129.6153846153846 478.2307692307693 133.84615384615384 538.2307692307693 158.84615384615384" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M396.8328900140541 117.02232308171185 C456.8328900140541 228.6889897483785 491.27384758369726 292.7874385585476 551.2738475836973 404.4541052252143" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.26698070999703 285.36273615389103 C465.26698070999703 242.0294028205577 481.4903023764034 230.31255939481974 541.4903023764034 186.9792260614864" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.26698070999703 314.63726384610897 C465.26698070999703 357.9705971794423 481.4903023764034 369.6874406051803 541.4903023764034 413.0207739385136" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M408.0769230769231 495.38461538461536 C468.0769230769231 470.38461538461536 478.2307692307693 466.15384615384613 538.2307692307693 441.15384615384613" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M589.1340848257066 163.47727437143064 C650.8007514923733 146.81060770476398 660.3377949355137 144.23302839580714 722.0044616021803 127.56636172914047" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M578.1222175749115 191.27927174309974 C639.7888842415781 291.27927174309974 673.111560946436 345.3160447780043 734.7782276131027 445.3160447780043" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M577.8114377369812 408.53218541370705 C639.4781044036479 305.19885208037374 673.4720655584351 248.23599825343314 735.1387322251018 144.90266492009982" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M589.4353541359967 435.2833198131885 C651.1020208026633 448.6166531465218 659.9883225355773 450.53801568336803 721.6549892022439 463.87134901670134" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M768.1488170976456 137.1936161977696 C831.482150430979 197.1936161977696 855.6140388333977 220.0554052105873 918.947372166731 280.0554052105873" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M768.6310328381275 453.33012851325435 C831.9643661714608 396.66346184658767 855.0546685744388 376.0037175912916 918.3880019077721 319.3370509246249" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.47451049344014 499.9011436472 C349.4745104934401 474.9011436472 416.60956782760945 460.914673369248 536.6095678276095 435.914673369248" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M205.0 120.0 C205.0 188.33333333333331 205.0 202.66666666666669 205.0 271.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M385.0 120.0 C385.0 188.33333333333331 385.0 202.66666666666669 385.0 271.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.47451049344014 100.09885635280003 C349.4745104934401 125.09885635280003 416.60956782760945 139.08532663075198 536.6095678276095 164.08532663075198" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M565.0 195.0 C565.0 281.6666666666667 565.0 314.3333333333333 565.0 401.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<rect x="104.02690465371347" y="225.1635427029621" width="23" height="26" rx="3" fill="white" />
+<text x="115.53" y="238.16" font-size="20" style="fill:#000">4</text>
+<rect x="104.78650000000002" y="268.0" width="23" height="26" rx="3" fill="white" />
+<text x="116.29" y="281.00" font-size="20" style="fill:#000">8</text>
+<rect x="104.02690465371347" y="348.83645729703795" width="23" height="26" rx="3" fill="white" />
+<text x="115.53" y="361.84" font-size="20" style="fill:#000">9</text>
+<rect x="255.0625" y="114.0" width="23" height="26" rx="3" fill="white" />
+<text x="266.56" y="127.00" font-size="20" style="fill:#000">3</text>
+<rect x="275.4564843804963" y="142.1032183222319" width="34" height="26" rx="3" fill="white" />
+<text x="292.46" y="155.10" font-size="20" style="fill:#000">13</text>
+<rect x="239.4564843804963" y="188.89678167776805" width="34" height="26" rx="3" fill="white" />
+<text x="256.46" y="201.90" font-size="20" style="fill:#000">10</text>
+<rect x="276.53650000000005" y="268.0" width="23" height="26" rx="3" fill="white" />
+<text x="288.04" y="281.00" font-size="20" style="fill:#000">4</text>
+<rect x="275.8436850892526" y="348.78030801831545" width="23" height="26" rx="3" fill="white" />
+<text x="287.34" y="361.78" font-size="20" style="fill:#000">5</text>
+<rect x="275.8436850892526" y="430.21969198168466" width="23" height="26" rx="3" fill="white" />
+<text x="287.34" y="443.22" font-size="20" style="fill:#000">2</text>
+<rect x="271.03650000000005" y="511.0" width="34" height="26" rx="3" fill="white" />
+<text x="288.04" y="524.00" font-size="20" style="fill:#000">10</text>
+<rect x="456.3798461538463" y="84.53326923076924" width="23" height="26" rx="3" fill="white" />
+<text x="467.88" y="97.53" font-size="20" style="fill:#000">3</text>
+<rect x="487.6428303772065" y="241.93248986868986" width="23" height="26" rx="3" fill="white" />
+<text x="499.14" y="254.93" font-size="20" style="fill:#000">7</text>
+<rect x="462.1063348377641" y="187.0343137282815" width="34" height="26" rx="3" fill="white" />
+<text x="479.11" y="200.03" font-size="20" style="fill:#000">12</text>
+<rect x="456.1509482486364" y="314.6923515129041" width="23" height="26" rx="3" fill="white" />
+<text x="467.65" y="327.69" font-size="20" style="fill:#000">8</text>
+<rect x="450.8798461538463" y="489.4667307692308" width="34" height="26" rx="3" fill="white" />
+<text x="467.88" y="502.47" font-size="20" style="fill:#000">12</text>
+<rect x="627.6965634824779" y="155.94687473446535" width="23" height="26" rx="3" fill="white" />
+<text x="639.20" y="168.95" font-size="20" style="fill:#000">9</text>
+<rect x="664.5815093443618" y="297.86190704491116" width="34" height="26" rx="3" fill="white" />
+<text x="681.58" y="310.86" font-size="20" style="fill:#000">14</text>
+<rect x="634.1565502440286" y="232.68361851000628" width="23" height="26" rx="3" fill="white" />
+<text x="645.66" y="245.68" font-size="20" style="fill:#000">9</text>
+<rect x="638.7405039479183" y="416.43037923198244" width="23" height="26" rx="3" fill="white" />
+<text x="650.24" y="429.43" font-size="20" style="fill:#000">2</text>
+<rect x="825.4784026407742" y="157.40059197547038" width="23" height="26" rx="3" fill="white" />
+<text x="836.98" y="170.40" font-size="20" style="fill:#000">7</text>
+<rect x="806.7925588734998" y="358.975078902658" width="34" height="26" rx="3" fill="white" />
+<text x="823.79" y="371.98" font-size="20" style="fill:#000">14</text>
+<rect x="380.090384696254" y="432.98116985494704" width="34" height="26" rx="3" fill="white" />
+<text x="397.09" y="445.98" font-size="20" style="fill:#000">14</text>
+<rect x="175.50000000000003" y="157.28650000000002" width="23" height="26" rx="3" fill="white" />
+<text x="187.00" y="170.29" font-size="20" style="fill:#000">8</text>
+<rect x="332.00000000000006" y="195.28650000000002" width="34" height="26" rx="3" fill="white" />
+<text x="349.00" y="208.29" font-size="20" style="fill:#000">15</text>
+<rect x="357.4936936247957" y="135.1653528384991" width="23" height="26" rx="3" fill="white" />
+<text x="368.99" y="148.17" font-size="20" style="fill:#000">4</text>
+<rect x="512.0000000000001" y="257.03650000000005" width="34" height="26" rx="3" fill="white" />
+<text x="529.00" y="270.04" font-size="20" style="fill:#000">13</text>
+<circle cx="40" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="40" y="300">s</text>
+<circle cx="205" cy="95" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="95">a</text>
+<circle cx="205" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="300">b</text>
+<circle cx="205" cy="505" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="505">c</text>
+<circle cx="385" cy="95" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="95">d</text>
+<circle cx="385" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="300">e</text>
+<circle cx="385" cy="505" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="505">f</text>
+<circle cx="565" cy="170" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="565" y="170">g</text>
+<circle cx="565" cy="430" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="565" y="430">h</text>
+<circle cx="750" cy="120" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="750" y="120">i</text>
+<circle cx="750" cy="470" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="750" y="470">j</text>
+<circle cx="940" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="940" y="300">t</text>
+</g>
+<g transform="translate(1070 35)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Round 1</text>
+<text x="265.00" y="605.00" font-size="20" style="fill:#c64665">P1: +4</text>
+<text x="410.00" y="605.00" font-size="20" style="fill:#327bb5">P2: +3</text>
+<text x="555.00" y="605.00" font-size="20" style="fill:#b17a19">P3: +2</text>
+<path d="M90.0 300.0 C167.0 300.0 175.5 190.0 248.5 190.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M90.0 300.0 C167.0 300.0 175.5 300.0 248.5 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M90.0 297.5 C167.0 297.5 175.5 407.5 248.5 407.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M90.0 302.5 C167.0 302.5 175.5 412.5 248.5 412.5" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M302.5 190.0 C379.5 190.0 388.0 190.0 461.0 190.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 190.0 C379.5 190.0 388.0 300.0 461.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 190.0 C379.5 190.0 388.0 80.0 461.0 80.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M302.5 300.0 C379.5 300.0 388.0 190.0 461.0 190.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 300.0 C379.5 300.0 388.0 300.0 461.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 300.0 C379.5 300.0 388.0 410.0 461.0 410.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 410.0 C379.5 410.0 388.0 300.0 461.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 410.0 C379.5 410.0 388.0 410.0 461.0 410.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 407.5 C379.5 407.5 388.0 517.5 461.0 517.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M302.5 412.5 C379.5 412.5 388.0 522.5 461.0 522.5" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M515.0 80.0 C592.0 80.0 600.5 245.0 673.5 245.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M515.0 80.0 C592.0 80.0 600.5 355.0 673.5 355.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M515.0 520.0 C592.0 520.0 600.5 245.0 673.5 245.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M515.0 520.0 C592.0 520.0 600.5 355.0 673.5 355.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M727.5 242.5 C804.5 242.5 813.0 297.5 886.0 297.5" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M727.5 247.5 C804.5 247.5 813.0 302.5 886.0 302.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M727.5 355.0 C804.5 355.0 813.0 300.0 886.0 300.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<rect x="181.265625" y="162.1875" width="45" height="26" rx="3" fill="white" />
+<text x="203.77" y="175.19" font-size="20" style="fill:#000">4→0</text>
+<rect x="165.514125" y="268.0" width="23" height="26" rx="3" fill="white" />
+<text x="177.01" y="281.00" font-size="20" style="fill:#000">8</text>
+<rect x="181.265625" y="411.8125" width="45" height="26" rx="3" fill="white" />
+<text x="203.77" y="424.81" font-size="20" style="fill:#000">9→4</text>
+<rect x="378.01412500000004" y="158.00000000000003" width="23" height="26" rx="3" fill="white" />
+<text x="389.51" y="171.00" font-size="20" style="fill:#000">3</text>
+<rect x="321.19745600000005" y="218.40896000000004" width="34" height="26" rx="3" fill="white" />
+<text x="338.20" y="231.41" font-size="20" style="fill:#000">13</text>
+<rect x="354.45587500000005" y="85.22250000000003" width="45" height="26" rx="3" fill="white" />
+<text x="376.96" y="98.22" font-size="20" style="fill:#000">4→0</text>
+<rect x="321.19745600000005" y="245.59104000000002" width="34" height="26" rx="3" fill="white" />
+<text x="338.20" y="258.59" font-size="20" style="fill:#000">10</text>
+<rect x="370.378625" y="268.00000000000006" width="23" height="26" rx="3" fill="white" />
+<text x="381.88" y="281.00" font-size="20" style="fill:#000">4</text>
+<rect x="337.984375" y="336.1875" width="23" height="26" rx="3" fill="white" />
+<text x="349.48" y="349.19" font-size="20" style="fill:#000">5</text>
+<rect x="404.765625" y="336.1875" width="23" height="26" rx="3" fill="white" />
+<text x="416.27" y="349.19" font-size="20" style="fill:#000">2</text>
+<rect x="372.51412500000004" y="416.0" width="34" height="26" rx="3" fill="white" />
+<text x="389.51" y="429.00" font-size="20" style="fill:#000">10</text>
+<rect x="388.265625" y="521.8125" width="56" height="26" rx="3" fill="white" />
+<text x="416.27" y="534.81" font-size="20" style="fill:#000">14→9</text>
+<rect x="584.9558750000001" y="105.16625000000002" width="45" height="26" rx="3" fill="white" />
+<text x="607.46" y="118.17" font-size="20" style="fill:#000">9→5</text>
+<rect x="554.4558750000001" y="202.94375000000002" width="34" height="26" rx="3" fill="white" />
+<text x="571.46" y="215.94" font-size="20" style="fill:#000">14</text>
+<rect x="548.9558750000001" y="358.05625000000003" width="45" height="26" rx="3" fill="white" />
+<text x="571.46" y="371.06" font-size="20" style="fill:#000">9→6</text>
+<rect x="528.1974560000001" y="524.88656" width="45" height="26" rx="3" fill="white" />
+<text x="550.70" y="537.89" font-size="20" style="fill:#000">2→0</text>
+<rect x="779.4558750000001" y="223.38875000000002" width="45" height="26" rx="3" fill="white" />
+<text x="801.96" y="236.39" font-size="20" style="fill:#000">7→0</text>
+<rect x="755.3786249999999" y="358.50375" width="67" height="26" rx="3" fill="white" />
+<text x="788.88" y="371.50" font-size="20" style="fill:#000">14→12</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="277.5" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="190.0">a</text>
+<circle cx="277.5" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="300.0">b</text>
+<circle cx="277.5" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="410.0">c</text>
+<circle cx="490.0" cy="80.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="80.0">g</text>
+<circle cx="490.0" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="190.0">d</text>
+<circle cx="490.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="300.0">e</text>
+<circle cx="490.0" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="410.0">f</text>
+<circle cx="490.0" cy="520.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="520.0">h</text>
+<circle cx="702.5" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="702.5" y="245.0">i</text>
+<circle cx="702.5" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="702.5" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(30 685)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Residual graph 1</text>
+<path d="M90.0 300.0 C160.83333333333331 300.0 177.66666666666669 300.0 248.5 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M87.20176455881742 311.4926781245643 C158.03509789215076 348.159344791231 180.91261977843845 360.00182670883873 251.7459531117718 396.6684933755054" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 190.0 C373.3333333333333 190.0 390.1666666666667 190.0 461.0 190.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M299.70176455881744 201.49267812456432 C370.53509789215076 238.15934479123098 393.41261977843845 250.00182670883876 464.24595311177177 286.6684933755054" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M299.70176455881744 288.5073218754357 C370.53509789215076 251.84065520876905 393.41261977843845 239.99817329116127 464.24595311177177 203.3315066244946" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 300.0 C373.3333333333333 300.0 390.1666666666667 300.0 461.0 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M299.70176455881744 311.4926781245643 C370.53509789215076 348.159344791231 393.41261977843845 360.00182670883873 464.24595311177177 396.6684933755054" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M299.70176455881744 398.5073218754357 C370.53509789215076 361.840655208769 393.41261977843845 349.99817329116127 464.24595311177177 313.3315066244946" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M302.5 410.0 C373.3333333333333 410.0 390.1666666666667 410.0 461.0 410.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 165.0 C490.0 128.33333333333334 490.0 145.66666666666666 490.0 109.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 215.0 C490.0 325.0 490.0 381.0 490.0 491.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 275.0 C490.0 201.66666666666669 490.0 182.33333333333331 490.0 109.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 325.0 C490.0 398.3333333333333 490.0 417.6666666666667 490.0 491.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 435.0 C490.0 471.6666666666667 490.0 454.3333333333333 490.0 491.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M509.74630785393464 95.33242727481984 C580.579641187268 150.33242727481985 608.7609495561024 172.214384361209 679.5942828894358 227.214384361209" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M505.28618752689414 99.78212503480418 C576.1195208602275 191.44879170147084 613.9346891354694 240.3860682929605 684.7680224688028 332.0527349596272" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M505.28618752689414 500.21787496519585 C576.1195208602275 408.55120829852916 613.9346891354694 359.6139317070395 684.7680224688028 267.9472650403728" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M726.7024823204868 348.7358281052858 C797.5358156538201 330.4024947719525 816.091787174902 325.5997727312018 886.9251205082354 307.2664393978685" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M299.70176455881744 421.4926781245643 C370.53509789215076 458.159344791231 393.41261977843845 470.00182670883873 464.24595311177177 506.6684933755054" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M277.5 215.0 C277.5 251.66666666666666 277.5 234.33333333333334 277.5 271.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 215.0 C490.0 251.66666666666666 490.0 234.33333333333334 490.0 271.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M490.0 105.0 C490.0 251.66666666666666 490.0 344.33333333333337 490.0 491.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M255.88331723661494 211.32414186566888 C185.0499839032816 247.99080853233554 162.1724620169939 259.8332904499433 91.33912868366056 296.49995711660995" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M247.60858898692865 404.66112861667966 C176.7752556535953 367.99446195001303 153.8977337673076 356.1519800324053 83.06440043397427 319.48531336573853" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M674.0746090705006 234.32305518862546 C603.2412757371673 179.32305518862546 575.0599673683328 157.4410981022363 504.2266340349995 102.44109810223631" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M691.8895874813322 273.4502925500547 C621.0562541479989 365.1169592167214 583.2410858727569 414.05423580821105 512.4077525394237 505.72090247487773" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M685.113956708371 379.89428646620746 C614.2806233750376 434.89428646620746 586.0993150062031 456.7762435525966 515.2659816728698 511.7762435525966" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M884.6700186261382 301.4464542375067 C813.8366852928049 283.1131209041734 795.280713771723 278.3103988634228 724.4473804383896 259.9770655300894" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M889.1802223903326 315.97933303324373 C818.3468890569992 334.31266636657705 799.7909175359173 339.1153884073277 728.9575842025839 357.44872174066103" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M460.1085889869286 514.6611286166797 C389.2752556535953 477.99446195001303 366.3977337673076 466.1519800324053 295.5644004339743 429.48531336573853" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M468.3833172366149 101.32414186566886 C397.5499839032816 137.99080853233554 374.6724620169939 149.8332904499433 303.8391286836606 186.49995711660995" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<rect x="151.16150000000005" y="306.0" width="23" height="26" rx="3" fill="white" />
+<text x="162.66" y="319.00" font-size="20" style="fill:#000">8</text>
+<rect x="165.01416192962796" y="376.7249779400427" width="23" height="26" rx="3" fill="white" />
+<text x="176.51" y="389.72" font-size="20" style="fill:#000">4</text>
+<rect x="363.66150000000005" y="196.00000000000003" width="23" height="26" rx="3" fill="white" />
+<text x="375.16" y="209.00" font-size="20" style="fill:#000">3</text>
+<rect x="372.01416192962796" y="266.7249779400427" width="34" height="26" rx="3" fill="white" />
+<text x="389.01" y="279.72" font-size="20" style="fill:#000">13</text>
+<rect x="310.3336690202166" y="232.88610074247617" width="34" height="26" rx="3" fill="white" />
+<text x="327.33" y="245.89" font-size="20" style="fill:#000">10</text>
+<rect x="363.66150000000005" y="306.0" width="23" height="26" rx="3" fill="white" />
+<text x="375.16" y="319.00" font-size="20" style="fill:#000">4</text>
+<rect x="363.43355574096137" y="369.43619356002705" width="23" height="26" rx="3" fill="white" />
+<text x="374.93" y="382.44" font-size="20" style="fill:#000">5</text>
+<rect x="315.8336690202166" y="342.8861007424761" width="23" height="26" rx="3" fill="white" />
+<text x="327.33" y="355.89" font-size="20" style="fill:#000">2</text>
+<rect x="358.16150000000005" y="416.00000000000006" width="34" height="26" rx="3" fill="white" />
+<text x="375.16" y="429.00" font-size="20" style="fill:#000">10</text>
+<rect x="460.5" y="113.9375" width="23" height="26" rx="3" fill="white" />
+<text x="472.00" y="126.94" font-size="20" style="fill:#000">3</text>
+<rect x="460.50000000000006" y="346.53650000000005" width="23" height="26" rx="3" fill="white" />
+<text x="472.00" y="359.54" font-size="20" style="fill:#000">7</text>
+<rect x="437.0" y="234.4375" width="34" height="26" rx="3" fill="white" />
+<text x="454.00" y="247.44" font-size="20" style="fill:#000">12</text>
+<rect x="496.5" y="339.5625" width="23" height="26" rx="3" fill="white" />
+<text x="508.00" y="352.56" font-size="20" style="fill:#000">8</text>
+<rect x="437.0" y="460.0625" width="34" height="26" rx="3" fill="white" />
+<text x="454.00" y="473.06" font-size="20" style="fill:#000">12</text>
+<rect x="575.7335342377817" y="110.49897952580685" width="23" height="26" rx="3" fill="white" />
+<text x="587.23" y="123.50" font-size="20" style="fill:#000">5</text>
+<rect x="551.8702128359408" y="211.36145190533517" width="34" height="26" rx="3" fill="white" />
+<text x="568.87" y="224.36" font-size="20" style="fill:#000">14</text>
+<rect x="575.3702128359408" y="349.6385480946649" width="23" height="26" rx="3" fill="white" />
+<text x="586.87" y="362.64" font-size="20" style="fill:#000">6</text>
+<rect x="783.096534209827" y="348.7397205574567" width="34" height="26" rx="3" fill="white" />
+<text x="800.10" y="361.74" font-size="20" style="fill:#000">12</text>
+<rect x="377.51416192962796" y="486.7249779400427" width="23" height="26" rx="3" fill="white" />
+<text x="389.01" y="499.72" font-size="20" style="fill:#000">9</text>
+<rect x="248.0" y="240.0625" width="23" height="26" rx="3" fill="white" />
+<text x="259.50" y="253.06" font-size="20" style="fill:#000">8</text>
+<rect x="509.0" y="240.0625" width="34" height="26" rx="3" fill="white" />
+<text x="526.00" y="253.06" font-size="20" style="fill:#000">15</text>
+<rect x="527.0" y="286.03650000000005" width="34" height="26" rx="3" fill="white" />
+<text x="544.00" y="299.04" font-size="20" style="fill:#000">13</text>
+<rect x="169.1515260544711" y="205.2676573011316" width="23" height="26" rx="3" fill="white" />
+<text x="180.65" y="218.27" font-size="20" style="fill:#d22f35">4</text>
+<rect x="175.24513886213373" y="328.155342669727" width="23" height="26" rx="3" fill="white" />
+<text x="186.75" y="341.16" font-size="20" style="fill:#d22f35">5</text>
+<rect x="627.972892677864" y="226.45584010728408" width="23" height="26" rx="3" fill="white" />
+<text x="639.47" y="239.46" font-size="20" style="fill:#d22f35">4</text>
+<rect x="598.8055621722857" y="398.02961942058573" width="23" height="26" rx="3" fill="white" />
+<text x="610.31" y="411.03" font-size="20" style="fill:#d22f35">3</text>
+<rect x="596.1267303245241" y="459.06083871719454" width="23" height="26" rx="3" fill="white" />
+<text x="607.63" y="472.06" font-size="20" style="fill:#d22f35">2</text>
+<rect x="799.7759667367982" y="288.45034668967753" width="23" height="26" rx="3" fill="white" />
+<text x="811.28" y="301.45" font-size="20" style="fill:#d22f35">7</text>
+<rect x="818.0343690809343" y="337.4170833015586" width="23" height="26" rx="3" fill="white" />
+<text x="829.53" y="350.42" font-size="20" style="fill:#d22f35">2</text>
+<rect x="344.92785055876914" y="479.9910993126912" width="23" height="26" rx="3" fill="white" />
+<text x="356.43" y="492.99" font-size="20" style="fill:#d22f35">5</text>
+<rect x="381.65152605447116" y="95.26765730113158" width="23" height="26" rx="3" fill="white" />
+<text x="393.15" y="108.27" font-size="20" style="fill:#d22f35">4</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="277.5" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="190.0">a</text>
+<circle cx="277.5" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="300.0">b</text>
+<circle cx="277.5" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="277.5" y="410.0">c</text>
+<circle cx="490.0" cy="80.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="80.0">g</text>
+<circle cx="490.0" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="190.0">d</text>
+<circle cx="490.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="300.0">e</text>
+<circle cx="490.0" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="410.0">f</text>
+<circle cx="490.0" cy="520.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="520.0">h</text>
+<circle cx="702.5" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="702.5" y="245.0">i</text>
+<circle cx="702.5" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="702.5" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(1070 685)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Round 2</text>
+<text x="265.00" y="605.00" font-size="20" style="fill:#c64665">P1: +3</text>
+<text x="410.00" y="605.00" font-size="20" style="fill:#327bb5">P2: +4</text>
+<text x="555.00" y="605.00" font-size="20" style="fill:#b17a19">P3: +2</text>
+<path d="M90.0 297.5 C146.6 297.5 153.4 242.5 206.0 242.5" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M90.0 302.5 C146.6 302.5 153.4 247.5 206.0 247.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M90.0 300.0 C146.6 300.0 153.4 355.0 206.0 355.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M260.0 245.0 C316.6 245.0 323.4 135.0 376.0 135.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M260.0 245.0 C316.6 245.0 323.4 245.0 376.0 245.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M260.0 245.0 C316.6 245.0 323.4 355.0 376.0 355.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M260.0 355.0 C316.6 355.0 323.4 245.0 376.0 245.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M260.0 355.0 C316.6 355.0 323.4 355.0 376.0 355.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M260.0 355.0 C316.6 355.0 323.4 465.0 376.0 465.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M430.0 135.0 C486.6 135.0 493.4 245.0 546.0 245.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M430.0 242.5 C486.6 242.5 493.4 242.5 546.0 242.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M430.0 247.5 C486.6 247.5 493.4 247.5 546.0 247.5" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M600.0 240.0 C656.6 240.0 663.4 350.0 716.0 350.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M600.0 245.0 C656.6 245.0 663.4 355.0 716.0 355.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M600.0 250.0 C656.6 250.0 663.4 360.0 716.0 360.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<path d="M600.0 245.0 C656.6 245.0 663.4 245.0 716.0 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M430.0 465.0 C486.6 465.0 493.4 355.0 546.0 355.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M770.0 350.0 C826.6 350.0 833.4 295.0 886.0 295.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M770.0 355.0 C826.6 355.0 833.4 300.0 886.0 300.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M770.0 360.0 C826.6 360.0 833.4 305.0 886.0 305.0" fill="none" stroke="#b17a19" stroke-width="2.6" marker-end="url(#a4)" />
+<rect x="141.00264999999996" y="215.49624999999997" width="45" height="26" rx="3" fill="white" />
+<text x="163.50" y="228.50" font-size="20" style="fill:#000">8→1</text>
+<rect x="141.00264999999996" y="358.50374999999997" width="45" height="26" rx="3" fill="white" />
+<text x="163.50" y="371.50" font-size="20" style="fill:#000">4→2</text>
+<rect x="305.50264999999996" y="107.99249999999998" width="56" height="26" rx="3" fill="white" />
+<text x="333.50" y="120.99" font-size="20" style="fill:#000">10→7</text>
+<rect x="311.00264999999996" y="212.99999999999994" width="45" height="26" rx="3" fill="white" />
+<text x="333.50" y="226.00" font-size="20" style="fill:#000">4→0</text>
+<rect x="274.7809792" y="273.40896000000004" width="23" height="26" rx="3" fill="white" />
+<text x="286.28" y="286.41" font-size="20" style="fill:#000">5</text>
+<rect x="339.14374999999995" y="281.1875" width="45" height="26" rx="3" fill="white" />
+<text x="361.64" y="294.19" font-size="20" style="fill:#000">2→0</text>
+<rect x="316.50264999999996" y="360.99999999999994" width="34" height="26" rx="3" fill="white" />
+<text x="333.50" y="374.00" font-size="20" style="fill:#000">10</text>
+<rect x="332.14374999999995" y="466.8125" width="23" height="26" rx="3" fill="white" />
+<text x="343.64" y="479.81" font-size="20" style="fill:#000">9</text>
+<rect x="452.72734999999994" y="107.9925" width="45" height="26" rx="3" fill="white" />
+<text x="475.23" y="120.99" font-size="20" style="fill:#000">3→0</text>
+<rect x="456.8680500000001" y="251.0" width="56" height="26" rx="3" fill="white" />
+<text x="484.87" y="264.00" font-size="20" style="fill:#000">12→6</text>
+<rect x="645.5026499999999" y="356.00749999999994" width="56" height="26" rx="3" fill="white" />
+<text x="673.50" y="369.01" font-size="20" style="fill:#000">14→5</text>
+<rect x="643.36805" y="213.00000000000003" width="23" height="26" rx="3" fill="white" />
+<text x="654.87" y="226.00" font-size="20" style="fill:#000">4</text>
+<rect x="453.10625" y="466.8125" width="23" height="26" rx="3" fill="white" />
+<text x="464.61" y="479.81" font-size="20" style="fill:#000">6</text>
+<rect x="787.22735" y="358.50375" width="56" height="26" rx="3" fill="white" />
+<text x="815.23" y="371.50" font-size="20" style="fill:#000">12→3</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="235.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="235.0" y="245.0">b</text>
+<circle cx="235.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="235.0" y="355.0">c</text>
+<circle cx="405.0" cy="135.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="135.0">d</text>
+<circle cx="405.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="245.0">e</text>
+<circle cx="405.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="355.0">f</text>
+<circle cx="405.0" cy="465.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="465.0">h</text>
+<circle cx="575.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="575.0" y="245.0">g</text>
+<circle cx="575.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="575.0" y="355.0">i</text>
+<circle cx="745.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="745.0" y="245.0">a</text>
+<circle cx="745.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="745.0" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(30 1335)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Residual graph 2</text>
+<path d="M88.78611296386029 292.30449286463346 C145.45277963052695 273.97115953130015 150.7414422952554 272.26012161035857 207.40810896192207 253.92678827702522" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M88.78611296386029 307.69550713536654 C145.45277963052695 326.02884046869985 150.7414422952554 327.7398783896415 207.40810896192207 346.0732117229748" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M721.2138870361397 237.30449286463343 C607.8805537028063 200.63782619796677 545.9252243714112 180.59345494369188 432.5918910380779 143.92678827702522" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M720.0 245.0 C606.6666666666666 245.0 547.3333333333334 245.0 434.0 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M255.98925392880378 231.41871804606814 C312.65592059547043 194.75205137940148 323.98579877592095 187.4209537332276 380.65246544258764 150.75428706656095" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M255.98925392880378 258.58128195393186 C312.65592059547043 295.24794862059855 323.98579877592095 302.57904626677237 380.65246544258764 339.24571293343905" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M260.0 355.0 C316.6666666666667 355.0 319.3333333333333 355.0 376.0 355.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.0 160.0 C405.0 270.0 405.0 326.0 405.0 436.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M430.0 245.0 C486.6666666666667 245.0 489.3333333333333 245.0 546.0 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.0 270.0 C405.0 343.3333333333333 405.0 362.6666666666667 405.0 436.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.0 380.0 C405.0 416.6666666666667 405.0 399.3333333333333 405.0 436.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M575.0 270.0 C575.0 306.6666666666667 575.0 289.3333333333333 575.0 326.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M595.9892539288038 258.58128195393186 C652.6559205954704 295.24794862059855 663.985798775921 302.57904626677237 720.6524654425876 339.24571293343905" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M425.9892539288038 451.41871804606814 C482.6559205954705 414.75205137940145 493.98579877592095 407.42095373322763 550.6524654425876 370.75428706656095" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M768.7861129638603 347.30449286463346 C825.452779630527 328.97115953130015 830.7414422952554 327.2601216103585 887.408108961922 308.9267882770252" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M255.98925392880378 368.58128195393186 C312.65592059547043 405.24794862059855 323.98579877592095 412.57904626677237 380.65246544258764 449.24571293343905" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M720.0 245.0 C550.0 180.0 434.0 180.0 264.0 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M405.0 160.0 C405.0 196.66666666666666 405.0 179.33333333333334 405.0 216.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M559.7138124731059 264.78212503480415 C503.04714580643923 338.11545836813747 479.39864419786386 368.71940162629386 422.7319775311972 442.0527349596272" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M716.8199671679346 256.3086581690187 C490.153300501268 209.64199150235203 317.31086299420815 223.62189453601133 90.64419632754148 306.95522786934464" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M210.17849153065404 262.48978894401495 C153.51182486398739 280.82312227734826 148.22316219925892 282.53416019828984 91.55649553259225 300.86749353162315" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M204.6377263931901 354.6362123899645 C147.97105972652344 336.3028790566312 142.68239706179497 334.59184113568955 86.01573039512833 316.25850780235623" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M385.5417269460031 158.3104184809303 C328.8750602793364 194.97708514759697 317.5451820988859 202.30818279377084 260.8785154322193 238.9748494604375" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M376.0 254.0 C319.3333333333333 254.0 316.6666666666667 254.0 260.0 254.0" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M385.5417269460031 268.3104184809303 C328.8750602793364 304.977085147597 317.5451820988859 312.3081827937708 260.8785154322193 348.9748494604375" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M545.7632039391722 236.8018443478084 C489.0965372725055 200.13517768114176 477.766659092055 192.80408003496788 421.09999242538834 156.13741336830122" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M546.0 254.0 C489.3333333333333 254.0 486.6666666666667 254.0 430.0 254.0" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M566.0 326.0 C566.0 289.3333333333333 566.0 306.6666666666667 566.0 270.0" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M715.7632039391722 346.8018443478084 C659.0965372725055 310.1351776811417 647.766659092055 302.8040800349679 591.0999924253883 266.1374133683012" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M555.5417269460031 378.3104184809303 C498.8750602793364 414.977085147597 487.54518209888596 422.3081827937708 430.8785154322193 458.9748494604375" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M720.178491530654 372.4897889440149 C606.8451581973206 409.1564556106816 544.8898288659256 429.20082686495647 431.55649553259224 465.86749353162315" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M887.809345031841 313.5154830621228 C774.4760116985076 331.84881639545614 714.4497178969842 341.5589521574673 601.1163845636509 359.8922854908006" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M890.178491530654 317.4897889440149 C833.5118248639874 335.8231222773482 828.2231621992589 337.53416019828984 771.5564955325923 355.86749353162315" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M375.7632039391722 456.8018443478084 C319.0965372725055 420.1351776811417 307.76665909205497 412.8040800349679 251.0999924253883 376.1374133683012" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M604.0 236.0 C660.6666666666666 236.0 663.3333333333334 236.0 720.0 236.0" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<rect x="131.9376167620361" y="229.6231239887531" width="23" height="26" rx="3" fill="white" />
+<text x="143.44" y="242.62" font-size="20" style="fill:#000">1</text>
+<rect x="131.9376167620361" y="344.37687601124696" width="23" height="26" rx="3" fill="white" />
+<text x="143.44" y="357.38" font-size="20" style="fill:#000">2</text>
+<rect x="578.562383237964" y="149.8731239887531" width="23" height="26" rx="3" fill="white" />
+<text x="590.06" y="162.87" font-size="20" style="fill:#000">3</text>
+<rect x="493.5625" y="264.0" width="34" height="26" rx="3" fill="white" />
+<text x="510.56" y="277.00" font-size="20" style="fill:#000">13</text>
+<rect x="301.7097846250404" y="149.39366877203273" width="23" height="26" rx="3" fill="white" />
+<text x="313.21" y="162.39" font-size="20" style="fill:#000">7</text>
+<rect x="311.9319347463511" y="257.2206636594036" width="23" height="26" rx="3" fill="white" />
+<text x="323.43" y="270.22" font-size="20" style="fill:#000">5</text>
+<rect x="296.53650000000005" y="361.00000000000006" width="34" height="26" rx="3" fill="white" />
+<text x="313.54" y="374.00" font-size="20" style="fill:#000">10</text>
+<rect x="375.50000000000006" y="291.53650000000005" width="23" height="26" rx="3" fill="white" />
+<text x="387.00" y="304.54" font-size="20" style="fill:#000">7</text>
+<rect x="462.7855" y="264.0" width="23" height="26" rx="3" fill="white" />
+<text x="474.29" y="277.00" font-size="20" style="fill:#000">6</text>
+<rect x="411.5" y="284.5625" width="23" height="26" rx="3" fill="white" />
+<text x="423.00" y="297.56" font-size="20" style="fill:#000">8</text>
+<rect x="352.00000000000006" y="401.18105600000007" width="34" height="26" rx="3" fill="white" />
+<text x="369.00" y="414.18" font-size="20" style="fill:#000">12</text>
+<rect x="581.5" y="295.0625" width="23" height="26" rx="3" fill="white" />
+<text x="593.00" y="308.06" font-size="20" style="fill:#000">5</text>
+<rect x="641.7097846250404" y="250.60633122796736" width="23" height="26" rx="3" fill="white" />
+<text x="653.21" y="263.61" font-size="20" style="fill:#000">5</text>
+<rect x="503.73633864355884" y="348.67060440710895" width="23" height="26" rx="3" fill="white" />
+<text x="515.24" y="361.67" font-size="20" style="fill:#000">6</text>
+<rect x="811.9376167620362" y="284.6231239887531" width="23" height="26" rx="3" fill="white" />
+<text x="823.44" y="297.62" font-size="20" style="fill:#000">3</text>
+<rect x="301.7097846250404" y="437.6063312279674" width="23" height="26" rx="3" fill="white" />
+<text x="313.21" y="450.61" font-size="20" style="fill:#000">9</text>
+<rect x="371.5625" y="176.4375" width="23" height="26" rx="3" fill="white" />
+<text x="383.06" y="189.44" font-size="20" style="fill:#000">8</text>
+<rect x="334.00000000000006" y="130.18105600000004" width="34" height="26" rx="3" fill="white" />
+<text x="351.00" y="143.18" font-size="20" style="fill:#000">15</text>
+<rect x="462.25478716405934" y="313.6114519053352" width="34" height="26" rx="3" fill="white" />
+<text x="479.25" y="326.61" font-size="20" style="fill:#000">13</text>
+<rect x="196.9402870621454" y="287.6456028834575" width="23" height="26" rx="3" fill="white" />
+<text x="208.44" y="300.65" font-size="20" style="fill:#d22f35">4</text>
+<rect x="153.65424415820013" y="296.0564572115735" width="23" height="26" rx="3" fill="white" />
+<text x="165.15" y="309.06" font-size="20" style="fill:#d22f35">7</text>
+<rect x="158.66553951849295" y="362.48344604815065" width="23" height="26" rx="3" fill="white" />
+<text x="170.17" y="375.48" font-size="20" style="fill:#d22f35">7</text>
+<rect x="276.1005878922623" y="163.68409669217436" width="23" height="26" rx="3" fill="white" />
+<text x="287.60" y="176.68" font-size="20" style="fill:#d22f35">3</text>
+<rect x="264.5625" y="286.0" width="23" height="26" rx="3" fill="white" />
+<text x="276.06" y="299.00" font-size="20" style="fill:#d22f35">4</text>
+<rect x="316.82119624976656" y="324.3354677549658" width="23" height="26" rx="3" fill="white" />
+<text x="328.32" y="337.34" font-size="20" style="fill:#d22f35">2</text>
+<rect x="477.0426732429357" y="128.776795073773" width="23" height="26" rx="3" fill="white" />
+<text x="488.54" y="141.78" font-size="20" style="fill:#d22f35">3</text>
+<rect x="472.03650000000005" y="209.0" width="23" height="26" rx="3" fill="white" />
+<text x="483.54" y="222.00" font-size="20" style="fill:#d22f35">6</text>
+<rect x="536.5" y="295.0625" width="23" height="26" rx="3" fill="white" />
+<text x="548.00" y="308.06" font-size="20" style="fill:#d22f35">4</text>
+<rect x="626.3263522693969" y="315.37211679677733" width="23" height="26" rx="3" fill="white" />
+<text x="637.83" y="328.37" font-size="20" style="fill:#d22f35">9</text>
+<rect x="466.10487527622786" y="460.74014603196133" width="23" height="26" rx="3" fill="white" />
+<text x="477.60" y="473.74" font-size="20" style="fill:#d22f35">3</text>
+<rect x="577.5269877324783" y="433.9211578198953" width="23" height="26" rx="3" fill="white" />
+<text x="589.03" y="446.92" font-size="20" style="fill:#d22f35">2</text>
+<rect x="646.256713630258" y="356.72987931826117" width="23" height="26" rx="3" fill="white" />
+<text x="657.76" y="369.73" font-size="20" style="fill:#d22f35">7</text>
+<rect x="818.5269877324783" y="354.17115781989537" width="34" height="26" rx="3" fill="white" />
+<text x="835.53" y="367.17" font-size="20" style="fill:#d22f35">11</text>
+<rect x="328.8470771401434" y="452.8855270072604" width="23" height="26" rx="3" fill="white" />
+<text x="340.35" y="465.89" font-size="20" style="fill:#d22f35">5</text>
+<rect x="674.4375" y="191.0" width="23" height="26" rx="3" fill="white" />
+<text x="685.94" y="204.00" font-size="20" style="fill:#d22f35">4</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="235.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="235.0" y="245.0">b</text>
+<circle cx="235.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="235.0" y="355.0">c</text>
+<circle cx="405.0" cy="135.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="135.0">d</text>
+<circle cx="405.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="245.0">e</text>
+<circle cx="405.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="355.0">f</text>
+<circle cx="405.0" cy="465.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="405.0" y="465.0">h</text>
+<circle cx="575.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="575.0" y="245.0">g</text>
+<circle cx="575.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="575.0" y="355.0">i</text>
+<circle cx="745.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="745.0" y="245.0">a</text>
+<circle cx="745.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="745.0" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(1070 1335)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Round 3</text>
+<text x="265.00" y="605.00" font-size="20" style="fill:#c64665">P1: +1</text>
+<text x="410.00" y="605.00" font-size="20" style="fill:#327bb5">P2: +2</text>
+<path d="M90.0 300.0 C133.0 300.0 138.66666666666666 245.0 177.66666666666666 245.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M90.0 300.0 C133.0 300.0 138.66666666666666 355.0 177.66666666666666 355.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M231.66666666666666 245.0 C274.66666666666663 245.0 280.3333333333333 190.0 319.3333333333333 190.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M231.66666666666666 245.0 C274.66666666666663 245.0 280.3333333333333 300.0 319.3333333333333 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M231.66666666666666 355.0 C274.66666666666663 355.0 280.3333333333333 300.0 319.3333333333333 300.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M231.66666666666666 355.0 C274.66666666666663 355.0 280.3333333333333 410.0 319.3333333333333 410.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M373.3333333333333 190.0 C416.3333333333333 190.0 422.0 245.0 461.0 245.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M515.0 245.0 C558.0 245.0 563.6666666666666 300.0 602.6666666666666 300.0" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M656.6666666666666 297.5 C699.6666666666666 297.5 705.3333333333334 352.5 744.3333333333334 352.5" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M656.6666666666666 302.5 C699.6666666666666 302.5 705.3333333333334 357.5 744.3333333333334 357.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M656.6666666666666 300.0 C699.6666666666666 300.0 705.3333333333334 245.0 744.3333333333334 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M373.3333333333333 410.0 C416.3333333333333 410.0 422.0 355.0 461.0 355.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M515.0 355.0 C558.0 355.0 563.6666666666666 300.0 602.6666666666666 300.0" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<path d="M798.3333333333334 352.5 C841.3333333333334 352.5 847.0 297.5 886.0 297.5" fill="none" stroke="#c64665" stroke-width="2.6" marker-end="url(#a2)" />
+<path d="M798.3333333333334 357.5 C841.3333333333334 357.5 847.0 302.5 886.0 302.5" fill="none" stroke="#327bb5" stroke-width="2.6" marker-end="url(#a3)" />
+<rect x="123.43683333333331" y="215.49624999999997" width="45" height="26" rx="3" fill="white" />
+<text x="145.94" y="228.50" font-size="20" style="fill:#000">1→0</text>
+<rect x="123.43683333333331" y="358.50374999999997" width="45" height="26" rx="3" fill="white" />
+<text x="145.94" y="371.50" font-size="20" style="fill:#000">2→0</text>
+<rect x="265.10349999999994" y="160.49625" width="45" height="26" rx="3" fill="white" />
+<text x="287.60" y="173.50" font-size="20" style="fill:#000">7→6</text>
+<rect x="261.9761666666667" y="287.38875" width="23" height="26" rx="3" fill="white" />
+<text x="273.48" y="300.39" font-size="20" style="fill:#000">5</text>
+<rect x="274.4761666666667" y="337.61125000000004" width="34" height="26" rx="3" fill="white" />
+<text x="291.48" y="350.61" font-size="20" style="fill:#000">10</text>
+<rect x="265.10349999999994" y="413.50374999999997" width="45" height="26" rx="3" fill="white" />
+<text x="287.60" y="426.50" font-size="20" style="fill:#000">9→7</text>
+<rect x="381.6428333333334" y="155.38875000000002" width="67" height="26" rx="3" fill="white" />
+<text x="415.14" y="168.39" font-size="20" style="fill:#000">15→14</text>
+<rect x="526.9598333333333" y="215.49624999999997" width="45" height="26" rx="3" fill="white" />
+<text x="549.46" y="228.50" font-size="20" style="fill:#000">6→5</text>
+<rect x="690.1034999999999" y="358.50374999999997" width="45" height="26" rx="3" fill="white" />
+<text x="712.60" y="371.50" font-size="20" style="fill:#000">5→2</text>
+<rect x="686.9761666666668" y="231.61125000000004" width="23" height="26" rx="3" fill="white" />
+<text x="698.48" y="244.61" font-size="20" style="fill:#000">4</text>
+<rect x="385.29316666666665" y="413.5037499999999" width="45" height="26" rx="3" fill="white" />
+<text x="407.79" y="426.50" font-size="20" style="fill:#000">6→4</text>
+<rect x="526.9598333333333" y="358.50375" width="45" height="26" rx="3" fill="white" />
+<text x="549.46" y="371.50" font-size="20" style="fill:#000">4→2</text>
+<rect x="810.2931666666667" y="358.50375" width="45" height="26" rx="3" fill="white" />
+<text x="832.79" y="371.50" font-size="20" style="fill:#000">3→0</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="206.66666666666666" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="206.66666666666666" y="245.0">b</text>
+<circle cx="206.66666666666666" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="206.66666666666666" y="355.0">c</text>
+<circle cx="348.3333333333333" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="190.0">d</text>
+<circle cx="348.3333333333333" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="300.0">f</text>
+<circle cx="348.3333333333333" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="410.0">h</text>
+<circle cx="490.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="245.0">e</text>
+<circle cx="490.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="355.0">i</text>
+<circle cx="631.6666666666666" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="631.6666666666666" y="300.0">g</text>
+<circle cx="773.3333333333334" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="773.3333333333334" y="245.0">a</text>
+<circle cx="773.3333333333334" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="773.3333333333334" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(30 1985)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Residual graph 3</text>
+<path d="M748.5400826028219 241.7914616701691 C606.8734159361552 158.45812833683576 518.7601708473933 147.0552377959372 377.0935041807266 193.72190446260385" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M748.3333333333334 245.0 C653.8888888888889 245.0 613.4444444444445 245.0 519.0 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.9719251584796 235.95207611494322 C277.1941473807018 217.61874278160988 274.07701126060806 218.8289250399992 321.2992334828303 200.49559170666586" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.9719251584796 254.04792388505678 C277.1941473807018 272.3812572183901 274.07701126060806 271.1710749600008 321.2992334828303 289.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.9719251584796 345.9520761149432 C277.1941473807018 327.6187427816099 274.07701126060806 328.8289250399992 321.2992334828303 310.4955917066659" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M348.3333333333333 215.0 C348.3333333333333 288.3333333333333 348.3333333333333 307.6666666666667 348.3333333333333 381.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M513.3052584918129 254.04792388505678 C560.527480714035 272.3812572183901 557.4103445939414 271.1710749600008 604.6325668161636 289.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M473.71444289025635 263.9678841631132 C426.4922206680341 318.9678841631132 414.44680180285815 332.9972543707887 367.2245795806359 387.9972543707887" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M348.3333333333333 325.0 C348.3333333333333 361.6666666666667 348.3333333333333 344.3333333333333 348.3333333333333 381.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M608.3614081748538 309.0479238850568 C561.1391859526316 327.3812572183901 564.2563220727252 326.1710749600008 517.034099850503 344.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M654.9719251584795 309.0479238850568 C702.1941473807018 327.3812572183901 699.0770112606081 326.1710749600008 746.2992334828303 344.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M371.63859182514625 400.9520761149432 C418.8608140473685 382.6187427816099 415.74367792727475 383.8289250399992 462.965900149497 365.4955917066659" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M229.9719251584796 364.0479238850568 C277.1941473807018 382.3812572183901 274.07701126060806 381.1710749600008 321.2992334828303 399.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M748.3333333333334 245.0 C559.4444444444445 180.0 424.55555555555554 180.0 235.66666666666666 245.0" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M371.63859182514625 199.04792388505678 C418.8608140473685 217.38125721839012 415.74367792727475 216.1710749600008 462.965900149497 234.50440829333414" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M608.3614081748536 309.0479238850568 C513.9169637304092 345.71459055172346 469.8118776282808 362.8377416266674 375.36743318383634 399.5044082933341" fill="none" stroke="#a8afb5" stroke-width="1.4" marker-end="url(#a0)" />
+<path d="M745.1170878410634 256.21799849883894 C509.00597672995235 209.5513318321723 326.7328132450131 223.70430687923817 90.62170213390198 307.0376402125715" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M182.8898194147841 263.8854847637185 C135.66759719256189 282.21881809705184 138.78473331265562 281.00863583866254 91.56251109043338 299.34196917199586" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M176.3753142175432 352.89430135038674 C129.15309199532098 334.5609680170534 132.2702281154147 335.7711502754427 85.0480058931925 317.4378169421094" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M324.5564860814507 208.88548476371852 C277.3342638592285 227.21881809705187 280.4513999793222 226.00863583866254 233.22917775710005 244.34196917199588" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M461.0 254.0 C366.55555555555554 254.0 326.1111111111111 254.0 231.66666666666666 254.0" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M466.2231527481174 263.8854847637185 C371.77870830367294 300.55215143038515 327.6736222015445 317.67530250532917 233.22917775710005 354.34196917199586" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M601.3753142175432 297.89430135038674 C506.9308697730987 261.2276346837201 462.8257836709703 244.1044836087761 368.3813392265258 207.43781694210944" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M601.3753142175432 297.89430135038674 C554.153091995321 279.5609680170534 557.2702281154146 280.7711502754427 510.04800589319245 262.4378169421094" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M513.7768472518826 336.1145152362815 C560.9990694741048 317.78118190294816 557.8819333540112 318.99136416133746 605.1041555762333 300.65803082800414" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M743.0419808842099 352.89430135038674 C695.8197586619876 334.5609680170534 698.9368947820814 335.7711502754427 651.7146725598591 317.4378169421094" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M466.2231527481174 373.8854847637185 C419.00093052589517 392.21881809705184 422.1180666459889 391.00863583866254 374.8958444237667 409.34196917199586" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M745.7282362846792 367.647474725588 C604.0615696180125 450.9808080589213 515.9483245292505 462.3836985998199 374.28165786258387 415.71703193315324" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M887.3949029513458 312.647474725588 C745.7282362846792 395.9808080589213 657.6149911959171 407.3836985998199 515.9483245292505 360.71703193315324" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M891.2231527481174 318.8854847637185 C844.0009305258952 337.21881809705184 847.1180666459888 336.00863583866254 799.8958444237667 354.34196917199586" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M318.04198088420986 407.89430135038674 C270.81975866198763 389.5609680170534 273.93689478208137 390.7711502754427 226.71467255985914 372.4378169421094" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M459.70864755087655 242.8943013503868 C412.4864253286543 224.56096801705345 415.60356144874805 225.77115027544278 368.3813392265258 207.43781694210944" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<path d="M655.4435139185492 281.1145152362815 C702.6657361407715 262.78118190294816 699.5486000206778 263.99136416133746 746.7708222429001 245.65803082800412" fill="none" stroke="#d22f35" stroke-width="1.7" marker-end="url(#a6)" />
+<rect x="568.5636751288259" y="139.726132467652" width="23" height="26" rx="3" fill="white" />
+<text x="580.06" y="152.73" font-size="20" style="fill:#000">3</text>
+<rect x="684.9522773333333" y="277.00000000000006" width="34" height="26" rx="3" fill="white" />
+<text x="701.95" y="290.00" font-size="20" style="fill:#000">13</text>
+<rect x="260.81511302340976" y="174.51295612032334" width="23" height="26" rx="3" fill="white" />
+<text x="272.32" y="187.51" font-size="20" style="fill:#000">6</text>
+<rect x="260.81511302340976" y="289.4870438796767" width="23" height="26" rx="3" fill="white" />
+<text x="272.32" y="302.49" font-size="20" style="fill:#000">5</text>
+<rect x="261.95604561790014" y="345.93471170128583" width="34" height="26" rx="3" fill="white" />
+<text x="278.96" y="358.93" font-size="20" style="fill:#000">10</text>
+<rect x="318.83333333333337" y="340.4375" width="23" height="26" rx="3" fill="white" />
+<text x="330.33" y="353.44" font-size="20" style="fill:#000">7</text>
+<rect x="537.2054776121986" y="286.7915383670889" width="23" height="26" rx="3" fill="white" />
+<text x="548.71" y="299.79" font-size="20" style="fill:#000">5</text>
+<rect x="413.4233785178404" y="339.7951238439273" width="23" height="26" rx="3" fill="white" />
+<text x="424.92" y="352.80" font-size="20" style="fill:#000">8</text>
+<rect x="277.3333333333333" y="410.818944" width="34" height="26" rx="3" fill="white" />
+<text x="294.33" y="423.82" font-size="20" style="fill:#000">12</text>
+<rect x="554.5182203099237" y="344.4870438796768" width="23" height="26" rx="3" fill="white" />
+<text x="566.02" y="357.49" font-size="20" style="fill:#000">7</text>
+<rect x="685.8151130234098" y="344.4870438796768" width="23" height="26" rx="3" fill="white" />
+<text x="697.32" y="357.49" font-size="20" style="fill:#000">2</text>
+<rect x="416.0656810291111" y="398.239206188698" width="23" height="26" rx="3" fill="white" />
+<text x="427.57" y="411.24" font-size="20" style="fill:#000">4</text>
+<rect x="253.8721442788654" y="396.79153836708895" width="23" height="26" rx="3" fill="white" />
+<text x="265.37" y="409.79" font-size="20" style="fill:#000">7</text>
+<rect x="456.2031666666666" y="138.73749999999998" width="23" height="26" rx="3" fill="white" />
+<text x="467.70" y="151.74" font-size="20" style="fill:#000">8</text>
+<rect x="382.18973375082606" y="151.74424957385014" width="34" height="26" rx="3" fill="white" />
+<text x="399.19" y="164.74" font-size="20" style="fill:#000">14</text>
+<rect x="485.2682203099236" y="292.2370438796768" width="34" height="26" rx="3" fill="white" />
+<text x="502.27" y="305.24" font-size="20" style="fill:#000">13</text>
+<rect x="202.0166194457498" y="287.71321133894565" width="23" height="26" rx="3" fill="white" />
+<text x="213.52" y="300.71" font-size="20" style="fill:#d22f35">4</text>
+<rect x="129.046631549854" y="235.32460475833852" width="23" height="26" rx="3" fill="white" />
+<text x="140.55" y="248.32" font-size="20" style="fill:#d22f35">8</text>
+<rect x="122.53212635261309" y="355.45518135576685" width="23" height="26" rx="3" fill="white" />
+<text x="134.03" y="368.46" font-size="20" style="fill:#d22f35">9</text>
+<rect x="285.50534415577096" y="174.58181045251186" width="23" height="26" rx="3" fill="white" />
+<text x="297.01" y="187.58" font-size="20" style="fill:#d22f35">4</text>
+<rect x="387.1041666666667" y="299.0" width="23" height="26" rx="3" fill="white" />
+<text x="398.60" y="312.00" font-size="20" style="fill:#d22f35">4</text>
+<rect x="363.82236562203013" y="332.1528491773759" width="23" height="26" rx="3" fill="white" />
+<text x="375.32" y="345.15" font-size="20" style="fill:#d22f35">2</text>
+<rect x="459.8648916802449" y="285.4314314241415" width="23" height="26" rx="3" fill="white" />
+<text x="471.36" y="298.43" font-size="20" style="fill:#d22f35">3</text>
+<rect x="526.0991478188722" y="215.13414263090272" width="23" height="26" rx="3" fill="white" />
+<text x="537.60" y="228.13" font-size="20" style="fill:#d22f35">7</text>
+<rect x="523.4710198967143" y="372.8861893859351" width="23" height="26" rx="3" fill="white" />
+<text x="534.97" y="385.89" font-size="20" style="fill:#d22f35">2</text>
+<rect x="644.265814485539" y="334.1341426309027" width="34" height="26" rx="3" fill="white" />
+<text x="661.27" y="347.13" font-size="20" style="fill:#d22f35">12</text>
+<rect x="445.1720108224376" y="390.58181045251183" width="23" height="26" rx="3" fill="white" />
+<text x="456.67" y="403.58" font-size="20" style="fill:#d22f35">5</text>
+<rect x="565.7518288106833" y="405.7128039281052" width="23" height="26" rx="3" fill="white" />
+<text x="577.25" y="418.71" font-size="20" style="fill:#d22f35">2</text>
+<rect x="602.3306024077028" y="352.61241361947117" width="23" height="26" rx="3" fill="white" />
+<text x="613.83" y="365.61" font-size="20" style="fill:#d22f35">7</text>
+<rect x="831.8799648831874" y="290.3246047583385" width="34" height="26" rx="3" fill="white" />
+<text x="848.88" y="303.32" font-size="20" style="fill:#d22f35">14</text>
+<rect x="224.76581448553893" y="389.1341426309027" width="23" height="26" rx="3" fill="white" />
+<text x="236.27" y="402.13" font-size="20" style="fill:#d22f35">7</text>
+<rect x="423.86545968594646" y="141.45518135576688" width="23" height="26" rx="3" fill="white" />
+<text x="435.37" y="154.46" font-size="20" style="fill:#d22f35">1</text>
+<rect x="707.7196803172203" y="185.35435651679745" width="23" height="26" rx="3" fill="white" />
+<text x="719.22" y="198.35" font-size="20" style="fill:#d22f35">4</text>
+<circle cx="65.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="65.0" y="300.0">s</text>
+<circle cx="206.66666666666666" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="206.66666666666666" y="245.0">b</text>
+<circle cx="206.66666666666666" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="206.66666666666666" y="355.0">c</text>
+<circle cx="348.3333333333333" cy="190.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="190.0">d</text>
+<circle cx="348.3333333333333" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="300.0">f</text>
+<circle cx="348.3333333333333" cy="410.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="348.3333333333333" y="410.0">h</text>
+<circle cx="490.0" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="245.0">e</text>
+<circle cx="490.0" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="490.0" y="355.0">i</text>
+<circle cx="631.6666666666666" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="631.6666666666666" y="300.0">g</text>
+<circle cx="773.3333333333334" cy="245.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="773.3333333333334" y="245.0">a</text>
+<circle cx="773.3333333333334" cy="355.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="773.3333333333334" y="355.0">j</text>
+<circle cx="915.0" cy="300.0" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="915.0" y="300.0">t</text>
+</g>
+<g transform="translate(1070 1985)">
+<text x="490.00" y="0.00" font-size="30" style="fill:#000">Max flow = 21</text>
+<path d="M55.675235130290446 280.524707868427 C110.67523513029045 212.1913745350937 131.8167272488631 185.92467220595796 186.8167272488631 117.59133887262465" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M65.0 300.0 C120.0 300.0 121.0 300.0 176.0 300.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M55.675235130290446 319.475292131573 C110.67523513029045 387.8086254649063 131.8167272488631 414.07532779404204 186.8167272488631 482.40866112737535" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M230.0 95.0 C290.0 95.0 296.0 95.0 356.0 95.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M221.49502933037738 113.78600562626313 C281.4950293303774 182.11933895959646 305.86576597676225 209.87490014020148 365.86576597676225 278.2082334735348" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M221.49502933037738 281.21399437373685 C281.4950293303774 212.88066104040354 305.86576597676225 185.12509985979858 365.86576597676225 116.79176652646524" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M230.0 300.0 C290.0 300.0 296.0 300.0 356.0 300.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M221.49502933037738 318.78600562626315 C281.4950293303774 387.11933895959646 305.86576597676225 414.8749001402015 365.86576597676225 483.2082334735348" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M221.49502933037738 486.21399437373685 C281.4950293303774 417.88066104040354 305.86576597676225 390.1250998597985 365.86576597676225 321.7917665264652" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M230.0 505.0 C290.0 505.0 296.0 505.0 356.0 505.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M408.0769230769231 104.61538461538461 C468.0769230769231 129.6153846153846 478.2307692307693 133.84615384615384 538.2307692307693 158.84615384615384" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M396.8328900140541 117.02232308171185 C456.8328900140541 228.6889897483785 491.27384758369726 292.7874385585476 551.2738475836973 404.4541052252143" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M405.26698070999703 285.36273615389103 C465.26698070999703 242.0294028205577 481.4903023764034 230.31255939481974 541.4903023764034 186.9792260614864" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M405.26698070999703 314.63726384610897 C465.26698070999703 357.9705971794423 481.4903023764034 369.6874406051803 541.4903023764034 413.0207739385136" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M408.0769230769231 495.38461538461536 C468.0769230769231 470.38461538461536 478.2307692307693 466.15384615384613 538.2307692307693 441.15384615384613" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M589.1340848257066 163.47727437143064 C650.8007514923733 146.81060770476398 660.3377949355137 144.23302839580714 722.0044616021803 127.56636172914047" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M578.1222175749115 191.27927174309974 C639.7888842415781 291.27927174309974 673.111560946436 345.3160447780043 734.7782276131027 445.3160447780043" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M577.8114377369812 408.53218541370705 C639.4781044036479 305.19885208037374 673.4720655584351 248.23599825343314 735.1387322251018 144.90266492009982" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M589.4353541359967 435.2833198131885 C651.1020208026633 448.6166531465218 659.9883225355773 450.53801568336803 721.6549892022439 463.87134901670134" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M768.1488170976456 137.1936161977696 C831.482150430979 197.1936161977696 855.6140388333977 220.0554052105873 918.947372166731 280.0554052105873" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M768.6310328381275 453.33012851325435 C831.9643661714608 396.66346184658767 855.0546685744388 376.0037175912916 918.3880019077721 319.3370509246249" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M229.47451049344014 499.9011436472 C349.4745104934401 474.9011436472 416.60956782760945 460.914673369248 536.6095678276095 435.914673369248" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M205.0 120.0 C205.0 188.33333333333331 205.0 202.66666666666669 205.0 271.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M385.0 120.0 C385.0 188.33333333333331 385.0 202.66666666666669 385.0 271.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M229.47451049344014 100.09885635280003 C349.4745104934401 125.09885635280003 416.60956782760945 139.08532663075198 536.6095678276095 164.08532663075198" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<path d="M565.0 195.0 C565.0 281.6666666666667 565.0 314.3333333333333 565.0 401.0" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#a1)" />
+<rect x="93.02690465371347" y="238.1635427029621" width="45" height="26" rx="3" fill="white" />
+<text x="115.53" y="251.16" font-size="20" style="fill:#000">4/4</text>
+<rect x="93.78650000000002" y="268.0" width="45" height="26" rx="3" fill="white" />
+<text x="116.29" y="281.00" font-size="20" style="fill:#000">8/8</text>
+<rect x="93.02690465371347" y="335.83645729703795" width="45" height="26" rx="3" fill="white" />
+<text x="115.53" y="348.84" font-size="20" style="fill:#000">9/9</text>
+<rect x="265.53650000000005" y="127.0" width="45" height="26" rx="3" fill="white" />
+<text x="288.04" y="140.00" font-size="20" style="fill:#000">0/3</text>
+<rect x="266.9043109266433" y="236.89102077756598" width="56" height="26" rx="3" fill="white" />
+<text x="294.90" y="249.89" font-size="20" style="fill:#000">0/13</text>
+<rect x="214.92795693137504" y="191.30427127260066" width="56" height="26" rx="3" fill="white" />
+<text x="242.93" y="204.30" font-size="20" style="fill:#000">4/10</text>
+<rect x="265.53650000000005" y="268.0" width="45" height="26" rx="3" fill="white" />
+<text x="288.04" y="281.00" font-size="20" style="fill:#000">4/4</text>
+<rect x="264.8436850892526" y="335.78030801831545" width="45" height="26" rx="3" fill="white" />
+<text x="287.34" y="348.78" font-size="20" style="fill:#000">0/5</text>
+<rect x="264.8436850892526" y="443.21969198168466" width="45" height="26" rx="3" fill="white" />
+<text x="287.34" y="456.22" font-size="20" style="fill:#000">2/2</text>
+<rect x="260.03650000000005" y="511.0" width="56" height="26" rx="3" fill="white" />
+<text x="288.04" y="524.00" font-size="20" style="fill:#000">0/10</text>
+<rect x="445.3798461538463" y="84.53326923076924" width="45" height="26" rx="3" fill="white" />
+<text x="467.88" y="97.53" font-size="20" style="fill:#000">3/3</text>
+<rect x="440.6428303772065" y="292.93248986868986" width="45" height="26" rx="3" fill="white" />
+<text x="463.14" y="305.93" font-size="20" style="fill:#000">0/7</text>
+<rect x="451.1063348377641" y="174.0343137282815" width="56" height="26" rx="3" fill="white" />
+<text x="479.11" y="187.03" font-size="20" style="fill:#000">7/12</text>
+<rect x="445.1509482486364" y="391.6923515129041" width="45" height="26" rx="3" fill="white" />
+<text x="467.65" y="404.69" font-size="20" style="fill:#000">0/8</text>
+<rect x="439.8798461538463" y="489.4667307692308" width="56" height="26" rx="3" fill="white" />
+<text x="467.88" y="502.47" font-size="20" style="fill:#000">0/12</text>
+<rect x="627.7159625499021" y="101.96865877029677" width="45" height="26" rx="3" fill="white" />
+<text x="650.22" y="114.97" font-size="20" style="fill:#000">2/9</text>
+<rect x="666.0815093443618" y="297.86190704491116" width="67" height="26" rx="3" fill="white" />
+<text x="699.58" y="310.86" font-size="20" style="fill:#000">12/14</text>
+<rect x="623.1565502440286" y="219.68361851000628" width="45" height="26" rx="3" fill="white" />
+<text x="645.66" y="232.68" font-size="20" style="fill:#000">5/9</text>
+<rect x="627.7405039479183" y="403.43037923198244" width="45" height="26" rx="3" fill="white" />
+<text x="650.24" y="416.43" font-size="20" style="fill:#000">2/2</text>
+<rect x="814.4784026407742" y="144.40059197547038" width="45" height="26" rx="3" fill="white" />
+<text x="836.98" y="157.40" font-size="20" style="fill:#000">7/7</text>
+<rect x="785.5176839349939" y="347.1420722686898" width="67" height="26" rx="3" fill="white" />
+<text x="819.02" y="360.14" font-size="20" style="fill:#000">14/14</text>
+<rect x="340.9936936247957" y="425.834647161501" width="56" height="26" rx="3" fill="white" />
+<text x="368.99" y="438.83" font-size="20" style="fill:#000">7/14</text>
+<rect x="146.50000000000003" y="195.28650000000002" width="45" height="26" rx="3" fill="white" />
+<text x="169.00" y="208.29" font-size="20" style="fill:#000">0/8</text>
+<rect x="321.00000000000006" y="195.28650000000002" width="56" height="26" rx="3" fill="white" />
+<text x="349.00" y="208.29" font-size="20" style="fill:#000">1/15</text>
+<rect x="336.0798128973423" y="168.24579435361298" width="45" height="26" rx="3" fill="white" />
+<text x="358.58" y="181.25" font-size="20" style="fill:#000">4/4</text>
+<rect x="501.0000000000001" y="257.03650000000005" width="56" height="26" rx="3" fill="white" />
+<text x="529.00" y="270.04" font-size="20" style="fill:#000">0/13</text>
+<circle cx="40" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="40" y="300">s</text>
+<circle cx="205" cy="95" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="95">a</text>
+<circle cx="205" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="300">b</text>
+<circle cx="205" cy="505" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="205" y="505">c</text>
+<circle cx="385" cy="95" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="95">d</text>
+<circle cx="385" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="300">e</text>
+<circle cx="385" cy="505" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="385" y="505">f</text>
+<circle cx="565" cy="170" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="565" y="170">g</text>
+<circle cx="565" cy="430" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="565" y="430">h</text>
+<circle cx="750" cy="120" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="750" y="120">i</text>
+<circle cx="750" cy="470" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="750" y="470">j</text>
+<circle cx="940" cy="300" r="24" fill="white" stroke="black" stroke-width="1.6" /><text class="node" x="940" y="300">t</text>
+</g>
+</svg>

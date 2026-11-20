@@ -45,3 +45,5 @@ Balanced Binary Tree refer to the heights of the left and right subtrees of ever
 - Layer-order traversal (BFS): list nodes by layer order. 
 
 ### Binary Heap, Priority Queue
+
+![binary-min-heap](./assets/binary-min-heap.svg)
