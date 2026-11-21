@@ -10,7 +10,7 @@
 </head>
 <body>
 <main aria-label="三维堆积；左侧 HCP，右侧 FCC；拖动旋转，滚轮缩放">
-<canvas id="hcp" tabindex="0" role="img" aria-label="HCP 六方最密堆积，ABAB 层序，圆心及最近邻虚线"></canvas>
+<canvas id="hcp" tabindex="0" role="img" aria-label="HCP 六方最密堆积，ABA 三层，已去掉顶部红色层，圆心及最近邻虚线"></canvas>
 <canvas id="fcc" tabindex="0" role="img" aria-label="FCC 面心立方堆积，ABCABC 层序，圆心及最近邻虚线"></canvas>
 </main>
 <script>
@@ -18,10 +18,10 @@
 'use strict';
 const sqrt3=Math.sqrt(3),height=Math.sqrt(8/3);
 const layerColors=['37,99,235','220,38,38','22,153,105'];
-function lattice(period){
+function lattice(period,layerCount=4){
   const points=[];
   const offsets=[[0,0],[1,1/sqrt3],[0,2/sqrt3]];
-  for(let k=0;k<4;k++){
+  for(let k=0;k<layerCount;k++){
     const [ox,oy]=offsets[k%period];
     for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++){
       if(Math.abs(i+j)>2)continue;
@@ -40,7 +40,7 @@ function geometry(points){
   }
   return {points,edges};
 }
-const views=[{canvas:document.getElementById('fcc'),...lattice(3)},{canvas:document.getElementById('hcp'),...lattice(2)}];
+const views=[{canvas:document.getElementById('fcc'),...lattice(3)},{canvas:document.getElementById('hcp'),...lattice(2,3)}];
 for(const view of views)view.radius=Math.max(...view.points.map(p=>Math.hypot(p.x,p.y,p.z)));
 // Unit quaternions represent orientation without angle limits or Euler singularities.
 function multiply(a,b){
