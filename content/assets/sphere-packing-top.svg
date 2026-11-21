@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="554" height="161.903811" viewBox="0 0 554 161.903811" role="img" aria-labelledby="title description">
+<title id="title">HCP and FCC top views</title>
+<desc id="description">Left: HCP. Right: FCC. Blue A-layer rhombi, red B-layer sites above A, and green C-layer sites below A. Orthographic projection along the layer normal; nearest-neighbor connections only.</desc>
+<g id="hcp">
+<line x1="241" y1="145.903811" x2="166" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="241" y1="145.903811" x2="91" y2="145.903811" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="241" y1="145.903811" x2="166" y2="102.60254" stroke="#49586d" stroke-width="0.9"/>
+<line x1="166" y1="16" x2="16" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="166" y1="16" x2="91" y2="145.903811" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="166" y1="16" x2="166" y2="102.60254" stroke="#49586d" stroke-width="0.9"/>
+<line x1="16" y1="16" x2="91" y2="145.903811" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="91" y1="145.903811" x2="166" y2="102.60254" stroke="#49586d" stroke-width="0.9"/>
+<circle cx="241" cy="145.903811" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="166" cy="16" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="16" cy="16" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="91" cy="145.903811" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="166" cy="102.60254" r="3.6" fill="#dc2626" data-layer="B" data-z="1.632993"/>
+</g>
+<g id="fcc">
+<line x1="388" y1="145.903811" x2="388" y2="59.30127" stroke="#49586d" stroke-width="0.9"/>
+<line x1="388" y1="145.903811" x2="463" y2="102.60254" stroke="#49586d" stroke-width="0.9"/>
+<line x1="388" y1="145.903811" x2="538" y2="145.903811" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="388" y1="145.903811" x2="463" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="388" y1="145.903811" x2="313" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="388" y1="59.30127" x2="463" y2="16" stroke="#49586d" stroke-width="0.9"/>
+<line x1="388" y1="59.30127" x2="313" y2="16" stroke="#49586d" stroke-width="0.9"/>
+<line x1="463" y1="102.60254" x2="538" y2="145.903811" stroke="#49586d" stroke-width="0.9"/>
+<line x1="463" y1="102.60254" x2="463" y2="16" stroke="#49586d" stroke-width="0.9"/>
+<line x1="538" y1="145.903811" x2="463" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<line x1="463" y1="16" x2="313" y2="16" stroke="#2563eb" stroke-width="0.9" stroke-dasharray="4 4"/>
+<circle cx="463" cy="102.60254" r="3.6" fill="#169969" data-layer="C" data-z="-1.632993"/>
+<circle cx="388" cy="145.903811" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="538" cy="145.903811" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="463" cy="16" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="313" cy="16" r="3.6" fill="#2563eb" data-layer="A" data-z="0"/>
+<circle cx="388" cy="59.30127" r="3.6" fill="#dc2626" data-layer="B" data-z="1.632993"/>
+</g>
+</svg>

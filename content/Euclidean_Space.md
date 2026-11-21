@@ -384,10 +384,12 @@ A Penrose tiling is an example of an aperiodic tiling.
 
 ![packing-2d](./assets/packing-2d.svg)
 
-**Closest packing of spheres in 3D.**  Identical spheres achieve their maximum packing density when triangular layers are stacked so that each sphere rests in a hollow between three spheres below.
+**Closest packing of spheres in 3D.**  Identical spheres achieve their maximum packing density when triangular layers are stacked so that each sphere rests in a hollow between three spheres below. In a triangular lattice, the triangular bases of two adjacent three-sphere hollows $(\triangle, \bigtriangledown)$, one of each orientation, form a rhombus.
 
-- Face-centered cubic, 
-- Hexagonal close packing,
+- Hexagonal close packing, selects only one type of three-sphere hollows, ABA. (A is the bule layer, B is the red layer.)
+- Face-centered cubic, selects both types of three-sphere hollows and arrange them in an alternating pattern, ABCA. (C is the green layer.)
+
+![sphere-packing-top](./assets/sphere-packing-top.svg)
 
 <iframe 
   src="./assets/sphere-packing.html"
@@ -395,6 +397,7 @@ A Penrose tiling is an example of an aperiodic tiling.
   height="400" 
   style="border: none;">
 </iframe>
+
 
 | Dimension        | 1    | 2      | 3      | 4–7     | 8      | 9–23    | 24       | ≥25     |
 | ---------------- | ---- | ------ | ------ | ------- | ------ | ------- | -------- | ------- |

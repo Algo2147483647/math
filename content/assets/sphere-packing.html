@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FCC · HCP</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff;color-scheme:light}main{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));width:100%;height:100%;background:#fff}canvas{display:block;width:100%;height:100%;min-width:0;min-height:0;touch-action:none;background:#fff;cursor:grab}canvas:active{cursor:grabbing}canvas:focus-visible{outline:2px solid #65758b;outline-offset:-4px}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff;color-scheme:light}main{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);width:100%;height:100%;background:#fff}canvas{display:block;width:100%;height:100%;min-width:0;min-height:0;touch-action:none;background:#fff;cursor:grab}canvas:active{cursor:grabbing}canvas:focus-visible{outline:2px solid #65758b;outline-offset:-4px}
 </style>
 </head>
 <body>
-<main aria-label="上排为多点堆积样本，下排为堆积；左侧 FCC，右侧 HCP；拖动旋转，滚轮缩放">
-<canvas id="fcc-cell" tabindex="0" role="img" aria-label="FCC 样本，蓝色七个圆心、红色和绿色各保留中间三个圆心"></canvas>
-<canvas id="hcp-cell" tabindex="0" role="img" aria-label="HCP 样本，蓝色七个圆心、红色三个圆心"></canvas>
-<canvas id="fcc" tabindex="0" role="img" aria-label="FCC 面心立方堆积，ABCABC 层序，圆心及最近邻虚线"></canvas>
+<main aria-label="三维堆积；左侧 HCP，右侧 FCC；拖动旋转，滚轮缩放">
 <canvas id="hcp" tabindex="0" role="img" aria-label="HCP 六方最密堆积，ABAB 层序，圆心及最近邻虚线"></canvas>
+<canvas id="fcc" tabindex="0" role="img" aria-label="FCC 面心立方堆积，ABCABC 层序，圆心及最近邻虚线"></canvas>
 </main>
 <script>
 (()=>{
@@ -42,37 +40,8 @@ function geometry(points){
   }
   return {points,edges};
 }
-function withoutTopBlueLayer(points){
-  const top=Math.max(...points.filter(p=>p.layer===0).map(p=>p.z));
-  return geometry(points.filter(p=>!(p.layer===0&&Math.abs(p.z-top)<1e-8)));
-}
-function fccCell(){
-  const points=[],a=Math.sqrt(2);
-  for(let i=0;i<=2;i++)for(let j=0;j<=2;j++)for(let k=0;k<=2;k++){
-    if((i+j+k)%2!==0)continue;
-    points.push({x:(i-j)*a/Math.sqrt(2),y:(i+j-2*k)*a/Math.sqrt(6),z:(i+j+k)*a/Math.sqrt(3),layer:((i+j+k)/2)%3});
-  }
-  for(let j=0;j<6;j++){
-    const angle=j*Math.PI/3;
-    points.push({x:2*Math.cos(angle),y:2*Math.sin(angle),z:0,layer:0});
-  }
-  const middleColored=new Set([1,2].flatMap(layer=>points.filter(p=>p.layer===layer).sort((a,b)=>(a.x*a.x+a.y*a.y)-(b.x*b.x+b.y*b.y)).slice(0,3)));
-  return withoutTopBlueLayer(points.filter(p=>p.layer===0||middleColored.has(p)));
-}
-function hcpCell(){
-  const points=[];
-  for(let k=0;k<2;k++){
-    for(let j=0;j<6;j++)points.push({x:2*Math.cos(j*Math.PI/3),y:2*Math.sin(j*Math.PI/3),z:2*k*height,layer:0});
-  }
-  for(let k=0;k<2;k++)points.push({x:0,y:0,z:2*k*height,layer:0});
-  for(let j=0;j<3;j++){const angle=Math.PI/6+j*2*Math.PI/3;points.push({x:2/sqrt3*Math.cos(angle),y:2/sqrt3*Math.sin(angle),z:height,layer:1});}
-  return withoutTopBlueLayer(points);
-}
-const views=[{canvas:document.getElementById('fcc-cell'),...fccCell(),graySolid:true},{canvas:document.getElementById('hcp-cell'),...hcpCell(),graySolid:true},{canvas:document.getElementById('fcc'),...lattice(3)},{canvas:document.getElementById('hcp'),...lattice(2)}];
+const views=[{canvas:document.getElementById('fcc'),...lattice(3)},{canvas:document.getElementById('hcp'),...lattice(2)}];
 for(const view of views)view.radius=Math.max(...view.points.map(p=>Math.hypot(p.x,p.y,p.z)));
-// Use the same world-to-screen scale for both first-row diagrams.
-const firstRowRadius=Math.max(views[0].radius,views[1].radius);
-views[0].radius=views[1].radius=firstRowRadius;
 // Unit quaternions represent orientation without angle limits or Euler singularities.
 function multiply(a,b){
   return [a[3]*b[0]+a[0]*b[3]+a[1]*b[2]-a[2]*b[1],
