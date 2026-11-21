@@ -377,3 +377,25 @@ There are 17 combinations of regular convex polygons that form 21 types of plane
 A Penrose tiling is an example of an aperiodic tiling.
 
 <img src="assets/Penrose_Tiling_(Rhombi).svg" alt="Penrose_Tiling_(Rhombi)" style="zoom: 50%;" />
+
+## Closest packing of spheres
+
+**Closest packing of spheres in 2D.** Identical circles achieve their maximum packing density in a triangular lattice, with adjacent rows offset by one radius. Each circle touches six neighbors, whose centers form a regular hexagon around it.
+
+![packing-2d](./assets/packing-2d.svg)
+
+**Closest packing of spheres in 3D.**  Identical spheres achieve their maximum packing density when triangular layers are stacked so that each sphere rests in a hollow between three spheres below.
+
+- Face-centered cubic, 
+- Hexagonal close packing,
+
+<iframe 
+  src="./assets/sphere-packing.html"
+  width="100%" 
+  height="400" 
+  style="border: none;">
+</iframe>
+
+| Dimension        | 1    | 2      | 3      | 4–7     | 8      | 9–23    | 24       | ≥25     |
+| ---------------- | ---- | ------ | ------ | ------- | ------ | ------- | -------- | ------- |
+| Packing fraction | 100% | 90.69% | 74.05% | Unknown | 25.37% | Unknown | 0.19296% | Unknown |
