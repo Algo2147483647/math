@@ -114,9 +114,9 @@ $$
 \end{align*}
 $$
 
-> - $P(A)$: the prior probability, namely the probability assigned to event $A$ before observing the new evidence.
-> - $P(B \mid A)$: the likelihood, namely the probability of observing evidence $B$ given that $A$ is true.
+> - $P(A)$: the prior probability, the probability assigned to event $A$ before observing the new evidence.
+> - $P(B \mid A)$: the likelihood, the probability of observing evidence $B$ given that $A$ is true.
 > - $P(B)$: the marginal probability of the evidence, or the overall probability that evidence $B$ is observed.
-> - $P(A \mid B)$: the posterior probability, that is, the updated probability assigned to $A$ after observing evidence $B$.
+> - $P(A \mid B)$: the posterior probability, the updated probability assigned to $A$ after observing evidence $B$.
 >
 > Bayes’ theorem understands rational judgment not as the production of a once-and-for-all conclusion, but as an ongoing process of revision. We approach the world with prior probabilities of some kind, and new evidence does not determine the truth in isolation. Rather, by indicating how strongly it supports competing hypotheses, evidence recalibrates the degree of credibility assigned to each of them. Bayes’ theorem therefore reveals a central mechanism of rational inference: preserving probability under uncertainty, revising belief in light of evidence, and moving toward more reliable judgment through the interaction between background probabilities and new information.

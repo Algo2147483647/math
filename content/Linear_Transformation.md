@@ -9,7 +9,30 @@
 $$
 T(k \boldsymbol x + l \boldsymbol y) = k(T \boldsymbol x) + l(T \boldsymbol y)
 $$
-Linear Transformation is a [mapping](./Function.md) $T: V \to V$ for a [linear space](./Linear_Space.md) $V$, $\forall \boldsymbol x \in V$ there is a unique $\boldsymbol y \in V$ corresponding to it, and the linear condition is satisfied. Meanwhile, linear Transformation can represent by matrix $\boldsymbol A$ and matrix multiply, where the matrix $\boldsymbol A$ can be obtained by the unit base vectors $(\boldsymbol e_1, ..., \boldsymbol e_n)$ after transformation, 
+Linear Transformation is a [mapping](./Function.md) $T: V \to V$ for a [linear space](./Linear_Space.md) $V$, $\forall \boldsymbol x \in V$ there is a unique $\boldsymbol y \in V$ corresponding to it, and the linear condition is satisfied. 
+
+<img src="./assets/transformations-1694683776868-3.svg" alt="transformations-1694683776868-3" style="zoom:50%;" />
+
+### Matrix, Matrix–Vector multiplication: Representation of Linear transformation
+
+
+$$
+\boldsymbol A = \left(\begin{matrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{matrix}\right) \in \mathbb R^{m \times n}, m, n \in \mathbb Z
+$$
+
+Matrix is a mapping from position indicators to elements of a field $A: \{1, \cdots, m\} \times \{1, \cdots, n\} \to \mathbb F$ (like $\mathbb R, \mathbb C$). Matrices are often written in the form of two-dimensional arrays.
+
+
+
+Operations of matrix,
+
+- Addition: $\boldsymbol A_{m \times n} + \boldsymbol B_{m \times n} = \boldsymbol C_{m \times n} , c_{ij} = a_{ij} + b_{ij}$
+- Scalar multiplication, $k \boldsymbol A_{m \times n} = (k a_{ij})_{m \times n}$
+- Multiplication, $\boldsymbol A_{m \times n} \times \boldsymbol B_{n \times p} = \boldsymbol C_{m \times p}, c_{ij} = \sum\limits_{k \in 1:n} a_{ik} b_{kj}$
+- Matrix–Vector multiplication, $Ax=\sum\limits_{j=1}^{n}a_{ij}x_j$
+- Multiplication of elements, Hadamard product: $\boldsymbol A_{m \times n} \odot \boldsymbol B_{m \times n} = \boldsymbol C_{m \times n}, c_{ij} = a_{ij} b_{ij}$
+
+Linear transformation can represent by matrix $\boldsymbol A$ and matrix–vector multiply, where the matrix $\boldsymbol A$ can be obtained by the unit base vectors $(\boldsymbol e_1, ..., \boldsymbol e_n)$ after transformation, 
 
 $$
 T(\boldsymbol x) = \boldsymbol A \boldsymbol x \\
@@ -20,64 +43,16 @@ $$
 > $$
 >\begin{align*}
 > T(\boldsymbol x)
-> &= T \left(\sum_{i=1}^{\dim} x_i \boldsymbol e_i \right) \tag{$\boldsymbol x 
-> = \sum_{i=1}^{\dim} x_i \boldsymbol e_i$} \\
->   &= \sum_{i=1}^{\dim} x_i T(\boldsymbol e_i)  \tag{Linear Transformation}\\
->   &= \sum_{i=1}^{\dim} x_i \boldsymbol a_i  \tag{$T(\boldsymbol e_i) = \boldsymbol a_i$}\\
+> &= T \left(\sum_{i=1}^{\dim} x_i \boldsymbol e_i \right) \\
+> &= \sum_{i=1}^{\dim} x_i T(\boldsymbol e_i) \\
 >   &= \boldsymbol A \boldsymbol x
-> \end{align*}
-> $$
+>   \end{align*}
+>   $$
 
-<img src="./assets/transformations-1694683776868-3.svg" alt="transformations-1694683776868-3" style="zoom: 13%;" />
 
 ## Properties
 
-### Representation of Linear transformation: Matrix
-
-$$
-\mathbb R^{m \times n}, m, n \in \mathbb Z
-$$
-
-$$
-\boldsymbol A = \left(\begin{matrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{matrix}\right)
-$$
-
-Matrix is the representation of Linear transformation. A matrix is a two-dimensional array of numbers, symbols, or expressions, arranged in rows and columns.
-
-#### Operations
-
-- Addition:
-
-$$
-\boldsymbol A_{m \times n} + \boldsymbol B_{m \times n} = \boldsymbol C_{m \times n}  \tag{addition}
-$$
-$$
-c_{ij} = a_{ij} + b_{ij}
-$$
-
-- Scalar multiplication,
-
-$$
-k \boldsymbol A_{m \times n} = (k a_{ij})_{m \times n}  \tag{scalar multiplication}
-$$
-
-- multiplication
-$$
-\boldsymbol A_{m \times n} \times \boldsymbol B_{n \times p} = \boldsymbol C_{m \times p}
-$$
-$$
-c_{ij} = \sum_{k \in 1:n} a_{ik} b_{kj}
-$$
-
-- multiplication of elements, Hadamard product
-$$
-\boldsymbol A_{m \times n} \odot \boldsymbol B_{m \times n} = \boldsymbol C_{m \times n}
-$$
-$$
-c_{ij} = a_{ij} b_{ij}
-$$
-
-#### Matrix Multiplication
+#### Matrix Multiplication calculation
 
 The asymptotic complexity of known matrix multiplication algorithm has a upper bound of $O(n^{2.25+\varepsilon})$.
 
@@ -180,10 +155,15 @@ $$
   - $x$: Eigenvectors, a vector whose direction does not change before and after linear transformation;  
   - $λ$: Eigenvalues, proportion of length change of eigenvector after linear transformation.
 
-- Property
-  * Eigenvalue Decomposition & Singular Value Decomposition
-  
-  - Characteristic polynomial
+
+
+
+Properties
+
+* Eigenvalue Decomposition & Singular Value Decomposition
+
+- Characteristic polynomial
+
 $$
     \varphi(λ) = |λ I - A| = λ^n + a_1 λ^{n-1} + ... + a_{n-1} λ + a_n
 $$
@@ -210,7 +190,7 @@ When the rank of rows is full,  $A^+ = A^H (A A^H)^{-1}$
 
 - Property
   - $rank(A) = rank(A^H A) = rank(A A^H)$
-  - 满秩分解算广义逆 $A^+ = G^H (F^H A G^H)^{-1} F^H$
+  - Computing a Generalized Inverse via Full-Rank Decomposition $A^+ = G^H (F^H A G^H)^{-1} F^H$
 
 ### Similarity
 
@@ -232,16 +212,16 @@ $$
 A_Y = C^{-1} A_X C \quad ; Y = C X
 $$
 
-- Proof
-  $$
-  \begin{align*}
-    T Y &= Y A_Y     \tag{Define}\\ 
-    T X C &= X C A_Y   \tag{$ Y = X C $}\\
-    X A_X C &= X C A_Y   \tag{$ T X = X A_X $}\\
-    A_X C &= C A_Y  \\
-    A_Y &= C^{-1} A_X C
-  \end{align*}
-  $$
+> Proof
+> $$
+> \begin{align*}
+>   T Y &= Y A_Y     \tag{Define}\\ 
+>   T X C &= X C A_Y   \tag{$ Y = X C $}\\
+>   X A_X C &= X C A_Y   \tag{$ T X = X A_X $}\\
+>   A_X C &= C A_Y  \\
+>   A_Y &= C^{-1} A_X C
+> \end{align*}
+> $$
 
 ### Special linear transformation
 
@@ -342,3 +322,25 @@ Scale Transformation Matrix:
 $$
 T = \left(\begin{matrix} Δx_1 \\ & Δx_2 \\ & & \ddots \\ & & & Δx_n \end{matrix}\right)
 $$
+
+## Systems of Linear Equations
+
+Systems of linear equations can be written as follow with known $A, b$ to solve $x$.
+$$
+A x = b
+$$
+
+### Existence, Uniqueness
+
+- Condition for Existence $\text{rank}(A) = \text{rank}([A|b])$. Equivalently, $b \in \text{Col}(A)$.
+
+- Condition for Uniqueness: If a solution exists and $\text{rank}(A) = n$, as the null space contains only the zero vector.
+
+### Optimal solution
+
+There are three cases for $A$: Square, Overdetermined, and Underdetermined,
+- $m = n$ Square Matrix: If $A$ is invertible, there is a unique solution $x = A^{-1}b$. If $A$ is singular, there may be no solution or infinitely many solutions, depending on whether $b$ lies within the column space of $A$.
+
+- $m > n$ Overdetermined Equations: When there are more equations than unknowns, an exact solution typically does not exist. We often seeks a least-squares solution $\min_x \|Ax - b\|_2^2$, $x^* = (A^TA)^{-1}A^Tb$.
+
+- $m < n$ Underdetermined Equations, When there are more unknowns than equations, if the system is consistent, there are infinitely many solutions. We often seeks the minimum-norm solution, $x^* = A^+ b$.

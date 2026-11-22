@@ -9,7 +9,7 @@
 $$
 \begin{align*}
 f(x) &= \sum_{i=0}^{3} a_i x^i  \tag{Univariate} \\
-f(\boldsymbol x) &= \sum\limits_{i_1=0}^{\dim} \sum\limits_{i_2=i_1}^{\dim} \sum\limits_{i_3=i_2}^{\dim}a_{i_1 i_2 i_3} \cdot x_{i_1} x_{i_2} x_{i_3}  \quad \text{where } x_0 = 1 \\
+f(\boldsymbol x) &= \sum\limits_{i=0}^{\dim} \sum\limits_{j=i}^{\dim} \sum\limits_{k=j}^{\dim}a_{i j k} \cdot x_{i} x_{j} x_{k}  \quad \text{where } x_0 = 1 \\
 \end{align*}
 $$
 

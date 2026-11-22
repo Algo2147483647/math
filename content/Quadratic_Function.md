@@ -97,6 +97,10 @@ $$
 
 - $z\in\mathbb R^n\setminus\{0\}$
 
+
+
+![quadric-atlas](./assets/quadric-atlas.svg)
+
 | Quadric                                                                          | $\boldsymbol A'$ such that ${\boldsymbol x'}^T\boldsymbol A'\boldsymbol x'=0$                                   |
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | **Ellipsoid** $\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$              | $\displaystyle \begin{pmatrix}\frac1{a^2}&0&0&0\\0&\frac1{b^2}&0&0\\0&0&\frac1{c^2}&0\\0&0&0&-1\end{pmatrix}$     |
@@ -127,8 +131,6 @@ $$
 
 Spherical Surface is a point set with a constant distance value $r$ from the center point $\boldsymbol x_c$.
 
-<img src="./assets/Sphere_Quadric.png" alt="img" style="zoom:18%;" />
-
 Property:
 - Sphere is a convex set
 
@@ -146,8 +148,6 @@ $$
 $$
 \{ \boldsymbol x \ |\ (\boldsymbol x - \boldsymbol x_c)^T \boldsymbol P^{-1} (\boldsymbol x - \boldsymbol x_c) = 1, \boldsymbol P = \boldsymbol P^T ⪰ 0\}  \tag{Ellipsoid Surface}
 $$
-
-<img src="./assets/Ellipsoid_Quadric.png" alt="img" style="zoom:18%;" />
 
 Property:
 
@@ -170,24 +170,8 @@ For ellipse,
 
 if $\boldsymbol A$ is a non-positive definite matrix. Hyperboloid of one sheet, Hyperboloid of two sheets, Conical surface in between
 
-<img src="./assets/Hyperboloid_Of_Two_Sheets_Quadric.png" alt="img" style="zoom: 18%;" />
-
-<img src="./assets/Hyperboloid_Of_One_Sheet_Quadric.png" alt="img" style="zoom:18%;" />
-
 #### Paraboloid
-
-<img src="./assets/Paraboloid_Quadric.png" alt="img" style="zoom:20%;" />
-
-<img src="./assets/Hyperbolic_Paraboloid_Quadric.png" alt="img" style="zoom:18%;" />
 
 #### Cylinder
 
-<img src="./assets/Elliptic_Cylinder_Quadric.png" alt="img" style="zoom:18%;" />
-
-<img src="./assets/Hyperbolic_Cylinder_Quadric.png" alt="img" style="zoom:18%;" />
-
-<img src="./assets/Parabolic_Cylinder_Quadric.png" alt="img" style="zoom:18%;" />
-
 #### Cone
-
-<img src="./assets/Circular_Cone_Quadric.png" alt="img" style="zoom:18%;" />
